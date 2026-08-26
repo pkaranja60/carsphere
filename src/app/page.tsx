@@ -1,69 +1,108 @@
-import Image from "next/image";
+import { Typography } from "@heroui/react";
+import Link from "next/link";
+import { BiSolidOffer } from "react-icons/bi";
+import { FaTruckFast } from "react-icons/fa6";
+import {
+  HiCalendarDateRange,
+  HiMiniPhone,
+  HiOutlineMagnifyingGlass,
+  HiOutlineUser,
+} from "react-icons/hi2";
+
+const topNavs = [
+  { icon: <FaTruckFast size={20} />, label: "Free Shipping & Delivery" },
+  {
+    icon: <BiSolidOffer size={20} />,
+    label: "Exclusive Offers On Premium Cars",
+  },
+  {
+    icon: <HiMiniPhone size={20} />,
+    label: "24/7 Customer Support: +254 700 000 000",
+  },
+];
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/cars", label: "Browse Cars" },
+  { href: "/services", label: "Services" },
+  { href: "/financing", label: "Financing" },
+  { href: "/about", label: "About Us" },
+  { href: "/contact", label: "Contact Us" },
+];
+
+function TopNav({ icon, label }: { icon: React.ReactNode; label: string }) {
+  return (
+    <div className="flex items-center gap-2 text-red-400/80">
+      {icon}
+      <Typography type="body">{label}</Typography>
+    </div>
+  );
+}
+
+function NavLink({ label, href }: { label: string; href: string }) {
+  return (
+    <Link href={href}>
+      <Typography
+        className="text-gray-300 transition-colors duration-200 hover:text-red-400"
+        type="body"
+      >
+        {label}
+      </Typography>
+    </Link>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex w-full max-w-3xl flex-1 flex-col items-center justify-between bg-white px-16 py-32 sm:items-start dark:bg-black">
-        <Image
-          alt="Next.js logo"
-          className="h-5 w-[100px] dark:invert"
-          height={20}
-          priority
-          src="/next.svg"
-          width={100}
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs font-semibold text-3xl text-black leading-10 tracking-tight dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg text-zinc-600 leading-8 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div>
+      {/* Navigation */}
+      <div className="w-full bg-black">
+        {/* Top Navigation */}
+        <div className="border-b-[0.5px] border-b-gray-300/20 py-3.5">
+          <div className="container mx-auto flex items-center justify-between">
+            {topNavs.map((nav) => (
+              <TopNav icon={nav.icon} key={nav.label} label={nav.label} />
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 font-medium text-base sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] md:w-[158px] dark:hover:bg-[#ccc]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <Image
-              alt="Vercel logomark"
-              className="h-[14px] w-4 dark:invert"
-              height={14}
-              src="/vercel.svg"
-              width={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-black/[.08] border-solid px-5 transition-colors hover:border-transparent hover:bg-black/[.04] md:w-[158px] dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Documentation
-          </a>
+
+        {/* Main Navigation */}
+        <div className="border-b-[0.5px] border-b-gray-700/20 py-5">
+          <div className="container mx-auto flex items-center justify-between">
+            {/* Logo */}
+            <div />
+
+            {/* Navigation */}
+            <div className="flex items-center gap-8">
+              {navLinks.map((link) => (
+                <div key={link.href}>
+                  <NavLink href={link.href} label={link.label} />
+                </div>
+              ))}
+            </div>
+
+            {/* Actions */}
+            <div className="flex items-center gap-2">
+              <HiOutlineMagnifyingGlass size={24} />
+              <HiOutlineUser size={24} />
+
+              <div className="flex items-center gap-2 rounded-sm bg-red-400/80 px-3 py-1.5">
+                <HiCalendarDateRange size={24} />
+                <Typography type="body">Book a Test Drive</Typography>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
+      </div>
+      {/* Hero */}
+
+      {/* Features */}
+
+      {/* Testimonials */}
+
+      {/* CTA */}
+
+      {/* Footer */}
     </div>
   );
 }
