@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+      - dev
+  pull_request:
+    branches:
+      - main
+      - staging
+      - dev
+
+jobs:
+  test-and-build:
+    name: Lint, Check, and Build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+          
+      - name: Install Dependencies
+        run: bun install
+        
+      - name: Run Ultracite Check
+        run: bun run check
+        
+      - name: Run Lint
+        run: bun run lint
+        
+      - name: Build Next.js
+        run: bun run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: "https://placeholder.supabase.co"
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "placeholder"
