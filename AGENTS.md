@@ -53,7 +53,7 @@ Write code that is **accessible, performant, type-safe, and maintainable**. Focu
 
 ### React & JSX
 
-- Use function components over class components
+- Use function components over className components
 - Call hooks at the top level only, never conditionally
 - Specify all dependencies in hook dependency arrays correctly
 - Use the `key` prop for elements in iterables (prefer unique IDs over array indices)
@@ -107,7 +107,7 @@ Write code that is **accessible, performant, type-safe, and maintainable**. Focu
 - Use ref as a prop instead of `React.forwardRef`
 
 **Solid/Svelte/Vue/Qwik:**
-- Use `class` and `for` attributes (not `className` or `htmlFor`)
+- Use `className` and `for` attributes (not `className` or `htmlFor`)
 
 ---
 
