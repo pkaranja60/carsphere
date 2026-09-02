@@ -1,4 +1,5 @@
 import { Typography } from "@heroui/react";
+import Image from "next/image";
 import Link from "next/link";
 import { BiSolidOffer } from "react-icons/bi";
 import { FaTruckFast } from "react-icons/fa6";
@@ -158,7 +159,7 @@ export default function Home() {
         {/*Background Image with Overlay*/}
         <div className="absolute inset-0 -z-10">
           {/* Replace the image URL with your actual car image */}
-          <img
+          <Image
             alt="Luxury Sports Car"
             className="h-full w-full object-cover object-center"
             height={500}
@@ -365,578 +366,628 @@ export default function Home() {
       </section>
 
       <main className="bg-white">
-        {/* Browse By Category */}
-        <div>
-          <section>
-            <div className="mb-6 flex items-center justify-between">
-              <h2 className="font-bold text-neutral-900 text-xl tracking-tight sm:text-2xl">
-                Browse By Category
-              </h2>
-              <a
-                className="inline-flex items-center gap-1.5 font-semibold text-neutral-800 text-xs transition hover:text-red-600 sm:text-sm"
-                href="#"
-              >
-                <span>View All Categories</span>
-                <i className="h-4 w-4" data-lucide="arrow-right" />
-              </a>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-              <div className="rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md">
-                <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
-                  <img
-                    alt="SUVs"
-                    className="h-full w-full object-cover object-center"
-                    src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80"
-                  />
-                </div>
-                <div className="relative px-1 pt-4 pb-1">
-                  <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
-                    <i className="h-3.5 w-3.5" data-lucide="car" />
-                  </div>
-                  <h3 className="font-bold text-neutral-900 text-sm">SUVs</h3>
-                  <p className="font-medium text-[11px] text-neutral-400">
-                    Spacious & Powerful
-                  </p>
-                  <a
-                    className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
-                    href="#"
-                  >
-                    Explore <i className="h-3 w-3" data-lucide="arrow-right" />
-                  </a>
-                </div>
+        <div className="container mx-auto bg-white">
+          {/* Browse By Category */}
+          <div>
+            <section>
+              <div className="mb-6 flex items-center justify-between">
+                <h2 className="font-bold text-neutral-900 text-xl tracking-tight sm:text-2xl">
+                  Browse By Category
+                </h2>
+                <a
+                  className="inline-flex items-center gap-1.5 font-semibold text-neutral-800 text-xs transition hover:text-red-600 sm:text-sm"
+                  href="#"
+                >
+                  <span>View All Categories</span>
+                  <i className="h-4 w-4" data-lucide="arrow-right" />
+                </a>
               </div>
 
-              <div className="rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md">
-                <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
-                  <img
-                    alt="Sedans"
-                    className="h-full w-full object-cover object-center"
-                    src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80"
-                  />
-                </div>
-                <div className="relative px-1 pt-4 pb-1">
-                  <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
-                    <i className="h-3.5 w-3.5" data-lucide="armchair" />
-                  </div>
-                  <h3 className="font-bold text-neutral-900 text-sm">Sedans</h3>
-                  <p className="font-medium text-[11px] text-neutral-400">
-                    Comfort & Style
-                  </p>
-                  <a
-                    className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
-                    href="#"
-                  >
-                    Explore <i className="h-3 w-3" data-lucide="arrow-right" />
-                  </a>
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md">
-                <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
-                  <img
-                    alt="Sports Cars"
-                    className="h-full w-full object-cover object-center"
-                    src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80"
-                  />
-                </div>
-                <div className="relative px-1 pt-4 pb-1">
-                  <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
-                    <i className="h-3.5 w-3.5" data-lucide="gauge" />
-                  </div>
-                  <h3 className="font-bold text-neutral-900 text-sm">
-                    Sports Cars
-                  </h3>
-                  <p className="font-medium text-[11px] text-neutral-400">
-                    High Performance
-                  </p>
-                  <a
-                    className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
-                    href="#"
-                  >
-                    Explore <i className="h-3 w-3" data-lucide="arrow-right" />
-                  </a>
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md">
-                <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
-                  <img
-                    alt="Hatchbacks"
-                    className="h-full w-full object-cover object-center"
-                    src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=600&q=80"
-                  />
-                </div>
-                <div className="relative px-1 pt-4 pb-1">
-                  <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
-                    <i className="h-3.5 w-3.5" data-lucide="zap" />
-                  </div>
-                  <h3 className="font-bold text-neutral-900 text-sm">
-                    Hatchbacks
-                  </h3>
-                  <p className="font-medium text-[11px] text-neutral-400">
-                    Smart & Efficient
-                  </p>
-                  <a
-                    className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
-                    href="#"
-                  >
-                    Explore <i className="h-3 w-3" data-lucide="arrow-right" />
-                  </a>
-                </div>
-              </div>
-
-              <div className="col-span-2 rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md sm:col-span-1">
-                <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
-                  <img
-                    alt="Luxury Cars"
-                    className="h-full w-full object-cover object-center"
-                    src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80"
-                  />
-                </div>
-                <div className="relative px-1 pt-4 pb-1">
-                  <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
-                    <i className="h-3.5 w-3.5" data-lucide="gem" />
-                  </div>
-                  <h3 className="font-bold text-neutral-900 text-sm">
-                    Luxury Cars
-                  </h3>
-                  <p className="font-medium text-[11px] text-neutral-400">
-                    Ultimate Luxury
-                  </p>
-                  <a
-                    className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
-                    href="#"
-                  >
-                    Explore <i className="h-3 w-3" data-lucide="arrow-right" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        {/* Features */}
-        <div>
-          <section>
-            <div className="mb-6 flex items-center justify-between">
-              <h2 className="font-bold text-neutral-900 text-xl tracking-tight sm:text-2xl">
-                Featured Cars
-              </h2>
-              <a
-                className="inline-flex items-center gap-1.5 font-semibold text-neutral-800 text-xs transition hover:text-red-600 sm:text-sm"
-                href="#"
-              >
-                <span>View All Cars</span>
-                <i className="h-4 w-4" data-lucide="arrow-right" />
-              </a>
-            </div>
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-              <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
-                <div>
-                  <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
-                    <img
-                      alt="BMW M4 Competition"
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+                <div className="rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md">
+                  <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
+                    <Image
+                      alt="SUVs"
                       className="h-full w-full object-cover object-center"
-                      src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=600&q=80"
+                      fill
+                      src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80"
                     />
-                    <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
-                      <i className="h-3.5 w-3.5" data-lucide="heart" />
-                    </button>
                   </div>
-                  <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
-                    BMW M4 Competition
-                  </h3>
-                  <p className="mt-0.5 text-[11px] text-neutral-400">
-                    2024 | Automatic | Petrol
-                  </p>
-                  <div className="mt-2 font-extrabold text-base text-neutral-950">
-                    $89,900
+                  <div className="relative px-1 pt-4 pb-1">
+                    <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
+                      <i className="h-3.5 w-3.5" data-lucide="car" />
+                    </div>
+                    <h3 className="font-bold text-neutral-900 text-sm">SUVs</h3>
+                    <p className="font-medium text-[11px] text-neutral-400">
+                      Spacious & Powerful
+                    </p>
+                    <a
+                      className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
+                      href="#"
+                    >
+                      Explore{" "}
+                      <i className="h-3 w-3" data-lucide="arrow-right" />
+                    </a>
                   </div>
                 </div>
-                <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
-                  View Details
-                </button>
-              </div>
 
-              <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
-                <div>
-                  <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
-                    <img
-                      alt="Mercedes-Benz E-className"
+                <div className="rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md">
+                  <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
+                    <Image
+                      alt="Sedans"
                       className="h-full w-full object-cover object-center"
+                      fill
                       src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80"
                     />
-                    <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
-                      <i className="h-3.5 w-3.5" data-lucide="heart" />
-                    </button>
                   </div>
-                  <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
-                    Mercedes-Benz E-className
-                  </h3>
-                  <p className="mt-0.5 text-[11px] text-neutral-400">
-                    2024 | Automatic | Petrol
-                  </p>
-                  <div className="mt-2 font-extrabold text-base text-neutral-950">
-                    $64,500
+                  <div className="relative px-1 pt-4 pb-1">
+                    <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
+                      <i className="h-3.5 w-3.5" data-lucide="armchair" />
+                    </div>
+                    <h3 className="font-bold text-neutral-900 text-sm">
+                      Sedans
+                    </h3>
+                    <p className="font-medium text-[11px] text-neutral-400">
+                      Comfort & Style
+                    </p>
+                    <a
+                      className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
+                      href="#"
+                    >
+                      Explore{" "}
+                      <i className="h-3 w-3" data-lucide="arrow-right" />
+                    </a>
                   </div>
                 </div>
-                <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
-                  View Details
-                </button>
-              </div>
 
-              <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
-                <div>
-                  <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
-                    <img
-                      alt="Audi RS5 Sportback"
+                <div className="rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md">
+                  <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
+                    <Image
+                      alt="Sports Cars"
                       className="h-full w-full object-cover object-center"
-                      src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=600&q=80"
+                      fill
+                      src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80"
                     />
-                    <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
-                      <i className="h-3.5 w-3.5" data-lucide="heart" />
-                    </button>
                   </div>
-                  <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
-                    Audi RS5 Sportback
-                  </h3>
-                  <p className="mt-0.5 text-[11px] text-neutral-400">
-                    2024 | Automatic | Petrol
-                  </p>
-                  <div className="mt-2 font-extrabold text-base text-neutral-950">
-                    $76,800
+                  <div className="relative px-1 pt-4 pb-1">
+                    <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
+                      <i className="h-3.5 w-3.5" data-lucide="gauge" />
+                    </div>
+                    <h3 className="font-bold text-neutral-900 text-sm">
+                      Sports Cars
+                    </h3>
+                    <p className="font-medium text-[11px] text-neutral-400">
+                      High Performance
+                    </p>
+                    <a
+                      className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
+                      href="#"
+                    >
+                      Explore{" "}
+                      <i className="h-3 w-3" data-lucide="arrow-right" />
+                    </a>
                   </div>
                 </div>
-                <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
-                  View Details
-                </button>
-              </div>
 
-              <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
-                <div>
-                  <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
-                    <img
-                      alt="Porsche 911 Carrera"
+                <div className="rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md">
+                  <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
+                    <Image
+                      alt="Hatchbacks"
                       className="h-full w-full object-cover object-center"
+                      fill
+                      src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=600&q=80"
+                    />
+                  </div>
+                  <div className="relative px-1 pt-4 pb-1">
+                    <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
+                      <i className="h-3.5 w-3.5" data-lucide="zap" />
+                    </div>
+                    <h3 className="font-bold text-neutral-900 text-sm">
+                      Hatchbacks
+                    </h3>
+                    <p className="font-medium text-[11px] text-neutral-400">
+                      Smart & Efficient
+                    </p>
+                    <a
+                      className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
+                      href="#"
+                    >
+                      Explore{" "}
+                      <i className="h-3 w-3" data-lucide="arrow-right" />
+                    </a>
+                  </div>
+                </div>
+
+                <div className="col-span-2 rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md sm:col-span-1">
+                  <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
+                    <Image
+                      alt="Luxury Cars"
+                      className="h-full w-full object-cover object-center"
+                      fill
                       src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80"
                     />
-                    <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
-                      <i className="h-3.5 w-3.5" data-lucide="heart" />
-                    </button>
                   </div>
-                  <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
-                    Porsche 911 Carrera
-                  </h3>
-                  <p className="mt-0.5 text-[11px] text-neutral-400">
-                    2024 | Automatic | Petrol
-                  </p>
-                  <div className="mt-2 font-extrabold text-base text-neutral-950">
-                    $122,900
-                  </div>
-                </div>
-                <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
-                  View Details
-                </button>
-              </div>
-
-              <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
-                <div>
-                  <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
-                    <img
-                      alt="Range Rover Velar"
-                      className="h-full w-full object-cover object-center"
-                      src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80"
-                    />
-                    <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
-                      <i className="h-3.5 w-3.5" data-lucide="heart" />
-                    </button>
-                  </div>
-                  <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
-                    Range Rover Velar
-                  </h3>
-                  <p className="mt-0.5 text-[11px] text-neutral-400">
-                    2024 | Automatic | Diesel
-                  </p>
-                  <div className="mt-2 font-extrabold text-base text-neutral-950">
-                    $71,300
+                  <div className="relative px-1 pt-4 pb-1">
+                    <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
+                      <i className="h-3.5 w-3.5" data-lucide="gem" />
+                    </div>
+                    <h3 className="font-bold text-neutral-900 text-sm">
+                      Luxury Cars
+                    </h3>
+                    <p className="font-medium text-[11px] text-neutral-400">
+                      Ultimate Luxury
+                    </p>
+                    <a
+                      className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
+                      href="#"
+                    >
+                      Explore{" "}
+                      <i className="h-3 w-3" data-lucide="arrow-right" />
+                    </a>
                   </div>
                 </div>
-                <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
-                  View Details
-                </button>
               </div>
-            </div>
-          </section>
-        </div>
-        {/* Offers */}
-        <div>
-          <section className="grid grid-cols-1 gap-5 md:grid-cols-3">
-            <div className="relative flex min-h-[170px] flex-col justify-between overflow-hidden rounded-2xl bg-black p-6">
-              <div className="absolute inset-0 -z-0">
-                <img
-                  alt="Promo Car"
-                  className="h-full w-full object-cover object-right opacity-60"
-                  src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
-              </div>
-              <div className="relative z-10">
-                <p className="font-semibold text-[11px] text-neutral-400 uppercase tracking-wider">
-                  Limited Time Offer
-                </p>
-                <h4 className="mt-0.5 font-extrabold text-white text-xl">
-                  Up to 20% Off
-                </h4>
-                <p className="mt-0.5 text-neutral-300 text-xs">
-                  On Selected Cars
-                </p>
-              </div>
-              <div className="relative z-10 pt-4">
+            </section>
+          </div>
+
+          {/* Features */}
+          <div>
+            <section>
+              <div className="mb-6 flex items-center justify-between">
+                <h2 className="font-bold text-neutral-900 text-xl tracking-tight sm:text-2xl">
+                  Featured Cars
+                </h2>
                 <a
-                  className="inline-block rounded-lg bg-red-600 px-4 py-2 font-semibold text-white text-xs shadow transition hover:bg-red-700"
+                  className="inline-flex items-center gap-1.5 font-semibold text-neutral-800 text-xs transition hover:text-red-600 sm:text-sm"
                   href="#"
                 >
-                  Explore Offers
+                  <span>View All Cars</span>
+                  <i className="h-4 w-4" data-lucide="arrow-right" />
                 </a>
               </div>
+
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
+                  <div>
+                    <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
+                      <Image
+                        alt="BMW M4 Competition"
+                        className="h-full w-full object-cover object-center"
+                        fill
+                        src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=600&q=80"
+                      />
+                      <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
+                        <i className="h-3.5 w-3.5" data-lucide="heart" />
+                      </button>
+                    </div>
+                    <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
+                      BMW M4 Competition
+                    </h3>
+                    <p className="mt-0.5 text-[11px] text-neutral-400">
+                      2024 | Automatic | Petrol
+                    </p>
+                    <div className="mt-2 font-extrabold text-base text-neutral-950">
+                      $89,900
+                    </div>
+                  </div>
+                  <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
+                    View Details
+                  </button>
+                </div>
+
+                <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
+                  <div>
+                    <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
+                      <Image
+                        alt="Mercedes-Benz E-className"
+                        className="h-full w-full object-cover object-center"
+                        fill
+                        src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80"
+                      />
+                      <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
+                        <i className="h-3.5 w-3.5" data-lucide="heart" />
+                      </button>
+                    </div>
+                    <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
+                      Mercedes-Benz E-className
+                    </h3>
+                    <p className="mt-0.5 text-[11px] text-neutral-400">
+                      2024 | Automatic | Petrol
+                    </p>
+                    <div className="mt-2 font-extrabold text-base text-neutral-950">
+                      $64,500
+                    </div>
+                  </div>
+                  <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
+                    View Details
+                  </button>
+                </div>
+
+                <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
+                  <div>
+                    <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
+                      <Image
+                        alt="Audi RS5 Sportback"
+                        className="h-full w-full object-cover object-center"
+                        fill
+                        src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=600&q=80"
+                      />
+                      <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
+                        <i className="h-3.5 w-3.5" data-lucide="heart" />
+                      </button>
+                    </div>
+                    <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
+                      Audi RS5 Sportback
+                    </h3>
+                    <p className="mt-0.5 text-[11px] text-neutral-400">
+                      2024 | Automatic | Petrol
+                    </p>
+                    <div className="mt-2 font-extrabold text-base text-neutral-950">
+                      $76,800
+                    </div>
+                  </div>
+                  <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
+                    View Details
+                  </button>
+                </div>
+
+                <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
+                  <div>
+                    <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
+                      <Image
+                        alt="Porsche 911 Carrera"
+                        className="h-full w-full object-cover object-center"
+                        fill
+                        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80"
+                      />
+                      <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
+                        <i className="h-3.5 w-3.5" data-lucide="heart" />
+                      </button>
+                    </div>
+                    <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
+                      Porsche 911 Carrera
+                    </h3>
+                    <p className="mt-0.5 text-[11px] text-neutral-400">
+                      2024 | Automatic | Petrol
+                    </p>
+                    <div className="mt-2 font-extrabold text-base text-neutral-950">
+                      $122,900
+                    </div>
+                  </div>
+                  <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
+                    View Details
+                  </button>
+                </div>
+
+                <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
+                  <div>
+                    <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
+                      <Image
+                        alt="Range Rover Velar"
+                        className="h-full w-full object-cover object-center"
+                        fill
+                        src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80"
+                      />
+                      <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
+                        <i className="h-3.5 w-3.5" data-lucide="heart" />
+                      </button>
+                    </div>
+                    <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
+                      Range Rover Velar
+                    </h3>
+                    <p className="mt-0.5 text-[11px] text-neutral-400">
+                      2024 | Automatic | Diesel
+                    </p>
+                    <div className="mt-2 font-extrabold text-base text-neutral-950">
+                      $71,300
+                    </div>
+                  </div>
+                  <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          {/* Offers */}
+          <div>
+            <section className="grid grid-cols-1 gap-5 md:grid-cols-3">
+              <div className="relative flex min-h-42.5 flex-col justify-between overflow-hidden rounded-2xl bg-black p-6">
+                <div className="absolute inset-0 z-0">
+                  <Image
+                    alt="Promo Car"
+                    className="h-full w-full object-cover object-right opacity-60"
+                    fill
+                    src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-r from-black via-black/80 to-transparent" />
+                </div>
+                <div className="relative z-10">
+                  <p className="font-semibold text-[11px] text-neutral-400 uppercase tracking-wider">
+                    Limited Time Offer
+                  </p>
+                  <h4 className="mt-0.5 font-extrabold text-white text-xl">
+                    Up to 20% Off
+                  </h4>
+                  <p className="mt-0.5 text-neutral-300 text-xs">
+                    On Selected Cars
+                  </p>
+                </div>
+                <div className="relative z-10 pt-4">
+                  <a
+                    className="inline-block rounded-lg bg-red-600 px-4 py-2 font-semibold text-white text-xs shadow transition hover:bg-red-700"
+                    href="#"
+                  >
+                    Explore Offers
+                  </a>
+                </div>
+              </div>
+
+              <div className="relative flex min-h-42.5 flex-col justify-between overflow-hidden rounded-2xl bg-[#ce2029] p-6">
+                <div className="absolute top-0 right-0 bottom-0 z-0 w-3/5">
+                  <Image
+                    alt="Finance Car"
+                    className="h-full w-full object-cover object-left"
+                    fill
+                    src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-r from-[#ce2029] via-[#ce2029]/70 to-transparent" />
+                </div>
+                <div className="relative z-10">
+                  <p className="font-semibold text-[11px] text-red-100 uppercase tracking-wider">
+                    Easy Finance
+                  </p>
+                  <h4 className="mt-0.5 font-extrabold text-white text-xl">
+                    Get Your Dream Car
+                  </h4>
+                  <p className="mt-0.5 text-red-100 text-xs">
+                    With Low Monthly Plans
+                  </p>
+                </div>
+                <div className="relative z-10 pt-4">
+                  <a
+                    className="inline-block rounded-lg bg-white px-4 py-2 font-semibold text-neutral-900 text-xs shadow transition hover:bg-neutral-100"
+                    href="#"
+                  >
+                    Learn More
+                  </a>
+                </div>
+              </div>
+
+              <div className="relative flex min-h-42.5 flex-col justify-between overflow-hidden rounded-2xl bg-neutral-950 p-6">
+                <div className="absolute top-0 right-0 bottom-0 z-0 w-1/2">
+                  <Image
+                    alt="Steering Wheel"
+                    className="h-full w-full object-cover object-center opacity-70"
+                    fill
+                    src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-r from-neutral-950 via-neutral-950/80 to-transparent" />
+                </div>
+                <div className="relative z-10">
+                  <h4 className="font-extrabold text-lg text-white">
+                    Book a Test Drive
+                  </h4>
+                  <p className="mt-1 text-neutral-300 text-xs leading-snug">
+                    Experience Before
+                    <br />
+                    You Buy
+                  </p>
+                </div>
+                <div className="relative z-10 pt-4">
+                  <a
+                    className="inline-block rounded-lg bg-white px-4 py-2 font-semibold text-neutral-900 text-xs shadow transition hover:bg-neutral-100"
+                    href="#"
+                  >
+                    Book Now
+                  </a>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          {/* Brands */}
+          <section>
+            <div className="mb-6 flex items-center justify-between">
+              <h2 className="font-bold text-neutral-900 text-xl tracking-tight sm:text-2xl">
+                Our Top Brands
+              </h2>
+              <a
+                className="inline-flex items-center gap-1.5 font-semibold text-neutral-800 text-xs transition hover:text-red-600 sm:text-sm"
+                href="#"
+              >
+                <span>View All Brands</span>
+                <i className="h-4 w-4" data-lucide="arrow-right" />
+              </a>
             </div>
 
-            <div className="relative flex min-h-[170px] flex-col justify-between overflow-hidden rounded-2xl bg-[#ce2029] p-6">
-              <div className="absolute top-0 right-0 bottom-0 -z-0 w-3/5">
-                <img
-                  alt="Finance Car"
-                  className="h-full w-full object-cover object-left"
-                  src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80"
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-8">
+              <a
+                className="group flex h-24 items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-3 transition hover:border-neutral-300 hover:shadow-md"
+                href="#"
+              >
+                <Image
+                  alt="BMW"
+                  className="h-10 w-auto object-contain transition group-hover:scale-105"
+                  height={120}
+                  src="https://cdn.simpleicons.org/bmw/000000"
+                  width={120}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#ce2029] via-[#ce2029]/70 to-transparent" />
-              </div>
-              <div className="relative z-10">
-                <p className="font-semibold text-[11px] text-red-100 uppercase tracking-wider">
-                  Easy Finance
-                </p>
-                <h4 className="mt-0.5 font-extrabold text-white text-xl">
-                  Get Your Dream Car
-                </h4>
-                <p className="mt-0.5 text-red-100 text-xs">
-                  With Low Monthly Plans
-                </p>
-              </div>
-              <div className="relative z-10 pt-4">
-                <a
-                  className="inline-block rounded-lg bg-white px-4 py-2 font-semibold text-neutral-900 text-xs shadow transition hover:bg-neutral-100"
-                  href="#"
-                >
-                  Learn More
-                </a>
-              </div>
-            </div>
+              </a>
 
-            <div className="relative flex min-h-[170px] flex-col justify-between overflow-hidden rounded-2xl bg-neutral-950 p-6">
-              <div className="absolute top-0 right-0 bottom-0 -z-0 w-1/2">
-                <img
-                  alt="Steering Wheel"
-                  className="h-full w-full object-cover object-center opacity-70"
-                  src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80"
+              <a
+                className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
+                href="#"
+              >
+                <Image
+                  alt="Mercedes-Benz"
+                  className="h-8 w-auto object-contain transition group-hover:scale-105"
+                  height={120}
+                  src="https://cdn.simpleicons.org/mercedes/000000"
+                  width={120}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-neutral-950 via-neutral-950/80 to-transparent" />
-              </div>
-              <div className="relative z-10">
-                <h4 className="font-extrabold text-lg text-white">
-                  Book a Test Drive
-                </h4>
-                <p className="mt-1 text-neutral-300 text-xs leading-snug">
-                  Experience Before
+                <span className="mt-1.5 text-center font-semibold text-[10px] text-neutral-800 tracking-tight">
+                  Mercedes-Benz
+                </span>
+              </a>
+
+              <a
+                className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
+                href="#"
+              >
+                <Image
+                  alt="Audi"
+                  className="h-6 w-auto object-contain transition group-hover:scale-105"
+                  height={120}
+                  src="https://cdn.simpleicons.org/audi/000000"
+                  width={120}
+                />
+                <span className="mt-1.5 font-bold text-red-600 text-xs uppercase tracking-wider">
+                  Audi
+                </span>
+              </a>
+
+              <a
+                className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
+                href="#"
+              >
+                <Image
+                  alt="Porsche"
+                  className="h-7 w-auto object-contain transition group-hover:scale-105"
+                  height={120}
+                  src="https://cdn.simpleicons.org/porsche/D5001C"
+                  width={120}
+                />
+                <span className="mt-1 font-extrabold text-[9px] text-neutral-800 uppercase tracking-[0.2em]">
+                  PORSCHE
+                </span>
+              </a>
+
+              <a
+                className="group flex h-24 items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-3 transition hover:border-neutral-300 hover:shadow-md"
+                href="#"
+              >
+                <span className="rounded-full bg-[#005a2b] px-2.5 py-1.5 text-center font-black text-[9px] text-white uppercase leading-none tracking-wider">
+                  LAND-
                   <br />
-                  You Buy
-                </p>
-              </div>
-              <div className="relative z-10 pt-4">
-                <a
-                  className="inline-block rounded-lg bg-white px-4 py-2 font-semibold text-neutral-900 text-xs shadow transition hover:bg-neutral-100"
-                  href="#"
-                >
-                  Book Now
-                </a>
-              </div>
+                  ROVER
+                </span>
+              </a>
+
+              <a
+                className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
+                href="#"
+              >
+                <Image
+                  alt="Toyota"
+                  className="h-7 w-auto object-contain transition group-hover:scale-105"
+                  height={120}
+                  src="https://cdn.simpleicons.org/toyota/EB0A1E"
+                  width={120}
+                />
+                <span className="mt-1 font-bold text-[10px] text-red-600 uppercase tracking-wider">
+                  TOYOTA
+                </span>
+              </a>
+
+              <a
+                className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
+                href="#"
+              >
+                <Image
+                  alt="Honda"
+                  className="h-7 w-auto object-contain transition group-hover:scale-105"
+                  height={120}
+                  src="https://cdn.simpleicons.org/honda/CC0000"
+                  width={120}
+                />
+                <span className="mt-1 font-extrabold text-[10px] text-red-600 uppercase tracking-wider">
+                  HONDA
+                </span>
+              </a>
+
+              <a
+                className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
+                href="#"
+              >
+                <Image
+                  alt="Tesla"
+                  className="h-6 w-auto object-contain transition group-hover:scale-105"
+                  height={120}
+                  src="https://cdn.simpleicons.org/tesla/E82127"
+                  width={120}
+                />
+                <span className="mt-1.5 font-bold text-[9px] text-red-600 uppercase tracking-[0.25em]">
+                  TESLA
+                </span>
+              </a>
             </div>
           </section>
-        </div>
-        {/* Brands */}
-        <section>
-          <div className="mb-6 flex items-center justify-between">
-            <h2 className="font-bold text-neutral-900 text-xl tracking-tight sm:text-2xl">
-              Our Top Brands
-            </h2>
-            <a
-              className="inline-flex items-center gap-1.5 font-semibold text-neutral-800 text-xs transition hover:text-red-600 sm:text-sm"
-              href="#"
-            >
-              <span>View All Brands</span>
-              <i className="h-4 w-4" data-lucide="arrow-right" />
-            </a>
-          </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-8">
-            <a
-              className="group flex h-24 items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-3 transition hover:border-neutral-300 hover:shadow-md"
-              href="#"
-            >
-              <img
-                alt="BMW"
-                className="h-10 w-auto object-contain transition group-hover:scale-105"
-                src="https://cdn.simpleicons.org/bmw/000000"
-              />
-            </a>
-
-            <a
-              className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
-              href="#"
-            >
-              <img
-                alt="Mercedes-Benz"
-                className="h-8 w-auto object-contain transition group-hover:scale-105"
-                src="https://cdn.simpleicons.org/mercedes/000000"
-              />
-              <span className="mt-1.5 text-center font-semibold text-[10px] text-neutral-800 tracking-tight">
-                Mercedes-Benz
-              </span>
-            </a>
-
-            <a
-              className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
-              href="#"
-            >
-              <img
-                alt="Audi"
-                className="h-6 w-auto object-contain transition group-hover:scale-105"
-                src="https://cdn.simpleicons.org/audi/000000"
-              />
-              <span className="mt-1.5 font-bold text-red-600 text-xs uppercase tracking-wider">
-                Audi
-              </span>
-            </a>
-
-            <a
-              className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
-              href="#"
-            >
-              <img
-                alt="Porsche"
-                className="h-7 w-auto object-contain transition group-hover:scale-105"
-                src="https://cdn.simpleicons.org/porsche/D5001C"
-              />
-              <span className="mt-1 font-extrabold text-[9px] text-neutral-800 uppercase tracking-[0.2em]">
-                PORSCHE
-              </span>
-            </a>
-
-            <a
-              className="group flex h-24 items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-3 transition hover:border-neutral-300 hover:shadow-md"
-              href="#"
-            >
-              <span className="rounded-full bg-[#005a2b] px-2.5 py-1.5 text-center font-black text-[9px] text-white uppercase leading-none tracking-wider">
-                LAND-
-                <br />
-                ROVER
-              </span>
-            </a>
-
-            <a
-              className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
-              href="#"
-            >
-              <img
-                alt="Toyota"
-                className="h-7 w-auto object-contain transition group-hover:scale-105"
-                src="https://cdn.simpleicons.org/toyota/EB0A1E"
-              />
-              <span className="mt-1 font-bold text-[10px] text-red-600 uppercase tracking-wider">
-                TOYOTA
-              </span>
-            </a>
-
-            <a
-              className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
-              href="#"
-            >
-              <img
-                alt="Honda"
-                className="h-7 w-auto object-contain transition group-hover:scale-105"
-                src="https://cdn.simpleicons.org/honda/CC0000"
-              />
-              <span className="mt-1 font-extrabold text-[10px] text-red-600 uppercase tracking-wider">
-                HONDA
-              </span>
-            </a>
-
-            <a
-              className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
-              href="#"
-            >
-              <img
-                alt="Tesla"
-                className="h-6 w-auto object-contain transition group-hover:scale-105"
-                src="https://cdn.simpleicons.org/tesla/E82127"
-              />
-              <span className="mt-1.5 font-bold text-[9px] text-red-600 uppercase tracking-[0.25em]">
-                TESLA
-              </span>
-            </a>
-          </div>
-        </section>
-        {/* CTA */}
-        <div className="rounded-2xl border border-neutral-800 bg-[#0b0c0e] p-6 text-white shadow-xl">
-          <div className="grid grid-cols-1 gap-6 divide-y divide-neutral-800 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
-            <div className="flex items-center space-x-3.5 pt-4 first:px-0 first:pt-0 sm:px-4 sm:pt-0">
-              <div className="flex-shrink-0 text-gray-300">
-                <i className="h-7 w-7 stroke-[1.5]" data-lucide="truck" />
+          {/* CTA */}
+          <div className="rounded-2xl border border-neutral-800 bg-[#0b0c0e] p-6 text-white shadow-xl">
+            <div className="grid grid-cols-1 gap-6 divide-y divide-neutral-800 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+              <div className="flex items-center space-x-3.5 pt-4 first:px-0 first:pt-0 sm:px-4 sm:pt-0">
+                <div className="shrink-0 text-gray-300">
+                  <i className="h-7 w-7 stroke-[1.5]" data-lucide="truck" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-white text-xs">
+                    Free Delivery
+                  </h4>
+                  <p className="font-normal text-[11px] text-gray-400">
+                    On All Orders
+                  </p>
+                </div>
               </div>
-              <div>
-                <h4 className="font-bold text-white text-xs">Free Delivery</h4>
-                <p className="font-normal text-[11px] text-gray-400">
-                  On All Orders
-                </p>
-              </div>
-            </div>
 
-            <div className="flex items-center space-x-3.5 pt-4 sm:px-4 sm:pt-0">
-              <div className="flex-shrink-0 text-gray-300">
-                <i className="h-7 w-7 stroke-[1.5]" data-lucide="rotate-ccw" />
+              <div className="flex items-center space-x-3.5 pt-4 sm:px-4 sm:pt-0">
+                <div className="shrink-0 text-gray-300">
+                  <i
+                    className="h-7 w-7 stroke-[1.5]"
+                    data-lucide="rotate-ccw"
+                  />
+                </div>
+                <div>
+                  <h4 className="font-bold text-white text-xs">
+                    7-Day Returns
+                  </h4>
+                  <p className="font-normal text-[11px] text-gray-400">
+                    Money Back Guarnatee
+                  </p>
+                </div>
               </div>
-              <div>
-                <h4 className="font-bold text-white text-xs">7-Day Returns</h4>
-                <p className="font-normal text-[11px] text-gray-400">
-                  Money Back Guarnatee
-                </p>
-              </div>
-            </div>
 
-            <div className="flex items-center space-x-3.5 pt-4 sm:px-4 sm:pt-0">
-              <div className="flex-shrink-0 text-gray-300">
-                <i
-                  className="h-7 w-7 stroke-[1.5]"
-                  data-lucide="shield-check"
-                />
+              <div className="flex items-center space-x-3.5 pt-4 sm:px-4 sm:pt-0">
+                <div className="shrink-0 text-gray-300">
+                  <i
+                    className="h-7 w-7 stroke-[1.5]"
+                    data-lucide="shield-check"
+                  />
+                </div>
+                <div>
+                  <h4 className="font-bold text-white text-xs">
+                    Secure Payment
+                  </h4>
+                  <p className="font-normal text-[11px] text-gray-400">
+                    100% Protected
+                  </p>
+                </div>
               </div>
-              <div>
-                <h4 className="font-bold text-white text-xs">Secure Payment</h4>
-                <p className="font-normal text-[11px] text-gray-400">
-                  100% Protected
-                </p>
-              </div>
-            </div>
 
-            <div className="flex items-center space-x-3.5 pt-4 sm:px-4 sm:pt-0">
-              <div className="flex-shrink-0 text-gray-300">
-                <i className="h-7 w-7 stroke-[1.5]" data-lucide="users" />
-              </div>
-              <div>
-                <h4 className="font-bold text-white text-xs">Expert Support</h4>
-                <p className="font-normal text-[11px] text-gray-400">
-                  24/7 Friendly Support
-                </p>
+              <div className="flex items-center space-x-3.5 pt-4 sm:px-4 sm:pt-0">
+                <div className="shrink-0 text-gray-300">
+                  <i className="h-7 w-7 stroke-[1.5]" data-lucide="users" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-white text-xs">
+                    Expert Support
+                  </h4>
+                  <p className="font-normal text-[11px] text-gray-400">
+                    24/7 Friendly Support
+                  </p>
+                </div>
               </div>
             </div>
           </div>
