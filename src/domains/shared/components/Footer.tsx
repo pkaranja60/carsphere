@@ -18,7 +18,7 @@ import { HiOutlineArrowRight, HiOutlineRocketLaunch } from "react-icons/hi2";
 
 export function Footer() {
   return (
-    <footer className="mt-10 bg-black pt-12 pb-6 text-gray-400 text-xs">
+    <footer className="bg-black pt-12 pb-6 text-gray-400 text-xs">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 pb-10 md:grid-cols-2 lg:grid-cols-6">
           <div className="space-y-4 lg:col-span-2">

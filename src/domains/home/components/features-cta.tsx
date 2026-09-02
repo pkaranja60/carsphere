@@ -7,59 +7,59 @@ import {
 
 export function FeaturesCta() {
   return (
-    <div className="rounded-t-2xl bg-[#0b0c0e] p-6 text-white sm:p-8">
-      <div className="grid grid-cols-1 gap-6 divide-y divide-neutral-800 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
-        <div className="flex items-center space-x-3.5 pt-4 first:px-0 first:pt-0 sm:px-4 sm:pt-0">
+    <div className="rounded-t-2xl bg-[#0b0c0e] p-4 text-white sm:p-6">
+      <div className="grid grid-cols-4 divide-x divide-neutral-800">
+        <div className="flex flex-col items-center justify-center px-1 text-center sm:flex-row sm:justify-start sm:space-x-3.5 sm:px-4 sm:text-left">
           <div className="shrink-0 text-gray-300">
-            <HiOutlineTruck className="h-7 w-7 stroke-[1.5]" />
+            <HiOutlineTruck className="mb-1 h-5 w-5 stroke-[1.5] sm:mb-0 sm:h-7 sm:w-7" />
           </div>
           <div>
-            <h4 className="font-bold text-white text-xs sm:text-sm">
+            <h4 className="font-bold text-[9px] text-white leading-tight sm:text-xs md:text-sm">
               Free Delivery
             </h4>
-            <p className="font-normal text-[11px] text-gray-400 sm:text-xs">
+            <p className="hidden font-normal text-[11px] text-gray-400 sm:block md:text-xs">
               On All Orders
             </p>
           </div>
         </div>
 
-        <div className="flex items-center space-x-3.5 pt-4 sm:px-4 sm:pt-0">
+        <div className="flex flex-col items-center justify-center px-1 text-center sm:flex-row sm:justify-start sm:space-x-3.5 sm:px-4 sm:text-left">
           <div className="shrink-0 text-gray-300">
-            <HiOutlineArrowPath className="h-7 w-7 stroke-[1.5]" />
+            <HiOutlineArrowPath className="mb-1 h-5 w-5 stroke-[1.5] sm:mb-0 sm:h-7 sm:w-7" />
           </div>
           <div>
-            <h4 className="font-bold text-white text-xs sm:text-sm">
+            <h4 className="font-bold text-[9px] text-white leading-tight sm:text-xs md:text-sm">
               7-Day Returns
             </h4>
-            <p className="font-normal text-[11px] text-gray-400 sm:text-xs">
+            <p className="hidden font-normal text-[11px] text-gray-400 sm:block md:text-xs">
               Money Back Guarantee
             </p>
           </div>
         </div>
 
-        <div className="flex items-center space-x-3.5 pt-4 sm:px-4 sm:pt-0">
+        <div className="flex flex-col items-center justify-center px-1 text-center sm:flex-row sm:justify-start sm:space-x-3.5 sm:px-4 sm:text-left">
           <div className="shrink-0 text-gray-300">
-            <HiOutlineShieldCheck className="h-7 w-7 stroke-[1.5]" />
+            <HiOutlineShieldCheck className="mb-1 h-5 w-5 stroke-[1.5] sm:mb-0 sm:h-7 sm:w-7" />
           </div>
           <div>
-            <h4 className="font-bold text-white text-xs sm:text-sm">
+            <h4 className="font-bold text-[9px] text-white leading-tight sm:text-xs md:text-sm">
               Secure Payment
             </h4>
-            <p className="font-normal text-[11px] text-gray-400 sm:text-xs">
+            <p className="hidden font-normal text-[11px] text-gray-400 sm:block md:text-xs">
               100% Protected
             </p>
           </div>
         </div>
 
-        <div className="flex items-center space-x-3.5 pt-4 sm:px-4 sm:pt-0">
+        <div className="flex flex-col items-center justify-center px-1 text-center sm:flex-row sm:justify-start sm:space-x-3.5 sm:px-4 sm:text-left">
           <div className="shrink-0 text-gray-300">
-            <HiOutlineUsers className="h-7 w-7 stroke-[1.5]" />
+            <HiOutlineUsers className="mb-1 h-5 w-5 stroke-[1.5] sm:mb-0 sm:h-7 sm:w-7" />
           </div>
           <div>
-            <h4 className="font-bold text-white text-xs sm:text-sm">
+            <h4 className="font-bold text-[9px] text-white leading-tight sm:text-xs md:text-sm">
               Expert Support
             </h4>
-            <p className="font-normal text-[11px] text-gray-400 sm:text-xs">
+            <p className="hidden font-normal text-[11px] text-gray-400 sm:block md:text-xs">
               24/7 Friendly Support
             </p>
           </div>
