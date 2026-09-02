@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Footer, Navbar } from "@/domains/shared";
 
-const geistSans = Geist({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-jakarta-sans",
 });
 
-const geistMono = Geist_Mono({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-montserrat",
 });
 
 export const metadata: Metadata = {
@@ -21,10 +21,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${montserrat.variable} h-full antialiased`}
       lang="en"
     >
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col font-sans">
         <Navbar />
         {children}
         <Footer />

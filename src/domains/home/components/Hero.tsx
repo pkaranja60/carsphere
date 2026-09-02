@@ -16,7 +16,7 @@ import {
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[50vh] w-full flex-col justify-between overflow-hidden bg-gradient-to-b from-[#0b0c10]/40 via-transparent to-[#0b0c10]">
+    <section className="relative flex min-h-[50vh] w-full flex-col justify-between overflow-hidden bg-linear-to-b from-[#0b0c10]/40 via-transparent to-[#0b0c10]">
       {/*Background Image with Overlay*/}
       <div className="absolute inset-0 -z-10">
         {/* Replace the image URL with your actual car image */}
@@ -27,8 +27,8 @@ export function Hero() {
           src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=2000&q=80"
           width={500}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-transparent to-black/50" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/60 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0c] via-transparent to-black/50" />
       </div>
 
       {/* Main Content Container */}
