@@ -4,12 +4,12 @@
 
 import { Typography } from "@heroui/react";
 import Link from "next/link";
-import { BiSolidOffer } from "react-icons/bi";
-import { FaTruckFast } from "react-icons/fa6";
 import {
   HiCalendarDateRange,
   HiMiniPhone,
   HiOutlineMagnifyingGlass,
+  HiOutlineSparkles,
+  HiOutlineTruck,
   HiOutlineUser,
 } from "react-icons/hi2";
 
@@ -18,9 +18,9 @@ import {
 // ─────────────────────────────────────────────
 
 const topNavs = [
-  { icon: <FaTruckFast size={20} />, label: "Free Shipping & Delivery" },
+  { icon: <HiOutlineTruck size={20} />, label: "Free Shipping & Delivery" },
   {
-    icon: <BiSolidOffer size={20} />,
+    icon: <HiOutlineSparkles size={20} />,
     label: "Exclusive Offers On Premium Cars",
   },
   {

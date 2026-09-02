@@ -2,8 +2,8 @@ import { HiMiniChevronDown, HiOutlineMagnifyingGlass } from "react-icons/hi2";
 
 export function HeroSearchFilter() {
   return (
-    <div className="container mx-auto w-full">
-      <div className="rounded-2xl border border-white/10 bg-[#121316]/90 p-5 shadow-2xl backdrop-blur-md sm:p-6">
+    <div className="container relative z-20 mx-auto w-full translate-y-1/2 px-4 sm:px-6 lg:px-8">
+      <div className="rounded-2xl border border-neutral-800 bg-[#121316] p-5 shadow-2xl sm:p-6">
         <h2 className="mb-4 font-bold text-base text-white sm:text-lg">
           Find Your <span className="text-red-600">Perfect Car</span>
         </h2>

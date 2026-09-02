@@ -5,8 +5,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HiArrowLongRight } from "react-icons/hi2";
-import { HeroSearchFilter } from "./HeroSearchFilter";
-import { HeroValueBadges } from "./HeroValueBadges";
+import { HeroSearchFilter } from "./hero-search-filter";
+import { HeroValueBadges } from "./hero-value-badges";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -14,8 +14,8 @@ import { HeroValueBadges } from "./HeroValueBadges";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[50vh] w-full flex-col justify-between overflow-hidden bg-linear-to-b from-[#0b0c10]/40 via-transparent to-[#0b0c10]">
-      <div className="absolute inset-0 -z-10">
+    <section className="relative flex min-h-[60vh] w-full flex-col justify-between bg-linear-to-b from-[#0b0c10]/40 via-transparent to-[#0b0c10] lg:min-h-[75vh]">
+      <div className="absolute inset-0 -z-10 overflow-hidden">
         <Image
           alt="Luxury Sports Car"
           className="h-full w-full object-cover object-center"
@@ -27,7 +27,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0c] via-transparent to-black/50" />
       </div>
 
-      <div className="container mx-auto flex w-full flex-1 flex-col justify-center pt-10 pb-10">
+      <div className="container mx-auto flex w-full flex-1 flex-col justify-center px-4 pt-10 pb-10 sm:px-6 lg:px-8">
         <div className="max-w-2xl space-y-7">
           <div className="flex items-center space-x-3">
             <span className="inline-block h-[2.5px] w-6 bg-red-600" />

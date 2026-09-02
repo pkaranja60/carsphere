@@ -4,6 +4,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { FaBoltLightning, FaCar, FaCouch, FaGaugeHigh } from "react-icons/fa6";
+import { HiOutlineArrowRight, HiOutlineSparkles } from "react-icons/hi2";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -21,7 +23,7 @@ export function BrowseByCategory() {
           href="#"
         >
           <span>View All Categories</span>
-          <i className="h-4 w-4" data-lucide="arrow-right" />
+          <HiOutlineArrowRight className="h-4 w-4" />
         </Link>
       </div>
 
@@ -37,7 +39,7 @@ export function BrowseByCategory() {
           </div>
           <div className="relative px-1 pt-4 pb-1">
             <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
-              <i className="h-3.5 w-3.5" data-lucide="car" />
+              <FaCar className="h-3.5 w-3.5" />
             </div>
             <h3 className="font-bold text-neutral-900 text-sm">SUVs</h3>
             <p className="font-medium text-[11px] text-neutral-400">
@@ -47,7 +49,7 @@ export function BrowseByCategory() {
               className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
               href="#"
             >
-              Explore <i className="h-3 w-3" data-lucide="arrow-right" />
+              Explore <HiOutlineArrowRight className="h-3 w-3" />
             </Link>
           </div>
         </div>
@@ -63,7 +65,7 @@ export function BrowseByCategory() {
           </div>
           <div className="relative px-1 pt-4 pb-1">
             <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
-              <i className="h-3.5 w-3.5" data-lucide="armchair" />
+              <FaCouch className="h-3.5 w-3.5" />
             </div>
             <h3 className="font-bold text-neutral-900 text-sm">Sedans</h3>
             <p className="font-medium text-[11px] text-neutral-400">
@@ -73,7 +75,7 @@ export function BrowseByCategory() {
               className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
               href="#"
             >
-              Explore <i className="h-3 w-3" data-lucide="arrow-right" />
+              Explore <HiOutlineArrowRight className="h-3 w-3" />
             </Link>
           </div>
         </div>
@@ -89,7 +91,7 @@ export function BrowseByCategory() {
           </div>
           <div className="relative px-1 pt-4 pb-1">
             <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
-              <i className="h-3.5 w-3.5" data-lucide="gauge" />
+              <FaGaugeHigh className="h-3.5 w-3.5" />
             </div>
             <h3 className="font-bold text-neutral-900 text-sm">Sports Cars</h3>
             <p className="font-medium text-[11px] text-neutral-400">
@@ -99,7 +101,7 @@ export function BrowseByCategory() {
               className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
               href="#"
             >
-              Explore <i className="h-3 w-3" data-lucide="arrow-right" />
+              Explore <HiOutlineArrowRight className="h-3 w-3" />
             </Link>
           </div>
         </div>
@@ -115,7 +117,7 @@ export function BrowseByCategory() {
           </div>
           <div className="relative px-1 pt-4 pb-1">
             <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
-              <i className="h-3.5 w-3.5" data-lucide="zap" />
+              <FaBoltLightning className="h-3.5 w-3.5" />
             </div>
             <h3 className="font-bold text-neutral-900 text-sm">Hatchbacks</h3>
             <p className="font-medium text-[11px] text-neutral-400">
@@ -125,7 +127,7 @@ export function BrowseByCategory() {
               className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
               href="#"
             >
-              Explore <i className="h-3 w-3" data-lucide="arrow-right" />
+              Explore <HiOutlineArrowRight className="h-3 w-3" />
             </Link>
           </div>
         </div>
@@ -141,7 +143,7 @@ export function BrowseByCategory() {
           </div>
           <div className="relative px-1 pt-4 pb-1">
             <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
-              <i className="h-3.5 w-3.5" data-lucide="gem" />
+              <HiOutlineSparkles className="h-3.5 w-3.5" />
             </div>
             <h3 className="font-bold text-neutral-900 text-sm">Luxury Cars</h3>
             <p className="font-medium text-[11px] text-neutral-400">
@@ -151,7 +153,7 @@ export function BrowseByCategory() {
               className="mt-2 inline-flex items-center gap-1 font-bold text-[11px] text-neutral-900 transition hover:text-red-600"
               href="#"
             >
-              Explore <i className="h-3 w-3" data-lucide="arrow-right" />
+              Explore <HiOutlineArrowRight className="h-3 w-3" />
             </Link>
           </div>
         </div>

@@ -3,6 +3,14 @@
 // ─────────────────────────────────────────────
 
 import Link from "next/link";
+import {
+  FaApple,
+  FaFacebookF,
+  FaInstagram,
+  FaXTwitter,
+  FaYoutube,
+} from "react-icons/fa6";
+import { HiOutlineArrowRight, HiOutlineRocketLaunch } from "react-icons/hi2";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -10,13 +18,13 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="mt-10 border-neutral-900 border-t bg-black pt-12 pb-6 text-gray-400 text-xs">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <footer className="mt-10 bg-black pt-12 pb-6 text-gray-400 text-xs">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 pb-10 md:grid-cols-2 lg:grid-cols-6">
           <div className="space-y-4 lg:col-span-2">
             <div className="flex items-center gap-2">
               <div className="relative flex h-8 w-8 -rotate-45 items-center justify-center rounded-full border-2 border-red-600 border-t-transparent">
-                <i className="h-4 w-4 text-white" data-lucide="gauge" />
+                <HiOutlineRocketLaunch className="h-4 w-4 rotate-45 text-white" />
               </div>
               <div className="leading-none">
                 <span className="font-extrabold text-base text-white tracking-tight">
@@ -41,25 +49,25 @@ export function Footer() {
                 className="flex h-7 w-7 items-center justify-center rounded-full bg-neutral-900 text-white transition hover:bg-red-600"
                 href="#"
               >
-                <i className="h-3.5 w-3.5" data-lucide="facebook" />
+                <FaFacebookF className="h-3.5 w-3.5" />
               </Link>
               <Link
                 className="flex h-7 w-7 items-center justify-center rounded-full bg-neutral-900 text-white transition hover:bg-red-600"
                 href="#"
               >
-                <i className="h-3.5 w-3.5" data-lucide="instagram" />
+                <FaInstagram className="h-3.5 w-3.5" />
               </Link>
               <Link
                 className="flex h-7 w-7 items-center justify-center rounded-full bg-neutral-900 text-white transition hover:bg-red-600"
                 href="#"
               >
-                <i className="h-3.5 w-3.5" data-lucide="twitter" />
+                <FaXTwitter className="h-3.5 w-3.5" />
               </Link>
               <Link
                 className="flex h-7 w-7 items-center justify-center rounded-full bg-neutral-900 text-white transition hover:bg-red-600"
                 href="#"
               >
-                <i className="h-3.5 w-3.5" data-lucide="youtube" />
+                <FaYoutube className="h-3.5 w-3.5" />
               </Link>
             </div>
           </div>
@@ -196,7 +204,7 @@ export function Footer() {
                 className="flex items-center justify-center rounded-r-md bg-red-600 px-3 py-2.5 text-white transition hover:bg-red-700"
                 type="submit"
               >
-                <i className="h-4 w-4" data-lucide="arrow-right" />
+                <HiOutlineArrowRight className="h-4 w-4" />
               </button>
             </form>
 
@@ -211,7 +219,7 @@ export function Footer() {
                 PayPal
               </span>
               <span className="flex items-center gap-0.5 rounded bg-white px-2 py-1 font-bold text-[9px] text-neutral-900">
-                <i className="h-2.5 w-2.5" data-lucide="apple" />
+                <FaApple className="h-2.5 w-2.5" />
                 Pay
               </span>
             </div>

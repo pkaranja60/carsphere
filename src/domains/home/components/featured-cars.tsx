@@ -4,6 +4,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { HiOutlineArrowRight, HiOutlineHeart } from "react-icons/hi2";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -21,7 +22,7 @@ export function FeaturedCars() {
           href="#"
         >
           <span>View All Cars</span>
-          <i className="h-4 w-4" data-lucide="arrow-right" />
+          <HiOutlineArrowRight className="h-4 w-4" />
         </Link>
       </div>
 
@@ -35,8 +36,11 @@ export function FeaturedCars() {
                 fill
                 src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=600&q=80"
               />
-              <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
-                <i className="h-3.5 w-3.5" data-lucide="heart" />
+              <button
+                className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500"
+                type="button"
+              >
+                <HiOutlineHeart className="h-3.5 w-3.5" />
               </button>
             </div>
             <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
@@ -49,7 +53,10 @@ export function FeaturedCars() {
               $89,900
             </div>
           </div>
-          <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
+          <button
+            className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700"
+            type="button"
+          >
             View Details
           </button>
         </div>
@@ -63,8 +70,11 @@ export function FeaturedCars() {
                 fill
                 src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80"
               />
-              <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
-                <i className="h-3.5 w-3.5" data-lucide="heart" />
+              <button
+                className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500"
+                type="button"
+              >
+                <HiOutlineHeart className="h-3.5 w-3.5" />
               </button>
             </div>
             <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
@@ -77,7 +87,10 @@ export function FeaturedCars() {
               $64,500
             </div>
           </div>
-          <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
+          <button
+            className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700"
+            type="button"
+          >
             View Details
           </button>
         </div>
@@ -91,8 +104,11 @@ export function FeaturedCars() {
                 fill
                 src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=600&q=80"
               />
-              <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
-                <i className="h-3.5 w-3.5" data-lucide="heart" />
+              <button
+                className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500"
+                type="button"
+              >
+                <HiOutlineHeart className="h-3.5 w-3.5" />
               </button>
             </div>
             <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
@@ -105,7 +121,10 @@ export function FeaturedCars() {
               $76,800
             </div>
           </div>
-          <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
+          <button
+            className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700"
+            type="button"
+          >
             View Details
           </button>
         </div>
@@ -119,8 +138,11 @@ export function FeaturedCars() {
                 fill
                 src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80"
               />
-              <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
-                <i className="h-3.5 w-3.5" data-lucide="heart" />
+              <button
+                className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500"
+                type="button"
+              >
+                <HiOutlineHeart className="h-3.5 w-3.5" />
               </button>
             </div>
             <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
@@ -133,7 +155,10 @@ export function FeaturedCars() {
               $122,900
             </div>
           </div>
-          <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
+          <button
+            className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700"
+            type="button"
+          >
             View Details
           </button>
         </div>
@@ -147,8 +172,11 @@ export function FeaturedCars() {
                 fill
                 src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80"
               />
-              <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500">
-                <i className="h-3.5 w-3.5" data-lucide="heart" />
+              <button
+                className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur transition hover:text-red-500"
+                type="button"
+              >
+                <HiOutlineHeart className="h-3.5 w-3.5" />
               </button>
             </div>
             <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
@@ -161,7 +189,10 @@ export function FeaturedCars() {
               $71,300
             </div>
           </div>
-          <button className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700">
+          <button
+            className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700"
+            type="button"
+          >
             View Details
           </button>
         </div>

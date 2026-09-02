@@ -4,6 +4,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { HiOutlineArrowRight } from "react-icons/hi2";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -21,7 +22,7 @@ export function TopBrands() {
           href="#"
         >
           <span>View All Brands</span>
-          <i className="h-4 w-4" data-lucide="arrow-right" />
+          <HiOutlineArrowRight className="h-4 w-4" />
         </Link>
       </div>
 

@@ -1,6 +1,7 @@
-export { BrowseByCategory } from "./components/BrowseByCategory";
-export { FeaturedCars } from "./components/FeaturedCars";
-export { FeaturesCta } from "./components/FeaturesCta";
-export { Hero } from "./components/Hero";
-export { SpecialOffers } from "./components/SpecialOffers";
-export { TopBrands } from "./components/TopBrands";
+// biome-ignore lint/performance/noBarrelFile: UCFAS mandates single public entry point
+export { BrowseByCategory } from "./components/browse-by-category";
+export { FeaturedCars } from "./components/featured-cars";
+export { FeaturesCta } from "./components/features-cta";
+export { Hero } from "./components/hero";
+export { SpecialOffers } from "./components/special-offers";
+export { TopBrands } from "./components/top-brands";
