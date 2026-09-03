@@ -19,7 +19,11 @@ export function NavLink({
   return (
     <Link className={className} href={href} onClick={onClick}>
       <Typography
-        className={variant === "navLink" ? "text-white" : "text-inherit"}
+        className={
+          variant === "navLink"
+            ? "whitespace-nowrap text-white"
+            : "text-inherit"
+        }
         color="none"
         type="body"
         variant={variant}

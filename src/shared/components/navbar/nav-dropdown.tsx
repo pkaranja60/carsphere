@@ -2,7 +2,6 @@
 
 import { Dropdown, Label } from "@heroui/react";
 import { useCallback, useState } from "react";
-import { NavLink } from "../nav-link";
 import type { NavLinkItem } from "./nav-data";
 
 export function NavDropdown({ link }: { link: NavLinkItem }) {
@@ -17,8 +16,10 @@ export function NavDropdown({ link }: { link: NavLinkItem }) {
     <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <Dropdown isOpen={isOpen} onOpenChange={setIsOpen}>
         <Dropdown.Trigger>
-          <div className="cursor-pointer">
-            <NavLink href={link.href} label={link.label} />
+          <div className="flex cursor-pointer items-center gap-1">
+            <span className="whitespace-nowrap font-semibold text-sm text-white transition-colors hover:text-red-600 md:text-base">
+              {link.label}
+            </span>
           </div>
         </Dropdown.Trigger>
         <Dropdown.Popover className="dark rounded-lg border border-white/10 bg-neutral-950 p-2 shadow-2xl">
