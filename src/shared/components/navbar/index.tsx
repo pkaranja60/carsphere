@@ -113,7 +113,7 @@ export function Navbar() {
           <div className="mx-auto flex h-full w-full max-w-7xl flex-col px-4 py-6 sm:px-6">
             <div className="flex items-center justify-between border-white/10 border-b pb-4">
               <span className="font-extrabold text-white text-xl tracking-tight">
-                DRIVE<span className="text-red-600">EZ</span>
+                DRIV<span className="text-red-600">EZ</span>
               </span>
               <button
                 aria-label="Close mobile menu"
