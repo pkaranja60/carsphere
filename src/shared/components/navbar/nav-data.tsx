@@ -30,14 +30,13 @@ export const navLinks: NavLinkItem[] = [
     items: [
       { href: "/services/car-sales", label: "Car Sales" },
       { href: "/services/car-finance", label: "Car Finance" },
+      { href: "/services/car-leasing", label: "Car Leasing" },
       { href: "/services/trade-in", label: "Trade-In" },
       { href: "/services/insurance", label: "Insurance" },
       { href: "/services/extended-warranty", label: "Extended Warranty" },
-      { href: "/services/test-drive", label: "Test Drive" },
     ],
     label: "Services",
   },
-  { href: "/financing", label: "Financing" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact Us" },
 ];
