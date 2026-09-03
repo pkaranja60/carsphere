@@ -109,6 +109,9 @@ Write code that is **accessible, performant, type-safe, and maintainable**. Focu
 **Solid/Svelte/Vue/Qwik:**
 - Use `classNameName` and `for` attributes (not `class` or `htmlFor`)
 
+**Tailwind CSS:**
+- Always use canonical Tailwind classes (suggestCanonicalClasses). Avoid arbitrary values when a canonical utility exists.
+
 ---
 
 ## Testing

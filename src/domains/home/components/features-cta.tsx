@@ -15,7 +15,7 @@ export function FeaturesCta() {
             <HiOutlineTruck className="mb-2 h-6 w-6 stroke-[1.5] sm:mb-0 sm:h-8 sm:w-8" />
           </div>
           <div>
-            <Typography color="inverse" variant="subheading">
+            <Typography className="text-white" color="none" variant="subheading">
               Free Delivery
             </Typography>
             <Typography
@@ -33,7 +33,7 @@ export function FeaturesCta() {
             <HiOutlineArrowPath className="mb-2 h-6 w-6 stroke-[1.5] sm:mb-0 sm:h-8 sm:w-8" />
           </div>
           <div>
-            <Typography color="inverse" variant="subheading">
+            <Typography className="text-white" color="none" variant="subheading">
               7-Day Returns
             </Typography>
             <Typography
@@ -51,7 +51,7 @@ export function FeaturesCta() {
             <HiOutlineShieldCheck className="mb-2 h-6 w-6 stroke-[1.5] sm:mb-0 sm:h-8 sm:w-8" />
           </div>
           <div>
-            <Typography color="inverse" variant="subheading">
+            <Typography className="text-white" color="none" variant="subheading">
               Secure Payment
             </Typography>
             <Typography
@@ -69,7 +69,7 @@ export function FeaturesCta() {
             <HiOutlineUsers className="mb-2 h-6 w-6 stroke-[1.5] sm:mb-0 sm:h-8 sm:w-8" />
           </div>
           <div>
-            <Typography color="inverse" variant="subheading">
+            <Typography className="text-white" color="none" variant="subheading">
               Expert Support
             </Typography>
             <Typography

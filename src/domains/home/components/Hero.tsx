@@ -15,7 +15,7 @@ import { HeroValueBadges } from "./hero-value-badges";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[60vh] w-full flex-col justify-between bg-linear-to-b from-[#0b0c10]/40 via-transparent to-[#0b0c10] lg:min-h-[75vh]">
+    <section className="relative flex min-h-[60vh] w-full flex-col justify-between bg-linear-to-b from-[#0b0c10]/40 via-transparent to-[#0b0c10] lg:min-h-[6I5vh]">
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <Image
           alt="Luxury Sports Car"
@@ -37,7 +37,12 @@ export function Hero() {
             </span>
           </div>
 
-          <Typography color="inverse" type="h1" variant="heroHeading">
+          <Typography
+            className="text-white"
+            color="none"
+            type="h1"
+            variant="heroHeading"
+          >
             Find The Perfect <br />
             Car For{" "}
             <span className="text-red-600 drop-shadow-[0_0_20px_rgba(220,38,38,0.4)]">

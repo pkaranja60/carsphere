@@ -19,7 +19,7 @@ export function TopBrands() {
           Our Top Brands
         </Typography>
         <Link
-          className="inline-flex items-center gap-1.5 font-semibold text-neutral-800 text-xs transition hover:text-red-600 sm:text-sm"
+          className="inline-flex items-center gap-1.5 font-semibold text-foreground text-xs transition hover:text-red-600 sm:text-sm"
           href="#"
         >
           <span>View All Brands</span>
@@ -52,7 +52,7 @@ export function TopBrands() {
             src="https://cdn.simpleicons.org/mercedes/000000"
             width={120}
           />
-          <span className="mt-1.5 text-center font-semibold text-[10px] text-neutral-800 tracking-tight">
+          <span className="mt-1.5 text-center font-semibold text-[10px] text-foreground tracking-tight">
             Mercedes-Benz
           </span>
         </Link>
@@ -84,7 +84,7 @@ export function TopBrands() {
             src="https://cdn.simpleicons.org/porsche/D5001C"
             width={120}
           />
-          <span className="mt-1 font-extrabold text-[9px] text-neutral-800 uppercase tracking-[0.2em]">
+          <span className="mt-1 font-extrabold text-[9px] text-foreground uppercase tracking-[0.2em]">
             PORSCHE
           </span>
         </Link>

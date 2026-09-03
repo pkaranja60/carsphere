@@ -20,7 +20,7 @@
   --color-surface: var(--surface);
   --color-surface-alt: var(--surface-alt);
   --color-border: var(--border);
-  --color-text-muted: var(--text-muted);
+  --color-muted: var(--text-muted);
   --font-sans: var(--font-jakarta-sans);
   --font-racing: var(--font-montserrat);
 }

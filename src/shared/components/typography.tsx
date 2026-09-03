@@ -4,17 +4,17 @@ import type { ComponentProps } from "react";
 export const typographyVariants = tv({
   base: "",
   defaultVariants: {
-    color: "none",
+    color: "default",
     variant: "default",
   },
   variants: {
     color: {
-      default: "text-neutral-900",
-      inverse: "text-white",
+      default: "text-foreground",
+      inverse: "text-background",
       inverseMuted: "text-gray-300",
-      muted: "text-neutral-500",
+      muted: "text-muted",
       none: "",
-      primary: "text-red-600",
+      primary: "text-primary",
     },
     variant: {
       body: "font-light text-sm leading-relaxed sm:font-normal sm:text-base",
