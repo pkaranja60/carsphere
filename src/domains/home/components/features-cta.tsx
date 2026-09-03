@@ -4,64 +4,81 @@ import {
   HiOutlineTruck,
   HiOutlineUsers,
 } from "react-icons/hi2";
+import { Typography } from "@/shared";
 
 export function FeaturesCta() {
   return (
-    <div className="rounded-t-2xl bg-[#0b0c0e] p-4 text-white sm:p-6">
-      <div className="grid grid-cols-4 divide-x divide-neutral-800">
-        <div className="flex flex-col items-center justify-center px-1 text-center sm:flex-row sm:justify-start sm:space-x-3.5 sm:px-4 sm:text-left">
+    <div className="rounded-t-2xl bg-[#0b0c0e] p-6 text-white lg:p-8">
+      <div className="grid grid-cols-2 gap-y-6 sm:grid-cols-4 sm:divide-x sm:divide-neutral-800">
+        <div className="flex flex-col items-center justify-center px-2 text-center sm:flex-row sm:justify-start sm:space-x-4 sm:px-6 sm:text-left">
           <div className="shrink-0 text-gray-300">
-            <HiOutlineTruck className="mb-1 h-5 w-5 stroke-[1.5] sm:mb-0 sm:h-7 sm:w-7" />
+            <HiOutlineTruck className="mb-2 h-6 w-6 stroke-[1.5] sm:mb-0 sm:h-8 sm:w-8" />
           </div>
           <div>
-            <h4 className="font-bold text-[9px] text-white leading-tight sm:text-xs md:text-sm">
+            <Typography color="inverse" variant="subheading">
               Free Delivery
-            </h4>
-            <p className="hidden font-normal text-[11px] text-gray-400 sm:block md:text-xs">
+            </Typography>
+            <Typography
+              className="mt-0.5 hidden sm:block"
+              color="muted"
+              variant="metadata"
+            >
               On All Orders
-            </p>
+            </Typography>
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-center px-1 text-center sm:flex-row sm:justify-start sm:space-x-3.5 sm:px-4 sm:text-left">
+        <div className="flex flex-col items-center justify-center px-2 text-center sm:flex-row sm:justify-start sm:space-x-4 sm:px-6 sm:text-left">
           <div className="shrink-0 text-gray-300">
-            <HiOutlineArrowPath className="mb-1 h-5 w-5 stroke-[1.5] sm:mb-0 sm:h-7 sm:w-7" />
+            <HiOutlineArrowPath className="mb-2 h-6 w-6 stroke-[1.5] sm:mb-0 sm:h-8 sm:w-8" />
           </div>
           <div>
-            <h4 className="font-bold text-[9px] text-white leading-tight sm:text-xs md:text-sm">
+            <Typography color="inverse" variant="subheading">
               7-Day Returns
-            </h4>
-            <p className="hidden font-normal text-[11px] text-gray-400 sm:block md:text-xs">
+            </Typography>
+            <Typography
+              className="mt-0.5 hidden sm:block"
+              color="muted"
+              variant="metadata"
+            >
               Money Back Guarantee
-            </p>
+            </Typography>
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-center px-1 text-center sm:flex-row sm:justify-start sm:space-x-3.5 sm:px-4 sm:text-left">
+        <div className="flex flex-col items-center justify-center px-2 text-center sm:flex-row sm:justify-start sm:space-x-4 sm:px-6 sm:text-left">
           <div className="shrink-0 text-gray-300">
-            <HiOutlineShieldCheck className="mb-1 h-5 w-5 stroke-[1.5] sm:mb-0 sm:h-7 sm:w-7" />
+            <HiOutlineShieldCheck className="mb-2 h-6 w-6 stroke-[1.5] sm:mb-0 sm:h-8 sm:w-8" />
           </div>
           <div>
-            <h4 className="font-bold text-[9px] text-white leading-tight sm:text-xs md:text-sm">
+            <Typography color="inverse" variant="subheading">
               Secure Payment
-            </h4>
-            <p className="hidden font-normal text-[11px] text-gray-400 sm:block md:text-xs">
+            </Typography>
+            <Typography
+              className="mt-0.5 hidden sm:block"
+              color="muted"
+              variant="metadata"
+            >
               100% Protected
-            </p>
+            </Typography>
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-center px-1 text-center sm:flex-row sm:justify-start sm:space-x-3.5 sm:px-4 sm:text-left">
+        <div className="flex flex-col items-center justify-center px-2 text-center sm:flex-row sm:justify-start sm:space-x-4 sm:px-6 sm:text-left">
           <div className="shrink-0 text-gray-300">
-            <HiOutlineUsers className="mb-1 h-5 w-5 stroke-[1.5] sm:mb-0 sm:h-7 sm:w-7" />
+            <HiOutlineUsers className="mb-2 h-6 w-6 stroke-[1.5] sm:mb-0 sm:h-8 sm:w-8" />
           </div>
           <div>
-            <h4 className="font-bold text-[9px] text-white leading-tight sm:text-xs md:text-sm">
+            <Typography color="inverse" variant="subheading">
               Expert Support
-            </h4>
-            <p className="hidden font-normal text-[11px] text-gray-400 sm:block md:text-xs">
+            </Typography>
+            <Typography
+              className="mt-0.5 hidden sm:block"
+              color="muted"
+              variant="metadata"
+            >
               24/7 Friendly Support
-            </p>
+            </Typography>
           </div>
         </div>
       </div>

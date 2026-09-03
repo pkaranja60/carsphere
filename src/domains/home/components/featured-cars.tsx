@@ -5,6 +5,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HiOutlineArrowRight, HiOutlineHeart } from "react-icons/hi2";
+import { Button, Typography } from "@/shared";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -14,9 +15,9 @@ export function FeaturedCars() {
   return (
     <section>
       <div className="mb-6 flex items-center justify-between">
-        <h2 className="font-bold text-neutral-900 text-xl tracking-tight sm:text-2xl">
+        <Typography type="h2" variant="heading">
           Featured Cars
-        </h2>
+        </Typography>
         <Link
           className="inline-flex items-center gap-1.5 font-semibold text-neutral-800 text-xs transition hover:text-red-600 sm:text-sm"
           href="#"
@@ -27,9 +28,9 @@ export function FeaturedCars() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-        <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
+        <div className="flex flex-col justify-between rounded-xl border border-border bg-surface p-3 shadow-sm sm:p-4">
           <div>
-            <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
+            <div className="relative mb-3 aspect-[4/3] w-full overflow-hidden rounded-lg bg-neutral-950">
               <Image
                 alt="BMW M4 Competition"
                 className="h-full w-full object-cover object-center"
@@ -43,27 +44,24 @@ export function FeaturedCars() {
                 <HiOutlineHeart className="h-3.5 w-3.5" />
               </button>
             </div>
-            <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
+            <Typography type="h3" variant="subheading">
               BMW M4 Competition
-            </h3>
-            <p className="mt-0.5 text-[11px] text-neutral-400">
+            </Typography>
+            <Typography className="mt-0.5" color="muted" variant="metadata">
               2024 | Automatic | Petrol
-            </p>
-            <div className="mt-2 font-extrabold text-base text-neutral-950">
+            </Typography>
+            <div className="mt-2 font-extrabold text-base text-foreground">
               $89,900
             </div>
           </div>
-          <button
-            className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700"
-            type="button"
-          >
+          <Button className="mt-3" fullWidth size="sm" variant="primary">
             View Details
-          </button>
+          </Button>
         </div>
 
-        <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
+        <div className="flex flex-col justify-between rounded-xl border border-border bg-surface p-3 shadow-sm sm:p-4">
           <div>
-            <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
+            <div className="relative mb-3 aspect-[4/3] w-full overflow-hidden rounded-lg bg-neutral-950">
               <Image
                 alt="Mercedes-Benz E-className"
                 className="h-full w-full object-cover object-center"
@@ -77,27 +75,24 @@ export function FeaturedCars() {
                 <HiOutlineHeart className="h-3.5 w-3.5" />
               </button>
             </div>
-            <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
+            <Typography type="h3" variant="subheading">
               Mercedes-Benz E-className
-            </h3>
-            <p className="mt-0.5 text-[11px] text-neutral-400">
+            </Typography>
+            <Typography className="mt-0.5" color="muted" variant="metadata">
               2024 | Automatic | Petrol
-            </p>
-            <div className="mt-2 font-extrabold text-base text-neutral-950">
+            </Typography>
+            <div className="mt-2 font-extrabold text-base text-foreground">
               $64,500
             </div>
           </div>
-          <button
-            className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700"
-            type="button"
-          >
+          <Button className="mt-3" fullWidth size="sm" variant="primary">
             View Details
-          </button>
+          </Button>
         </div>
 
-        <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
+        <div className="flex flex-col justify-between rounded-xl border border-border bg-surface p-3 shadow-sm sm:p-4">
           <div>
-            <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
+            <div className="relative mb-3 aspect-[4/3] w-full overflow-hidden rounded-lg bg-neutral-950">
               <Image
                 alt="Audi RS5 Sportback"
                 className="h-full w-full object-cover object-center"
@@ -111,27 +106,24 @@ export function FeaturedCars() {
                 <HiOutlineHeart className="h-3.5 w-3.5" />
               </button>
             </div>
-            <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
+            <Typography type="h3" variant="subheading">
               Audi RS5 Sportback
-            </h3>
-            <p className="mt-0.5 text-[11px] text-neutral-400">
+            </Typography>
+            <Typography className="mt-0.5" color="muted" variant="metadata">
               2024 | Automatic | Petrol
-            </p>
-            <div className="mt-2 font-extrabold text-base text-neutral-950">
+            </Typography>
+            <div className="mt-2 font-extrabold text-base text-foreground">
               $76,800
             </div>
           </div>
-          <button
-            className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700"
-            type="button"
-          >
+          <Button className="mt-3" fullWidth size="sm" variant="primary">
             View Details
-          </button>
+          </Button>
         </div>
 
-        <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
+        <div className="flex flex-col justify-between rounded-xl border border-border bg-surface p-3 shadow-sm sm:p-4">
           <div>
-            <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
+            <div className="relative mb-3 aspect-[4/3] w-full overflow-hidden rounded-lg bg-neutral-950">
               <Image
                 alt="Porsche 911 Carrera"
                 className="h-full w-full object-cover object-center"
@@ -145,27 +137,24 @@ export function FeaturedCars() {
                 <HiOutlineHeart className="h-3.5 w-3.5" />
               </button>
             </div>
-            <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
+            <Typography type="h3" variant="subheading">
               Porsche 911 Carrera
-            </h3>
-            <p className="mt-0.5 text-[11px] text-neutral-400">
+            </Typography>
+            <Typography className="mt-0.5" color="muted" variant="metadata">
               2024 | Automatic | Petrol
-            </p>
-            <div className="mt-2 font-extrabold text-base text-neutral-950">
+            </Typography>
+            <div className="mt-2 font-extrabold text-base text-foreground">
               $122,900
             </div>
           </div>
-          <button
-            className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700"
-            type="button"
-          >
+          <Button className="mt-3" fullWidth size="sm" variant="primary">
             View Details
-          </button>
+          </Button>
         </div>
 
-        <div className="flex flex-col justify-between rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm">
+        <div className="flex flex-col justify-between rounded-xl border border-border bg-surface p-3 shadow-sm sm:p-4">
           <div>
-            <div className="relative mb-3 h-32 w-full overflow-hidden rounded-lg bg-neutral-950">
+            <div className="relative mb-3 aspect-[4/3] w-full overflow-hidden rounded-lg bg-neutral-950">
               <Image
                 alt="Range Rover Velar"
                 className="h-full w-full object-cover object-center"
@@ -179,22 +168,19 @@ export function FeaturedCars() {
                 <HiOutlineHeart className="h-3.5 w-3.5" />
               </button>
             </div>
-            <h3 className="font-bold text-neutral-900 text-xs leading-tight sm:text-sm">
+            <Typography type="h3" variant="subheading">
               Range Rover Velar
-            </h3>
-            <p className="mt-0.5 text-[11px] text-neutral-400">
+            </Typography>
+            <Typography className="mt-0.5" color="muted" variant="metadata">
               2024 | Automatic | Diesel
-            </p>
-            <div className="mt-2 font-extrabold text-base text-neutral-950">
+            </Typography>
+            <div className="mt-2 font-extrabold text-base text-foreground">
               $71,300
             </div>
           </div>
-          <button
-            className="mt-3 w-full rounded-md bg-red-600 py-2 font-semibold text-white text-xs shadow-sm transition hover:bg-red-700"
-            type="button"
-          >
+          <Button className="mt-3" fullWidth size="sm" variant="primary">
             View Details
-          </button>
+          </Button>
         </div>
       </div>
     </section>

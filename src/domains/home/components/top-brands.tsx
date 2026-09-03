@@ -5,6 +5,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HiOutlineArrowRight } from "react-icons/hi2";
+import { Typography } from "@/shared";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -14,9 +15,9 @@ export function TopBrands() {
   return (
     <section>
       <div className="mb-6 flex items-center justify-between">
-        <h2 className="font-bold text-neutral-900 text-xl tracking-tight sm:text-2xl">
+        <Typography type="h2" variant="heading">
           Our Top Brands
-        </h2>
+        </Typography>
         <Link
           className="inline-flex items-center gap-1.5 font-semibold text-neutral-800 text-xs transition hover:text-red-600 sm:text-sm"
           href="#"
@@ -28,7 +29,7 @@ export function TopBrands() {
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-8">
         <Link
-          className="group flex h-24 items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-3 transition hover:border-neutral-300 hover:shadow-md"
+          className="group flex h-24 items-center justify-center rounded-xl border border-border bg-surface p-3 transition hover:border-neutral-300 hover:shadow-md"
           href="#"
         >
           <Image
@@ -41,7 +42,7 @@ export function TopBrands() {
         </Link>
 
         <Link
-          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
+          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-border bg-surface p-2 transition hover:border-neutral-300 hover:shadow-md"
           href="#"
         >
           <Image
@@ -57,7 +58,7 @@ export function TopBrands() {
         </Link>
 
         <Link
-          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
+          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-border bg-surface p-2 transition hover:border-neutral-300 hover:shadow-md"
           href="#"
         >
           <Image
@@ -73,7 +74,7 @@ export function TopBrands() {
         </Link>
 
         <Link
-          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
+          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-border bg-surface p-2 transition hover:border-neutral-300 hover:shadow-md"
           href="#"
         >
           <Image
@@ -89,7 +90,7 @@ export function TopBrands() {
         </Link>
 
         <Link
-          className="group flex h-24 items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-3 transition hover:border-neutral-300 hover:shadow-md"
+          className="group flex h-24 items-center justify-center rounded-xl border border-border bg-surface p-3 transition hover:border-neutral-300 hover:shadow-md"
           href="#"
         >
           <span className="rounded-full bg-[#005a2b] px-2.5 py-1.5 text-center font-black text-[9px] text-white uppercase leading-none tracking-wider">
@@ -100,7 +101,7 @@ export function TopBrands() {
         </Link>
 
         <Link
-          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
+          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-border bg-surface p-2 transition hover:border-neutral-300 hover:shadow-md"
           href="#"
         >
           <Image
@@ -116,7 +117,7 @@ export function TopBrands() {
         </Link>
 
         <Link
-          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
+          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-border bg-surface p-2 transition hover:border-neutral-300 hover:shadow-md"
           href="#"
         >
           <Image
@@ -132,7 +133,7 @@ export function TopBrands() {
         </Link>
 
         <Link
-          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200/80 bg-white p-2 transition hover:border-neutral-300 hover:shadow-md"
+          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-border bg-surface p-2 transition hover:border-neutral-300 hover:shadow-md"
           href="#"
         >
           <Image

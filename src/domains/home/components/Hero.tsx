@@ -5,6 +5,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HiArrowLongRight } from "react-icons/hi2";
+import { buttonVariants, Typography } from "@/shared";
 import { HeroSearchFilter } from "./hero-search-filter";
 import { HeroValueBadges } from "./hero-value-badges";
 
@@ -36,29 +37,43 @@ export function Hero() {
             </span>
           </div>
 
-          <h1 className="font-racing text-4xl text-white uppercase italic leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+          <Typography color="inverse" type="h1" variant="heroHeading">
             Find The Perfect <br />
             Car For{" "}
             <span className="text-red-600 drop-shadow-[0_0_20px_rgba(220,38,38,0.4)]">
               You
             </span>
-          </h1>
+          </Typography>
 
-          <p className="max-w-lg font-light text-gray-300 text-sm leading-relaxed sm:text-base">
+          <Typography
+            className="max-w-lg"
+            color="inverseMuted"
+            type="body"
+            variant="body"
+          >
             Explore our premium collection of luxury, performance, and everyday
             cars.
-          </p>
+          </Typography>
 
-          <div className="flex flex-wrap items-center gap-4 pt-2">
+          <div className="flex w-full flex-col items-center gap-4 pt-2 sm:w-auto sm:flex-row">
             <Link
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-red-600 px-6 py-3.5 font-medium text-sm text-white shadow-lg shadow-red-600/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-red-700"
+              className={buttonVariants({
+                className:
+                  "w-full shadow-lg shadow-red-600/30 hover:-translate-y-0.5 sm:w-auto",
+                size: "lg",
+                variant: "primary",
+              })}
               href="#"
             >
               <span>View Inventory</span>
               <HiArrowLongRight size={24} />
             </Link>
             <Link
-              className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/5 px-6 py-3.5 font-medium text-sm text-white backdrop-blur-sm transition-all duration-200 hover:border-white/40 hover:bg-white/10"
+              className={buttonVariants({
+                className: "w-full sm:w-auto",
+                size: "lg",
+                variant: "inverseOutline",
+              })}
               href="#"
             >
               Book a Test Drive

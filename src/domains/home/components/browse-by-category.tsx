@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaBoltLightning, FaCar, FaCouch, FaGaugeHigh } from "react-icons/fa6";
 import { HiOutlineArrowRight, HiOutlineSparkles } from "react-icons/hi2";
+import { Typography } from "@/shared";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -15,9 +16,9 @@ export function BrowseByCategory() {
   return (
     <section>
       <div className="mb-6 flex items-center justify-between">
-        <h2 className="font-bold text-neutral-900 text-xl tracking-tight sm:text-2xl">
+        <Typography type="h2" variant="heading">
           Browse By Category
-        </h2>
+        </Typography>
         <Link
           className="inline-flex items-center gap-1.5 font-semibold text-neutral-800 text-xs transition hover:text-red-600 sm:text-sm"
           href="#"
@@ -28,8 +29,8 @@ export function BrowseByCategory() {
       </div>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-        <div className="rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md">
-          <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
+        <div className="rounded-xl border border-border bg-surface p-3 shadow-sm transition hover:shadow-md">
+          <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-neutral-950 sm:aspect-[4/3]">
             <Image
               alt="SUVs"
               className="h-full w-full object-cover object-center"
@@ -41,7 +42,9 @@ export function BrowseByCategory() {
             <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
               <FaCar className="h-3.5 w-3.5" />
             </div>
-            <h3 className="font-bold text-neutral-900 text-sm">SUVs</h3>
+            <Typography type="h3" variant="subheading">
+              SUVs
+            </Typography>
             <p className="font-medium text-[11px] text-neutral-400">
               Spacious & Powerful
             </p>
@@ -54,8 +57,8 @@ export function BrowseByCategory() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md">
-          <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
+        <div className="rounded-xl border border-border bg-surface p-3 shadow-sm transition hover:shadow-md">
+          <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-neutral-950 sm:aspect-[4/3]">
             <Image
               alt="Sedans"
               className="h-full w-full object-cover object-center"
@@ -67,7 +70,9 @@ export function BrowseByCategory() {
             <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
               <FaCouch className="h-3.5 w-3.5" />
             </div>
-            <h3 className="font-bold text-neutral-900 text-sm">Sedans</h3>
+            <Typography type="h3" variant="subheading">
+              Sedans
+            </Typography>
             <p className="font-medium text-[11px] text-neutral-400">
               Comfort & Style
             </p>
@@ -80,8 +85,8 @@ export function BrowseByCategory() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md">
-          <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
+        <div className="rounded-xl border border-border bg-surface p-3 shadow-sm transition hover:shadow-md">
+          <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-neutral-950 sm:aspect-[4/3]">
             <Image
               alt="Sports Cars"
               className="h-full w-full object-cover object-center"
@@ -93,7 +98,9 @@ export function BrowseByCategory() {
             <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
               <FaGaugeHigh className="h-3.5 w-3.5" />
             </div>
-            <h3 className="font-bold text-neutral-900 text-sm">Sports Cars</h3>
+            <Typography type="h3" variant="subheading">
+              Sports Cars
+            </Typography>
             <p className="font-medium text-[11px] text-neutral-400">
               High Performance
             </p>
@@ -106,8 +113,8 @@ export function BrowseByCategory() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md">
-          <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
+        <div className="rounded-xl border border-border bg-surface p-3 shadow-sm transition hover:shadow-md">
+          <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-neutral-950 sm:aspect-[4/3]">
             <Image
               alt="Hatchbacks"
               className="h-full w-full object-cover object-center"
@@ -119,7 +126,9 @@ export function BrowseByCategory() {
             <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
               <FaBoltLightning className="h-3.5 w-3.5" />
             </div>
-            <h3 className="font-bold text-neutral-900 text-sm">Hatchbacks</h3>
+            <Typography type="h3" variant="subheading">
+              Hatchbacks
+            </Typography>
             <p className="font-medium text-[11px] text-neutral-400">
               Smart & Efficient
             </p>
@@ -132,8 +141,8 @@ export function BrowseByCategory() {
           </div>
         </div>
 
-        <div className="col-span-2 rounded-xl border border-neutral-200/80 bg-white p-3 shadow-sm transition hover:shadow-md sm:col-span-1">
-          <div className="relative h-28 w-full overflow-hidden rounded-lg bg-neutral-950 sm:h-32">
+        <div className="col-span-2 rounded-xl border border-border bg-surface p-3 shadow-sm transition hover:shadow-md sm:col-span-1">
+          <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-neutral-950 sm:aspect-[4/3]">
             <Image
               alt="Luxury Cars"
               className="h-full w-full object-cover object-center"
@@ -145,7 +154,9 @@ export function BrowseByCategory() {
             <div className="absolute -top-4 left-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-neutral-900 text-white shadow">
               <HiOutlineSparkles className="h-3.5 w-3.5" />
             </div>
-            <h3 className="font-bold text-neutral-900 text-sm">Luxury Cars</h3>
+            <Typography type="h3" variant="subheading">
+              Luxury Cars
+            </Typography>
             <p className="font-medium text-[11px] text-neutral-400">
               Ultimate Luxury
             </p>

@@ -2,7 +2,6 @@
 // SECTION: Imports
 // ─────────────────────────────────────────────
 
-import { Typography } from "@heroui/react";
 import Link from "next/link";
 import {
   HiCalendarDateRange,
@@ -12,6 +11,7 @@ import {
   HiOutlineTruck,
   HiOutlineUser,
 } from "react-icons/hi2";
+import { Typography } from "./typography";
 
 // ─────────────────────────────────────────────
 // SECTION: Helpers
@@ -50,10 +50,7 @@ function TopNav({ icon, label }: { icon: React.ReactNode; label: string }) {
 function NavLink({ label, href }: { label: string; href: string }) {
   return (
     <Link href={href}>
-      <Typography
-        className="text-gray-300 transition-colors duration-200 hover:text-red-400"
-        type="body"
-      >
+      <Typography type="body" variant="navLink">
         {label}
       </Typography>
     </Link>

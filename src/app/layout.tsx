@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { Footer, Navbar } from "@/domains/shared";
+import { Footer, Navbar } from "@/shared";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
