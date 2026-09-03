@@ -15,7 +15,7 @@ import { HeroValueBadges } from "./hero-value-badges";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[60vh] w-full flex-col justify-between bg-linear-to-b from-[#0b0c10]/40 via-transparent to-[#0b0c10] lg:min-h-[6I5vh]">
+    <section className="relative flex min-h-[60vh] w-full flex-col justify-between bg-linear-to-b from-neutral-950/40 via-transparent to-neutral-950 lg:min-h-[65vh]">
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <Image
           alt="Luxury Sports Car"
@@ -25,14 +25,14 @@ export function Hero() {
           width={500}
         />
         <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/60 to-transparent" />
-        <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0c] via-transparent to-black/50" />
+        <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-transparent to-black/50" />
       </div>
 
       <div className="container mx-auto flex w-full flex-1 flex-col justify-center px-4 pt-10 pb-10 sm:px-6 lg:px-8">
         <div className="max-w-2xl space-y-7">
           <div className="flex items-center space-x-3">
-            <span className="inline-block h-[2.5px] w-6 bg-red-600" />
-            <span className="font-bold text-gray-300 text-xs uppercase tracking-[0.25em]">
+            <span className="inline-block h-1 w-6 bg-red-600" />
+            <span className="font-bold text-gray-300 text-xs uppercase tracking-widest md:text-sm lg:text-base">
               Drive Your Dream
             </span>
           </div>
@@ -44,10 +44,7 @@ export function Hero() {
             variant="heroHeading"
           >
             Find The Perfect <br />
-            Car For{" "}
-            <span className="text-red-600 drop-shadow-[0_0_20px_rgba(220,38,38,0.4)]">
-              You
-            </span>
+            Car For <span className="text-red-600 drop-shadow-xl">You</span>
           </Typography>
 
           <Typography

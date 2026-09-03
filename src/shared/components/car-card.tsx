@@ -48,32 +48,36 @@ export function CarCard({
             src={image}
           />
           <button
-            className={`absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 backdrop-blur transition hover:text-red-500 ${
+            className={`absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 backdrop-blur transition hover:text-red-500 md:h-8 md:w-8 ${
               isFavorite ? "text-red-500" : "text-white"
             }`}
             onClick={handleFavoriteClick}
             type="button"
           >
             {isFavorite ? (
-              <HiHeart className="h-3.5 w-3.5" />
+              <HiHeart className="h-3.5 w-3.5 md:h-4 md:w-4" />
             ) : (
-              <HiOutlineHeart className="h-3.5 w-3.5" />
+              <HiOutlineHeart className="h-3.5 w-3.5 md:h-4 md:w-4" />
             )}
           </button>
         </div>
 
         <Card.Content className="p-3 sm:p-4">
-          <Typography className="text-sm" type="h3" variant="subheading">
+          <Typography
+            className="text-sm md:text-base"
+            type="h3"
+            variant="subheading"
+          >
             {name}
           </Typography>
           <Typography
-            className="mt-0.5 text-xs"
+            className="mt-0.5 text-xs md:text-sm"
             color="muted"
             variant="metadata"
           >
             {year} | {transmission} | {fuelType}
           </Typography>
-          <div className="mt-2 font-extrabold text-base text-foreground">
+          <div className="mt-2 font-extrabold text-base text-foreground md:text-lg">
             {typeof price === "number" ? (
               `$${price.toLocaleString()}`
             ) : (

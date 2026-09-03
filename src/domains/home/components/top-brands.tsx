@@ -2,10 +2,9 @@
 // SECTION: Imports
 // ─────────────────────────────────────────────
 
-import Image from "next/image";
 import Link from "next/link";
 import { HiOutlineArrowRight } from "react-icons/hi2";
-import { Typography } from "@/shared";
+import { BrandCard, Typography } from "@/shared";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -19,134 +18,78 @@ export function TopBrands() {
           Our Top Brands
         </Typography>
         <Link
-          className="inline-flex items-center gap-1.5 font-semibold text-foreground text-xs transition hover:text-red-600 sm:text-sm"
+          className="inline-flex items-center gap-1.5 font-semibold text-foreground text-sm transition hover:text-red-600 md:text-base"
           href="#"
         >
           <span>View All Brands</span>
-          <HiOutlineArrowRight className="h-4 w-4" />
+          <HiOutlineArrowRight className="h-4 w-4 md:h-5 md:w-5" />
         </Link>
       </div>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-8">
-        <Link
-          className="group flex h-24 items-center justify-center rounded-xl border border-border bg-surface p-3 transition hover:border-neutral-300 hover:shadow-md"
+        <BrandCard
+          brandName="BMW"
+          containerClassName="p-3"
           href="#"
-        >
-          <Image
-            alt="BMW"
-            className="h-10 w-auto object-contain transition group-hover:scale-105"
-            height={120}
-            src="https://cdn.simpleicons.org/bmw/000000"
-            width={120}
-          />
-        </Link>
+          imageClassName="h-10 w-auto object-contain transition group-hover:scale-105"
+          logoSrc="https://cdn.simpleicons.org/bmw/000000"
+          showLabel={false}
+        />
 
-        <Link
-          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-border bg-surface p-2 transition hover:border-neutral-300 hover:shadow-md"
+        <BrandCard
+          brandName="Mercedes-Benz"
           href="#"
-        >
-          <Image
-            alt="Mercedes-Benz"
-            className="h-8 w-auto object-contain transition group-hover:scale-105"
-            height={120}
-            src="https://cdn.simpleicons.org/mercedes/000000"
-            width={120}
-          />
-          <span className="mt-1.5 text-center font-semibold text-[10px] text-foreground tracking-tight">
-            Mercedes-Benz
-          </span>
-        </Link>
+          imageClassName="h-8 w-auto object-contain transition group-hover:scale-105"
+          logoSrc="https://cdn.simpleicons.org/mercedes/000000"
+        />
 
-        <Link
-          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-border bg-surface p-2 transition hover:border-neutral-300 hover:shadow-md"
+        <BrandCard
+          brandName="Audi"
           href="#"
-        >
-          <Image
-            alt="Audi"
-            className="h-6 w-auto object-contain transition group-hover:scale-105"
-            height={120}
-            src="https://cdn.simpleicons.org/audi/000000"
-            width={120}
-          />
-          <span className="mt-1.5 font-bold text-red-600 text-xs uppercase tracking-wider">
-            Audi
-          </span>
-        </Link>
+          imageClassName="h-6 w-auto object-contain transition group-hover:scale-105"
+          labelClassName="mt-1.5 font-bold text-red-600 text-xs uppercase tracking-wider md:text-xs"
+          logoSrc="https://cdn.simpleicons.org/audi/000000"
+        />
 
-        <Link
-          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-border bg-surface p-2 transition hover:border-neutral-300 hover:shadow-md"
+        <BrandCard
+          brandName="PORSCHE"
           href="#"
-        >
-          <Image
-            alt="Porsche"
-            className="h-7 w-auto object-contain transition group-hover:scale-105"
-            height={120}
-            src="https://cdn.simpleicons.org/porsche/D5001C"
-            width={120}
-          />
-          <span className="mt-1 font-extrabold text-[9px] text-foreground uppercase tracking-[0.2em]">
-            PORSCHE
-          </span>
-        </Link>
+          imageClassName="h-7 w-auto object-contain transition group-hover:scale-105"
+          labelClassName="mt-1 font-extrabold text-foreground text-xs uppercase tracking-widest md:text-xs"
+          logoSrc="https://cdn.simpleicons.org/porsche/D5001C"
+        />
 
-        <Link
-          className="group flex h-24 items-center justify-center rounded-xl border border-border bg-surface p-3 transition hover:border-neutral-300 hover:shadow-md"
-          href="#"
-        >
-          <span className="rounded-full bg-[#005a2b] px-2.5 py-1.5 text-center font-black text-[9px] text-white uppercase leading-none tracking-wider">
+        <BrandCard containerClassName="p-3" href="#">
+          <span className="rounded-full bg-green-800 px-2.5 py-1.5 text-center font-black text-white text-xs uppercase leading-none tracking-wider md:text-xs">
             LAND-
             <br />
             ROVER
           </span>
-        </Link>
+        </BrandCard>
 
-        <Link
-          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-border bg-surface p-2 transition hover:border-neutral-300 hover:shadow-md"
+        <BrandCard
+          brandName="TOYOTA"
           href="#"
-        >
-          <Image
-            alt="Toyota"
-            className="h-7 w-auto object-contain transition group-hover:scale-105"
-            height={120}
-            src="https://cdn.simpleicons.org/toyota/EB0A1E"
-            width={120}
-          />
-          <span className="mt-1 font-bold text-[10px] text-red-600 uppercase tracking-wider">
-            TOYOTA
-          </span>
-        </Link>
+          imageClassName="h-7 w-auto object-contain transition group-hover:scale-105"
+          labelClassName="mt-1 font-bold text-red-600 text-xs uppercase tracking-wider md:text-xs"
+          logoSrc="https://cdn.simpleicons.org/toyota/EB0A1E"
+        />
 
-        <Link
-          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-border bg-surface p-2 transition hover:border-neutral-300 hover:shadow-md"
+        <BrandCard
+          brandName="HONDA"
           href="#"
-        >
-          <Image
-            alt="Honda"
-            className="h-7 w-auto object-contain transition group-hover:scale-105"
-            height={120}
-            src="https://cdn.simpleicons.org/honda/CC0000"
-            width={120}
-          />
-          <span className="mt-1 font-extrabold text-[10px] text-red-600 uppercase tracking-wider">
-            HONDA
-          </span>
-        </Link>
+          imageClassName="h-7 w-auto object-contain transition group-hover:scale-105"
+          labelClassName="mt-1 font-extrabold text-red-600 text-xs uppercase tracking-wider md:text-xs"
+          logoSrc="https://cdn.simpleicons.org/honda/CC0000"
+        />
 
-        <Link
-          className="group flex h-24 flex-col items-center justify-center rounded-xl border border-border bg-surface p-2 transition hover:border-neutral-300 hover:shadow-md"
+        <BrandCard
+          brandName="TESLA"
           href="#"
-        >
-          <Image
-            alt="Tesla"
-            className="h-6 w-auto object-contain transition group-hover:scale-105"
-            height={120}
-            src="https://cdn.simpleicons.org/tesla/E82127"
-            width={120}
-          />
-          <span className="mt-1.5 font-bold text-[9px] text-red-600 uppercase tracking-[0.25em]">
-            TESLA
-          </span>
-        </Link>
+          imageClassName="h-6 w-auto object-contain transition group-hover:scale-105"
+          labelClassName="mt-1.5 font-bold text-red-600 text-xs uppercase tracking-widest md:text-xs"
+          logoSrc="https://cdn.simpleicons.org/tesla/E82127"
+        />
       </div>
     </section>
   );
