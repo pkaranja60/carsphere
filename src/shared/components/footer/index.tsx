@@ -6,7 +6,7 @@ import { FooterNewsletter } from "./footer-newsletter";
 export function Footer() {
   return (
     <footer className="bg-black pt-12 pb-6 text-gray-400 text-sm md:text-base">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-384 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 pb-10 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
           <FooterBrand />
 

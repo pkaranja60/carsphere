@@ -30,7 +30,7 @@ export function Navbar() {
     <nav className="relative w-full bg-black">
       {/* Top bar - hidden on mobile */}
       <div className="hidden border-b border-b-gray-300/20 py-3.5 md:block">
-        <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 sm:px-6 lg:justify-between lg:px-8">
+        <div className="mx-auto flex w-full max-w-384 flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 sm:px-6 lg:justify-between lg:px-8">
           {topNavs.map((nav) => (
             <TopNav icon={nav.icon} key={nav.label} label={nav.label} />
           ))}
@@ -38,7 +38,7 @@ export function Navbar() {
       </div>
 
       <div className="border-b border-b-gray-700/20 py-4 lg:py-5">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex w-full max-w-384 items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4">
             <button
               aria-label="Open mobile menu"
@@ -110,7 +110,7 @@ export function Navbar() {
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen ? (
         <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm min-[1100px]:hidden">
-          <div className="mx-auto flex h-full w-full max-w-7xl flex-col px-4 py-6 sm:px-6">
+          <div className="mx-auto flex h-full w-full max-w-384 flex-col px-4 py-6 sm:px-6">
             <div className="flex items-center justify-between border-white/10 border-b pb-4">
               <span className="font-extrabold text-white text-xl tracking-tight">
                 DRIV<span className="text-red-600">EZ</span>
