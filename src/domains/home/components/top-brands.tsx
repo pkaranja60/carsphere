@@ -26,7 +26,7 @@ export function TopBrands() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-8">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8 min-[480px]:grid-cols-3">
         <BrandCard
           brandName="BMW"
           containerClassName="p-3"
@@ -36,12 +36,13 @@ export function TopBrands() {
           showLabel={false}
         />
 
-        <BrandCard
-          brandName="Mercedes-Benz"
-          href="#"
-          imageClassName="h-8 w-auto object-contain transition group-hover:scale-105"
-          logoSrc="https://cdn.simpleicons.org/mercedes/000000"
-        />
+        <BrandCard containerClassName="p-3" href="#">
+          <span className="text-center font-extrabold text-foreground text-xs leading-tight tracking-wider md:text-sm">
+            Mercedes-
+            <br />
+            Benz
+          </span>
+        </BrandCard>
 
         <BrandCard
           brandName="Audi"

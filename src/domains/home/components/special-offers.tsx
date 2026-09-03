@@ -102,7 +102,7 @@ function OfferCard({
 
 export function SpecialOffers() {
   return (
-    <section className="grid grid-cols-1 gap-5 md:grid-cols-3">
+    <section className="grid grid-cols-1 gap-5 lg:grid-cols-3">
       <OfferCard
         badge="Limited Time Offer"
         bgColor="bg-black"
