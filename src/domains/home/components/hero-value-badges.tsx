@@ -7,7 +7,7 @@ import {
 
 export function HeroValueBadges() {
   return (
-    <div className="grid grid-cols-2 gap-6 border-white/10 border-t pt-10 sm:grid-cols-4">
+    <div className="grid grid-cols-1 gap-6 border-white/10 border-t pt-10 sm:grid-cols-4 min-[480px]:grid-cols-2">
       <div className="flex flex-col space-y-1">
         <div className="flex items-center gap-2 font-semibold text-white text-xs sm:text-sm md:text-base">
           <HiOutlineCheckBadge className="h-4 w-4 text-gray-300 md:h-5 md:w-5" />

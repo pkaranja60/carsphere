@@ -30,7 +30,7 @@ export function Navbar() {
     <nav className="relative w-full bg-black">
       {/* Top bar - hidden on mobile */}
       <div className="hidden border-b border-b-gray-300/20 py-3.5 md:block">
-        <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 sm:px-6 lg:justify-between lg:px-8">
           {topNavs.map((nav) => (
             <TopNav icon={nav.icon} key={nav.label} label={nav.label} />
           ))}
@@ -38,11 +38,11 @@ export function Navbar() {
       </div>
 
       <div className="border-b border-b-gray-700/20 py-4 lg:py-5">
-        <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4">
             <button
               aria-label="Open mobile menu"
-              className="text-white hover:text-red-600 lg:hidden"
+              className="flex min-h-11 min-w-11 items-center justify-center text-white hover:text-red-600 min-[1100px]:hidden"
               onClick={handleOpenMobileMenu}
               type="button"
             >
@@ -67,7 +67,7 @@ export function Navbar() {
             </Link>
           </div>
 
-          <div className="hidden items-center gap-8 lg:flex">
+          <div className="hidden items-center gap-8 min-[1100px]:flex">
             {navLinks.map((link) => (
               <div key={link.href}>
                 {link.items ? (
@@ -80,10 +80,16 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-3 text-white sm:gap-4 lg:gap-2">
-            <button className="hover:text-red-600" type="button">
+            <button
+              className="flex min-h-11 min-w-11 items-center justify-center hover:text-red-600"
+              type="button"
+            >
               <HiMiniMagnifyingGlass className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
-            <button className="hover:text-red-600" type="button">
+            <button
+              className="flex min-h-11 min-w-11 items-center justify-center hover:text-red-600"
+              type="button"
+            >
               <HiMiniUser className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
 
@@ -101,15 +107,15 @@ export function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen ? (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm lg:hidden">
-          <div className="container mx-auto flex h-full flex-col px-4 py-6 sm:px-6">
+        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm min-[1100px]:hidden">
+          <div className="mx-auto flex h-full w-full max-w-7xl flex-col px-4 py-6 sm:px-6">
             <div className="flex items-center justify-between border-white/10 border-b pb-4">
               <span className="font-extrabold text-white text-xl tracking-tight">
                 DRIVE<span className="text-red-600">EZ</span>
               </span>
               <button
                 aria-label="Close mobile menu"
-                className="text-white hover:text-red-600"
+                className="flex min-h-11 min-w-11 items-center justify-center text-white hover:text-red-600"
                 onClick={handleCloseMobileMenu}
                 type="button"
               >

@@ -28,7 +28,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-transparent to-black/50" />
       </div>
 
-      <div className="container mx-auto flex w-full flex-1 flex-col justify-center px-4 pt-10 pb-10 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pt-10 pb-10 sm:px-6 lg:px-8">
         <div className="max-w-2xl space-y-7">
           <div className="flex items-center space-x-3">
             <span className="inline-block h-1 w-6 bg-red-600" />

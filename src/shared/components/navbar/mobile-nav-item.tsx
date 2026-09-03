@@ -32,7 +32,12 @@ export function MobileNavItem({
         onClick={toggleOpen}
         type="button"
       >
-        <Typography type="body" variant="navLink">
+        <Typography
+          className="text-white"
+          color="none"
+          type="body"
+          variant="navLink"
+        >
           {link.label}
         </Typography>
         <HiMiniChevronDown

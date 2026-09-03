@@ -67,7 +67,8 @@ body {
   background: var(--primary);
 }
 
-html, body {
-  scrollbar-width: thin;
+html,
+body {
   scrollbar-color: #262626 var(--background);
+  scrollbar-width: thin;
 }

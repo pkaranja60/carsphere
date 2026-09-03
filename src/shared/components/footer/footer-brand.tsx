@@ -9,7 +9,7 @@ import { RiSpeedUpLine } from "react-icons/ri";
 
 export function FooterBrand() {
   return (
-    <div className="space-y-4 lg:col-span-2">
+    <div className="space-y-4 sm:col-span-2 lg:col-span-4 xl:col-span-2">
       <div className="flex items-center gap-2">
         <div className="relative flex h-14 w-14 -rotate-45 items-center justify-center rounded-full border-4 border-red-600 border-t-transparent">
           <RiSpeedUpLine className="h-10 w-10 rotate-45 text-white" />
