@@ -8,7 +8,7 @@ import { Typography } from "@/shared";
 
 export function FeaturesCta() {
   return (
-    <div className="rounded-t-2xl border-white/10 border-x border-t bg-black/50 p-6 text-white shadow-2xl backdrop-blur-md">
+    <div className="rounded-t-2xl border-white/10 border-x border-t bg-black/90 p-6 text-white shadow-2xl backdrop-blur-md">
       <div className="grid grid-cols-2 gap-y-6 sm:grid-cols-4 sm:divide-x sm:divide-neutral-800">
         <div className="flex flex-col items-center justify-center px-2 text-center sm:flex-row sm:justify-start sm:space-x-4 sm:px-6 sm:text-left">
           <div className="shrink-0 text-gray-300">

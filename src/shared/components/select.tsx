@@ -27,7 +27,7 @@ export function Select({
       placeholder={placeholder}
       {...props}
     >
-      <HeroSelect.Trigger className="w-full appearance-none rounded border border-white/10 bg-surface px-3.5 py-3 text-left text-foreground text-sm transition focus:border-red-600 focus:outline-none focus:ring-1 focus:ring-red-600 data-[hover=true]:border-red-600 md:text-base">
+      <HeroSelect.Trigger className="w-full appearance-none rounded border border-white/10 bg-neutral-900 px-3.5 py-3 text-left text-sm text-white transition focus:border-red-600 focus:outline-none focus:ring-1 focus:ring-red-600 data-[hover=true]:border-red-600 md:text-base">
         <HeroSelect.Value />
         <HeroSelect.Indicator>
           <HiMiniChevronDown className="h-5 w-5 text-gray-400" />

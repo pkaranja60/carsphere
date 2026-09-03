@@ -18,7 +18,12 @@ export function NavLink({
 }: NavLinkProps) {
   return (
     <Link className={className} href={href} onClick={onClick}>
-      <Typography type="body" variant={variant}>
+      <Typography
+        className={variant === "navLink" ? "text-white" : "text-inherit"}
+        color="none"
+        type="body"
+        variant={variant}
+      >
         {label}
       </Typography>
     </Link>

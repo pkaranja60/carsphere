@@ -4,7 +4,7 @@ import { Button, Select } from "@/shared";
 export function HeroSearchFilter() {
   return (
     <div className="container relative z-20 mx-auto w-full px-4 sm:px-6 lg:-mt-24 lg:translate-y-1/2 lg:px-8">
-      <div className="rounded-2xl border border-white/10 bg-black/50 p-5 shadow-2xl backdrop-blur-md">
+      <div className="rounded-2xl border border-white/10 bg-black/90 p-5 shadow-2xl backdrop-blur-md">
         <h2 className="mb-4 font-bold text-lg text-white md:text-xl lg:text-2xl">
           Find Your <span className="text-red-600">Perfect Car</span>
         </h2>
