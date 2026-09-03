@@ -11,7 +11,7 @@ export function FooterNewsletter() {
         Subscribe to get the latest updates and exclusive offers.
       </p>
 
-      <form className="mt-4 flex">
+      <form className="mt-4 flex max-w-sm sm:max-w-md">
         <input
           className="w-full rounded-l-md border border-neutral-800 bg-neutral-900 px-3 py-2.5 text-sm text-white placeholder-gray-500 focus:border-red-600 focus:outline-none md:text-base"
           placeholder="Enter your email"
