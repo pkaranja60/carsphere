@@ -7,6 +7,7 @@ export {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  useCarousel,
 } from "./components/carousel";
 export { Footer } from "./components/footer";
 export { NavLink } from "./components/nav-link";

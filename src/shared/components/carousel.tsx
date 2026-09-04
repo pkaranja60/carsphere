@@ -31,6 +31,9 @@ type CarouselContextProps = {
   carouselRef: UseEmblaCarouselType[0];
   scrollNext: () => void;
   scrollPrev: () => void;
+  scrollTo: (index: number) => void;
+  selectedIndex: number;
+  scrollSnaps: number[];
 } & CarouselProps;
 
 const CarouselContext = createContext<CarouselContextProps | null>(null);
@@ -61,14 +64,31 @@ export const Carousel = ({
   );
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const onInit = useCallback((api: CarouselApi) => {
+    if (!api) {
+      return;
+    }
+    setScrollSnaps(api.scrollSnapList());
+  }, []);
 
   const onSelect = useCallback((api: CarouselApi) => {
     if (!api) {
       return;
     }
+    setSelectedIndex(api.selectedScrollSnap());
     setCanScrollPrev(api.canScrollPrev());
     setCanScrollNext(api.canScrollNext());
   }, []);
+
+  const scrollTo = useCallback(
+    (index: number) => {
+      emblaApi?.scrollTo(index);
+    },
+    [emblaApi]
+  );
 
   const scrollPrev = useCallback(() => {
     emblaApi?.scrollPrev();
@@ -102,13 +122,17 @@ export const Carousel = ({
     if (!emblaApi) {
       return;
     }
+    onInit(emblaApi);
     onSelect(emblaApi);
+    emblaApi.on("reInit", onInit);
     emblaApi.on("reInit", onSelect);
     emblaApi.on("select", onSelect);
     return () => {
+      emblaApi?.off("reInit", onInit);
+      emblaApi?.off("reInit", onSelect);
       emblaApi?.off("select", onSelect);
     };
-  }, [emblaApi, onSelect]);
+  }, [emblaApi, onInit, onSelect]);
 
   return (
     <CarouselContext.Provider
@@ -120,6 +144,9 @@ export const Carousel = ({
         opts,
         scrollNext,
         scrollPrev,
+        scrollSnaps,
+        scrollTo,
+        selectedIndex,
       }}
     >
       {/* biome-ignore lint/a11y/useSemanticElements: ARIA standard for carousels */}
