@@ -4,8 +4,6 @@ import Link from "next/link";
 import { useCallback, useState } from "react";
 import {
   HiCalendarDateRange,
-  HiMiniMagnifyingGlass,
-  HiMiniUser,
   HiOutlineBars3,
   HiOutlineXMark,
 } from "react-icons/hi2";
@@ -15,6 +13,8 @@ import { NavLink } from "../nav-link";
 import { MobileNavItem } from "./mobile-nav-item";
 import { navLinks, topNavs } from "./nav-data";
 import { NavDropdown } from "./nav-dropdown";
+import { NavbarAuth } from "./navbar-auth";
+import { NavbarSearch } from "./navbar-search";
 import { TopNav } from "./top-nav";
 
 export function Navbar() {
@@ -80,18 +80,8 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-3 text-white sm:gap-4 lg:gap-2">
-            <button
-              className="flex min-h-11 min-w-11 items-center justify-center hover:text-red-600"
-              type="button"
-            >
-              <HiMiniMagnifyingGlass className="h-5 w-5 sm:h-6 sm:w-6" />
-            </button>
-            <button
-              className="flex min-h-11 min-w-11 items-center justify-center hover:text-red-600"
-              type="button"
-            >
-              <HiMiniUser className="h-5 w-5 sm:h-6 sm:w-6" />
-            </button>
+            <NavbarSearch />
+            <NavbarAuth />
 
             <Button
               className="flex items-center gap-2"
