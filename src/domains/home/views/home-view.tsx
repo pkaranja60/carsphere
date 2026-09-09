@@ -2,12 +2,12 @@
 // SECTION: Imports
 // ─────────────────────────────────────────────
 
-import { BrowseByCategory } from "./components/browse-by-category";
-import { FeaturedCars } from "./components/featured-cars";
-import { FeaturesCta } from "./components/features-cta";
-import { Hero } from "./components/hero";
-import { SpecialOffers } from "./components/special-offers";
-import { TopBrands } from "./components/top-brands";
+import { BrowseByCategory } from "../components/browse-by-category";
+import { FeaturedCars } from "../components/featured-cars";
+import { FeaturesCta } from "../components/features-cta";
+import { Hero } from "../components/hero";
+import { SpecialOffers } from "../components/special-offers";
+import { TopBrands } from "../components/top-brands";
 
 // ─────────────────────────────────────────────
 // SECTION: Components

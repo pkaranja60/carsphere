@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { CarsListingView } from "@/domains/cars";
 
 export const metadata: Metadata = {
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function CarsPage() {
-  return <CarsListingView />;
+  return (
+    <Suspense fallback={<div>Loading inventory...</div>}>
+      <CarsListingView />
+    </Suspense>
+  );
 }
