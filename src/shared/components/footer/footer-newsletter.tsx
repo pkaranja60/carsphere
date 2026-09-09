@@ -1,5 +1,6 @@
 import { FaApple } from "react-icons/fa6";
 import { HiOutlineArrowRight } from "react-icons/hi2";
+import { Input } from "../input";
 
 export function FooterNewsletter() {
   return (
@@ -12,13 +13,13 @@ export function FooterNewsletter() {
       </p>
 
       <form className="mt-4 flex max-w-sm sm:max-w-md">
-        <input
-          className="w-full rounded-l-md border border-border bg-surface px-3 py-2.5 text-foreground text-sm placeholder-muted focus:border-primary focus:outline-none md:text-base"
+        <Input
+          inputClassName="rounded-r-none py-2.5"
           placeholder="Enter your email"
           type="email"
         />
         <button
-          className="flex items-center justify-center rounded-r-md bg-primary px-3 py-2.5 text-white transition hover:opacity-90"
+          className="flex items-center justify-center rounded-r-md bg-primary px-4 py-2.5 text-white transition hover:opacity-90"
           type="submit"
         >
           <HiOutlineArrowRight className="h-4 w-4" />

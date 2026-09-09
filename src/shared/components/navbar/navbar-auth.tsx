@@ -4,6 +4,7 @@ import { Modal } from "@heroui/react";
 import { useCallback, useState } from "react";
 import { HiMiniUser, HiOutlineXMark } from "react-icons/hi2";
 import { Button } from "../button";
+import { Input } from "../input";
 
 export function NavbarAuth() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -32,49 +33,28 @@ export function NavbarAuth() {
             </Modal.Header>
             <Modal.Body className="space-y-4">
               {isSignUp ? (
-                <div className="space-y-1.5">
-                  <label
-                    className="font-medium text-muted text-sm"
-                    htmlFor="name"
-                  >
-                    Full Name
-                  </label>
-                  <input
-                    className="w-full appearance-none rounded border border-border bg-surface-alt px-4 py-2.5 text-foreground text-sm transition focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                    id="name"
-                    placeholder="Enter your name"
-                    type="text"
-                  />
-                </div>
+                <Input
+                  id="name"
+                  inputClassName="bg-surface-alt py-2.5"
+                  label="Full Name"
+                  placeholder="Enter your name"
+                  type="text"
+                />
               ) : null}
-              <div className="space-y-1.5">
-                <label
-                  className="font-medium text-muted text-sm"
-                  htmlFor="email"
-                >
-                  Email Address
-                </label>
-                <input
-                  className="w-full appearance-none rounded border border-border bg-surface-alt px-4 py-2.5 text-foreground text-sm transition focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                  id="email"
-                  placeholder="Enter your email"
-                  type="email"
-                />
-              </div>
-              <div className="space-y-1.5">
-                <label
-                  className="font-medium text-muted text-sm"
-                  htmlFor="password"
-                >
-                  Password
-                </label>
-                <input
-                  className="w-full appearance-none rounded border border-border bg-surface-alt px-4 py-2.5 text-foreground text-sm transition focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                  id="password"
-                  placeholder="Enter your password"
-                  type="password"
-                />
-              </div>
+              <Input
+                id="email"
+                inputClassName="bg-surface-alt py-2.5"
+                label="Email Address"
+                placeholder="Enter your email"
+                type="email"
+              />
+              <Input
+                id="password"
+                inputClassName="bg-surface-alt py-2.5"
+                label="Password"
+                placeholder="Enter your password"
+                type="password"
+              />
               <Button className="mt-2 w-full justify-center" variant="primary">
                 {isSignUp ? "Sign Up" : "Sign In"}
               </Button>

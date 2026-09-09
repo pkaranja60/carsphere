@@ -1,6 +1,7 @@
 import { Popover } from "@heroui/react";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { Button } from "../button";
+import { Input } from "../input";
 
 export function NavbarSearch() {
   return (
@@ -17,10 +18,10 @@ export function NavbarSearch() {
         <Popover.Arrow />
         <Popover.Dialog className="rounded-xl border border-border bg-surface p-3 shadow-2xl">
           <form action="#" className="flex items-center gap-2">
-            <div className="relative">
-              <HiMiniMagnifyingGlass className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-muted" />
-              <input
-                className="w-full appearance-none rounded border border-border bg-surface-alt py-2.5 pr-4 pl-10 text-foreground text-sm transition focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary sm:w-64"
+            <div className="relative w-full sm:w-64">
+              <HiMiniMagnifyingGlass className="absolute top-1/2 left-3 z-10 h-5 w-5 -translate-y-1/2 text-muted" />
+              <Input
+                inputClassName="pl-10 py-2.5 bg-surface-alt"
                 placeholder="Search for car..."
                 type="text"
               />
