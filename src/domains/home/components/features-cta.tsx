@@ -8,15 +8,15 @@ import { Typography } from "@/shared";
 
 export function FeaturesCta() {
   return (
-    <div className="rounded-t-2xl border-white/10 border-x border-t bg-black/90 p-6 text-white shadow-2xl backdrop-blur-md">
-      <div className="grid grid-cols-2 gap-y-6 sm:grid-cols-4 sm:divide-x sm:divide-neutral-800">
+    <div className="rounded-t-2xl border-border border-x border-t bg-surface-alt/90 p-6 text-foreground shadow-2xl backdrop-blur-md">
+      <div className="grid grid-cols-2 gap-y-6 sm:grid-cols-4 sm:divide-x sm:divide-border">
         <div className="flex flex-col items-center justify-center px-2 text-center sm:flex-row sm:justify-start sm:space-x-4 sm:px-6 sm:text-left">
-          <div className="shrink-0 text-gray-300">
+          <div className="shrink-0 text-muted">
             <HiOutlineTruck className="mb-2 h-6 w-6 stroke-2 sm:mb-0 sm:h-8 sm:w-8" />
           </div>
           <div>
             <Typography
-              className="text-white"
+              className="text-foreground"
               color="none"
               variant="subheading"
             >
@@ -33,12 +33,12 @@ export function FeaturesCta() {
         </div>
 
         <div className="flex flex-col items-center justify-center px-2 text-center sm:flex-row sm:justify-start sm:space-x-4 sm:px-6 sm:text-left">
-          <div className="shrink-0 text-gray-300">
+          <div className="shrink-0 text-muted">
             <HiOutlineArrowPath className="mb-2 h-6 w-6 stroke-2 sm:mb-0 sm:h-8 sm:w-8" />
           </div>
           <div>
             <Typography
-              className="text-white"
+              className="text-foreground"
               color="none"
               variant="subheading"
             >
@@ -55,12 +55,12 @@ export function FeaturesCta() {
         </div>
 
         <div className="flex flex-col items-center justify-center px-2 text-center sm:flex-row sm:justify-start sm:space-x-4 sm:px-6 sm:text-left">
-          <div className="shrink-0 text-gray-300">
+          <div className="shrink-0 text-muted">
             <HiOutlineShieldCheck className="mb-2 h-6 w-6 stroke-2 sm:mb-0 sm:h-8 sm:w-8" />
           </div>
           <div>
             <Typography
-              className="text-white"
+              className="text-foreground"
               color="none"
               variant="subheading"
             >
@@ -77,12 +77,12 @@ export function FeaturesCta() {
         </div>
 
         <div className="flex flex-col items-center justify-center px-2 text-center sm:flex-row sm:justify-start sm:space-x-4 sm:px-6 sm:text-left">
-          <div className="shrink-0 text-gray-300">
+          <div className="shrink-0 text-muted">
             <HiOutlineUsers className="mb-2 h-6 w-6 stroke-2 sm:mb-0 sm:h-8 sm:w-8" />
           </div>
           <div>
             <Typography
-              className="text-white"
+              className="text-foreground"
               color="none"
               variant="subheading"
             >

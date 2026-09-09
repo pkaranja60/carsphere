@@ -71,7 +71,7 @@ export function Hero() {
       <div className="relative z-10 mx-auto flex w-full max-w-384 shrink-0 grow flex-col justify-center px-4 pt-10 pb-6 sm:px-6 sm:pb-10 lg:px-8">
         <div className="max-w-2xl space-y-7">
           <div className="flex items-center space-x-3">
-            <span className="inline-block h-1 w-6 bg-red-600" />
+            <span className="inline-block h-1 w-6 bg-primary" />
             <span className="font-bold text-gray-300 text-xs uppercase tracking-widest md:text-sm lg:text-base">
               {slide.tag}
             </span>
@@ -85,7 +85,7 @@ export function Hero() {
           >
             {slide.title1} <br />
             {slide.title2}{" "}
-            <span className="text-red-600 drop-shadow-xl">
+            <span className="text-primary drop-shadow-xl">
               {slide.highlight}
             </span>
           </Typography>
@@ -103,7 +103,7 @@ export function Hero() {
             <Link
               className={buttonVariants({
                 className:
-                  "w-full shadow-lg shadow-red-600/30 hover:-translate-y-0.5 sm:w-auto",
+                  "w-full shadow-lg shadow-primary/30 hover:-translate-y-0.5 sm:w-auto",
                 size: "lg",
                 variant: "primary",
               })}

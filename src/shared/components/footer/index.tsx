@@ -5,7 +5,7 @@ import { FooterNewsletter } from "./footer-newsletter";
 
 export function Footer() {
   return (
-    <footer className="bg-black pt-12 pb-6 text-gray-400 text-sm md:text-base">
+    <footer className="bg-surface pt-12 pb-6 text-muted text-sm md:text-base">
       <div className="mx-auto w-full max-w-384 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 pb-10 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
           <FooterBrand />
@@ -19,8 +19,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-neutral-900 border-t pt-6 text-center">
-          <p className="text-gray-500 text-xs md:text-sm">
+        <div className="border-border border-t pt-6 text-center">
+          <p className="text-muted text-xs md:text-sm">
             &copy; {new Date().getFullYear()} Drivez Premium Motors. All Rights
             Reserved.
           </p>

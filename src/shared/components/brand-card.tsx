@@ -25,7 +25,7 @@ export function BrandCard({
 }: BrandCardProps) {
   return (
     <Link
-      className={`group flex h-24 items-center justify-center rounded-xl border border-border bg-surface transition hover:border-neutral-300 hover:shadow-md ${containerClassName}`}
+      className={`group flex h-24 items-center justify-center rounded-xl border border-border bg-surface transition hover:border-primary hover:shadow-md ${containerClassName}`}
       href={href}
     >
       {children ? (

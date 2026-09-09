@@ -68,7 +68,7 @@ export function BrowseByCategory() {
           Browse By Category
         </Typography>
         <Link
-          className="inline-flex items-center gap-1.5 font-semibold text-foreground text-xs transition hover:text-red-600 sm:text-sm"
+          className="inline-flex items-center gap-1.5 font-semibold text-foreground text-xs transition hover:text-primary sm:text-sm"
           href="#"
         >
           <span>View All Categories</span>

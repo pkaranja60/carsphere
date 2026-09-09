@@ -2,6 +2,7 @@
 
 import { Dropdown, Label } from "@heroui/react";
 import { useCallback, useState } from "react";
+import { Typography } from "../typography";
 import type { NavLinkItem } from "./nav-data";
 
 export function NavDropdown({ link }: { link: NavLinkItem }) {
@@ -17,19 +18,24 @@ export function NavDropdown({ link }: { link: NavLinkItem }) {
       <Dropdown isOpen={isOpen} onOpenChange={setIsOpen}>
         <Dropdown.Trigger>
           <div className="flex cursor-pointer items-center gap-1">
-            <span className="whitespace-nowrap font-semibold text-sm text-white transition-colors hover:text-red-600 md:text-base">
+            <Typography
+              className="whitespace-nowrap text-foreground"
+              color="none"
+              type="body"
+              variant="navLink"
+            >
               {link.label}
-            </span>
+            </Typography>
           </div>
         </Dropdown.Trigger>
-        <Dropdown.Popover className="dark rounded-lg border border-white/10 bg-neutral-950 p-2 shadow-2xl">
+        <Dropdown.Popover className="dark rounded-lg border border-border bg-surface p-2 shadow-2xl">
           <Dropdown.Menu
             aria-label={`${link.label} submenu`}
-            className="text-gray-300"
+            className="text-muted"
           >
             {link.items?.map((item) => (
               <Dropdown.Item
-                className="cursor-pointer rounded-md px-3 py-2 transition-colors hover:bg-red-600 hover:text-white"
+                className="cursor-pointer rounded-md px-3 py-2 transition-colors hover:bg-primary hover:text-white"
                 href={item.href}
                 id={item.href}
                 key={item.href}

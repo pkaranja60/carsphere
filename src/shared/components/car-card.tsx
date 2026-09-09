@@ -40,7 +40,7 @@ export function CarCard({
   return (
     <Card className="flex flex-col justify-between overflow-hidden rounded-xl border border-border p-0 shadow-sm">
       <div>
-        <div className="relative aspect-4/3 w-full bg-neutral-950">
+        <div className="relative aspect-4/3 w-full bg-surface-alt">
           <Image
             alt={name}
             className="object-cover object-center"
@@ -48,8 +48,8 @@ export function CarCard({
             src={image}
           />
           <button
-            className={`absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/40 backdrop-blur transition hover:text-red-500 md:h-8 md:w-8 ${
-              isFavorite ? "text-red-500" : "text-white"
+            className={`absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-surface/40 backdrop-blur transition hover:text-primary md:h-8 md:w-8 ${
+              isFavorite ? "text-primary" : "text-foreground"
             }`}
             onClick={handleFavoriteClick}
             type="button"

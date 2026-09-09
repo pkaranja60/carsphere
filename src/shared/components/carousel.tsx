@@ -209,7 +209,7 @@ export const CarouselPrevious = ({
   const { canScrollPrev, scrollPrev } = useCarousel();
   return (
     <button
-      className={`absolute top-1/2 left-4 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition-all hover:bg-red-600 disabled:opacity-50 disabled:hover:bg-black/50 ${className}`}
+      className={`absolute top-1/2 left-4 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-surface/50 text-foreground backdrop-blur-md transition-all hover:bg-primary disabled:opacity-50 disabled:hover:bg-surface/50 ${className}`}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       ref={ref}
@@ -233,7 +233,7 @@ export const CarouselNext = ({
   const { canScrollNext, scrollNext } = useCarousel();
   return (
     <button
-      className={`absolute top-1/2 right-4 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition-all hover:bg-red-600 disabled:opacity-50 disabled:hover:bg-black/50 ${className}`}
+      className={`absolute top-1/2 right-4 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-surface/50 text-foreground backdrop-blur-md transition-all hover:bg-primary disabled:opacity-50 disabled:hover:bg-surface/50 ${className}`}
       disabled={!canScrollNext}
       onClick={scrollNext}
       ref={ref}

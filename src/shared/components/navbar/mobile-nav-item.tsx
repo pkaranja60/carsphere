@@ -33,7 +33,7 @@ export function MobileNavItem({
         type="button"
       >
         <Typography
-          className="text-white"
+          className="text-foreground"
           color="none"
           type="body"
           variant="navLink"
@@ -41,11 +41,11 @@ export function MobileNavItem({
           {link.label}
         </Typography>
         <HiMiniChevronDown
-          className={`h-5 w-5 text-white transition-transform duration-200 group-hover:text-red-400 ${isOpen ? "rotate-180" : ""}`}
+          className={`h-5 w-5 text-foreground transition-transform duration-200 group-hover:text-primary ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
       {isOpen ? (
-        <div className="mt-4 ml-2 flex flex-col space-y-4 border-white/10 border-l pl-4">
+        <div className="mt-4 ml-2 flex flex-col space-y-4 border-border border-l pl-4">
           {link.items.map((item) => (
             <Link
               className="block w-full outline-none"
@@ -54,7 +54,7 @@ export function MobileNavItem({
               onClick={onClose}
             >
               <Typography
-                className="text-gray-400 text-sm hover:text-red-400"
+                className="text-muted text-sm hover:text-primary"
                 type="body"
               >
                 {item.label}

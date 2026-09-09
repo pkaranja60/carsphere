@@ -13,10 +13,10 @@ export function NavbarAuth() {
     <Modal>
       <Modal.Trigger>
         <button
-          className="flex min-h-11 min-w-11 items-center justify-center text-foreground transition hover:text-primary"
+          className="group flex min-h-11 min-w-11 items-center justify-center text-foreground transition hover:text-primary dark:text-white"
           type="button"
         >
-          <HiMiniUser className="h-5 w-5 sm:h-6 sm:w-6" />
+          <HiMiniUser className="h-5 w-5 group-hover:text-primary sm:h-6 sm:w-6" />
         </button>
       </Modal.Trigger>
       <Modal.Backdrop variant="blur">

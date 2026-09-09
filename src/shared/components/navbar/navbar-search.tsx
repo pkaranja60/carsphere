@@ -7,10 +7,10 @@ export function NavbarSearch() {
     <Popover>
       <Popover.Trigger>
         <button
-          className="flex min-h-11 min-w-11 items-center justify-center text-foreground transition hover:text-primary"
+          className="group flex min-h-11 min-w-11 items-center justify-center text-foreground transition hover:text-primary dark:text-white"
           type="button"
         >
-          <HiMiniMagnifyingGlass className="h-5 w-5 sm:h-6 sm:w-6" />
+          <HiMiniMagnifyingGlass className="h-5 w-5 group-hover:text-primary sm:h-6 sm:w-6" />
         </button>
       </Popover.Trigger>
       <Popover.Content offset={8} placement="bottom">

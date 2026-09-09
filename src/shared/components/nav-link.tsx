@@ -21,7 +21,7 @@ export function NavLink({
       <Typography
         className={
           variant === "navLink"
-            ? "whitespace-nowrap text-white"
+            ? "whitespace-nowrap text-foreground"
             : "text-inherit"
         }
         color="none"

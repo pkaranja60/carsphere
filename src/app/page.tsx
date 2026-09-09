@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <main className="bg-background">
+      <main className="bg-surface-alt">
         <div className="mx-auto flex w-full max-w-384 flex-col gap-y-10 px-4 pt-12 pb-0 sm:px-6 sm:pt-32 lg:gap-y-16 lg:px-8 lg:pt-40">
           <BrowseByCategory />
           <FeaturedCars />

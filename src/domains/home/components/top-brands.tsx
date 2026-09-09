@@ -18,7 +18,7 @@ export function TopBrands() {
           Our Top Brands
         </Typography>
         <Link
-          className="inline-flex items-center gap-1.5 font-semibold text-foreground text-sm transition hover:text-red-600 md:text-base"
+          className="inline-flex items-center gap-1.5 font-semibold text-foreground text-sm transition hover:text-primary md:text-base"
           href="#"
         >
           <span>View All Brands</span>
@@ -48,7 +48,7 @@ export function TopBrands() {
           brandName="Audi"
           href="#"
           imageClassName="h-6 w-auto object-contain transition group-hover:scale-105"
-          labelClassName="mt-1.5 font-bold text-red-600 text-xs uppercase tracking-wider md:text-xs"
+          labelClassName="mt-1.5 font-bold text-primary text-xs uppercase tracking-wider md:text-xs"
           logoSrc="https://cdn.simpleicons.org/audi/000000"
         />
 
@@ -72,7 +72,7 @@ export function TopBrands() {
           brandName="TOYOTA"
           href="#"
           imageClassName="h-7 w-auto object-contain transition group-hover:scale-105"
-          labelClassName="mt-1 font-bold text-red-600 text-xs uppercase tracking-wider md:text-xs"
+          labelClassName="mt-1 font-bold text-primary text-xs uppercase tracking-wider md:text-xs"
           logoSrc="https://cdn.simpleicons.org/toyota/EB0A1E"
         />
 
@@ -80,7 +80,7 @@ export function TopBrands() {
           brandName="HONDA"
           href="#"
           imageClassName="h-7 w-auto object-contain transition group-hover:scale-105"
-          labelClassName="mt-1 font-extrabold text-red-600 text-xs uppercase tracking-wider md:text-xs"
+          labelClassName="mt-1 font-extrabold text-primary text-xs uppercase tracking-wider md:text-xs"
           logoSrc="https://cdn.simpleicons.org/honda/CC0000"
         />
 
@@ -88,7 +88,7 @@ export function TopBrands() {
           brandName="TESLA"
           href="#"
           imageClassName="h-6 w-auto object-contain transition group-hover:scale-105"
-          labelClassName="mt-1.5 font-bold text-red-600 text-xs uppercase tracking-widest md:text-xs"
+          labelClassName="mt-1.5 font-bold text-primary text-xs uppercase tracking-widest md:text-xs"
           logoSrc="https://cdn.simpleicons.org/tesla/E82127"
         />
       </div>

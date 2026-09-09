@@ -10,6 +10,7 @@
   --surface-alt: #f3f4f6;
   --border: #e5e7eb;
   --text-muted: #6b7280;
+  --logo-color: var(--foreground);
 }
 
 @theme inline {
@@ -25,17 +26,16 @@
   --font-racing: var(--font-montserrat);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #dc2626;
-    --primary-hover: #b91c1c;
-    --surface: #121316;
-    --surface-alt: #1c1d22;
-    --border: #262626;
-    --text-muted: #a3a3a3;
-  }
+.dark {
+  --background: #000000;
+  --foreground: #ededed;
+  --primary: #dc2626;
+  --primary-hover: #b91c1c;
+  --surface: #000000;
+  --surface-alt: #121316;
+  --border: #262626;
+  --text-muted: #a3a3a3;
+  --logo-color: var(--primary);
 }
 
 body {

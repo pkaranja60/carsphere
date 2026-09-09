@@ -24,7 +24,7 @@ export const typographyVariants = tv({
       heroHeading:
         "font-racing text-4xl uppercase italic leading-none tracking-tight sm:text-5xl md:text-7xl",
       metadata: "font-normal text-xs sm:text-xs md:text-sm",
-      navLink: "transition-colors duration-200 hover:text-red-400 md:text-lg",
+      navLink: "transition-colors duration-200 hover:text-primary md:text-lg",
       subheading:
         "font-semibold text-xs tracking-tight sm:text-sm md:text-base lg:text-lg",
     },
