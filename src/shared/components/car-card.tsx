@@ -2,6 +2,7 @@
 
 import { Card } from "@heroui/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { HiHeart, HiOutlineHeart } from "react-icons/hi";
 
@@ -10,6 +11,7 @@ import { Typography } from "@/shared/components/typography";
 
 export interface CarCardProps {
   fuelType: string;
+  href?: string;
   id?: string;
   image: string;
   name: string;
@@ -29,13 +31,23 @@ export function CarCard({
   price,
   onFavorite,
   onViewDetails,
+  href,
 }: CarCardProps) {
+  const router = useRouter();
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleFavoriteClick = useCallback(() => {
     setIsFavorite((prev) => !prev);
     onFavorite?.();
   }, [onFavorite]);
+
+  const handleViewDetails = useCallback(() => {
+    if (onViewDetails) {
+      onViewDetails();
+    } else if (href) {
+      router.push(href);
+    }
+  }, [onViewDetails, href, router]);
 
   return (
     <Card className="flex flex-col justify-between overflow-hidden rounded-xl border border-border p-0 shadow-sm">
@@ -90,7 +102,7 @@ export function CarCard({
       <Card.Footer className="p-3 pt-0 sm:p-4 sm:pt-0">
         <Button
           className="w-full"
-          onClick={onViewDetails}
+          onClick={handleViewDetails}
           size="sm"
           variant="primary"
         >

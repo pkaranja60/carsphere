@@ -69,7 +69,7 @@ export function BrowseByCategory() {
         </Typography>
         <Link
           className="inline-flex items-center gap-1.5 font-semibold text-foreground text-xs transition hover:text-primary sm:text-sm"
-          href="#"
+          href="/cars"
         >
           <span>View All Categories</span>
           <HiOutlineArrowRight className="h-4 w-4" />

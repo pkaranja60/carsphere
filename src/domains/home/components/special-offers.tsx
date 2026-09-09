@@ -106,7 +106,7 @@ export function SpecialOffers() {
       <OfferCard
         badge="Limited Time Offer"
         bgColor="bg-black"
-        buttonHref="#"
+        buttonHref="/cars"
         buttonText="Explore Offers"
         description="On Selected Cars"
         gradientFrom="from-black"
@@ -120,7 +120,7 @@ export function SpecialOffers() {
         badge="Easy Finance"
         badgeColor="text-red-100"
         bgColor="bg-red-700"
-        buttonHref="#"
+        buttonHref="/cars"
         buttonStyle="white"
         buttonText="Learn More"
         description="With Low Monthly Plans"
@@ -137,7 +137,7 @@ export function SpecialOffers() {
 
       <OfferCard
         bgColor="bg-neutral-950"
-        buttonHref="#"
+        buttonHref="/cars"
         buttonStyle="white"
         buttonText="Book Now"
         description={

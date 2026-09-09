@@ -107,7 +107,7 @@ export function Hero() {
                 size: "lg",
                 variant: "primary",
               })}
-              href="#"
+              href="/cars"
             >
               <span>View Inventory</span>
               <HiArrowLongRight size={24} />
@@ -118,7 +118,7 @@ export function Hero() {
                 size: "lg",
                 variant: "inverseOutline",
               })}
-              href="#"
+              href="/cars"
             >
               Book a Test Drive
             </Link>

@@ -19,7 +19,7 @@ export function TopBrands() {
         </Typography>
         <Link
           className="inline-flex items-center gap-1.5 font-semibold text-foreground text-sm transition hover:text-primary md:text-base"
-          href="#"
+          href="/cars"
         >
           <span>View All Brands</span>
           <HiOutlineArrowRight className="h-4 w-4 md:h-5 md:w-5" />
@@ -30,13 +30,13 @@ export function TopBrands() {
         <BrandCard
           brandName="BMW"
           containerClassName="p-3"
-          href="#"
+          href="/cars"
           imageClassName="h-10 w-auto object-contain transition group-hover:scale-105"
           logoSrc="https://cdn.simpleicons.org/bmw/000000"
           showLabel={false}
         />
 
-        <BrandCard containerClassName="p-3" href="#">
+        <BrandCard containerClassName="p-3" href="/cars">
           <span className="text-center font-extrabold text-foreground text-xs leading-tight tracking-wider md:text-sm">
             Mercedes-
             <br />
@@ -46,7 +46,7 @@ export function TopBrands() {
 
         <BrandCard
           brandName="Audi"
-          href="#"
+          href="/cars"
           imageClassName="h-6 w-auto object-contain transition group-hover:scale-105"
           labelClassName="mt-1.5 font-bold text-primary text-xs uppercase tracking-wider md:text-xs"
           logoSrc="https://cdn.simpleicons.org/audi/000000"
@@ -54,13 +54,13 @@ export function TopBrands() {
 
         <BrandCard
           brandName="PORSCHE"
-          href="#"
+          href="/cars"
           imageClassName="h-7 w-auto object-contain transition group-hover:scale-105"
           labelClassName="mt-1 font-extrabold text-foreground text-xs uppercase tracking-widest md:text-xs"
           logoSrc="https://cdn.simpleicons.org/porsche/D5001C"
         />
 
-        <BrandCard containerClassName="p-3" href="#">
+        <BrandCard containerClassName="p-3" href="/cars">
           <span className="rounded-full bg-green-800 px-2.5 py-1.5 text-center font-black text-white text-xs uppercase leading-none tracking-wider md:text-xs">
             LAND-
             <br />
@@ -70,7 +70,7 @@ export function TopBrands() {
 
         <BrandCard
           brandName="TOYOTA"
-          href="#"
+          href="/cars"
           imageClassName="h-7 w-auto object-contain transition group-hover:scale-105"
           labelClassName="mt-1 font-bold text-primary text-xs uppercase tracking-wider md:text-xs"
           logoSrc="https://cdn.simpleicons.org/toyota/EB0A1E"
@@ -78,7 +78,7 @@ export function TopBrands() {
 
         <BrandCard
           brandName="HONDA"
-          href="#"
+          href="/cars"
           imageClassName="h-7 w-auto object-contain transition group-hover:scale-105"
           labelClassName="mt-1 font-extrabold text-primary text-xs uppercase tracking-wider md:text-xs"
           logoSrc="https://cdn.simpleicons.org/honda/CC0000"
@@ -86,7 +86,7 @@ export function TopBrands() {
 
         <BrandCard
           brandName="TESLA"
-          href="#"
+          href="/cars"
           imageClassName="h-6 w-auto object-contain transition group-hover:scale-105"
           labelClassName="mt-1.5 font-bold text-primary text-xs uppercase tracking-widest md:text-xs"
           logoSrc="https://cdn.simpleicons.org/tesla/E82127"
