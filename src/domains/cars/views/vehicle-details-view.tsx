@@ -45,7 +45,7 @@ export function VehicleDetailsView({ carId }: { carId: string }) {
   }
 
   return (
-    <div className="min-h-screen bg-surface-alt px-4 pt-24 pb-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-surface-alt px-4 pt-16 pb-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Breadcrumbs & Header */}
         <div className="mb-6">

@@ -28,7 +28,7 @@ export function CarsListingView() {
   });
 
   return (
-    <div className="min-h-screen bg-surface-alt px-4 pt-24 pb-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-surface-alt px-4 pt-16 pb-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-8">
           <Typography type="h1" variant="heading">
