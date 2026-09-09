@@ -1,8 +1,8 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { PageHeader, Typography } from "@/shared";
 import { CarCard } from "@/shared/components/car-card";
-import { Typography } from "@/shared/components/typography";
 import { CarsSidebarFilter } from "../components/cars-sidebar-filter";
 import { MOCK_CARS } from "../data/mock-cars";
 
@@ -30,16 +30,10 @@ export function CarsListingView() {
   return (
     <div className="min-h-screen bg-surface-alt px-4 pt-16 pb-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-8">
-          <Typography type="h1" variant="heading">
-            Inventory
-          </Typography>
-          <Typography className="mt-2 max-w-2xl text-muted text-sm md:text-base">
-            Explore our curated selection of premium, luxury, and performance
-            vehicles. Use the filters to find the perfect match for your
-            lifestyle.
-          </Typography>
-        </div>
+        <PageHeader
+          description="Explore our curated selection of premium, luxury, and performance vehicles. Use the filters to find the perfect match for your lifestyle."
+          title="Inventory"
+        />
 
         <div className="flex flex-col gap-8 lg:flex-row">
           {/* Reusable Sidebar Filter */}

@@ -1,5 +1,5 @@
+import { PageHeader } from "@/shared";
 import { BrandCard } from "@/shared/components/brand-card";
-import { Typography } from "@/shared/components/typography";
 import { MOCK_BRANDS } from "../data/mock-brands";
 
 const SPLIT_REGEX = /[- ]/;
@@ -8,16 +8,10 @@ export function BrandsView() {
   return (
     <div className="min-h-screen bg-surface-alt px-4 pt-16 pb-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12">
-          <Typography type="h1" variant="heading">
-            Browse by Brand
-          </Typography>
-          <Typography className="mt-4 max-w-2xl text-muted text-sm md:text-base">
-            Select a brand below to view all available inventory. We partner
-            with the world's leading automotive manufacturers to bring you the
-            best selection.
-          </Typography>
-        </div>
+        <PageHeader
+          description="Select a brand below to view all available inventory. We partner with the world's leading automotive manufacturers to bring you the best selection."
+          title="Browse by Brand"
+        />
 
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
           {MOCK_BRANDS.map((brand) => {

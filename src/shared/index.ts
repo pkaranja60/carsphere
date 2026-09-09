@@ -12,5 +12,6 @@ export {
 export { Footer } from "./components/footer";
 export { NavLink } from "./components/nav-link";
 export { Navbar } from "./components/navbar";
+export { PageHeader } from "./components/page-header";
 export { Select } from "./components/select";
 export { Typography } from "./components/typography";
