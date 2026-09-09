@@ -76,12 +76,10 @@ export function BrowseByCategory() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5 min-[480px]:grid-cols-2">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
         {CATEGORIES.map((category) => (
           <div
-            className={
-              category.colSpan ? "md:col-span-1 min-[480px]:col-span-2" : ""
-            }
+            className={category.colSpan ? "col-span-2 md:col-span-1" : ""}
             key={category.title}
           >
             <CategoryCard
