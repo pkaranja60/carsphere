@@ -1,3 +1,7 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 "use client";
 
 import {
@@ -9,7 +13,15 @@ import {
 import { Typography } from "@/shared";
 import { Select } from "@/shared/components/select";
 
+// ─────────────────────────────────────────────
+// SECTION: Types
+// ─────────────────────────────────────────────
+
 export type ViewMode = "grid-4" | "grid-6" | "list";
+
+// ─────────────────────────────────────────────
+// SECTION: Interfaces
+// ─────────────────────────────────────────────
 
 interface InventoryToolbarProps {
   onOpenMobileFilters: () => void;
@@ -27,6 +39,10 @@ const SORT_OPTIONS = [
   { label: "Newest Arrivals", value: "newest" },
   { label: "Mileage: Lowest", value: "mileage_asc" },
 ];
+
+// ─────────────────────────────────────────────
+// SECTION: Components
+// ─────────────────────────────────────────────
 
 export function InventoryToolbar({
   onOpenMobileFilters,

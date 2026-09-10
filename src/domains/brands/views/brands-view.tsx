@@ -1,3 +1,7 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
@@ -9,14 +13,17 @@ import { MOCK_BRANDS } from "../data/mock-brands";
 
 const SPLIT_REGEX = /[- ]/;
 
+// ─────────────────────────────────────────────
+// SECTION: Brands View
+// ─────────────────────────────────────────────
+
 export function BrandsView() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  // Pagination logic
   const pageParam = searchParams.get("page");
   const currentPage = pageParam ? Number.parseInt(pageParam, 10) : 1;
-  const itemsPerPage = 20; // Show more items per page for brands since they are small cards
+  const itemsPerPage = 20;
   const totalPages = Math.ceil(MOCK_BRANDS.length / itemsPerPage);
 
   const paginatedBrands = MOCK_BRANDS.slice(
@@ -81,11 +88,14 @@ export function BrandsView() {
             );
           })}
         </div>
-        <Pagination
-          currentPage={currentPage}
-          onChange={handlePageChange}
-          totalPages={totalPages}
-        />
+
+        {totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            onChange={handlePageChange}
+            totalPages={totalPages}
+          />
+        )}
       </div>
     </PageLayout>
   );

@@ -1,3 +1,7 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 "use client";
 
 import { Accordion, Checkbox, CheckboxGroup } from "@heroui/react";
@@ -10,9 +14,17 @@ import { Select } from "@/shared/components/select";
 import { Typography } from "@/shared/components/typography";
 import { MOCK_CARS } from "../data/mock-cars";
 
+// ─────────────────────────────────────────────
+// SECTION: Interfaces
+// ─────────────────────────────────────────────
+
 export interface CarsSidebarFilterProps {
   className?: string;
 }
+
+// ─────────────────────────────────────────────
+// SECTION: Components
+// ─────────────────────────────────────────────
 
 export function CarsSidebarFilter({ className = "" }: CarsSidebarFilterProps) {
   const router = useRouter();

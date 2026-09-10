@@ -1,3 +1,7 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
@@ -7,11 +11,14 @@ import { CategoryCard } from "@/shared/components/category-card";
 import { Pagination } from "@/shared/components/pagination";
 import { MOCK_CATEGORIES } from "../data/mock-categories";
 
+// ─────────────────────────────────────────────
+// SECTION: Categories View
+// ─────────────────────────────────────────────
+
 export function CategoriesView() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  // Pagination logic
   const pageParam = searchParams.get("page");
   const currentPage = pageParam ? Number.parseInt(pageParam, 10) : 1;
   const itemsPerPage = 12;
@@ -60,11 +67,14 @@ export function CategoriesView() {
             </div>
           ))}
         </div>
-        <Pagination
-          currentPage={currentPage}
-          onChange={handlePageChange}
-          totalPages={totalPages}
-        />
+
+        {totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            onChange={handlePageChange}
+            totalPages={totalPages}
+          />
+        )}
       </div>
     </PageLayout>
   );
