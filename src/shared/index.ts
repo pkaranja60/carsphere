@@ -9,7 +9,9 @@ export {
   CarouselPrevious,
   useCarousel,
 } from "./components/carousel";
+export { Dialog } from "./components/dialog";
 export { Footer } from "./components/footer";
+export { Input } from "./components/input";
 export { NavLink } from "./components/nav-link";
 export { Navbar } from "./components/navbar";
 export { PageHeader } from "./components/page-header";

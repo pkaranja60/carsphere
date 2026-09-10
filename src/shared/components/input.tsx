@@ -39,7 +39,7 @@ export function Input({
       ) : null}
 
       <HeroInput
-        className={`w-full rounded-md border border-border bg-surface px-4 py-2 text-foreground text-sm shadow-sm transition-colors placeholder:text-muted hover:border-primary focus-visible:border-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary md:text-base ${inputClassName}`}
+        className={`w-full rounded-md border border-border bg-surface-alt px-4 py-2.5 text-foreground text-sm shadow-sm transition-colors placeholder:text-muted hover:border-primary focus-visible:border-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary md:text-base ${inputClassName}`}
         placeholder={placeholder}
         type={type}
       />

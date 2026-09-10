@@ -18,11 +18,12 @@ export const buttonVariants = tv({
       sm: "h-8 rounded-md px-3 text-xs",
     },
     variant: {
-      ghost: "bg-transparent text-neutral-700 hover:bg-neutral-100",
+      ghost:
+        "bg-transparent text-muted hover:bg-surface-alt hover:text-foreground",
       inverseOutline:
         "border border-white/20 bg-white/5 text-white backdrop-blur-sm hover:border-white/40 hover:bg-white/10",
       outline:
-        "border border-neutral-300 bg-white text-neutral-800 hover:border-neutral-400 hover:bg-neutral-50",
+        "border border-border bg-surface text-foreground hover:border-foreground/30 hover:bg-surface-alt",
       primary:
         "bg-red-600 text-white shadow-red-600/20 shadow-sm hover:bg-red-700",
     },

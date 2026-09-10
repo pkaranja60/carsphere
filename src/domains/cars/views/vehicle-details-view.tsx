@@ -6,14 +6,10 @@ import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import {
   HiOutlineArrowLeft,
-  HiOutlineBolt,
-  HiOutlineCalendar,
   HiOutlineCheckBadge,
-  HiOutlineCog6Tooth,
   HiOutlineCurrencyDollar,
-  HiOutlineMapPin,
 } from "react-icons/hi2";
-import { PageLayout, Typography } from "@/shared";
+import { Dialog, Input, PageLayout, Select, Typography } from "@/shared";
 import { Button } from "@/shared/components/button";
 import { CarCard } from "@/shared/components/car-card";
 import { getCarById, getSimilarCars } from "../data/mock-cars";
@@ -23,10 +19,32 @@ export function VehicleDetailsView({ carId }: { carId: string }) {
   const car = getCarById(carId);
   const similarCars = getSimilarCars(carId, 4);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [isPhoneRevealed, setIsPhoneRevealed] = useState(false);
+  const [activeModal, setActiveModal] = useState<
+    "testDrive" | "offer" | "message" | "finance" | null
+  >(null);
 
   const handleBackToInventory = useCallback(() => {
     router.push("/cars");
   }, [router]);
+
+  const handleTestDriveClick = useCallback(
+    () => setActiveModal("testDrive"),
+    []
+  );
+  const handleOfferClick = useCallback(() => setActiveModal("offer"), []);
+  const handleFinanceClick = useCallback(() => setActiveModal("finance"), []);
+  const handleMessageClick = useCallback(() => setActiveModal("message"), []);
+  const handlePhoneRevealClick = useCallback(
+    () => setIsPhoneRevealed(true),
+    []
+  );
+  const handleModalClose = useCallback((open: boolean) => {
+    if (!open) {
+      setActiveModal(null);
+    }
+  }, []);
 
   if (!car) {
     return (
@@ -47,23 +65,23 @@ export function VehicleDetailsView({ carId }: { carId: string }) {
   return (
     <PageLayout containerClassName="pb-10 pt-10">
       {/* Breadcrumbs & Header */}
-      <div className="mb-6">
+      <div className="mb-8">
         <Link
-          className="inline-flex items-center font-medium text-muted text-sm transition hover:text-primary"
+          className="inline-flex items-center text-muted text-sm transition hover:text-foreground"
           href="/cars"
         >
-          <HiOutlineArrowLeft className="mr-1 h-4 w-4" /> Back to Inventory
+          <HiOutlineArrowLeft className="mr-1.5 h-4 w-4" /> Back to Inventory
         </Link>
-        <div className="mt-4 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div className="mt-6 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
             <Typography
-              className="font-semibold text-primary text-xs uppercase tracking-wider md:text-sm"
+              className="font-bold text-muted text-xs uppercase tracking-widest md:text-sm"
               variant="metadata"
             >
-              {car.condition} • {car.category}
+              {car.condition} • {car.fuelType} • {car.category}
             </Typography>
             <Typography
-              className="mt-1 text-3xl md:text-4xl lg:text-5xl"
+              className="mt-2 text-4xl md:text-5xl lg:text-6xl"
               type="h1"
               variant="heading"
             >
@@ -72,26 +90,34 @@ export function VehicleDetailsView({ carId }: { carId: string }) {
           </div>
           <div className="text-left md:text-right">
             <Typography
-              className="text-3xl md:text-4xl"
+              className="text-4xl md:text-5xl"
               type="h2"
               variant="heading"
             >
               ${car.price.toLocaleString()}
             </Typography>
-            <Typography className="mt-1 text-muted text-sm" variant="metadata">
-              Est. ${(car.price / 60).toFixed(0)}/mo*
+            <Typography
+              className="mt-1 text-muted text-sm md:text-base"
+              variant="metadata"
+            >
+              Est. ${(car.price / 60).toFixed(0)}/mo
             </Typography>
           </div>
         </div>
       </div>
 
       {/* Two-Column Layout */}
-      <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
+      <div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
         {/* Left Column (Main Content) */}
         <div className="w-full max-w-full flex-1 overflow-hidden">
           {/* Gallery */}
-          <div className="space-y-3">
-            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border bg-surface md:aspect-video">
+          <div className="space-y-4">
+            <button
+              className="relative aspect-video w-full cursor-zoom-in overflow-hidden rounded-xl bg-surface-alt md:aspect-21/9"
+              // biome-ignore lint/performance/noJsxPropsBind: simple state toggle
+              onClick={() => setIsGalleryOpen(true)}
+              type="button"
+            >
               <Image
                 alt={`${car.name} view ${activeImageIndex + 1}`}
                 className="object-cover"
@@ -99,14 +125,14 @@ export function VehicleDetailsView({ carId }: { carId: string }) {
                 priority
                 src={car.images[activeImageIndex] ?? ""}
               />
-            </div>
+            </button>
             <div className="hide-scrollbar flex gap-3 overflow-x-auto pb-2">
               {car.images.map((img, idx) => (
                 <button
-                  className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border-2 transition-all md:h-20 md:w-32 ${
+                  className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-lg transition-all md:h-20 md:w-32 ${
                     activeImageIndex === idx
-                      ? "border-primary ring-2 ring-primary/20"
-                      : "border-transparent opacity-70 hover:opacity-100"
+                      ? "ring-2 ring-primary ring-offset-2 ring-offset-background"
+                      : "opacity-60 hover:opacity-100"
                   }`}
                   // biome-ignore lint/suspicious/noArrayIndexKey: order is static
                   key={idx}
@@ -125,169 +151,160 @@ export function VehicleDetailsView({ carId }: { carId: string }) {
             </div>
           </div>
 
-          {/* Quick Overview Specs */}
-          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            <div className="rounded-xl border border-border bg-surface p-4">
-              <HiOutlineCalendar className="mb-2 h-6 w-6 text-primary" />
-              <Typography
-                className="block text-muted text-xs uppercase"
-                variant="metadata"
-              >
+          {/* Key Specifications Strip */}
+          <div className="mt-10 flex flex-wrap items-center gap-y-6 divide-border border-border border-t border-b py-6 sm:divide-x">
+            <div className="flex flex-col px-4 sm:px-8">
+              <span className="text-muted text-xs uppercase tracking-wider">
                 Year
-              </Typography>
-              <Typography className="font-semibold text-foreground">
+              </span>
+              <span className="font-medium text-foreground text-lg">
                 {car.year}
-              </Typography>
+              </span>
             </div>
-            <div className="rounded-xl border border-border bg-surface p-4">
-              <HiOutlineMapPin className="mb-2 h-6 w-6 text-primary" />
-              <Typography
-                className="block text-muted text-xs uppercase"
-                variant="metadata"
-              >
+            <div className="flex flex-col px-4 sm:px-8">
+              <span className="text-muted text-xs uppercase tracking-wider">
                 Mileage
-              </Typography>
-              <Typography className="font-semibold text-foreground">
+              </span>
+              <span className="font-medium text-foreground text-lg">
                 {car.mileage.toLocaleString()} mi
-              </Typography>
+              </span>
             </div>
-            <div className="rounded-xl border border-border bg-surface p-4">
-              <HiOutlineCog6Tooth className="mb-2 h-6 w-6 text-primary" />
-              <Typography
-                className="block text-muted text-xs uppercase"
-                variant="metadata"
-              >
+            <div className="flex flex-col px-4 sm:px-8">
+              <span className="text-muted text-xs uppercase tracking-wider">
                 Transmission
-              </Typography>
-              <Typography className="font-semibold text-foreground">
+              </span>
+              <span className="font-medium text-foreground text-lg">
                 {car.transmission}
-              </Typography>
+              </span>
             </div>
-            <div className="rounded-xl border border-border bg-surface p-4">
-              <HiOutlineBolt className="mb-2 h-6 w-6 text-primary" />
-              <Typography
-                className="block text-muted text-xs uppercase"
-                variant="metadata"
-              >
+            <div className="flex flex-col px-4 sm:px-8">
+              <span className="text-muted text-xs uppercase tracking-wider">
                 Fuel Type
-              </Typography>
-              <Typography className="font-semibold text-foreground">
+              </span>
+              <span className="font-medium text-foreground text-lg">
                 {car.fuelType}
-              </Typography>
+              </span>
             </div>
           </div>
 
           {/* Description */}
-          <div className="mt-10">
-            <Typography className="mb-4" type="h3" variant="subheading">
+          <div className="mt-12">
+            <Typography className="mb-6 text-xl" type="h3" variant="subheading">
               Vehicle Overview
             </Typography>
-            <Typography className="text-muted leading-relaxed">
+            <Typography className="max-w-3xl text-lg text-muted leading-relaxed">
               {car.description}
             </Typography>
           </div>
 
           {/* Features & Options */}
-          <div className="mt-10">
-            <Typography className="mb-4" type="h3" variant="subheading">
+          <div className="mt-16">
+            <Typography className="mb-6 text-xl" type="h3" variant="subheading">
               Premium Features
             </Typography>
-            <ul className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+            <ul className="grid max-w-3xl grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
               {car.features.map((feature) => (
-                <li className="flex items-start gap-2" key={feature}>
-                  <HiOutlineCheckBadge className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                  <span className="text-foreground text-sm md:text-base">
-                    {feature}
-                  </span>
+                <li className="flex items-center gap-3" key={feature}>
+                  <HiOutlineCheckBadge className="h-5 w-5 shrink-0 text-muted" />
+                  <span className="text-base text-foreground">{feature}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Performance Specs */}
-          <div className="mt-10">
-            <Typography className="mb-4" type="h3" variant="subheading">
+          <div className="mt-16 mb-10">
+            <Typography className="mb-6 text-xl" type="h3" variant="subheading">
               Performance Specifications
             </Typography>
-            <div className="overflow-hidden rounded-xl border border-border bg-surface">
-              <div className="grid grid-cols-1 divide-y divide-border sm:grid-cols-2 sm:divide-x sm:divide-y-0">
-                <div className="flex justify-between p-4">
-                  <span className="text-muted text-sm">Engine</span>
-                  <span className="font-medium text-foreground text-sm">
-                    {car.specs.engine}
-                  </span>
-                </div>
-                <div className="flex justify-between border-border border-t p-4 sm:border-t-0">
-                  <span className="text-muted text-sm">Horsepower</span>
-                  <span className="font-medium text-foreground text-sm">
-                    {car.specs.horsepower} hp
-                  </span>
-                </div>
-                <div className="flex justify-between border-border border-t p-4">
-                  <span className="text-muted text-sm">Torque</span>
-                  <span className="font-medium text-foreground text-sm">
-                    {car.specs.torque}
-                  </span>
-                </div>
-                <div className="flex justify-between border-border border-t p-4">
-                  <span className="text-muted text-sm">Drivetrain</span>
-                  <span className="font-medium text-foreground text-sm">
-                    {car.specs.drivetrain}
-                  </span>
-                </div>
-                <div className="flex justify-between border-border border-t p-4">
-                  <span className="text-muted text-sm">0-60 mph</span>
-                  <span className="font-medium text-foreground text-sm">
-                    {car.specs.zeroToSixty}
-                  </span>
-                </div>
-                <div className="flex justify-between border-border border-t p-4">
-                  <span className="text-muted text-sm">Top Speed</span>
-                  <span className="font-medium text-foreground text-sm">
-                    {car.specs.topSpeed}
-                  </span>
-                </div>
+            <dl className="max-w-3xl divide-y divide-border">
+              <div className="flex justify-between py-4">
+                <dt className="text-base text-muted">Engine</dt>
+                <dd className="font-medium text-base text-foreground">
+                  {car.specs.engine}
+                </dd>
               </div>
-            </div>
+              <div className="flex justify-between py-4">
+                <dt className="text-base text-muted">Horsepower</dt>
+                <dd className="font-medium text-base text-foreground">
+                  {car.specs.horsepower} hp
+                </dd>
+              </div>
+              <div className="flex justify-between py-4">
+                <dt className="text-base text-muted">Torque</dt>
+                <dd className="font-medium text-base text-foreground">
+                  {car.specs.torque}
+                </dd>
+              </div>
+              <div className="flex justify-between py-4">
+                <dt className="text-base text-muted">Drivetrain</dt>
+                <dd className="font-medium text-base text-foreground">
+                  {car.specs.drivetrain}
+                </dd>
+              </div>
+              <div className="flex justify-between py-4">
+                <dt className="text-base text-muted">0-60 mph</dt>
+                <dd className="font-medium text-base text-foreground">
+                  {car.specs.zeroToSixty}
+                </dd>
+              </div>
+              <div className="flex justify-between py-4">
+                <dt className="text-base text-muted">Top Speed</dt>
+                <dd className="font-medium text-base text-foreground">
+                  {car.specs.topSpeed}
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          {/* Vehicle IDs */}
+          <div className="mt-16 flex gap-6 text-muted text-xs">
+            <span>VIN: {car.vin}</span>
+            <span>Stock: #{car.id.slice(0, 6).toUpperCase()}</span>
           </div>
         </div>
 
         {/* Right Column (Sticky Actions) */}
-        <aside className="w-full shrink-0 lg:w-80 xl:w-96">
-          <div className="sticky top-28 space-y-6">
-            {/* Primary Action Card */}
-            <div className="rounded-2xl border border-border bg-surface p-6 shadow-black/5 shadow-xl">
-              <Typography className="mb-6" type="h3" variant="subheading">
+        <aside className="w-full shrink-0 lg:w-72 xl:w-80">
+          <div className="sticky top-28 space-y-8">
+            {/* Primary Action Panel */}
+            <div className="rounded-2xl border border-border bg-surface/50 p-6 backdrop-blur-sm xl:p-8">
+              <Typography
+                className="mb-8 text-xl"
+                type="h3"
+                variant="subheading"
+              >
                 Interested in this car?
               </Typography>
 
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <Button
-                  className="w-full justify-center py-6 text-base shadow-lg shadow-primary/20"
+                  className="w-full justify-center py-6 text-base"
+                  onClick={handleTestDriveClick}
                   variant="primary"
                 >
                   Schedule Test Drive
                 </Button>
                 <Button
-                  className="w-full justify-center bg-surface py-6 text-base"
+                  className="w-full justify-center py-6 text-base"
+                  onClick={handleOfferClick}
                   variant="outline"
                 >
                   Make an Offer
                 </Button>
               </div>
 
-              <div className="mt-6 border-border border-t pt-6">
+              <div className="mt-8 border-border border-t pt-8">
                 <div className="mb-4 flex items-center justify-between">
-                  <span className="flex items-center gap-2 font-medium text-sm">
+                  <span className="flex items-center gap-2 text-foreground text-sm">
                     <HiOutlineCurrencyDollar className="h-5 w-5 text-muted" />{" "}
                     Finance Options
                   </span>
-                  <span className="rounded bg-primary/10 px-2 py-1 font-bold text-primary text-xs">
-                    2.9% APR
-                  </span>
+                  <span className="text-muted text-sm">2.9% APR</span>
                 </div>
                 <Button
-                  className="w-full justify-center text-muted hover:text-foreground"
+                  className="w-full justify-center"
+                  onClick={handleFinanceClick}
                   variant="ghost"
                 >
                   Calculate Financing
@@ -296,29 +313,29 @@ export function VehicleDetailsView({ carId }: { carId: string }) {
             </div>
 
             {/* Dealer Contact Snippet */}
-            <div className="flex items-center gap-4 rounded-xl border border-border bg-surface p-5">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border bg-surface-alt">
-                <Typography className="text-lg" variant="heading">
-                  DE
-                </Typography>
-              </div>
-              <div>
-                <Typography className="font-semibold text-foreground text-sm">
-                  DriveEz Elite Dealership
-                </Typography>
-                <Typography
-                  className="mt-0.5 text-muted text-xs"
-                  variant="metadata"
+            <div className="rounded-2xl border border-border bg-surface/50 p-6 backdrop-blur-sm xl:p-8">
+              <Typography className="font-medium text-foreground text-lg">
+                DriveEz Elite Dealership
+              </Typography>
+              <Typography className="mt-1 mb-6 text-muted text-sm">
+                Contact us for more details
+              </Typography>
+              <div className="flex flex-col gap-3">
+                <Button
+                  className="w-full justify-center"
+                  onClick={handleMessageClick}
+                  variant="primary"
                 >
-                  Contact us for more details
-                </Typography>
+                  Message Dealer
+                </Button>
+                <Button
+                  className="w-full justify-center"
+                  onClick={handlePhoneRevealClick}
+                  variant="outline"
+                >
+                  {isPhoneRevealed ? "(555) 123-4567" : "Reveal Phone Number"}
+                </Button>
               </div>
-            </div>
-
-            {/* Vehicle IDs */}
-            <div className="flex justify-between rounded-lg bg-surface-alt p-4 text-muted text-xs">
-              <span>VIN: {car.vin}</span>
-              <span>Stock: #{car.id.slice(0, 6).toUpperCase()}</span>
             </div>
           </div>
         </aside>
@@ -347,7 +364,157 @@ export function VehicleDetailsView({ carId }: { carId: string }) {
           </div>
         </div>
       )}
-      {/* Similar Cars Section Ends Here */}
+
+      {/* Fullscreen Gallery Modal */}
+      <Dialog
+        className="overflow-hidden bg-background p-0"
+        isOpen={isGalleryOpen}
+        onOpenChange={setIsGalleryOpen}
+        // biome-ignore lint/performance/noJsxPropsBind: render prop
+        render={() => (
+          <div className="flex h-dvh w-full flex-col bg-black">
+            <div className="relative flex-1">
+              <Image
+                alt={`${car.name} full view`}
+                className="object-contain"
+                fill
+                src={car.images[activeImageIndex] ?? ""}
+              />
+            </div>
+            <div className="hide-scrollbar flex shrink-0 gap-2 overflow-x-auto bg-surface-alt p-4">
+              {car.images.map((img, idx) => (
+                <button
+                  className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-lg transition-all ${
+                    activeImageIndex === idx
+                      ? "ring-2 ring-primary ring-offset-2 ring-offset-surface-alt"
+                      : "opacity-50 hover:opacity-100"
+                  }`}
+                  // biome-ignore lint/suspicious/noArrayIndexKey: order is static
+                  key={idx}
+                  // biome-ignore lint/performance/noJsxPropsBind: simple state toggle
+                  onClick={() => setActiveImageIndex(idx)}
+                  type="button"
+                >
+                  <Image
+                    alt={`Thumbnail ${idx + 1}`}
+                    className="object-cover"
+                    fill
+                    src={img}
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+        size="full"
+      />
+
+      {/* Action Modals */}
+      <Dialog
+        isOpen={activeModal !== null}
+        onOpenChange={handleModalClose}
+        title={
+          {
+            finance: "Calculate Financing",
+            message: "Message Dealer",
+            offer: "Make an Offer",
+            testDrive: "Schedule Test Drive",
+          }[activeModal as string] || ""
+        }
+      >
+        <Dialog.Body>
+          <div className="flex flex-col gap-4">
+            {activeModal === "offer" && (
+              <Input
+                defaultValue={car.price.toString()}
+                label="Your Offer Amount"
+                type="number"
+              />
+            )}
+            {activeModal === "testDrive" && (
+              <Input
+                label="Preferred Date"
+                // biome-ignore lint/performance/noJsxPropsBind: simple inline logic
+                onBlur={(e) => {
+                  if (!e.target.value) {
+                    e.target.type = "text";
+                  }
+                }}
+                // biome-ignore lint/performance/noJsxPropsBind: simple inline logic
+                onFocus={(e) => {
+                  e.target.type = "date";
+                  if (typeof e.target.showPicker === "function") {
+                    try {
+                      e.target.showPicker();
+                    } catch {
+                      // ignore
+                    }
+                  }
+                }}
+                placeholder="Select a date"
+                type="text"
+              />
+            )}
+            {(activeModal === "message" ||
+              activeModal === "testDrive" ||
+              activeModal === "offer") && (
+              <>
+                <Input label="Full Name" placeholder="John Doe" type="text" />
+                <Input
+                  label="Phone Number"
+                  placeholder="(555) 000-0000"
+                  type="tel"
+                />
+              </>
+            )}
+            {activeModal === "message" && (
+              <div className="flex flex-col gap-2">
+                {/* biome-ignore lint/a11y/noLabelWithoutControl: simplified for demo */}
+                <label className="font-medium text-foreground text-sm">
+                  Message
+                </label>
+                <textarea
+                  className="min-h-25 w-full rounded-lg border border-border bg-surface-alt px-4 py-2 text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  placeholder={`I'm interested in the ${car.name}...`}
+                />
+              </div>
+            )}
+            {activeModal === "finance" && (
+              <div className="flex flex-col gap-4">
+                <Input
+                  defaultValue={(car.price * 0.2).toString()}
+                  label="Down Payment"
+                  type="number"
+                />
+                <div className="flex flex-col gap-1">
+                  {/* biome-ignore lint/a11y/noLabelWithoutControl: simplified for demo */}
+                  <label className="pb-1 font-medium text-foreground">
+                    Estimated Credit Score
+                  </label>
+                  <Select
+                    aria-label="Estimated Credit Score"
+                    options={[
+                      { label: "Excellent (720+)", value: "excellent" },
+                      { label: "Good (690-719)", value: "good" },
+                      { label: "Fair (630-689)", value: "fair" },
+                      { label: "Poor (300-629)", value: "poor" },
+                    ]}
+                    placeholder="Select Credit Score"
+                  />
+                </div>
+              </div>
+            )}
+            <Button
+              className="mt-4 w-full justify-center"
+              // biome-ignore lint/performance/noJsxPropsBind: simple state toggle
+              onClick={() => setActiveModal(null)}
+              variant="primary"
+            >
+              Submit
+            </Button>
+          </div>
+        </Dialog.Body>
+      </Dialog>
     </PageLayout>
   );
 }
