@@ -6,6 +6,12 @@ export const metadata: Metadata = {
   title: "Brands | DriveEz",
 };
 
+import { Suspense } from "react";
+
 export default function BrandsPage() {
-  return <BrandsView />;
+  return (
+    <Suspense fallback={<div>Loading brands...</div>}>
+      <BrandsView />
+    </Suspense>
+  );
 }

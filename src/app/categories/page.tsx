@@ -6,6 +6,12 @@ export const metadata: Metadata = {
   title: "Categories | DriveEz",
 };
 
+import { Suspense } from "react";
+
 export default function CategoriesPage() {
-  return <CategoriesView />;
+  return (
+    <Suspense fallback={<div>Loading categories...</div>}>
+      <CategoriesView />
+    </Suspense>
+  );
 }

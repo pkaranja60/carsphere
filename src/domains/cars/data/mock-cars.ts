@@ -64,7 +64,7 @@ export const MOCK_CARS: Car[] = [
     make: "BMW",
     mileage: 15,
     model: "M4",
-    name: "2024 BMW M4 Competition",
+    name: "BMW M4 Competition",
     price: 89_900,
     specs: {
       drivetrain: "AWD",
@@ -103,7 +103,7 @@ export const MOCK_CARS: Car[] = [
     make: "Mercedes-Benz",
     mileage: 22,
     model: "E-Class",
-    name: "2024 Mercedes-Benz E-Class",
+    name: "Mercedes-Benz E-Class",
     price: 64_500,
     specs: {
       drivetrain: "RWD",
@@ -142,7 +142,7 @@ export const MOCK_CARS: Car[] = [
     make: "Audi",
     mileage: 12,
     model: "RS5",
-    name: "2024 Audi RS5 Sportback",
+    name: "Audi RS5 Sportback",
     price: 76_800,
     specs: {
       drivetrain: "AWD",
@@ -181,7 +181,7 @@ export const MOCK_CARS: Car[] = [
     make: "Porsche",
     mileage: 8,
     model: "911",
-    name: "2024 Porsche 911 Carrera",
+    name: "Porsche 911 Carrera",
     price: 122_900,
     specs: {
       drivetrain: "RWD",
@@ -220,7 +220,7 @@ export const MOCK_CARS: Car[] = [
     make: "Land Rover",
     mileage: 45,
     model: "Range Rover Velar",
-    name: "2024 Range Rover Velar",
+    name: "Range Rover Velar",
     price: 71_300,
     specs: {
       drivetrain: "AWD",
@@ -258,7 +258,7 @@ export const MOCK_CARS: Car[] = [
     make: "Tesla",
     mileage: 5200,
     model: "Model S",
-    name: "2023 Tesla Model S Plaid",
+    name: "Tesla Model S Plaid",
     price: 89_990,
     specs: {
       drivetrain: "AWD",
