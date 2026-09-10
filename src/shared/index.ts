@@ -19,3 +19,4 @@ export { PageHeader } from "./components/page-header";
 export { PageLayout } from "./components/page-layout";
 export { Select } from "./components/select";
 export { Typography } from "./components/typography";
+export { type SiteConfig, siteConfig } from "./config";
