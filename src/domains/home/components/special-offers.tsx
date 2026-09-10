@@ -57,6 +57,7 @@ function OfferCard({
           alt={imageAlt}
           className={`h-full w-full object-cover ${imagePosition} ${imageOpacity}`}
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           src={imageSrc}
         />
         <div

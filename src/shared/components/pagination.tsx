@@ -17,31 +17,31 @@ export function Pagination({
   className = "",
 }: PaginationProps) {
   const getPageNumbers = useCallback(() => {
-    const pages: (number | "ellipsis")[] = [];
+    const pages: { key: string | number; value: number | "ellipsis" }[] = [];
 
     if (totalPages <= 7) {
       for (let i = 1; i <= totalPages; i += 1) {
-        pages.push(i);
+        pages.push({ key: i, value: i });
       }
     } else {
-      pages.push(1);
+      pages.push({ key: 1, value: 1 });
 
       if (currentPage > 3) {
-        pages.push("ellipsis");
+        pages.push({ key: "ellipsis-start", value: "ellipsis" });
       }
 
       const start = Math.max(2, currentPage - 1);
       const end = Math.min(totalPages - 1, currentPage + 1);
 
       for (let i = start; i <= end; i += 1) {
-        pages.push(i);
+        pages.push({ key: i, value: i });
       }
 
       if (currentPage < totalPages - 2) {
-        pages.push("ellipsis");
+        pages.push({ key: "ellipsis-end", value: "ellipsis" });
       }
 
-      pages.push(totalPages);
+      pages.push({ key: totalPages, value: totalPages });
     }
 
     return pages;
@@ -65,20 +65,19 @@ export function Pagination({
           </HeroUIPagination.Previous>
         </HeroUIPagination.Item>
 
-        {getPageNumbers().map((p, i) =>
-          p === "ellipsis" ? (
-            // biome-ignore lint/suspicious/noArrayIndexKey: static ellipsis
-            <HeroUIPagination.Item key={`ellipsis-${i}`}>
+        {getPageNumbers().map((p) =>
+          p.value === "ellipsis" ? (
+            <HeroUIPagination.Item key={p.key}>
               <HeroUIPagination.Ellipsis />
             </HeroUIPagination.Item>
           ) : (
-            <HeroUIPagination.Item key={p}>
+            <HeroUIPagination.Item key={p.key}>
               <HeroUIPagination.Link
-                isActive={p === currentPage}
+                isActive={p.value === currentPage}
                 // biome-ignore lint/performance/noJsxPropsBind: safe inline
-                onPress={() => onChange(p as number)}
+                onPress={() => onChange(p.value as number)}
               >
-                {p}
+                {p.value}
               </HeroUIPagination.Link>
             </HeroUIPagination.Item>
           )

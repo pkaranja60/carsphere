@@ -15,6 +15,7 @@ export function NavbarAuth() {
       title={isSignUp ? "Create an Account" : "Sign In to DriveEz"}
       trigger={
         <button
+          aria-label="User account menu"
           className="group flex min-h-11 min-w-11 items-center justify-center text-foreground transition hover:text-primary dark:text-white"
           type="button"
         >

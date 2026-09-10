@@ -9,6 +9,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi2";
@@ -19,6 +20,7 @@ type CarouselOptions = UseCarouselParameters[0];
 type CarouselPlugin = UseCarouselParameters[1];
 
 interface CarouselProps {
+  apiRef?: React.MutableRefObject<CarouselApi | null>;
   opts?: CarouselOptions;
   plugins?: CarouselPlugin;
   setApi?: (api: CarouselApi) => void;
@@ -50,6 +52,7 @@ export const Carousel = ({
   opts,
   plugins,
   setApi,
+  apiRef,
   className = "",
   children,
   ref,
@@ -112,11 +115,16 @@ export const Carousel = ({
   );
 
   useEffect(() => {
-    if (!(emblaApi && setApi)) {
+    if (!emblaApi) {
       return;
     }
-    setApi(emblaApi);
-  }, [emblaApi, setApi]);
+    if (setApi) {
+      setApi(emblaApi);
+    }
+    if (apiRef) {
+      apiRef.current = emblaApi;
+    }
+  }, [emblaApi, setApi, apiRef]);
 
   useEffect(() => {
     if (!emblaApi) {
@@ -134,21 +142,35 @@ export const Carousel = ({
     };
   }, [emblaApi, onInit, onSelect]);
 
+  const contextValue = useMemo(
+    () => ({
+      api: emblaApi,
+      canScrollNext,
+      canScrollPrev,
+      carouselRef,
+      opts,
+      scrollNext,
+      scrollPrev,
+      scrollSnaps,
+      scrollTo,
+      selectedIndex,
+    }),
+    [
+      emblaApi,
+      canScrollNext,
+      canScrollPrev,
+      carouselRef,
+      opts,
+      scrollNext,
+      scrollPrev,
+      scrollSnaps,
+      scrollTo,
+      selectedIndex,
+    ]
+  );
+
   return (
-    <CarouselContext.Provider
-      value={{
-        api: emblaApi,
-        canScrollNext,
-        canScrollPrev,
-        carouselRef,
-        opts,
-        scrollNext,
-        scrollPrev,
-        scrollSnaps,
-        scrollTo,
-        selectedIndex,
-      }}
-    >
+    <CarouselContext.Provider value={contextValue}>
       {/* biome-ignore lint/a11y/useSemanticElements: ARIA standard for carousels */}
       <div
         aria-roledescription="carousel"

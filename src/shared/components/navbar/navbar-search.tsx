@@ -8,6 +8,7 @@ export function NavbarSearch() {
     <Popover>
       <Popover.Trigger>
         <button
+          aria-label="Search"
           className="group flex min-h-11 min-w-11 items-center justify-center text-foreground transition hover:text-primary dark:text-white"
           type="button"
         >
@@ -21,6 +22,7 @@ export function NavbarSearch() {
             <div className="relative w-full sm:w-64">
               <HiMiniMagnifyingGlass className="absolute top-1/2 left-3 z-10 h-5 w-5 -translate-y-1/2 text-muted" />
               <Input
+                aria-label="Search term"
                 inputClassName="pl-10 py-2.5 bg-surface-alt"
                 placeholder="Search for car..."
                 type="text"

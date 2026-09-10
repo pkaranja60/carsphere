@@ -1,6 +1,7 @@
 // biome-ignore lint/performance/noBarrelFile: UCFAS mandates single public entry point
 export { BrandCard } from "./components/brand-card";
-export { Button, buttonVariants } from "./components/button";
+export { Button } from "./components/button";
+export { buttonVariants } from "./components/button-variants";
 export {
   Carousel,
   CarouselContent,

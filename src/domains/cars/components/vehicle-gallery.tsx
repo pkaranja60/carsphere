@@ -38,6 +38,7 @@ export function VehicleGallery({ car }: VehicleGalleryProps) {
           className="object-cover"
           fill
           priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw"
           src={car.images[activeImageIndex] ?? ""}
         />
       </button>
@@ -49,8 +50,7 @@ export function VehicleGallery({ car }: VehicleGalleryProps) {
                 ? "ring-2 ring-primary ring-offset-2 ring-offset-background"
                 : "opacity-60 hover:opacity-100"
             }`}
-            // biome-ignore lint/suspicious/noArrayIndexKey: order is static
-            key={idx}
+            key={img || `fallback-${idx}`}
             // biome-ignore lint/performance/noJsxPropsBind: inline handler for map
             onClick={() => setActiveImageIndex(idx)}
             type="button"
@@ -59,6 +59,7 @@ export function VehicleGallery({ car }: VehicleGalleryProps) {
               alt={`Thumbnail ${idx + 1}`}
               className="object-cover"
               fill
+              sizes="(max-width: 768px) 25vw, 15vw"
               src={img}
             />
           </button>
@@ -74,9 +75,11 @@ export function VehicleGallery({ car }: VehicleGalleryProps) {
           <div className="flex h-dvh w-full flex-col bg-black">
             <div className="relative flex-1">
               <Image
-                alt={`${car.name} full view`}
+                alt={`Full view ${activeImageIndex + 1}`}
                 className="object-contain"
                 fill
+                priority
+                sizes="100vw"
                 src={car.images[activeImageIndex] ?? ""}
               />
             </div>
@@ -88,8 +91,7 @@ export function VehicleGallery({ car }: VehicleGalleryProps) {
                       ? "ring-2 ring-primary ring-offset-2 ring-offset-surface-alt"
                       : "opacity-50 hover:opacity-100"
                   }`}
-                  // biome-ignore lint/suspicious/noArrayIndexKey: order is static
-                  key={idx}
+                  key={img || `fallback-modal-${idx}`}
                   // biome-ignore lint/performance/noJsxPropsBind: simple state toggle
                   onClick={() => setActiveImageIndex(idx)}
                   type="button"
@@ -98,6 +100,7 @@ export function VehicleGallery({ car }: VehicleGalleryProps) {
                     alt={`Thumbnail ${idx + 1}`}
                     className="object-cover"
                     fill
+                    sizes="(max-width: 768px) 25vw, 15vw"
                     src={img}
                   />
                 </button>

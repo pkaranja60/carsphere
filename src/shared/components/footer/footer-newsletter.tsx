@@ -14,11 +14,13 @@ export function FooterNewsletter() {
 
       <form className="mt-4 flex max-w-sm sm:max-w-md">
         <Input
+          aria-label="Email address for newsletter"
           inputClassName="rounded-r-none py-2.5"
           placeholder="Enter your email"
           type="email"
         />
         <button
+          aria-label="Subscribe to newsletter"
           className="flex items-center justify-center rounded-r-md bg-primary px-4 py-2.5 text-white transition hover:opacity-90"
           type="submit"
         >
