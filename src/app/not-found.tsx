@@ -1,9 +1,9 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { ConstructionBanner } from "@/shared/components";
+import { NotFoundBanner } from "@/shared/components";
 
-export default function Home() {
+export default function NotFound() {
   const { resolvedTheme, setTheme } = useTheme();
 
   const toggleTheme = () => {
@@ -20,10 +20,7 @@ export default function Home() {
 
       {/* Main Content Area */}
       <div className="z-10 w-full max-w-3xl">
-        <ConstructionBanner
-          message="We are meticulously crafting the CarSphere digital experience. Please check back soon."
-          title="Website is under construction"
-        />
+        <NotFoundBanner />
       </div>
 
       {/* Minimal Footer / Theme Toggle */}

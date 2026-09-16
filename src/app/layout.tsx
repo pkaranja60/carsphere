@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
-import { Montserrat, Plus_Jakarta_Sans } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { ThemeProvider } from "./providers";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -7,14 +8,21 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-jakarta-sans",
 });
 
-const montserrat = Montserrat({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  description: "A fresh UI/UX design for Carsphere.",
-  title: "Carsphere Redesign",
+  description:
+    "Shop cars online with ease. Browse, compare, and buy vehicles that match your needs, preferences, and budget from a modern car marketplace.",
+  title: "CarSphere - Car Marketplace",
+};
+
+export const viewport: Viewport = {
+  initialScale: 1,
+  viewportFit: "cover",
+  width: "device-width",
 };
 
 export default function RootLayout({
@@ -24,11 +32,15 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`${plusJakartaSans.variable} ${montserrat.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${inter.variable} h-full antialiased`}
       lang="en"
       suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col font-sans">{children}</body>
+      <body className="flex min-h-full flex-col bg-background font-sans text-on-background">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
