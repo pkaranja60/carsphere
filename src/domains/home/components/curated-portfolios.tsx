@@ -31,7 +31,7 @@ export function CuratedPortfolios() {
         <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest p-space-lg shadow-sm transition-all hover:shadow-md md:p-space-xl">
           <div className="relative z-10">
             <div className="mb-space-md flex items-center justify-between">
-              <span className="rounded-full bg-primary-container px-3 py-1 font-label-sm font-semibold text-label-sm text-on-primary uppercase tracking-wider">
+              <span className="rounded-full bg-primary-container px-3 py-1 font-label-sm font-semibold text-label-sm text-on-primary-container uppercase tracking-wider">
                 Tier I Curation
               </span>
               <MdOutlineSpeed className="text-3xl text-primary-container" />

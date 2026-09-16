@@ -38,7 +38,7 @@ export function CategoryGrid() {
           className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
           href="#"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-white">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-surface-container-highest">
             <MdDirectionsCar className="text-2xl" />
           </div>
           <div>
@@ -54,7 +54,7 @@ export function CategoryGrid() {
           className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
           href="#"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-white">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-surface-container-highest">
             <MdGarage className="text-2xl" />
           </div>
           <div>
@@ -70,7 +70,7 @@ export function CategoryGrid() {
           className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
           href="#"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-white">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-surface-container-highest">
             <MdSportsMotorsports className="text-2xl" />
           </div>
           <div>
@@ -86,7 +86,7 @@ export function CategoryGrid() {
           className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
           href="#"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-tertiary transition-colors group-hover:bg-white">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-tertiary transition-colors group-hover:bg-surface-container-highest">
             <MdBolt className="text-2xl" />
           </div>
           <div>
@@ -102,7 +102,7 @@ export function CategoryGrid() {
           className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
           href="#"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-white">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-surface-container-highest">
             <MdCommute className="text-2xl" />
           </div>
           <div>
@@ -118,7 +118,7 @@ export function CategoryGrid() {
           className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
           href="#"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-white">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-surface-container-highest">
             <MdSavings className="text-2xl" />
           </div>
           <div>

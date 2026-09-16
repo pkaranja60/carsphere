@@ -66,13 +66,13 @@ export function VehicleCard({
             width={320}
           />
           <div className="absolute top-3 left-3">
-            <span className="rounded-md bg-white/95 px-2.5 py-1 font-label-sm font-semibold text-label-sm text-on-surface tracking-tight shadow-sm backdrop-blur-sm">
+            <span className="rounded-md bg-surface/90 px-2.5 py-1 font-label-sm font-semibold text-label-sm text-on-surface tracking-tight shadow-sm backdrop-blur-sm">
               {badgeText}
             </span>
           </div>
           <button
             aria-label="Save to garage"
-            className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-on-surface-variant shadow-sm backdrop-blur-sm transition-colors hover:text-primary"
+            className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-surface/90 text-on-surface-variant shadow-sm backdrop-blur-sm transition-colors hover:text-primary"
             type="button"
           >
             <MdFavoriteBorder className="text-lg" />

@@ -71,18 +71,18 @@ export function HeaderMainNav() {
             title="Saved Vehicles"
           >
             <MdOutlineFavoriteBorder className="text-primary text-xl" />
-            <span className="rounded-full bg-white px-1.5 py-0.5 font-bold font-label-sm text-on-surface text-xs shadow-sm">
+            <span className="rounded-full bg-surface px-1.5 py-0.5 font-bold font-label-sm text-on-surface text-xs shadow-sm">
               0
             </span>
           </Link>
 
           <Link
-            className="flex items-center gap-space-sm rounded-full bg-primary-container py-1.5 pr-4 pl-1.5 text-white shadow-sm transition-all hover:bg-primary/70 hover:shadow active:translate-y-0.5"
+            className="flex items-center gap-space-sm rounded-full bg-primary-container py-1.5 pr-4 pl-1.5 text-on-primary shadow-sm transition-all hover:bg-primary hover:shadow active:translate-y-0.5"
             href="#"
           >
             <Image
               alt="Concierge"
-              className="h-8 w-8 rounded-full border border-primary object-cover ring-1 ring-white/40"
+              className="h-8 w-8 rounded-full border border-primary object-cover ring-1 ring-on-primary-container/20"
               height={32}
               src="https://lh3.googleusercontent.com/aida/AEtjO1V1FdzkqSDuv3IroFCOUCEpuPohPJ4g0eIey32Yex9Pqc_p_W-Msdej1G-KDNhx67-i6UpbG4bpxTOhYViBsM3WUye6O0n2CuxsVzwaQtfbp6hna1Ot891GD-jmKaWdqjfEUdRJhH_2qQfywjXhSkYOHs-EsoCWpV3mXnEpuo2t9XfCcX3CkCpQo-0vLl589vJ3n7z-E3sPjZfx7aPQgBThbnwKMCdQxG9zEIvDkvYMcZ1uGBfsRVWNRm4"
               width={32}
@@ -91,7 +91,7 @@ export function HeaderMainNav() {
               <span className="font-label-sm font-semibold tracking-wide">
                 Speak with Concierge
               </span>
-              <span className="text-[10px] text-primary-fixed opacity-90">
+              <span className="text-[10px] text-on-primary opacity-90">
                 Private VIP Desk
               </span>
             </div>
