@@ -15,8 +15,8 @@ import {
 export function FooterGuarantees() {
   return (
     <div className="grid grid-cols-1 gap-space-lg border-border border-b pb-space-xl md:grid-cols-3">
-      <div className="flex items-start gap-space-md rounded-xl border border-border bg-white p-space-md shadow-sm">
-        <MdOutlineVerified className="text-[28px] text-primary" />
+      <div className="flex items-start gap-space-md rounded-xl border border-border bg-surface-container-lowest p-space-md shadow-sm">
+        <MdOutlineVerified className="text-[38px] text-primary" />
         <div>
           <h4 className="font-label-lg font-semibold text-label-lg text-on-surface">
             150-Point Inspection
@@ -27,8 +27,8 @@ export function FooterGuarantees() {
           </p>
         </div>
       </div>
-      <div className="flex items-start gap-space-md rounded-xl border border-border bg-white p-space-md shadow-sm">
-        <MdOutlinePublishedWithChanges className="text-[28px] text-primary" />
+      <div className="flex items-start gap-space-md rounded-xl border border-border bg-surface-container-lowest p-space-md shadow-sm">
+        <MdOutlinePublishedWithChanges className="text-[38px] text-primary" />
         <div>
           <h4 className="font-label-lg font-semibold text-label-lg text-on-surface">
             7-Day Buyback Guarantee
@@ -39,8 +39,8 @@ export function FooterGuarantees() {
           </p>
         </div>
       </div>
-      <div className="flex items-start gap-space-md rounded-xl border border-border bg-white p-space-md shadow-sm">
-        <MdOutlinePayments className="text-[28px] text-primary" />
+      <div className="flex items-start gap-space-md rounded-xl border border-border bg-surface-container-lowest p-space-md shadow-sm">
+        <MdOutlinePayments className="text-[38px] text-primary" />
         <div>
           <h4 className="font-label-lg font-semibold text-label-lg text-on-surface">
             Transparent Pricing

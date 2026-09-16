@@ -77,7 +77,7 @@ export function HeaderMainNav() {
           </Link>
 
           <Link
-            className="flex items-center gap-space-sm rounded-full bg-primary py-1.5 pr-4 pl-1.5 text-white shadow-sm transition-all hover:bg-primary-container hover:shadow active:translate-y-0.5"
+            className="flex items-center gap-space-sm rounded-full bg-primary-container py-1.5 pr-4 pl-1.5 text-white shadow-sm transition-all hover:bg-primary/70 hover:shadow active:translate-y-0.5"
             href="#"
           >
             <Image
