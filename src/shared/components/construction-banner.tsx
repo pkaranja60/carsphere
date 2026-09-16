@@ -9,20 +9,18 @@ export function ConstructionBanner({
 }: ConstructionBannerProps) {
   return (
     <div className="flex w-full flex-col items-center justify-center text-center">
-      <div className="relative mb-space-xl flex justify-center text-primary">
+      <div className="relative mb-space-xs flex w-full max-w-xl justify-center text-primary">
         {/* Ambient glow behind the illustration */}
         <div className="absolute inset-0 z-0 m-auto h-40 w-40 rounded-full bg-primary/20 blur-3xl" />
 
         <svg
-          className="relative z-10 opacity-90"
+          className="relative z-10 h-auto w-full max-w-xl opacity-90"
           fill="none"
-          height="280"
           stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="1.5"
           viewBox="0 0 400 280"
-          width="400"
         >
           <title>CarSphere Showroom Under Construction</title>
 

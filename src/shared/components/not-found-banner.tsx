@@ -11,20 +11,18 @@ export function NotFoundBanner({
 }: NotFoundBannerProps) {
   return (
     <div className="flex w-full flex-col items-center justify-center text-center">
-      <div className="relative mb-space-xl flex justify-center text-primary">
+      <div className="relative mb-space-xs flex w-full max-w-xl justify-center text-primary">
         {/* Ambient glow behind the illustration */}
         <div className="absolute inset-0 z-0 m-auto h-40 w-40 rounded-full bg-primary/10 blur-3xl" />
 
         <svg
-          className="relative z-10 opacity-90"
+          className="relative z-10 h-auto w-full max-w-xl opacity-90"
           fill="none"
-          height="280"
           stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="1.5"
           viewBox="0 0 400 280"
-          width="400"
         >
           <title>404 Not Found</title>
 
@@ -86,31 +84,66 @@ export function NotFoundBanner({
             />
           </g>
 
-          {/* Floating detached blocks falling into the void */}
-          <g transform="translate(240, 160)">
-            <g className="animate-bounce" style={{ animationDuration: "6s" }}>
-              <path
-                d="M 20 10 L 40 20 L 20 30 L 0 20 Z"
-                fill="var(--color-surface)"
-              />
-              <path d="M 20 10 L 40 20 L 20 30 L 0 20 Z" />
-              <path d="M 0 20 L 0 30 L 20 40 L 40 30 L 40 20" />
-              <path d="M 20 30 L 20 40" />
+          {/* Isometric Hazard Barrier blocking the road */}
+          <g transform="translate(60, 60)">
+            {/* Barrier Shadow */}
+            <path
+              d="M 135 122 L 205 87 L 195 82 L 125 117 Z"
+              fill="currentColor"
+              opacity="0.05"
+            />
+            {/* Front Face */}
+            <path
+              d="M 140 120 L 200 90 L 200 75 L 140 105 Z"
+              fill="var(--color-surface-container-highest)"
+              stroke="currentColor"
+              strokeLinejoin="round"
+            />
+            {/* Top Face */}
+            <path
+              d="M 140 105 L 200 75 L 195 72 L 135 102 Z"
+              fill="var(--color-surface)"
+              stroke="currentColor"
+              strokeLinejoin="round"
+            />
+            {/* Side Face */}
+            <path
+              d="M 135 102 L 140 105 L 140 120 L 135 117 Z"
+              fill="var(--color-surface-container)"
+              stroke="currentColor"
+              strokeLinejoin="round"
+            />
+            {/* Hazard Stripes on Front Face */}
+            <g opacity="0.6" stroke="var(--color-error)" strokeWidth="4">
+              <path d="M 145 117 L 145 102" />
+              <path d="M 155 112 L 155 97" />
+              <path d="M 165 107 L 165 92" />
+              <path d="M 175 102 L 175 87" />
+              <path d="M 185 97 L 185 82" />
+              <path d="M 195 92 L 195 77" />
             </g>
           </g>
 
-          <g transform="translate(180, 180) scale(0.5)">
+          {/* Floating Warning Triangle */}
+          <g transform="translate(160, 35) scale(2)">
+            {/* Glowing background pulse */}
+
             <g
-              className="animate-bounce"
-              style={{ animationDelay: "1s", animationDuration: "4s" }}
+              fill="var(--color-surface)"
+              stroke="var(--color-error)"
+              strokeLinejoin="round"
+              strokeWidth="1.5"
             >
-              <path
-                d="M 20 10 L 40 20 L 20 30 L 0 20 Z"
-                fill="var(--color-surface)"
+              <path d="M 0 20 L 10 0 L 20 20 Z" />
+              <path d="M 5 17 L 10 7 L 15 17 Z" fill="none" strokeWidth="1" />
+              <circle
+                cx="10"
+                cy="14"
+                fill="var(--color-error)"
+                r="1.5"
+                stroke="none"
               />
-              <path d="M 20 10 L 40 20 L 20 30 L 0 20 Z" />
-              <path d="M 0 20 L 0 30 L 20 40 L 40 30 L 40 20" />
-              <path d="M 20 30 L 20 40" />
+              <path d="M 10 9 L 10 12" fill="none" />
             </g>
           </g>
 
