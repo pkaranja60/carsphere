@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Footer, Header } from "@/shared/components";
 import { ThemeProvider } from "./providers";
 import "./globals.css";
 
@@ -38,7 +39,9 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-on-background">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Header />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
