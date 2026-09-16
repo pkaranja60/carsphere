@@ -3,6 +3,11 @@
 // ─────────────────────────────────────────────
 
 import Image from "next/image";
+import {
+  MdChevronRight,
+  MdFavoriteBorder,
+  MdOutlineVerified,
+} from "react-icons/md";
 
 // ─────────────────────────────────────────────
 // SECTION: Interfaces
@@ -70,7 +75,7 @@ export function VehicleCard({
             className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-on-surface-variant shadow-sm backdrop-blur-sm transition-colors hover:text-primary"
             type="button"
           >
-            <span className="material-symbols-outlined text-lg">favorite</span>
+            <MdFavoriteBorder className="text-lg" />
           </button>
         </div>
 
@@ -133,9 +138,7 @@ export function VehicleCard({
             </span>
           </div>
           <span className="flex items-center gap-0.5 font-label-sm font-semibold text-label-sm text-tertiary">
-            <span className="material-symbols-outlined text-base">
-              verified
-            </span>
+            <MdOutlineVerified className="text-base" />
             {historyText}
           </span>
         </div>
@@ -144,9 +147,7 @@ export function VehicleCard({
           type="button"
         >
           <span>View Specification</span>
-          <span className="material-symbols-outlined text-base">
-            chevron_right
-          </span>
+          <MdChevronRight className="text-base" />
         </button>
       </div>
     </article>

@@ -3,7 +3,8 @@
 // ─────────────────────────────────────────────
 
 import Link from "next/link";
-import { VehicleCard } from "./vehicle-card";
+import { MdArrowForward } from "react-icons/md";
+import { VehicleCard } from "../../../shared/components/vehicle-card";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -26,7 +27,7 @@ export function FeaturedVehicles() {
           href="#"
         >
           <span>View Full 482 Vehicles</span>
-          <span className="material-symbols-outlined text-lg">east</span>
+          <MdArrowForward className="text-lg" />
         </Link>
       </div>
 

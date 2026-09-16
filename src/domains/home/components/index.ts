@@ -6,4 +6,3 @@ export { HeroSection } from "./hero-section";
 export { OmniSearch } from "./omni-search";
 export { TopBrands } from "./top-brands";
 export { TrustStrip } from "./trust-strip";
-export { VehicleCard } from "./vehicle-card";
