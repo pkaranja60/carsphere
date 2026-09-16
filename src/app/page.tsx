@@ -1,13 +1,8 @@
-// ─────────────────────────────────────────────
-// SECTION: Imports
-// ─────────────────────────────────────────────
-
-import { HomeView } from "@/domains/home";
-
-// ─────────────────────────────────────────────
-// SECTION: Components
-// ─────────────────────────────────────────────
-
 export default function Home() {
-  return <HomeView />;
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <h1 className="font-bold text-4xl">Carsphere UI-UX Redesign</h1>
+      <p className="mt-4 text-lg">Blank template ready for new design.</p>
+    </main>
+  );
 }
