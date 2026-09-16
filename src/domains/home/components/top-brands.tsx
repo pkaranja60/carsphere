@@ -29,7 +29,7 @@ export function TopBrands() {
             View All 24 Manufacturers
           </Link>
         </div>
-        <div className="grid grid-cols-2 items-center gap-space-md pt-space-lg text-center sm:grid-cols-4 lg:grid-cols-8">
+        <div className="grid grid-cols-2 items-stretch gap-space-md pt-space-lg text-center sm:grid-cols-4 lg:grid-cols-8">
           <Link
             className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
             href="#"
