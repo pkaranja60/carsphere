@@ -1,3 +1,7 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 import { FooterBottomBar } from "./footer-bottom-bar";
 import { FooterGuarantees } from "./footer-guarantees";
 import { FooterNavigation } from "./footer-navigation";

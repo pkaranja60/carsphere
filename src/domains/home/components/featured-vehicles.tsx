@@ -1,5 +1,13 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 import Link from "next/link";
 import { VehicleCard } from "./vehicle-card";
+
+// ─────────────────────────────────────────────
+// SECTION: Components
+// ─────────────────────────────────────────────
 
 export function FeaturedVehicles() {
   return (
@@ -22,7 +30,6 @@ export function FeaturedVehicles() {
         </Link>
       </div>
 
-      {/* 4-Card Unified Grid */}
       <div className="grid grid-cols-1 gap-space-md md:grid-cols-2 lg:grid-cols-4">
         <VehicleCard
           badgeText="Certified Pre-Owned"

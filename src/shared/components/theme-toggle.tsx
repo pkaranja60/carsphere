@@ -1,8 +1,16 @@
 "use client";
 
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useState } from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+
+// ─────────────────────────────────────────────
+// SECTION: Component
+// ─────────────────────────────────────────────
 
 export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);

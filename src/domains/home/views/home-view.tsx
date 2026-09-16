@@ -1,3 +1,7 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 import {
   BespokeServices,
   CategoryGrid,
@@ -7,6 +11,10 @@ import {
   OmniSearch,
   TopBrands,
 } from "../components";
+
+// ─────────────────────────────────────────────
+// SECTION: Components
+// ─────────────────────────────────────────────
 
 export function HomeView() {
   return (

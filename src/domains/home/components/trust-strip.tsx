@@ -1,8 +1,11 @@
+// ─────────────────────────────────────────────
+// SECTION: Components
+// ─────────────────────────────────────────────
+
 export function TrustStrip() {
   return (
     <div className="pt-space-xl">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-4">
-        {/* Trust Card 1 */}
         <div className="flex items-center gap-3 rounded-lg border border-surface-variant bg-white p-3.5 px-4 shadow-md transition-transform hover:-translate-y-0.5">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-surface-variant bg-surface-bright">
             <span className="material-symbols-outlined text-2xl text-primary-container">
@@ -18,7 +21,6 @@ export function TrustStrip() {
             </span>
           </div>
         </div>
-        {/* Trust Card 2 */}
         <div className="flex items-center gap-3 rounded-lg border border-surface-variant bg-white p-3.5 px-4 shadow-md transition-transform hover:-translate-y-0.5">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-surface-variant bg-surface-bright">
             <span className="material-symbols-outlined text-2xl text-primary-container">
@@ -34,7 +36,6 @@ export function TrustStrip() {
             </span>
           </div>
         </div>
-        {/* Trust Card 3 */}
         <div className="flex items-center gap-3 rounded-lg border border-surface-variant bg-white p-3.5 px-4 shadow-md transition-transform hover:-translate-y-0.5">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-surface-variant bg-surface-bright">
             <span className="material-symbols-outlined text-2xl text-tertiary">
@@ -50,7 +51,6 @@ export function TrustStrip() {
             </span>
           </div>
         </div>
-        {/* Trust Card 4 */}
         <div className="flex items-center gap-3 rounded-lg border border-surface-variant bg-white p-3.5 px-4 shadow-md transition-transform hover:-translate-y-0.5">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-surface-variant bg-surface-bright">
             <span className="material-symbols-outlined text-2xl text-tertiary">

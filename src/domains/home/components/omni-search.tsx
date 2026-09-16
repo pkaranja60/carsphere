@@ -1,9 +1,12 @@
+// ─────────────────────────────────────────────
+// SECTION: Components
+// ─────────────────────────────────────────────
+
 export function OmniSearch() {
   return (
     <section className="relative z-20 mx-auto -mt-10 w-full max-w-345 px-margin-mobile md:-mt-14 md:px-margin">
       <div className="rounded-xl border border-outline-variant bg-white p-6 shadow-xl">
         <div className="flex flex-col gap-space-md">
-          {/* Search Category Selector Tabs */}
           <div className="flex flex-wrap items-center justify-between gap-space-xs border-surface-container border-b pb-space-xs">
             <div
               className="inline-flex items-center rounded-lg border border-surface-variant bg-surface-container-low p-1"
@@ -39,9 +42,7 @@ export function OmniSearch() {
               <span className="font-medium">Live Stock Updated 8 mins ago</span>
             </div>
           </div>
-          {/* Inputs Grid with Clean High-Contrast Borders */}
           <div className="grid grid-cols-1 items-end gap-space-sm sm:grid-cols-2 md:gap-space-md lg:grid-cols-5">
-            {/* Make & Model */}
             <div className="flex flex-col gap-space-xs">
               <label
                 className="font-label-sm font-semibold text-label-sm text-on-surface uppercase tracking-wider"
@@ -61,7 +62,6 @@ export function OmniSearch() {
                 />
               </div>
             </div>
-            {/* Body Style */}
             <div className="flex flex-col gap-space-xs">
               <label
                 className="font-label-sm font-semibold text-label-sm text-on-surface uppercase tracking-wider"
@@ -85,7 +85,6 @@ export function OmniSearch() {
                 </span>
               </div>
             </div>
-            {/* Budget Range */}
             <div className="flex flex-col gap-space-xs">
               <label
                 className="font-label-sm font-semibold text-label-sm text-on-surface uppercase tracking-wider"
@@ -109,7 +108,6 @@ export function OmniSearch() {
                 </span>
               </div>
             </div>
-            {/* Provenance / Condition */}
             <div className="flex flex-col gap-space-xs">
               <label
                 className="font-label-sm font-semibold text-label-sm text-on-surface uppercase tracking-wider"
@@ -133,7 +131,6 @@ export function OmniSearch() {
                 </span>
               </div>
             </div>
-            {/* Search Button in Primary Bronze */}
             <div>
               <button
                 className="flex h-11 w-full items-center justify-center gap-space-xs rounded-lg bg-primary-container font-label-md font-semibold text-label-md text-white uppercase tracking-wider shadow-md transition-all hover:bg-primary hover:shadow-lg active:translate-y-0.5"

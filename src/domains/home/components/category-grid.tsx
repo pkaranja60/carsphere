@@ -1,4 +1,12 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 import Link from "next/link";
+
+// ─────────────────────────────────────────────
+// SECTION: Components
+// ─────────────────────────────────────────────
 
 export function CategoryGrid() {
   return (
@@ -18,7 +26,6 @@ export function CategoryGrid() {
         </p>
       </div>
       <div className="grid grid-cols-2 gap-space-md md:grid-cols-3 lg:grid-cols-6">
-        {/* Category 1 */}
         <Link
           className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
           href="#"
@@ -37,7 +44,6 @@ export function CategoryGrid() {
             </span>
           </div>
         </Link>
-        {/* Category 2 */}
         <Link
           className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
           href="#"
@@ -56,7 +62,6 @@ export function CategoryGrid() {
             </span>
           </div>
         </Link>
-        {/* Category 3 */}
         <Link
           className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
           href="#"
@@ -75,7 +80,6 @@ export function CategoryGrid() {
             </span>
           </div>
         </Link>
-        {/* Category 4 */}
         <Link
           className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
           href="#"
@@ -92,7 +96,6 @@ export function CategoryGrid() {
             </span>
           </div>
         </Link>
-        {/* Category 5 */}
         <Link
           className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
           href="#"
@@ -109,7 +112,6 @@ export function CategoryGrid() {
             </span>
           </div>
         </Link>
-        {/* Category 6 */}
         <Link
           className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
           href="#"

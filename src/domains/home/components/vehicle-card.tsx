@@ -1,4 +1,12 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 import Image from "next/image";
+
+// ─────────────────────────────────────────────
+// SECTION: Interfaces
+// ─────────────────────────────────────────────
 
 interface VehicleCardProps {
   badgeText: string;
@@ -23,6 +31,10 @@ interface VehicleCardProps {
   year: string;
 }
 
+// ─────────────────────────────────────────────
+// SECTION: Components
+// ─────────────────────────────────────────────
+
 export function VehicleCard({
   imageSrc,
   imageAlt,
@@ -40,7 +52,6 @@ export function VehicleCard({
   return (
     <article className="group flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest shadow-sm transition-all hover:shadow-md">
       <div>
-        {/* Image Frame with Badge and Favorite */}
         <div className="relative aspect-16/10 overflow-hidden bg-surface-container-high">
           <Image
             alt={imageAlt}
@@ -63,7 +74,6 @@ export function VehicleCard({
           </button>
         </div>
 
-        {/* Card Content Body */}
         <div className="p-space-md">
           <div className="mb-space-xs flex items-baseline justify-between gap-space-xs">
             <h3 className="truncate font-headline-sm font-semibold text-headline-sm text-on-surface tracking-tight">
@@ -77,7 +87,6 @@ export function VehicleCard({
             {colorString}
           </p>
 
-          {/* Specs Strip */}
           <div className="mb-space-md grid grid-cols-3 gap-1 rounded-lg bg-surface-container-low px-space-sm py-space-xs text-center font-body-sm text-body-sm text-on-surface-variant">
             <div>
               <span className="block font-semibold text-label-sm text-on-surface">
@@ -113,7 +122,6 @@ export function VehicleCard({
         </div>
       </div>
 
-      {/* Footer / Price Block */}
       <div className="p-space-md pt-0">
         <div className="mb-space-sm flex items-baseline justify-between">
           <div>

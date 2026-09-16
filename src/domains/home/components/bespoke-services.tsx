@@ -1,10 +1,17 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 import Link from "next/link";
+
+// ─────────────────────────────────────────────
+// SECTION: Components
+// ─────────────────────────────────────────────
 
 export function BespokeServices() {
   return (
     <section className="mx-auto mt-space-xl w-full max-w-345 px-margin-mobile pt-space-xl md:px-margin">
       <div className="grid grid-cols-1 gap-space-lg md:grid-cols-3">
-        {/* Card A */}
         <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-low p-space-lg md:p-space-xl">
           <div>
             <div className="mb-space-md flex h-12 w-12 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-lowest text-primary shadow-sm">
@@ -31,7 +38,6 @@ export function BespokeServices() {
             </span>
           </Link>
         </div>
-        {/* Card B */}
         <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-low p-space-lg md:p-space-xl">
           <div>
             <div className="mb-space-md flex h-12 w-12 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-lowest text-primary shadow-sm">
@@ -58,7 +64,6 @@ export function BespokeServices() {
             </span>
           </Link>
         </div>
-        {/* Card C */}
         <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-low p-space-lg md:p-space-xl">
           <div>
             <div className="mb-space-md flex h-12 w-12 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-lowest text-primary shadow-sm">

@@ -1,4 +1,12 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 import Link from "next/link";
+
+// ─────────────────────────────────────────────
+// SECTION: Components
+// ─────────────────────────────────────────────
 
 export function TopBrands() {
   return (
@@ -21,7 +29,6 @@ export function TopBrands() {
           </Link>
         </div>
         <div className="grid grid-cols-2 items-center gap-space-md pt-space-lg text-center sm:grid-cols-4 lg:grid-cols-8">
-          {/* Brand 1 */}
           <Link
             className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
             href="#"
@@ -33,7 +40,6 @@ export function TopBrands() {
               42 In Stock
             </span>
           </Link>
-          {/* Brand 2 */}
           <Link
             className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
             href="#"
@@ -45,7 +51,6 @@ export function TopBrands() {
               58 In Stock
             </span>
           </Link>
-          {/* Brand 3 */}
           <Link
             className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
             href="#"
@@ -57,7 +62,6 @@ export function TopBrands() {
               51 In Stock
             </span>
           </Link>
-          {/* Brand 4 */}
           <Link
             className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
             href="#"
@@ -69,7 +73,6 @@ export function TopBrands() {
               39 In Stock
             </span>
           </Link>
-          {/* Brand 5 */}
           <Link
             className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
             href="#"
@@ -81,7 +84,6 @@ export function TopBrands() {
               28 In Stock
             </span>
           </Link>
-          {/* Brand 6 */}
           <Link
             className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
             href="#"
@@ -93,7 +95,6 @@ export function TopBrands() {
               64 In Stock
             </span>
           </Link>
-          {/* Brand 7 */}
           <Link
             className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
             href="#"
@@ -105,7 +106,6 @@ export function TopBrands() {
               22 In Stock
             </span>
           </Link>
-          {/* Brand 8 */}
           <Link
             className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
             href="#"

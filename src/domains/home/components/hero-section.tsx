@@ -1,10 +1,17 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 import Link from "next/link";
 import { TrustStrip } from "./trust-strip";
+
+// ─────────────────────────────────────────────
+// SECTION: Components
+// ─────────────────────────────────────────────
 
 export function HeroSection() {
   return (
     <section className="relative -mt-30 w-full overflow-hidden bg-surface-container-low">
-      {/* Cinematic Full-bleed Background Scrim & Image */}
       <div className="absolute inset-0 z-0">
         <div
           aria-label="Editorial photograph of a sleek executive sports car parked under an architectural warm limestone and dark cedar pavilion, soft ambient morning sunlight, minimal luxury villa driveway, warm reflections, neutral sand and deep charcoal palette, high resolution commercial automotive lighting"
@@ -19,10 +26,8 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-linear-to-t from-surface via-transparent to-black/35" />
       </div>
 
-      {/* Hero Content Container */}
       <div className="relative z-10 mx-auto flex min-h-190 max-w-345 flex-col justify-between px-margin-mobile pt-44 pb-32 md:px-margin md:pt-52 md:pb-36">
         <div className="max-w-2xl text-surface-container-lowest">
-          {/* Eyebrow Pill */}
           <div className="mb-space-md inline-flex items-center gap-space-xs rounded-full border border-white/20 bg-black/40 px-3.5 py-1.5 backdrop-blur-md">
             <span className="h-2 w-2 rounded-full bg-primary-fixed" />
             <span className="font-label-sm font-semibold text-label-sm text-surface-bright uppercase tracking-wider">
@@ -40,7 +45,6 @@ export function HeroSection() {
             transparent pricing.
           </p>
 
-          {/* CTA Cluster */}
           <div className="flex flex-wrap items-center gap-space-md">
             <Link
               className="flex h-13 items-center justify-center gap-space-xs rounded-lg bg-primary-container px-8 font-label-lg font-semibold text-label-lg text-on-primary shadow-lg transition-all hover:bg-primary active:translate-y-0.5"
@@ -60,7 +64,6 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* HIGH-CONTRAST TRUST STRIP (Solid Ivory-White Cards, NOT Blended) */}
         <TrustStrip />
       </div>
     </section>

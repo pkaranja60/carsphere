@@ -1,4 +1,12 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 import Link from "next/link";
+
+// ─────────────────────────────────────────────
+// SECTION: Components
+// ─────────────────────────────────────────────
 
 export function CuratedPortfolios() {
   return (
@@ -19,7 +27,6 @@ export function CuratedPortfolios() {
       </div>
 
       <div className="grid grid-cols-1 gap-space-lg md:grid-cols-2">
-        {/* Pillar A: Premium & Performance */}
         <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest p-space-lg shadow-sm transition-all hover:shadow-md md:p-space-xl">
           <div className="relative z-10">
             <div className="mb-space-md flex items-center justify-between">
@@ -37,7 +44,6 @@ export function CuratedPortfolios() {
               Supercars, grand tourers, and executive flagships curated for
               connoisseurs seeking sheer dynamic capability.
             </p>
-            {/* Key Brand Badges */}
             <div className="mb-space-xl flex flex-wrap gap-space-xs">
               <span className="rounded-md border border-surface-variant bg-surface-container-low px-2.5 py-1 font-label-sm font-medium text-label-sm text-on-surface-variant">
                 Porsche GT
@@ -69,7 +75,6 @@ export function CuratedPortfolios() {
           </div>
         </div>
 
-        {/* Pillar B: Everyday Excellence */}
         <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest p-space-lg shadow-sm transition-all hover:shadow-md md:p-space-xl">
           <div className="relative z-10">
             <div className="mb-space-md flex items-center justify-between">
@@ -87,7 +92,6 @@ export function CuratedPortfolios() {
               Pristine daily crossovers, premium estates, and fuel-efficient
               family leaders under $45k with meticulous records.
             </p>
-            {/* Key Brand Badges */}
             <div className="mb-space-xl flex flex-wrap gap-space-xs">
               <span className="rounded-md border border-surface-variant bg-surface-container-low px-2.5 py-1 font-label-sm font-medium text-label-sm text-on-surface-variant">
                 Audi Q5

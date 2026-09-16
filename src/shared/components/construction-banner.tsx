@@ -1,7 +1,15 @@
+// ─────────────────────────────────────────────
+// SECTION: Interfaces
+// ─────────────────────────────────────────────
+
 interface ConstructionBannerProps {
   message?: string;
   title?: string;
 }
+
+// ─────────────────────────────────────────────
+// SECTION: Components
+// ─────────────────────────────────────────────
 
 export function ConstructionBanner({
   title = "Showroom is under construction",
@@ -10,7 +18,6 @@ export function ConstructionBanner({
   return (
     <div className="flex w-full flex-col items-center justify-center text-center">
       <div className="relative mb-space-xs flex w-full max-w-xl justify-center text-primary">
-        {/* Ambient glow behind the illustration */}
         <div className="absolute inset-0 z-0 m-auto h-40 w-40 rounded-full bg-primary/20 blur-3xl" />
 
         <svg
@@ -24,7 +31,6 @@ export function ConstructionBanner({
         >
           <title>CarSphere Showroom Under Construction</title>
 
-          {/* Base Grid Plane */}
           <g strokeOpacity="0.15" strokeWidth="1">
             <path d="M 200 40 L 40 120 M 240 60 L 80 140 M 280 80 L 120 160 M 320 100 L 160 180 M 360 120 L 200 200" />
             <path d="M 200 40 L 360 120 M 160 60 L 320 140 M 120 80 L 280 160 M 80 100 L 240 180 M 40 120 L 200 200" />
@@ -34,7 +40,6 @@ export function ConstructionBanner({
             />
           </g>
 
-          {/* Blueprint Measurement Lines */}
           <g
             className="font-mono text-[10px] text-primary"
             strokeOpacity="0.4"
@@ -65,7 +70,6 @@ export function ConstructionBanner({
             </text>
           </g>
 
-          {/* Main Central Platform */}
           <g transform="translate(100, 20)">
             <path
               d="M 100 80 L 160 110 L 100 140 L 40 110 Z"
@@ -75,14 +79,12 @@ export function ConstructionBanner({
             <path d="M 100 80 L 160 110 L 100 140 L 40 110 Z" strokeWidth="2" />
             <path d="M 40 110 L 40 120 L 100 150 L 160 120 L 160 110" />
             <path d="M 100 140 L 100 150" />
-            {/* Center target crosshair */}
             <path
               d="M 95 110 L 105 110 M 100 105 L 100 115"
               strokeOpacity="0.5"
             />
           </g>
 
-          {/* Floating Cube 1 (Animated Bounce) */}
           <g transform="translate(140, 0)">
             <g
               className="motion-safe:animate-bounce"
@@ -98,7 +100,6 @@ export function ConstructionBanner({
             </g>
           </g>
 
-          {/* Floating Cube 2 (Small, offset bounce) */}
           <g transform="translate(100, 12) scale(0.6)">
             <g
               className="motion-safe:animate-bounce"
@@ -114,7 +115,6 @@ export function ConstructionBanner({
             </g>
           </g>
 
-          {/* Engine/Wheel Abstract Shape */}
           <g transform="translate(60, 90)">
             <ellipse
               cx="60"
@@ -129,7 +129,6 @@ export function ConstructionBanner({
             <path d="M 45 50 L 75 50 M 60 42.5 L 60 57.5" strokeOpacity="0.3" />
           </g>
 
-          {/* Animated Cog/Gear (Rotating) */}
           <g transform="translate(258, 118) scale(1.8)">
             <g
               className="motion-safe:animate-spin"
@@ -140,7 +139,6 @@ export function ConstructionBanner({
             </g>
           </g>
 
-          {/* Floating Wrench (Pulsing opacity) */}
           <g
             className="motion-safe:animate-pulse"
             style={{ animationDuration: "3s" }}
@@ -152,7 +150,6 @@ export function ConstructionBanner({
             />
           </g>
 
-          {/* Floating Target/Chassis nodes */}
           <g strokeOpacity="0.8" transform="translate(200, 70)">
             <circle cx="0" cy="0" fill="var(--color-surface)" r="4" />
             <path d="M -8 0 L 8 0 M 0 -8 L 0 8" strokeWidth="1" />
@@ -162,7 +159,6 @@ export function ConstructionBanner({
             <path d="M -8 0 L 8 0 M 0 -8 L 0 8" strokeWidth="1" />
           </g>
 
-          {/* Animated Sparkles / Particles */}
           <path
             className="motion-safe:animate-ping"
             d="M 320 60 L 320 70 M 315 65 L 325 65"

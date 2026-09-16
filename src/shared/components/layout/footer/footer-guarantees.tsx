@@ -1,3 +1,7 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 import {
   MdOutlinePayments,
   MdOutlinePublishedWithChanges,
