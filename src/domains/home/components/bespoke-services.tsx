@@ -3,6 +3,12 @@
 // ─────────────────────────────────────────────
 
 import Link from "next/link";
+import {
+  MdArrowForward,
+  MdCalendarMonth,
+  MdStorefront,
+  MdSwapHoriz,
+} from "react-icons/md";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -15,9 +21,7 @@ export function BespokeServices() {
         <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-low p-space-lg md:p-space-xl">
           <div>
             <div className="mb-space-md flex h-12 w-12 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-lowest text-primary shadow-sm">
-              <span className="material-symbols-outlined text-3xl">
-                calendar_month
-              </span>
+              <MdCalendarMonth className="text-3xl" />
             </div>
             <h3 className="mb-space-xs font-headline-sm font-semibold text-headline-sm text-on-surface">
               Selected Seasonal Offers
@@ -33,17 +37,13 @@ export function BespokeServices() {
             href="#"
           >
             <span>Calculate Terms</span>
-            <span className="material-symbols-outlined text-base">
-              arrow_forward
-            </span>
+            <MdArrowForward className="text-base" />
           </Link>
         </div>
         <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-low p-space-lg md:p-space-xl">
           <div>
             <div className="mb-space-md flex h-12 w-12 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-lowest text-primary shadow-sm">
-              <span className="material-symbols-outlined text-3xl">
-                sync_alt
-              </span>
+              <MdSwapHoriz className="text-3xl" />
             </div>
             <h3 className="mb-space-xs font-headline-sm font-semibold text-headline-sm text-on-surface">
               Seamless Digital Trade-In
@@ -59,17 +59,13 @@ export function BespokeServices() {
             href="#"
           >
             <span>Start Instant Valuation</span>
-            <span className="material-symbols-outlined text-base">
-              arrow_forward
-            </span>
+            <MdArrowForward className="text-base" />
           </Link>
         </div>
         <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-low p-space-lg md:p-space-xl">
           <div>
             <div className="mb-space-md flex h-12 w-12 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-lowest text-primary shadow-sm">
-              <span className="material-symbols-outlined text-3xl">
-                storefront
-              </span>
+              <MdStorefront className="text-3xl" />
             </div>
             <h3 className="mb-space-xs font-headline-sm font-semibold text-headline-sm text-on-surface">
               Private Showroom Viewing
@@ -84,9 +80,7 @@ export function BespokeServices() {
             href="#"
           >
             <span>Book VIP Appointment</span>
-            <span className="material-symbols-outlined text-base">
-              arrow_forward
-            </span>
+            <MdArrowForward className="text-base" />
           </Link>
         </div>
       </div>

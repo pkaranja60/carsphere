@@ -3,6 +3,14 @@
 // ─────────────────────────────────────────────
 
 import Link from "next/link";
+import {
+  MdBolt,
+  MdCommute,
+  MdDirectionsCar,
+  MdGarage,
+  MdSavings,
+  MdSportsMotorsports,
+} from "react-icons/md";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -31,9 +39,7 @@ export function CategoryGrid() {
           href="#"
         >
           <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-white">
-            <span className="material-symbols-outlined text-2xl">
-              directions_car
-            </span>
+            <MdDirectionsCar className="text-2xl" />
           </div>
           <div>
             <h4 className="font-label-lg font-semibold text-label-lg text-on-surface transition-colors group-hover:text-primary">
@@ -49,9 +55,7 @@ export function CategoryGrid() {
           href="#"
         >
           <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-white">
-            <span className="material-symbols-outlined text-2xl">
-              garage_home
-            </span>
+            <MdGarage className="text-2xl" />
           </div>
           <div>
             <h4 className="font-label-lg font-semibold text-label-lg text-on-surface transition-colors group-hover:text-primary">
@@ -67,9 +71,7 @@ export function CategoryGrid() {
           href="#"
         >
           <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-white">
-            <span className="material-symbols-outlined text-2xl">
-              sports_motorsports
-            </span>
+            <MdSportsMotorsports className="text-2xl" />
           </div>
           <div>
             <h4 className="font-label-lg font-semibold text-label-lg text-on-surface transition-colors group-hover:text-primary">
@@ -85,7 +87,7 @@ export function CategoryGrid() {
           href="#"
         >
           <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-tertiary transition-colors group-hover:bg-white">
-            <span className="material-symbols-outlined text-2xl">bolt</span>
+            <MdBolt className="text-2xl" />
           </div>
           <div>
             <h4 className="font-label-lg font-semibold text-label-lg text-on-surface transition-colors group-hover:text-tertiary">
@@ -101,7 +103,7 @@ export function CategoryGrid() {
           href="#"
         >
           <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-white">
-            <span className="material-symbols-outlined text-2xl">commute</span>
+            <MdCommute className="text-2xl" />
           </div>
           <div>
             <h4 className="font-label-lg font-semibold text-label-lg text-on-surface transition-colors group-hover:text-primary">
@@ -117,7 +119,7 @@ export function CategoryGrid() {
           href="#"
         >
           <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-white">
-            <span className="material-symbols-outlined text-2xl">savings</span>
+            <MdSavings className="text-2xl" />
           </div>
           <div>
             <h4 className="font-label-lg font-semibold text-label-lg text-on-surface transition-colors group-hover:text-primary">
