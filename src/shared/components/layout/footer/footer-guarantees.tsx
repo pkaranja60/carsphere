@@ -10,8 +10,8 @@ import {
 
 export function FooterGuarantees() {
   return (
-    <div className="grid grid-cols-1 gap-space-lg border-[#E5E3DD] border-b pb-space-xl md:grid-cols-3">
-      <div className="flex items-start gap-space-md rounded-xl border border-[#E5E3DD] bg-white p-space-md shadow-sm">
+    <div className="grid grid-cols-1 gap-space-lg border-border border-b pb-space-xl md:grid-cols-3">
+      <div className="flex items-start gap-space-md rounded-xl border border-border bg-white p-space-md shadow-sm">
         <MdOutlineVerified className="text-[28px] text-primary" />
         <div>
           <h4 className="font-label-lg font-semibold text-label-lg text-on-surface">
@@ -23,7 +23,7 @@ export function FooterGuarantees() {
           </p>
         </div>
       </div>
-      <div className="flex items-start gap-space-md rounded-xl border border-[#E5E3DD] bg-white p-space-md shadow-sm">
+      <div className="flex items-start gap-space-md rounded-xl border border-border bg-white p-space-md shadow-sm">
         <MdOutlinePublishedWithChanges className="text-[28px] text-primary" />
         <div>
           <h4 className="font-label-lg font-semibold text-label-lg text-on-surface">
@@ -35,7 +35,7 @@ export function FooterGuarantees() {
           </p>
         </div>
       </div>
-      <div className="flex items-start gap-space-md rounded-xl border border-[#E5E3DD] bg-white p-space-md shadow-sm">
+      <div className="flex items-start gap-space-md rounded-xl border border-border bg-white p-space-md shadow-sm">
         <MdOutlinePayments className="text-[28px] text-primary" />
         <div>
           <h4 className="font-label-lg font-semibold text-label-lg text-on-surface">
