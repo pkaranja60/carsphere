@@ -1,16 +1,10 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { ConstructionBanner } from "@/shared/components";
 
 export default function Home() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const toggleTheme = () => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
@@ -38,15 +32,14 @@ export default function Home() {
           © {new Date().getFullYear()} CarSphere
         </p>
 
-        {mounted ? (
-          <button
-            className="cursor-pointer text-label-md text-primary uppercase tracking-widest transition-colors hover:text-primary-container"
-            onClick={toggleTheme}
-            type="button"
-          >
-            {resolvedTheme === "dark" ? "Light Mode" : "Dark Mode"}
-          </button>
-        ) : null}
+        <button
+          className="cursor-pointer text-label-md text-primary uppercase tracking-widest transition-colors hover:text-primary-container"
+          onClick={toggleTheme}
+          suppressHydrationWarning
+          type="button"
+        >
+          {resolvedTheme === "dark" ? "Light Mode" : "Dark Mode"}
+        </button>
       </div>
     </main>
   );
