@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────
 
 import Link from "next/link";
+import { MdArrowForward, MdOutlineEco, MdOutlineSpeed } from "react-icons/md";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -33,9 +34,7 @@ export function CuratedPortfolios() {
               <span className="rounded-full bg-primary-container px-3 py-1 font-label-sm font-semibold text-label-sm text-on-primary uppercase tracking-wider">
                 Tier I Curation
               </span>
-              <span className="material-symbols-outlined text-3xl text-primary-container">
-                speed
-              </span>
+              <MdOutlineSpeed className="text-3xl text-primary-container" />
             </div>
             <h3 className="mb-space-xs font-headline-md font-semibold text-headline-md text-on-surface">
               Premium & Performance
@@ -65,9 +64,7 @@ export function CuratedPortfolios() {
               href="#"
             >
               <span>View Collection (142 Vehicles)</span>
-              <span className="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1">
-                arrow_forward
-              </span>
+              <MdArrowForward className="text-lg transition-transform group-hover:translate-x-1" />
             </Link>
             <span className="font-price-card font-semibold text-on-surface text-price-card">
               $68k – $320k
@@ -81,9 +78,7 @@ export function CuratedPortfolios() {
               <span className="rounded-full bg-tertiary px-3 py-1 font-label-sm font-semibold text-label-sm text-on-tertiary uppercase tracking-wider">
                 Tier II Certified
               </span>
-              <span className="material-symbols-outlined text-3xl text-tertiary">
-                eco
-              </span>
+              <MdOutlineEco className="text-3xl text-tertiary" />
             </div>
             <h3 className="mb-space-xs font-headline-md font-semibold text-headline-md text-on-surface">
               Everyday Excellence
@@ -113,9 +108,7 @@ export function CuratedPortfolios() {
               href="#"
             >
               <span>Explore Daily Drivers (340 Vehicles)</span>
-              <span className="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1">
-                arrow_forward
-              </span>
+              <MdArrowForward className="text-lg transition-transform group-hover:translate-x-1" />
             </Link>
             <span className="font-price-card font-semibold text-on-surface text-price-card">
               $24k – $45k
