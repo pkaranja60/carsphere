@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────
 
 import Link from "next/link";
+import { SectionLayout } from "@/shared/components";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -10,7 +11,7 @@ import Link from "next/link";
 
 export function TopBrands() {
   return (
-    <section className="mx-auto mt-space-lg w-full max-w-345 px-margin-mobile pt-space-xl pb-space-xl md:px-margin">
+    <SectionLayout className="mt-space-lg pb-space-xl">
       <div className="rounded-xl border border-surface-variant bg-surface-container-lowest p-space-lg shadow-sm md:p-space-xl">
         <div className="flex flex-col items-center justify-between gap-space-sm border-surface-container border-b pb-space-lg md:flex-row">
           <div>
@@ -119,6 +120,6 @@ export function TopBrands() {
           </Link>
         </div>
       </div>
-    </section>
+    </SectionLayout>
   );
 }

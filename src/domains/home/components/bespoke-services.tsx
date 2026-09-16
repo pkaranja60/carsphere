@@ -9,6 +9,7 @@ import {
   MdStorefront,
   MdSwapHoriz,
 } from "react-icons/md";
+import { SectionLayout } from "@/shared/components";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -16,7 +17,7 @@ import {
 
 export function BespokeServices() {
   return (
-    <section className="mx-auto mt-space-xl w-full max-w-345 px-margin-mobile pt-space-xl md:px-margin">
+    <SectionLayout className="mt-space-xl">
       <div className="grid grid-cols-1 gap-space-lg md:grid-cols-3">
         <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-low p-space-lg md:p-space-xl">
           <div>
@@ -84,6 +85,6 @@ export function BespokeServices() {
           </Link>
         </div>
       </div>
-    </section>
+    </SectionLayout>
   );
 }

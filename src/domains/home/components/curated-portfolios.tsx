@@ -4,6 +4,7 @@
 
 import Link from "next/link";
 import { MdArrowForward, MdOutlineEco, MdOutlineSpeed } from "react-icons/md";
+import { SectionLayout } from "@/shared/components";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -11,7 +12,7 @@ import { MdArrowForward, MdOutlineEco, MdOutlineSpeed } from "react-icons/md";
 
 export function CuratedPortfolios() {
   return (
-    <section className="mx-auto mt-space-lg w-full max-w-345 px-margin-mobile pt-space-xl md:px-margin">
+    <SectionLayout className="mt-space-lg">
       <div className="mb-space-lg flex flex-col items-start justify-between gap-space-xs md:flex-row md:items-end">
         <div>
           <span className="mb-space-xs block font-label-sm font-semibold text-label-sm text-primary uppercase tracking-widest">
@@ -116,6 +117,6 @@ export function CuratedPortfolios() {
           </div>
         </div>
       </div>
-    </section>
+    </SectionLayout>
   );
 }

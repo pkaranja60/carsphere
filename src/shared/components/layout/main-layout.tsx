@@ -2,30 +2,22 @@
 // SECTION: Imports
 // ─────────────────────────────────────────────
 
-import {
-  BespokeServices,
-  CategoryGrid,
-  CuratedPortfolios,
-  FeaturedVehicles,
-  HeroSection,
-  OmniSearch,
-  TopBrands,
-} from "../components";
+import type { ReactNode } from "react";
+import { Footer } from "./footer";
+import { Header } from "./header";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
 // ─────────────────────────────────────────────
 
-export function HomeView() {
+export function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex w-full flex-col">
-      <HeroSection />
-      <OmniSearch />
-      <CuratedPortfolios />
-      <FeaturedVehicles />
-      <CategoryGrid />
-      <BespokeServices />
-      <TopBrands />
-    </div>
+    <>
+      <Header />
+      <main className="flex min-h-screen w-full flex-col bg-surface pt-30">
+        {children}
+      </main>
+      <Footer />
+    </>
   );
 }

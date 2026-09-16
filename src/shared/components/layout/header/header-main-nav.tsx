@@ -15,14 +15,11 @@ export function HeaderMainNav() {
     <div className="w-full border-border border-b bg-surface-container-lowest/95 shadow-[0_1px_8px_rgba(0,0,0,0.04)] backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-345 items-center justify-between gap-space-md px-margin-mobile md:px-margin">
         <Link className="flex shrink-0 items-center" href="/">
-          <Image
-            alt="Drivez Premium Motors"
-            className="h-9 w-auto object-contain"
-            height={36}
-            priority
-            src="https://lh3.googleusercontent.com/aida/AEtjO1Vwe5yZ48YSwXVGgjY8470BrT1AnG0L3VcRnzM1G1a-X2JRj4RRgdQuZq735rWrwXr0QrWIRXS7_lWgKOh0yxts_Gl-7Oa-JXkwUXhMNSi0GlSh5Aicfm6HHzEWzBZ6sryvWR91IRn2zaPj4C2oFsTqdZ0LYoBorwwcuXajNtDxCNQydVRnylhgwtSpGUwhLWtiOmJpyyJrhoAK6gYA5Z8rJYaXpdUNodGM6jtBKopy04ivO-WCDJDoGuQ"
-            width={180}
-          />
+          <div className="flex items-center gap-2">
+            <span className="font-bold font-display text-on-surface text-xl tracking-tight">
+              Car<span className="text-primary">Sphere</span>
+            </span>
+          </div>
         </Link>
 
         <nav className="hidden items-center gap-space-lg xl:flex">

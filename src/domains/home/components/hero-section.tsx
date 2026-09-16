@@ -12,7 +12,7 @@ import { TrustStrip } from "./trust-strip";
 
 export function HeroSection() {
   return (
-    <section className="relative -mt-30 w-full overflow-hidden border-b bg-surface-container-low">
+    <section className="relative -mt-40 w-full overflow-hidden border-b bg-surface-container-low">
       <div className="absolute inset-0 z-0">
         <div
           aria-label="Editorial photograph of a sleek executive sports car parked under an architectural warm limestone and dark cedar pavilion, soft ambient morning sunlight, minimal luxury villa driveway, warm reflections, neutral sand and deep charcoal palette, high resolution commercial automotive lighting"

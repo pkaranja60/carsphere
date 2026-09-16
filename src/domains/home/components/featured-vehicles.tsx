@@ -4,7 +4,7 @@
 
 import Link from "next/link";
 import { MdArrowForward } from "react-icons/md";
-import { VehicleCard } from "../../../shared/components/vehicle-card";
+import { SectionLayout, VehicleCard } from "@/shared/components";
 
 // ─────────────────────────────────────────────
 // SECTION: Components
@@ -12,7 +12,7 @@ import { VehicleCard } from "../../../shared/components/vehicle-card";
 
 export function FeaturedVehicles() {
   return (
-    <section className="mx-auto mt-space-lg w-full max-w-345 px-margin-mobile pt-space-xl md:px-margin">
+    <SectionLayout className="mt-space-lg">
       <div className="mb-space-lg flex flex-col items-start justify-between gap-space-sm md:flex-row md:items-end">
         <div>
           <span className="mb-space-xs block font-label-sm font-semibold text-label-sm text-primary uppercase tracking-widest">
@@ -122,6 +122,6 @@ export function FeaturedVehicles() {
           year="2024"
         />
       </div>
-    </section>
+    </SectionLayout>
   );
 }
