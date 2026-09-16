@@ -1,16 +1,20 @@
 // ─────────────────────────────────────────────
 // SECTION: Components
 // ─────────────────────────────────────────────
+import {
+  MdPercent,
+  MdPriceCheck,
+  MdRoomService,
+  MdVerifiedUser,
+} from "react-icons/md";
 
 export function TrustStrip() {
   return (
     <div className="pt-space-xl">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-4">
-        <div className="flex items-center gap-3 rounded-lg border border-surface-variant bg-white p-3.5 px-4 shadow-md transition-transform hover:-translate-y-0.5">
+        <div className="flex items-center gap-3 rounded-lg border border-surface-variant bg-surface-container-lowest p-3.5 px-4 shadow-md transition-transform hover:-translate-y-0.5">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-surface-variant bg-surface-bright">
-            <span className="material-symbols-outlined text-2xl text-primary-container">
-              verified_user
-            </span>
+            <MdVerifiedUser className="text-2xl text-primary-container" />
           </div>
           <div className="flex min-w-0 flex-col leading-tight">
             <span className="truncate font-bold font-label-sm text-on-surface">
@@ -21,11 +25,9 @@ export function TrustStrip() {
             </span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-lg border border-surface-variant bg-white p-3.5 px-4 shadow-md transition-transform hover:-translate-y-0.5">
+        <div className="flex items-center gap-3 rounded-lg border border-surface-variant bg-surface-container-lowest p-3.5 px-4 shadow-md transition-transform hover:-translate-y-0.5">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-surface-variant bg-surface-bright">
-            <span className="material-symbols-outlined text-2xl text-primary-container">
-              price_check
-            </span>
+            <MdPriceCheck className="text-2xl text-primary-container" />
           </div>
           <div className="flex min-w-0 flex-col leading-tight">
             <span className="truncate font-bold font-label-sm text-on-surface">
@@ -36,11 +38,9 @@ export function TrustStrip() {
             </span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-lg border border-surface-variant bg-white p-3.5 px-4 shadow-md transition-transform hover:-translate-y-0.5">
+        <div className="flex items-center gap-3 rounded-lg border border-surface-variant bg-surface-container-lowest p-3.5 px-4 shadow-md transition-transform hover:-translate-y-0.5">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-surface-variant bg-surface-bright">
-            <span className="material-symbols-outlined text-2xl text-tertiary">
-              percent
-            </span>
+            <MdPercent className="text-2xl text-tertiary" />
           </div>
           <div className="flex min-w-0 flex-col leading-tight">
             <span className="truncate font-bold font-label-sm text-on-surface">
@@ -51,11 +51,9 @@ export function TrustStrip() {
             </span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-lg border border-surface-variant bg-white p-3.5 px-4 shadow-md transition-transform hover:-translate-y-0.5">
+        <div className="flex items-center gap-3 rounded-lg border border-surface-variant bg-surface-container-lowest p-3.5 px-4 shadow-md transition-transform hover:-translate-y-0.5">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-surface-variant bg-surface-bright">
-            <span className="material-symbols-outlined text-2xl text-tertiary">
-              room_service
-            </span>
+            <MdRoomService className="text-2xl text-tertiary" />
           </div>
           <div className="flex min-w-0 flex-col leading-tight">
             <span className="truncate font-bold font-label-sm text-on-surface">

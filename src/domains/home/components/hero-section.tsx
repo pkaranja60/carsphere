@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────
 
 import Link from "next/link";
+import { MdArrowOutward } from "react-icons/md";
 import { TrustStrip } from "./trust-strip";
 
 // ─────────────────────────────────────────────
@@ -51,9 +52,7 @@ export function HeroSection() {
               href="#"
             >
               <span>Explore Curated Inventory</span>
-              <span className="material-symbols-outlined text-lg">
-                north_east
-              </span>
+              <MdArrowOutward className="text-lg" />
             </Link>
             <Link
               className="flex h-13 items-center justify-center rounded-lg border border-white/30 bg-white/15 px-8 font-label-lg font-semibold text-label-lg text-surface-bright shadow-md backdrop-blur-md transition-all hover:bg-white/25"

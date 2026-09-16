@@ -1,11 +1,17 @@
 // ─────────────────────────────────────────────
 // SECTION: Components
 // ─────────────────────────────────────────────
+import {
+  MdExpandMore,
+  MdManageSearch,
+  MdSearch,
+  MdUnfoldMore,
+} from "react-icons/md";
 
 export function OmniSearch() {
   return (
     <section className="relative z-20 mx-auto -mt-10 w-full max-w-345 px-margin-mobile md:-mt-14 md:px-margin">
-      <div className="rounded-xl border border-outline-variant bg-white p-6 shadow-xl">
+      <div className="rounded-xl border border-outline-variant bg-surface-container-lowest p-6 shadow-xl">
         <div className="flex flex-col gap-space-md">
           <div className="flex flex-wrap items-center justify-between gap-space-xs border-surface-container border-b pb-space-xs">
             <div
@@ -13,7 +19,7 @@ export function OmniSearch() {
               id="inventory-tabs"
             >
               <button
-                className="rounded-lg bg-white px-4 py-1.5 font-bold text-label-sm text-on-surface shadow-sm transition-all"
+                className="rounded-lg bg-surface px-4 py-1.5 font-bold text-label-sm text-on-surface shadow-sm transition-all"
                 type="button"
               >
                 All Inventory (482)
@@ -51,11 +57,9 @@ export function OmniSearch() {
                 Make & Model
               </label>
               <div className="relative flex items-center">
-                <span className="material-symbols-outlined absolute left-3 text-lg text-outline">
-                  search
-                </span>
+                <MdSearch className="absolute left-3 text-lg text-outline" />
                 <input
-                  className="h-11 w-full rounded-lg border border-outline-variant bg-surface-bright pr-3 pl-9 font-body-sm text-body-sm text-on-surface transition-all placeholder:text-outline focus:border-primary-container focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-container/30"
+                  className="h-11 w-full rounded-lg border border-outline-variant bg-surface-bright pr-3 pl-9 font-body-sm text-body-sm text-on-surface transition-all placeholder:text-outline focus:border-primary-container focus:bg-surface focus:outline-none focus:ring-2 focus:ring-primary-container/30"
                   id="search-make-model"
                   placeholder="e.g. Porsche, BMW, Genesis..."
                   type="text"
@@ -71,7 +75,7 @@ export function OmniSearch() {
               </label>
               <div className="relative flex items-center">
                 <select
-                  className="h-11 w-full cursor-pointer appearance-none rounded-lg border border-outline-variant bg-surface-bright px-3 font-body-sm text-body-sm text-on-surface transition-all focus:border-primary-container focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-container/30"
+                  className="h-11 w-full cursor-pointer appearance-none rounded-lg border border-outline-variant bg-surface-bright px-3 font-body-sm text-body-sm text-on-surface transition-all focus:border-primary-container focus:bg-surface focus:outline-none focus:ring-2 focus:ring-primary-container/30"
                   id="search-body-style"
                 >
                   <option value="all">All Body Styles</option>
@@ -80,9 +84,7 @@ export function OmniSearch() {
                   <option value="coupe">Grand Tourer & Coupe</option>
                   <option value="wagon">Estate & Sport Wagon</option>
                 </select>
-                <span className="material-symbols-outlined pointer-events-none absolute right-3 text-lg text-outline">
-                  unfold_more
-                </span>
+                <MdUnfoldMore className="pointer-events-none absolute right-3 text-lg text-outline" />
               </div>
             </div>
             <div className="flex flex-col gap-space-xs">
@@ -94,7 +96,7 @@ export function OmniSearch() {
               </label>
               <div className="relative flex items-center">
                 <select
-                  className="h-11 w-full cursor-pointer appearance-none rounded-lg border border-outline-variant bg-surface-bright px-3 font-body-sm text-body-sm text-on-surface transition-all focus:border-primary-container focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-container/30"
+                  className="h-11 w-full cursor-pointer appearance-none rounded-lg border border-outline-variant bg-surface-bright px-3 font-body-sm text-body-sm text-on-surface transition-all focus:border-primary-container focus:bg-surface focus:outline-none focus:ring-2 focus:ring-primary-container/30"
                   id="search-budget"
                 >
                   <option value="all">All Prices</option>
@@ -103,9 +105,7 @@ export function OmniSearch() {
                   <option value="75-150k">$75,000 – $150,000</option>
                   <option value="150k">$150,000+</option>
                 </select>
-                <span className="material-symbols-outlined pointer-events-none absolute right-3 text-lg text-outline">
-                  expand_more
-                </span>
+                <MdExpandMore className="pointer-events-none absolute right-3 text-lg text-outline" />
               </div>
             </div>
             <div className="flex flex-col gap-space-xs">
@@ -117,7 +117,7 @@ export function OmniSearch() {
               </label>
               <div className="relative flex items-center">
                 <select
-                  className="h-11 w-full cursor-pointer appearance-none rounded-lg border border-outline-variant bg-surface-bright px-3 font-body-sm text-body-sm text-on-surface transition-all focus:border-primary-container focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-container/30"
+                  className="h-11 w-full cursor-pointer appearance-none rounded-lg border border-outline-variant bg-surface-bright px-3 font-body-sm text-body-sm text-on-surface transition-all focus:border-primary-container focus:bg-surface focus:outline-none focus:ring-2 focus:ring-primary-container/30"
                   id="search-provenance"
                 >
                   <option value="all">Any Condition</option>
@@ -126,9 +126,7 @@ export function OmniSearch() {
                   <option value="new">Arrived This Week</option>
                   <option value="low">Under 15,000 Miles</option>
                 </select>
-                <span className="material-symbols-outlined pointer-events-none absolute right-3 text-lg text-outline">
-                  expand_more
-                </span>
+                <MdExpandMore className="pointer-events-none absolute right-3 text-lg text-outline" />
               </div>
             </div>
             <div>
@@ -136,9 +134,7 @@ export function OmniSearch() {
                 className="flex h-11 w-full items-center justify-center gap-space-xs rounded-lg bg-primary-container font-label-md font-semibold text-label-md text-white uppercase tracking-wider shadow-md transition-all hover:bg-primary hover:shadow-lg active:translate-y-0.5"
                 type="button"
               >
-                <span className="material-symbols-outlined text-lg">
-                  manage_search
-                </span>
+                <MdManageSearch className="text-lg" />
                 <span>Search 482 Cars</span>
               </button>
             </div>
