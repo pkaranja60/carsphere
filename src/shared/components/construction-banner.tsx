@@ -84,7 +84,10 @@ export function ConstructionBanner({
 
           {/* Floating Cube 1 (Animated Bounce) */}
           <g transform="translate(140, 0)">
-            <g className="animate-bounce" style={{ animationDuration: "4s" }}>
+            <g
+              className="motion-safe:animate-bounce"
+              style={{ animationDuration: "4s" }}
+            >
               <path
                 d="M 100 80 L 130 95 L 100 110 L 70 95 Z"
                 fill="var(--color-surface)"
@@ -98,7 +101,7 @@ export function ConstructionBanner({
           {/* Floating Cube 2 (Small, offset bounce) */}
           <g transform="translate(100, 12) scale(0.6)">
             <g
-              className="animate-bounce"
+              className="motion-safe:animate-bounce"
               style={{ animationDelay: "1s", animationDuration: "5s" }}
             >
               <path
@@ -129,7 +132,7 @@ export function ConstructionBanner({
           {/* Animated Cog/Gear (Rotating) */}
           <g transform="translate(258, 118) scale(1.8)">
             <g
-              className="animate-spin"
+              className="motion-safe:animate-spin"
               style={{ animationDuration: "8s", transformOrigin: "12px 12px" }}
             >
               <circle cx="12" cy="12" fill="var(--color-surface)" r="3" />
@@ -139,7 +142,7 @@ export function ConstructionBanner({
 
           {/* Floating Wrench (Pulsing opacity) */}
           <g
-            className="animate-pulse"
+            className="motion-safe:animate-pulse"
             style={{ animationDuration: "3s" }}
             transform="translate(90, 160) rotate(-30) scale(1.4)"
           >
@@ -161,13 +164,13 @@ export function ConstructionBanner({
 
           {/* Animated Sparkles / Particles */}
           <path
-            className="animate-ping"
+            className="motion-safe:animate-ping"
             d="M 320 60 L 320 70 M 315 65 L 325 65"
             strokeWidth="1.5"
             style={{ animationDuration: "2s" }}
           />
           <path
-            className="animate-ping"
+            className="motion-safe:animate-ping"
             d="M 80 40 L 80 50 M 75 45 L 85 45"
             strokeWidth="1.5"
             style={{ animationDelay: "1s", animationDuration: "3s" }}

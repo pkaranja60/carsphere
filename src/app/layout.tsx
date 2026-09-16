@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { ThemeProvider } from "./providers";
 import "./globals.css";
@@ -17,6 +17,12 @@ export const metadata: Metadata = {
   description:
     "Shop cars online with ease. Browse, compare, and buy vehicles that match your needs, preferences, and budget from a modern car marketplace.",
   title: "CarSphere - Car Marketplace",
+};
+
+export const viewport: Viewport = {
+  initialScale: 1,
+  viewportFit: "cover",
+  width: "device-width",
 };
 
 export default function RootLayout({

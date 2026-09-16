@@ -123,6 +123,10 @@ const cleanupFns: Array<() => void> = [];
  * each event, requiring a new query for the updated value.
  */
 function setupDprWatcher(): () => void {
+  if (typeof window.matchMedia !== "function") {
+    return () => undefined;
+  }
+
   let active = true;
 
   const watch = () => {
@@ -134,17 +138,22 @@ function setupDprWatcher(): () => void {
       `(resolution: ${window.devicePixelRatio}dppx)`
     );
 
-    mql.addEventListener(
-      "change",
-      () => {
-        if (!active) {
-          return;
-        }
-        scheduleUpdate();
-        watch();
-      },
-      { once: true }
-    );
+    const handler = () => {
+      if (!active) {
+        return;
+      }
+      scheduleUpdate();
+      watch();
+    };
+
+    if (typeof mql.addEventListener === "function") {
+      mql.addEventListener("change", handler, { once: true });
+    } else if (typeof mql.addListener === "function") {
+      mql.addListener(function legacyHandler() {
+        mql.removeListener(legacyHandler);
+        handler();
+      });
+    }
   };
 
   watch();

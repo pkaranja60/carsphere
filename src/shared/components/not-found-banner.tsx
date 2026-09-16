@@ -69,7 +69,7 @@ export function NotFoundBanner({
 
             {/* The broken edge warning marker */}
             <circle
-              className="animate-pulse"
+              className="motion-safe:animate-pulse"
               cx="210"
               cy="115"
               fill="var(--color-error)"
