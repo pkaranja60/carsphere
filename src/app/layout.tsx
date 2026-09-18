@@ -43,7 +43,12 @@ export default function RootLayout({
         className="flex min-h-full flex-col overflow-x-hidden bg-background font-sans text-on-background"
         suppressHydrationWarning
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          disableTransitionOnChange
+          enableSystem
+        >
           <MainLayout>{children}</MainLayout>
         </ThemeProvider>
       </body>

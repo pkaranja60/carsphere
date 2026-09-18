@@ -38,6 +38,17 @@ export function MobileNav({ items }: MobileNavProps) {
     setIsOpen(false);
   }, [pathname]);
 
+  // Close menu when resizing past the xl breakpoint
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1280 && isOpen) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isOpen]);
+
   // Prevent scrolling when menu is open
   useEffect(() => {
     if (isOpen) {
