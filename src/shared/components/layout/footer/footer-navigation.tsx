@@ -5,100 +5,82 @@
 import Link from "next/link";
 
 // ─────────────────────────────────────────────
+// SECTION: Types & Data
+// ─────────────────────────────────────────────
+
+interface NavigationLink {
+  href: string;
+  label: string;
+}
+
+interface NavigationGroup {
+  links: NavigationLink[];
+  title: string;
+}
+
+const LINK_GROUPS: NavigationGroup[] = [
+  {
+    links: [
+      { href: "#", label: "Certified Pre-Owned" },
+      { href: "#", label: "Executive Sedans" },
+      { href: "#", label: "Performance Coupes" },
+      { href: "#", label: "Luxury Touring SUVs" },
+      { href: "#", label: "Verified Under $35k" },
+    ],
+    title: "Curated Inventory",
+  },
+  {
+    links: [
+      { href: "#", label: "Bespoke Lease Structures" },
+      { href: "#", label: "Direct Financing" },
+      { href: "#", label: "Digital Trade-In Valuation" },
+      { href: "#", label: "7-Day Buyback Guarantee" },
+    ],
+    title: "Acquisition & Finance",
+  },
+  {
+    links: [
+      { href: "#", label: "Private Showroom Appointments" },
+      { href: "#", label: "Nationwide Transport" },
+      { href: "#", label: "VIP Test Drive Booking" },
+      { href: "#", label: "Vehicle Sourcing" },
+    ],
+    title: "Concierge & Services",
+  },
+];
+
+// ─────────────────────────────────────────────
 // SECTION: Components
 // ─────────────────────────────────────────────
+
+function LinkGroup({ title, links }: NavigationGroup) {
+  return (
+    <div>
+      <h5 className="mb-space-md font-label-lg font-semibold text-label-lg text-on-surface uppercase tracking-wider">
+        {title}
+      </h5>
+      <ul className="flex flex-col gap-space-sm font-body-sm text-body-sm text-on-surface-variant">
+        {links.map((link) => (
+          <li key={link.label}>
+            <Link
+              className="transition-colors hover:text-primary"
+              href={link.href}
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function FooterNavigation() {
   return (
     <>
-      <div>
-        <h5 className="mb-space-md font-label-lg font-semibold text-label-lg text-on-surface uppercase tracking-wider">
-          Curated Inventory
-        </h5>
-        <ul className="flex flex-col gap-space-sm font-body-sm text-body-sm text-on-surface-variant">
-          <li>
-            <Link className="transition-colors hover:text-primary" href="#">
-              Certified Pre-Owned
-            </Link>
-          </li>
-          <li>
-            <Link className="transition-colors hover:text-primary" href="#">
-              Executive Sedans
-            </Link>
-          </li>
-          <li>
-            <Link className="transition-colors hover:text-primary" href="#">
-              Performance Coupes
-            </Link>
-          </li>
-          <li>
-            <Link className="transition-colors hover:text-primary" href="#">
-              Luxury Touring SUVs
-            </Link>
-          </li>
-          <li>
-            <Link className="transition-colors hover:text-primary" href="#">
-              Verified Under $35k
-            </Link>
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <h5 className="mb-space-md font-label-lg font-semibold text-label-lg text-on-surface uppercase tracking-wider">
-          Acquisition & Finance
-        </h5>
-        <ul className="flex flex-col gap-space-sm font-body-sm text-body-sm text-on-surface-variant">
-          <li>
-            <Link className="transition-colors hover:text-primary" href="#">
-              Bespoke Lease Structures
-            </Link>
-          </li>
-          <li>
-            <Link className="transition-colors hover:text-primary" href="#">
-              Direct Financing
-            </Link>
-          </li>
-          <li>
-            <Link className="transition-colors hover:text-primary" href="#">
-              Digital Trade-In Valuation
-            </Link>
-          </li>
-          <li>
-            <Link className="transition-colors hover:text-primary" href="#">
-              7-Day Buyback Guarantee
-            </Link>
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <h5 className="mb-space-md font-label-lg font-semibold text-label-lg text-on-surface uppercase tracking-wider">
-          Concierge & Services
-        </h5>
-        <ul className="flex flex-col gap-space-sm font-body-sm text-body-sm text-on-surface-variant">
-          <li>
-            <Link className="transition-colors hover:text-primary" href="#">
-              Private Showroom Appointments
-            </Link>
-          </li>
-          <li>
-            <Link className="transition-colors hover:text-primary" href="#">
-              Nationwide Transport
-            </Link>
-          </li>
-          <li>
-            <Link className="transition-colors hover:text-primary" href="#">
-              VIP Test Drive Booking
-            </Link>
-          </li>
-          <li>
-            <Link className="transition-colors hover:text-primary" href="#">
-              Vehicle Sourcing
-            </Link>
-          </li>
-        </ul>
-      </div>
+      {LINK_GROUPS.map((group) => (
+        <LinkGroup key={group.title} {...group} />
+      ))}
 
       <div>
         <h5 className="mb-space-md font-label-lg font-semibold text-label-lg text-on-surface uppercase tracking-wider">
@@ -110,7 +92,7 @@ export function FooterNavigation() {
           Beverly Hills, CA 90212
         </p>
         <div className="mt-space-sm font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-          <span className="block">Monday – Saturday: 9am – 8pm</span>
+          <span className="block">Monday - Saturday: 9am - 8pm</span>
           <span className="block">Sunday: By Private Appointment</span>
         </div>
         <div className="mt-space-md">

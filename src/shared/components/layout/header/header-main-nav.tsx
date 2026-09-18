@@ -7,8 +7,40 @@ import Link from "next/link";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 
 // ─────────────────────────────────────────────
+// SECTION: Types & Data
+// ─────────────────────────────────────────────
+
+interface NavItem {
+  href: string;
+  isActive?: boolean;
+  label: string;
+}
+
+const NAV_ITEMS: NavItem[] = [
+  { href: "#", isActive: true, label: "Inventory" },
+  { href: "#", label: "Premium & Performance" },
+  { href: "#", label: "Everyday Excellence" },
+  { href: "#", label: "Sell & Trade" },
+  { href: "#", label: "Financing" },
+  { href: "#", label: "Concierge" },
+];
+
+// ─────────────────────────────────────────────
 // SECTION: Component
 // ─────────────────────────────────────────────
+
+function HeaderLink({ label, href, isActive }: NavItem) {
+  const baseClasses = "font-label-lg text-label-lg transition-colors";
+  const activeClasses = isActive
+    ? "font-bold text-primary hover:text-primary"
+    : "text-on-surface-variant hover:text-on-surface";
+
+  return (
+    <Link className={`${baseClasses} ${activeClasses}`} href={href}>
+      {label}
+    </Link>
+  );
+}
 
 export function HeaderMainNav() {
   return (
@@ -23,42 +55,9 @@ export function HeaderMainNav() {
         </Link>
 
         <nav className="hidden items-center gap-space-lg xl:flex">
-          <Link
-            className="font-bold font-label-lg text-label-lg text-primary transition-colors hover:text-primary"
-            href="#"
-          >
-            Inventory
-          </Link>
-          <Link
-            className="font-label-lg text-label-lg text-on-surface-variant transition-colors hover:text-on-surface"
-            href="#"
-          >
-            Premium & Performance
-          </Link>
-          <Link
-            className="font-label-lg text-label-lg text-on-surface-variant transition-colors hover:text-on-surface"
-            href="#"
-          >
-            Everyday Excellence
-          </Link>
-          <Link
-            className="font-label-lg text-label-lg text-on-surface-variant transition-colors hover:text-on-surface"
-            href="#"
-          >
-            Sell & Trade
-          </Link>
-          <Link
-            className="font-label-lg text-label-lg text-on-surface-variant transition-colors hover:text-on-surface"
-            href="#"
-          >
-            Financing
-          </Link>
-          <Link
-            className="font-label-lg text-label-lg text-on-surface-variant transition-colors hover:text-on-surface"
-            href="#"
-          >
-            Concierge
-          </Link>
+          {NAV_ITEMS.map((item) => (
+            <HeaderLink key={item.label} {...item} />
+          ))}
         </nav>
 
         <div className="flex shrink-0 items-center gap-space-md">
