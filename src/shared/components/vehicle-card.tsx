@@ -8,6 +8,7 @@ import {
   MdFavoriteBorder,
   MdOutlineVerified,
 } from "react-icons/md";
+import { Button } from "@/shared/components/ui/button";
 
 // ─────────────────────────────────────────────
 // SECTION: Interfaces
@@ -70,13 +71,14 @@ export function VehicleCard({
               {badgeText}
             </span>
           </div>
-          <button
+          <Button
             aria-label="Save to garage"
-            className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-surface/90 text-on-surface-variant shadow-sm backdrop-blur-sm transition-colors hover:text-primary"
-            type="button"
+            className="absolute top-3 right-3"
+            size="icon-md"
+            variant="icon-blur"
           >
             <MdFavoriteBorder className="text-lg" />
-          </button>
+          </Button>
         </div>
 
         <div className="p-space-md">
@@ -142,13 +144,15 @@ export function VehicleCard({
             {historyText}
           </span>
         </div>
-        <button
-          className="flex h-10 w-full items-center justify-center gap-space-xs rounded-lg bg-surface-container-high font-label-md font-semibold text-label-md text-on-surface transition-colors hover:bg-surface-container-highest"
-          type="button"
+        <Button
+          className="gap-space-xs"
+          fullWidth
+          size="md"
+          variant="secondary"
         >
           <span>View Specification</span>
           <MdChevronRight className="text-base" />
-        </button>
+        </Button>
       </div>
     </article>
   );

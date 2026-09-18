@@ -6,6 +6,7 @@ import {
   Autocomplete,
   AutocompleteItem,
 } from "@/shared/components/ui/autocomplete";
+import { Button } from "@/shared/components/ui/button";
 import { Select, SelectItem } from "@/shared/components/ui/select";
 import {
   Tab,
@@ -119,13 +120,15 @@ export function OmniSearch() {
               </Select>
             </div>
             <div>
-              <button
-                className="flex h-11 w-full items-center justify-center gap-space-xs rounded-lg bg-primary-container font-label-md font-semibold text-label-md text-white uppercase tracking-wider shadow-md transition-all hover:bg-primary hover:shadow-lg active:translate-y-0.5"
-                type="button"
+              <Button
+                className="gap-space-xs"
+                fullWidth
+                size="lg"
+                variant="primary"
               >
                 <MdManageSearch className="text-lg" />
                 <span>Search 482 Cars</span>
-              </button>
+              </Button>
             </div>
           </div>
         </div>

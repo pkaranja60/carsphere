@@ -1,7 +1,7 @@
 // ─────────────────────────────────────────────
 // SECTION: Imports
 // ─────────────────────────────────────────────
-
+import { Button } from "@/shared/components/ui/button";
 // ─────────────────────────────────────────────
 // SECTION: Components
 // ─────────────────────────────────────────────
@@ -29,12 +29,9 @@ export function FooterNewsletter() {
             placeholder="Enter your private email"
             type="email"
           />
-          <button
-            className="h-10 rounded-lg bg-primary-container px-space-lg font-label-md font-semibold text-label-md text-white uppercase tracking-wider transition-colors hover:bg-primary"
-            type="submit"
-          >
+          <Button size="md" type="submit" variant="primary">
             Subscribe
-          </button>
+          </Button>
         </div>
       </div>
     </div>
