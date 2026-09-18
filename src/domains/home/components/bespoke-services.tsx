@@ -58,20 +58,20 @@ function ServiceCard({
   actionText,
 }: BespokeServiceItem) {
   return (
-    <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-low p-space-lg md:p-space-xl">
+    <div className="group relative flex flex-col justify-between rounded-xl border border-white/10 bg-white/5 p-space-lg backdrop-blur-md transition-colors hover:bg-white/10 md:p-space-xl">
       <div>
-        <div className="mb-space-md flex h-12 w-12 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-lowest text-primary shadow-sm">
+        <div className="mb-space-md flex h-12 w-12 items-center justify-center rounded-lg border border-white/20 bg-white/10 text-primary-fixed-dim">
           <Icon className="text-3xl" />
         </div>
-        <h3 className="mb-space-xs font-headline-sm font-semibold text-headline-sm text-on-surface">
+        <h3 className="mb-space-xs font-headline-sm font-semibold text-headline-sm text-white">
           {title}
         </h3>
-        <p className="mb-space-lg font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        <p className="mb-space-lg font-body-sm text-body-sm text-white/70 leading-relaxed">
           {description}
         </p>
       </div>
       <Link
-        className="inline-flex items-center gap-space-xs font-label-md font-semibold text-label-md text-primary uppercase tracking-wider transition-colors hover:text-primary-container"
+        className="inline-flex items-center gap-space-xs font-label-md font-semibold text-label-md text-primary-fixed-dim uppercase tracking-wider transition-opacity hover:opacity-80"
         href="#"
       >
         <span>{actionText}</span>
@@ -83,12 +83,14 @@ function ServiceCard({
 
 export function BespokeServices() {
   return (
-    <SectionLayout className="mt-space-xl">
-      <div className="grid grid-cols-1 gap-space-lg md:grid-cols-3">
-        {BESPOKE_SERVICES.map((service) => (
-          <ServiceCard key={service.title} {...service} />
-        ))}
-      </div>
-    </SectionLayout>
+    <div className="mt-space-xl bg-black text-white">
+      <SectionLayout className="pb-space-xl">
+        <div className="grid grid-cols-1 gap-space-md md:grid-cols-3 md:gap-space-lg">
+          {BESPOKE_SERVICES.map((service) => (
+            <ServiceCard key={service.title} {...service} />
+          ))}
+        </div>
+      </SectionLayout>
+    </div>
   );
 }

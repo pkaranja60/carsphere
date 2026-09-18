@@ -26,7 +26,7 @@ export function FeaturedVehicles() {
           className="inline-flex items-center gap-space-xs font-label-lg font-semibold text-label-lg text-on-surface transition-colors hover:text-primary"
           href="#"
         >
-          <span>View Full 482 Vehicles</span>
+          <span>View All Featured Vehicles</span>
           <MdArrowForward className="text-lg" />
         </Link>
       </div>

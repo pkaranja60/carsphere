@@ -56,7 +56,7 @@ export function VehicleCard({
   historyText,
 }: VehicleCardProps) {
   return (
-    <article className="group flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest shadow-sm transition-all hover:shadow-md">
+    <article className="group flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest shadow-none transition-all hover:shadow-md md:shadow-sm">
       <div>
         <div className="relative aspect-16/10 overflow-hidden bg-surface-container-high">
           <Image

@@ -2,16 +2,8 @@
 // SECTION: Imports
 // ─────────────────────────────────────────────
 
+import Image from "next/image";
 import Link from "next/link";
-import type { ElementType } from "react";
-import {
-  MdBolt,
-  MdCommute,
-  MdDirectionsCar,
-  MdGarage,
-  MdSavings,
-  MdSportsMotorsports,
-} from "react-icons/md";
 import { SectionLayout } from "@/shared/components";
 
 // ─────────────────────────────────────────────
@@ -20,40 +12,40 @@ import { SectionLayout } from "@/shared/components";
 
 interface CategoryItem {
   highlightColor?: "primary" | "tertiary";
-  icon: ElementType;
+  imageSrc: string;
   title: string;
   vehicleCount: number;
 }
 
 const CATEGORY_ITEMS: CategoryItem[] = [
   {
-    icon: MdDirectionsCar,
+    imageSrc: "/images/category-sedan.jpg",
     title: "Executive Sedans",
     vehicleCount: 94,
   },
   {
-    icon: MdGarage,
+    imageSrc: "/images/category-suv.jpg",
     title: "Luxury & Family SUVs",
     vehicleCount: 188,
   },
   {
-    icon: MdSportsMotorsports,
+    imageSrc: "/images/category-gt.jpg",
     title: "Grand Tourers",
     vehicleCount: 46,
   },
   {
     highlightColor: "tertiary",
-    icon: MdBolt,
+    imageSrc: "/images/category-electric.jpg",
     title: "Electric & Hybrid",
     vehicleCount: 82,
   },
   {
-    icon: MdCommute,
+    imageSrc: "/images/category-estate.jpg",
     title: "Estate & Wagons",
     vehicleCount: 38,
   },
   {
-    icon: MdSavings,
+    imageSrc: "/images/category-verified-wagon.jpg",
     title: "Verified Under $35k",
     vehicleCount: 112,
   },
@@ -64,13 +56,11 @@ const CATEGORY_ITEMS: CategoryItem[] = [
 // ─────────────────────────────────────────────
 
 function CategoryCard({
-  icon: Icon,
+  imageSrc,
   title,
   vehicleCount,
   highlightColor = "primary",
 }: CategoryItem) {
-  const iconColorClass =
-    highlightColor === "tertiary" ? "text-tertiary" : "text-primary";
   const hoverTextColorClass =
     highlightColor === "tertiary"
       ? "group-hover:text-tertiary"
@@ -78,15 +68,10 @@ function CategoryCard({
 
   return (
     <Link
-      className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
+      className="group relative flex min-h-35 flex-col items-start justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-none transition-all hover:bg-surface-container md:shadow-sm"
       href="#"
     >
-      <div
-        className={`flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low transition-colors group-hover:bg-surface-container-highest ${iconColorClass}`}
-      >
-        <Icon className="text-2xl" />
-      </div>
-      <div>
+      <div className="pointer-events-none relative z-10">
         <h4
           className={`font-label-lg font-semibold text-label-lg text-on-surface transition-colors ${hoverTextColorClass}`}
         >
@@ -95,6 +80,16 @@ function CategoryCard({
         <span className="font-body-sm text-body-sm text-on-surface-variant">
           {vehicleCount} Vehicles
         </span>
+      </div>
+
+      <div className="absolute -right-6 -bottom-6 z-0 h-36 w-56 mix-blend-multiply transition-transform duration-500 group-hover:scale-110 md:-right-8 md:-bottom-8 md:h-48 md:w-72">
+        <Image
+          alt={title}
+          className="object-contain object-bottom-right"
+          fill
+          sizes="(max-width: 768px) 224px, 288px"
+          src={imageSrc}
+        />
       </div>
     </Link>
   );
@@ -105,9 +100,6 @@ export function CategoryGrid() {
     <SectionLayout className="mt-space-xl">
       <div className="mb-space-lg flex flex-col items-start justify-between gap-space-xs md:flex-row md:items-end">
         <div>
-          <span className="mb-space-xs block font-label-sm font-semibold text-label-sm text-primary uppercase tracking-widest">
-            Class Taxonomy
-          </span>
           <h2 className="font-headline-lg font-semibold text-headline-lg text-on-surface tracking-tight">
             Explore by Vehicle Category
           </h2>
