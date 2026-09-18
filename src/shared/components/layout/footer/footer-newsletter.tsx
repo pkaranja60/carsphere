@@ -2,8 +2,6 @@
 // SECTION: Imports
 // ─────────────────────────────────────────────
 
-import Image from "next/image";
-
 // ─────────────────────────────────────────────
 // SECTION: Components
 // ─────────────────────────────────────────────
@@ -11,14 +9,10 @@ import Image from "next/image";
 export function FooterNewsletter() {
   return (
     <div className="flex flex-col gap-space-md lg:col-span-1">
-      <div className="flex items-center gap-space-xs">
-        <Image
-          alt="Drivez Premium Motors"
-          className="h-8 w-auto object-contain"
-          height={32}
-          src="https://lh3.googleusercontent.com/aida/AEtjO1Vwe5yZ48YSwXVGgjY8470BrT1AnG0L3VcRnzM1G1a-X2JRj4RRgdQuZq735rWrwXr0QrWIRXS7_lWgKOh0yxts_Gl-7Oa-JXkwUXhMNSi0GlSh5Aicfm6HHzEWzBZ6sryvWR91IRn2zaPj4C2oFsTqdZ0LYoBorwwcuXajNtDxCNQydVRnylhgwtSpGUwhLWtiOmJpyyJrhoAK6gYA5Z8rJYaXpdUNodGM6jtBKopy04ivO-WCDJDoGuQ"
-          width={150}
-        />
+      <div className="flex items-center gap-2">
+        <span className="font-bold font-display text-on-surface text-xl tracking-tight">
+          Car<span className="text-primary">Sphere</span>
+        </span>
       </div>
       <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
         Architecting a calm, transparent automotive acquisition journey.
