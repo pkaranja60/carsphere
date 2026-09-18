@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────
 
 import Link from "next/link";
+import type { ElementType } from "react";
 import {
   MdBolt,
   MdCommute,
@@ -14,8 +15,90 @@ import {
 import { SectionLayout } from "@/shared/components";
 
 // ─────────────────────────────────────────────
+// SECTION: Types & Data
+// ─────────────────────────────────────────────
+
+interface CategoryItem {
+  highlightColor?: "primary" | "tertiary";
+  icon: ElementType;
+  title: string;
+  vehicleCount: number;
+}
+
+const CATEGORY_ITEMS: CategoryItem[] = [
+  {
+    icon: MdDirectionsCar,
+    title: "Executive Sedans",
+    vehicleCount: 94,
+  },
+  {
+    icon: MdGarage,
+    title: "Luxury & Family SUVs",
+    vehicleCount: 188,
+  },
+  {
+    icon: MdSportsMotorsports,
+    title: "Grand Tourers",
+    vehicleCount: 46,
+  },
+  {
+    highlightColor: "tertiary",
+    icon: MdBolt,
+    title: "Electric & Hybrid",
+    vehicleCount: 82,
+  },
+  {
+    icon: MdCommute,
+    title: "Estate & Wagons",
+    vehicleCount: 38,
+  },
+  {
+    icon: MdSavings,
+    title: "Verified Under $35k",
+    vehicleCount: 112,
+  },
+];
+
+// ─────────────────────────────────────────────
 // SECTION: Components
 // ─────────────────────────────────────────────
+
+function CategoryCard({
+  icon: Icon,
+  title,
+  vehicleCount,
+  highlightColor = "primary",
+}: CategoryItem) {
+  const iconColorClass =
+    highlightColor === "tertiary" ? "text-tertiary" : "text-primary";
+  const hoverTextColorClass =
+    highlightColor === "tertiary"
+      ? "group-hover:text-tertiary"
+      : "group-hover:text-primary";
+
+  return (
+    <Link
+      className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
+      href="#"
+    >
+      <div
+        className={`flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low transition-colors group-hover:bg-surface-container-highest ${iconColorClass}`}
+      >
+        <Icon className="text-2xl" />
+      </div>
+      <div>
+        <h4
+          className={`font-label-lg font-semibold text-label-lg text-on-surface transition-colors ${hoverTextColorClass}`}
+        >
+          {title}
+        </h4>
+        <span className="font-body-sm text-body-sm text-on-surface-variant">
+          {vehicleCount} Vehicles
+        </span>
+      </div>
+    </Link>
+  );
+}
 
 export function CategoryGrid() {
   return (
@@ -35,102 +118,9 @@ export function CategoryGrid() {
         </p>
       </div>
       <div className="grid grid-cols-2 gap-space-md md:grid-cols-3 lg:grid-cols-6">
-        <Link
-          className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
-          href="#"
-        >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-surface-container-highest">
-            <MdDirectionsCar className="text-2xl" />
-          </div>
-          <div>
-            <h4 className="font-label-lg font-semibold text-label-lg text-on-surface transition-colors group-hover:text-primary">
-              Executive Sedans
-            </h4>
-            <span className="font-body-sm text-body-sm text-on-surface-variant">
-              94 Vehicles
-            </span>
-          </div>
-        </Link>
-        <Link
-          className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
-          href="#"
-        >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-surface-container-highest">
-            <MdGarage className="text-2xl" />
-          </div>
-          <div>
-            <h4 className="font-label-lg font-semibold text-label-lg text-on-surface transition-colors group-hover:text-primary">
-              Luxury & Family SUVs
-            </h4>
-            <span className="font-body-sm text-body-sm text-on-surface-variant">
-              188 Vehicles
-            </span>
-          </div>
-        </Link>
-        <Link
-          className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
-          href="#"
-        >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-surface-container-highest">
-            <MdSportsMotorsports className="text-2xl" />
-          </div>
-          <div>
-            <h4 className="font-label-lg font-semibold text-label-lg text-on-surface transition-colors group-hover:text-primary">
-              Grand Tourers
-            </h4>
-            <span className="font-body-sm text-body-sm text-on-surface-variant">
-              46 Vehicles
-            </span>
-          </div>
-        </Link>
-        <Link
-          className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
-          href="#"
-        >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-tertiary transition-colors group-hover:bg-surface-container-highest">
-            <MdBolt className="text-2xl" />
-          </div>
-          <div>
-            <h4 className="font-label-lg font-semibold text-label-lg text-on-surface transition-colors group-hover:text-tertiary">
-              Electric & Hybrid
-            </h4>
-            <span className="font-body-sm text-body-sm text-on-surface-variant">
-              82 Vehicles
-            </span>
-          </div>
-        </Link>
-        <Link
-          className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
-          href="#"
-        >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-surface-container-highest">
-            <MdCommute className="text-2xl" />
-          </div>
-          <div>
-            <h4 className="font-label-lg font-semibold text-label-lg text-on-surface transition-colors group-hover:text-primary">
-              Estate & Wagons
-            </h4>
-            <span className="font-body-sm text-body-sm text-on-surface-variant">
-              38 Vehicles
-            </span>
-          </div>
-        </Link>
-        <Link
-          className="group flex min-h-35 flex-col items-start justify-between rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-sm transition-all hover:bg-surface-container"
-          href="#"
-        >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-surface-variant bg-surface-container-low text-primary transition-colors group-hover:bg-surface-container-highest">
-            <MdSavings className="text-2xl" />
-          </div>
-          <div>
-            <h4 className="font-label-lg font-semibold text-label-lg text-on-surface transition-colors group-hover:text-primary">
-              Verified Under $35k
-            </h4>
-            <span className="font-body-sm text-body-sm text-on-surface-variant">
-              112 Vehicles
-            </span>
-          </div>
-        </Link>
+        {CATEGORY_ITEMS.map((category) => (
+          <CategoryCard key={category.title} {...category} />
+        ))}
       </div>
     </SectionLayout>
   );

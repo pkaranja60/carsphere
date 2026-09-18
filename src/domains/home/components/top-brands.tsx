@@ -6,8 +6,44 @@ import Link from "next/link";
 import { SectionLayout } from "@/shared/components";
 
 // ─────────────────────────────────────────────
+// SECTION: Types & Data
+// ─────────────────────────────────────────────
+
+interface BrandItem {
+  name: string;
+  stockCount: number;
+}
+
+const BRAND_ITEMS: BrandItem[] = [
+  { name: "PORSCHE", stockCount: 42 },
+  { name: "BMW", stockCount: 58 },
+  { name: "MERCEDES", stockCount: 51 },
+  { name: "AUDI", stockCount: 39 },
+  { name: "GENESIS", stockCount: 28 },
+  { name: "LEXUS", stockCount: 64 },
+  { name: "LAND ROVER", stockCount: 22 },
+  { name: "VOLVO", stockCount: 31 },
+];
+
+// ─────────────────────────────────────────────
 // SECTION: Components
 // ─────────────────────────────────────────────
+
+function BrandCard({ name, stockCount }: BrandItem) {
+  return (
+    <Link
+      className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
+      href="#"
+    >
+      <span className="font-headline-sm font-semibold text-lg text-on-surface tracking-tighter transition-colors group-hover:text-primary">
+        {name}
+      </span>
+      <span className="font-label-sm text-[10px] text-on-surface-variant uppercase">
+        {stockCount} In Stock
+      </span>
+    </Link>
+  );
+}
 
 export function TopBrands() {
   return (
@@ -30,94 +66,9 @@ export function TopBrands() {
           </Link>
         </div>
         <div className="grid grid-cols-2 items-stretch gap-space-md pt-space-lg text-center sm:grid-cols-4 lg:grid-cols-8">
-          <Link
-            className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
-            href="#"
-          >
-            <span className="font-headline-sm font-semibold text-lg text-on-surface tracking-tighter transition-colors group-hover:text-primary">
-              PORSCHE
-            </span>
-            <span className="font-label-sm text-[10px] text-on-surface-variant uppercase">
-              42 In Stock
-            </span>
-          </Link>
-          <Link
-            className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
-            href="#"
-          >
-            <span className="font-headline-sm font-semibold text-lg text-on-surface tracking-tighter transition-colors group-hover:text-primary">
-              BMW
-            </span>
-            <span className="font-label-sm text-[10px] text-on-surface-variant uppercase">
-              58 In Stock
-            </span>
-          </Link>
-          <Link
-            className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
-            href="#"
-          >
-            <span className="font-headline-sm font-semibold text-lg text-on-surface tracking-tighter transition-colors group-hover:text-primary">
-              MERCEDES
-            </span>
-            <span className="font-label-sm text-[10px] text-on-surface-variant uppercase">
-              51 In Stock
-            </span>
-          </Link>
-          <Link
-            className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
-            href="#"
-          >
-            <span className="font-headline-sm font-semibold text-lg text-on-surface tracking-tighter transition-colors group-hover:text-primary">
-              AUDI
-            </span>
-            <span className="font-label-sm text-[10px] text-on-surface-variant uppercase">
-              39 In Stock
-            </span>
-          </Link>
-          <Link
-            className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
-            href="#"
-          >
-            <span className="font-headline-sm font-semibold text-lg text-on-surface tracking-tighter transition-colors group-hover:text-primary">
-              GENESIS
-            </span>
-            <span className="font-label-sm text-[10px] text-on-surface-variant uppercase">
-              28 In Stock
-            </span>
-          </Link>
-          <Link
-            className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
-            href="#"
-          >
-            <span className="font-headline-sm font-semibold text-lg text-on-surface tracking-tighter transition-colors group-hover:text-primary">
-              LEXUS
-            </span>
-            <span className="font-label-sm text-[10px] text-on-surface-variant uppercase">
-              64 In Stock
-            </span>
-          </Link>
-          <Link
-            className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
-            href="#"
-          >
-            <span className="font-headline-sm font-semibold text-lg text-on-surface tracking-tighter transition-colors group-hover:text-primary">
-              LAND ROVER
-            </span>
-            <span className="font-label-sm text-[10px] text-on-surface-variant uppercase">
-              22 In Stock
-            </span>
-          </Link>
-          <Link
-            className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 p-4 transition-all hover:bg-surface-container"
-            href="#"
-          >
-            <span className="font-headline-sm font-semibold text-lg text-on-surface tracking-tighter transition-colors group-hover:text-primary">
-              VOLVO
-            </span>
-            <span className="font-label-sm text-[10px] text-on-surface-variant uppercase">
-              31 In Stock
-            </span>
-          </Link>
+          {BRAND_ITEMS.map((brand) => (
+            <BrandCard key={brand.name} {...brand} />
+          ))}
         </div>
       </div>
     </SectionLayout>
