@@ -16,9 +16,9 @@ import { ThemeToggle } from "@/shared/components/theme-toggle";
 
 export function HeaderTopBar() {
   return (
-    <div className="w-full border-border border-b bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant">
+    <div className="hidden w-full border-border border-b bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant md:block">
       <div className="mx-auto flex h-10 max-w-345 items-center justify-between gap-4 px-margin-mobile md:px-margin">
-        <div className="flex items-center gap-space-lg overflow-x-auto whitespace-nowrap py-1">
+        <div className="flex min-w-0 flex-1 items-center gap-space-lg overflow-x-auto whitespace-nowrap py-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div className="flex items-center gap-1.5">
             <MdLocationOn className="text-base text-primary" />
             <span>

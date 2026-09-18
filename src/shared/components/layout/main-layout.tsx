@@ -14,7 +14,7 @@ export function MainLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header />
-      <main className="flex min-h-screen w-full flex-col bg-surface pt-30">
+      <main className="flex min-h-screen w-full flex-col bg-surface pt-20 md:pt-30">
         {children}
       </main>
       <Footer />

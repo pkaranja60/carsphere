@@ -21,7 +21,7 @@ export function OmniSearch() {
       <div className="rounded-xl border border-outline-variant bg-surface-container-lowest p-6 shadow-xl">
         <div className="flex flex-col gap-space-md">
           <div className="flex flex-wrap items-center justify-between gap-space-xs border-surface-container border-b pb-space-xs">
-            <Tabs defaultSelectedKey="all">
+            <Tabs className="min-w-0 max-w-full" defaultSelectedKey="all">
               <TabListContainer>
                 <TabList aria-label="Inventory Types">
                   <Tab id="all">All Inventory (482)</Tab>

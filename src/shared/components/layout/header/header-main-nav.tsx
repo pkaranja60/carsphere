@@ -5,6 +5,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
+import { MobileNav } from "./mobile-nav";
 
 // ─────────────────────────────────────────────
 // SECTION: Types & Data
@@ -16,7 +17,7 @@ interface NavItem {
   label: string;
 }
 
-const NAV_ITEMS: NavItem[] = [
+export const NAV_ITEMS: NavItem[] = [
   { href: "#", isActive: true, label: "Inventory" },
   { href: "#", label: "Premium & Performance" },
   { href: "#", label: "Everyday Excellence" },
@@ -61,8 +62,10 @@ export function HeaderMainNav() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-space-md">
+          <MobileNav items={NAV_ITEMS} />
+
           <Link
-            className="flex h-10 items-center gap-2 rounded-full border border-border-strong bg-surface-container-low px-3 text-on-surface-variant transition-all hover:bg-surface-container-high hover:text-primary"
+            className="hidden h-10 items-center gap-2 rounded-full border border-border-strong bg-surface-container-low px-3 text-on-surface-variant transition-all hover:bg-surface-container-high hover:text-primary md:flex"
             href="#"
             title="Saved Vehicles"
           >
@@ -73,7 +76,7 @@ export function HeaderMainNav() {
           </Link>
 
           <Link
-            className="flex items-center gap-space-sm rounded-full bg-primary-container py-1.5 pr-4 pl-1.5 text-on-primary shadow-sm transition-all hover:bg-primary hover:shadow active:translate-y-0.5"
+            className="hidden items-center gap-space-sm rounded-full bg-primary-container py-1.5 pr-4 pl-1.5 text-on-primary shadow-sm transition-all hover:bg-primary hover:shadow active:translate-y-0.5 md:flex"
             href="#"
           >
             <Image
@@ -83,7 +86,7 @@ export function HeaderMainNav() {
               src="https://lh3.googleusercontent.com/aida/AEtjO1V1FdzkqSDuv3IroFCOUCEpuPohPJ4g0eIey32Yex9Pqc_p_W-Msdej1G-KDNhx67-i6UpbG4bpxTOhYViBsM3WUye6O0n2CuxsVzwaQtfbp6hna1Ot891GD-jmKaWdqjfEUdRJhH_2qQfywjXhSkYOHs-EsoCWpV3mXnEpuo2t9XfCcX3CkCpQo-0vLl589vJ3n7z-E3sPjZfx7aPQgBThbnwKMCdQxG9zEIvDkvYMcZ1uGBfsRVWNRm4"
               width={32}
             />
-            <div className="flex flex-col text-left leading-tight">
+            <div className="hidden flex-col text-left leading-tight sm:flex">
               <span className="font-label-sm font-semibold tracking-wide">
                 Speak with Concierge
               </span>

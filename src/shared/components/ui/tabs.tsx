@@ -4,7 +4,8 @@ import { Tabs as HeroTabs } from "@heroui/react";
 import type { ComponentProps } from "react";
 
 const listClassName = [
-  "inline-flex items-center rounded-lg border border-surface-variant bg-surface-container-low p-1",
+  "flex max-w-full overflow-x-auto items-center rounded-lg border border-surface-variant bg-surface-container-low p-1 sm:inline-flex",
+  "[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
   "**:data-[slot=tabs-tab]:rounded-lg **:data-[slot=tabs-tab]:px-4 **:data-[slot=tabs-tab]:py-1.5 **:data-[slot=tabs-tab]:whitespace-nowrap",
   "**:data-[slot=tabs-tab]:font-semibold **:data-[slot=tabs-tab]:text-label-sm **:data-[slot=tabs-tab]:transition-all",
   "**:data-[slot=tabs-tab]:data-[selected=true]:bg-surface **:data-[slot=tabs-tab]:data-[selected=true]:font-bold **:data-[slot=tabs-tab]:data-[selected=true]:text-on-surface **:data-[slot=tabs-tab]:data-[selected=true]:shadow-sm",
@@ -28,7 +29,7 @@ export const TabListContainer = ({
   ...props
 }: ComponentProps<typeof HeroTabs.ListContainer>) => (
   <HeroTabs.ListContainer
-    className={`bg-transparent ${className || ""}`}
+    className={`max-w-full bg-transparent ${className || ""}`}
     {...props}
   />
 );

@@ -36,11 +36,11 @@ export function HeroSection() {
             </span>
           </div>
 
-          <h1 className="mb-space-md font-display font-semibold text-display text-surface-bright leading-[1.06] tracking-tight drop-shadow-md">
+          <h1 className="mb-space-md font-display font-semibold text-headline-lg text-surface-bright leading-[1.06] tracking-tight drop-shadow-md md:text-display">
             Exceptional Motoring, Curated with Precision.
           </h1>
 
-          <p className="mb-space-xl max-w-xl font-body-lg font-normal text-body-lg text-surface-dim/95 leading-relaxed drop-shadow-sm">
+          <p className="mb-space-xl max-w-xl font-body-md font-normal text-body-md text-surface-dim/95 leading-relaxed drop-shadow-sm md:font-body-lg md:text-body-lg">
             From pinnacle grand tourers to dependable daily drivers. Every
             vehicle independently certified with full service provenance and
             transparent pricing.

@@ -22,6 +22,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
   viewportFit: "cover",
   width: "device-width",
 };
@@ -33,12 +35,12 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`${plusJakartaSans.variable} ${inter.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${inter.variable} h-full overflow-x-hidden antialiased`}
       lang="en"
       suppressHydrationWarning
     >
       <body
-        className="flex min-h-full flex-col bg-background font-sans text-on-background"
+        className="flex min-h-full flex-col overflow-x-hidden bg-background font-sans text-on-background"
         suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
