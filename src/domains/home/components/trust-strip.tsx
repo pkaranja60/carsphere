@@ -48,15 +48,15 @@ const TRUST_ITEMS: TrustItem[] = [
 
 function TrustCard({ icon: Icon, title, description }: TrustItem) {
   return (
-    <div className="flex items-center gap-3 rounded-lg border border-white/20 bg-black/50 p-3.5 px-4 text-white shadow-lg backdrop-blur-md transition-transform hover:-translate-y-0.5">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/20 bg-white/10">
-        <Icon className="text-2xl text-white" />
+    <div className="flex items-center gap-2.5 rounded-lg border border-white/20 bg-black/50 p-2.5 px-3 text-white shadow-lg backdrop-blur-md transition-transform hover:-translate-y-0.5 md:gap-3 md:p-3.5 md:px-4">
+      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/20 bg-white/10 md:h-10 md:w-10">
+        <Icon className="text-primary-fixed-dim text-xl md:text-2xl" />
       </div>
       <div className="flex min-w-0 flex-col leading-tight">
-        <span className="truncate font-bold font-label-sm text-white">
+        <span className="truncate font-bold font-label-sm text-label-sm text-white">
           {title}
         </span>
-        <span className="truncate font-normal text-white/80 text-xs">
+        <span className="truncate font-normal text-[10px] text-white/80 md:text-xs">
           {description}
         </span>
       </div>

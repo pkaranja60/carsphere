@@ -23,7 +23,7 @@ export function SectionLayout({
 }: SectionLayoutProps) {
   return (
     <section
-      className={`mx-auto w-full max-w-350 px-margin-mobile pt-space-xl md:px-margin ${className}`}
+      className={`mx-auto w-full max-w-400 px-margin-mobile pt-space-xl md:px-margin ${className}`}
     >
       {children}
     </section>

@@ -17,9 +17,9 @@ import {
 
 export function OmniSearch() {
   return (
-    <section className="relative z-20 mx-auto -mt-10 w-full max-w-345 px-margin-mobile md:-mt-14 md:px-margin">
-      <div className="rounded-xl border border-outline-variant bg-surface-container-lowest p-6 shadow-xl">
-        <div className="flex flex-col gap-space-md">
+    <section className="relative z-20 mx-auto -mt-10 w-full max-w-400 px-margin-mobile md:-mt-14 md:px-margin">
+      <div className="rounded-xl border border-outline-variant bg-surface-container-lowest p-4 shadow-xl md:p-6">
+        <div className="flex flex-col gap-space-sm md:gap-space-md">
           <div className="flex flex-wrap items-center justify-between gap-space-xs border-surface-container border-b pb-space-xs">
             <Tabs className="min-w-0 max-w-full" defaultSelectedKey="all">
               <TabListContainer>
@@ -121,7 +121,7 @@ export function OmniSearch() {
             </div>
             <div>
               <Button
-                className="gap-space-xs"
+                className="h-10 gap-space-xs md:h-12"
                 fullWidth
                 size="lg"
                 variant="primary"

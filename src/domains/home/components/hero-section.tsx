@@ -27,7 +27,7 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-linear-to-t from-surface via-transparent to-black/35" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-190 max-w-345 flex-col justify-between px-margin-mobile pt-44 pb-32 md:px-margin md:pt-52 md:pb-36">
+      <div className="relative z-10 mx-auto flex min-h-190 max-w-400 flex-col justify-between px-margin-mobile pt-44 pb-32 md:px-margin md:pt-52 md:pb-36">
         <div className="max-w-2xl text-surface-container-lowest">
           <div className="mb-space-md inline-flex items-center gap-space-xs rounded-full border border-white/20 bg-black/40 px-3.5 py-1.5 backdrop-blur-md">
             <span className="h-2 w-2 rounded-full bg-primary-fixed" />

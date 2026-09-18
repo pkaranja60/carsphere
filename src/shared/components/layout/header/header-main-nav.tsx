@@ -46,7 +46,7 @@ function HeaderLink({ label, href, isActive }: NavItem) {
 export function HeaderMainNav() {
   return (
     <div className="w-full border-border border-b bg-surface-container-lowest/95 shadow-[0_1px_8px_rgba(0,0,0,0.04)] backdrop-blur-xl">
-      <div className="mx-auto flex h-20 max-w-345 items-center justify-between gap-space-md px-margin-mobile md:px-margin">
+      <div className="mx-auto flex h-20 max-w-400 items-center justify-between gap-space-md px-margin-mobile md:px-margin">
         <Link className="flex shrink-0 items-center" href="/">
           <div className="flex items-center gap-2">
             <span className="font-bold font-display text-on-surface text-xl tracking-tight">
