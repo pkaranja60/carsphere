@@ -13,16 +13,16 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 // ─────────────────────────────────────────────
 
 export function ThemeToggle() {
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  }, [theme, setTheme]);
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  }, [resolvedTheme, setTheme]);
 
   if (!mounted) {
     return <div className="h-5 w-5" />;

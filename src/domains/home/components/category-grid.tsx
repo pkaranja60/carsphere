@@ -63,12 +63,12 @@ function CategoryCard({
 }: CategoryItem) {
   const hoverTextColorClass =
     highlightColor === "tertiary"
-      ? "group-hover:text-tertiary"
-      : "group-hover:text-primary";
+      ? "group-hover:text-tertiary group-active:text-tertiary"
+      : "group-hover:text-primary group-active:text-primary";
 
   return (
     <Link
-      className="group relative flex min-h-35 flex-col items-start justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-none transition hover:bg-surface-container md:shadow-sm dark:bg-zinc-100 dark:hover:bg-zinc-200"
+      className="group relative flex min-h-35 flex-col items-start justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-none transition hover:bg-surface-container active:bg-surface-container md:shadow-sm dark:bg-zinc-100 dark:active:bg-zinc-200 dark:hover:bg-zinc-200"
       href="#"
     >
       <div className="pointer-events-none relative z-10">
@@ -82,7 +82,7 @@ function CategoryCard({
         </span>
       </div>
 
-      <div className="absolute -right-6 -bottom-6 z-0 h-36 w-56 mix-blend-multiply transition-transform duration-500 group-hover:scale-110 md:-right-8 md:-bottom-8 md:h-48 md:w-72">
+      <div className="absolute -right-6 -bottom-6 z-0 h-36 w-56 mix-blend-multiply transition-transform duration-500 group-hover:scale-110 group-active:scale-110 md:-right-8 md:-bottom-8 md:h-48 md:w-72">
         <Image
           alt={title}
           className="object-contain object-bottom-right"

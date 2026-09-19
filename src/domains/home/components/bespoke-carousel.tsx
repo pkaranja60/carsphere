@@ -4,8 +4,9 @@ import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
 import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
-import { MdArrowForward } from "react-icons/md";
-import { Button } from "@/shared/components/ui/button";
+import { useCallback, useEffect, useState } from "react";
+import { MdArrowForward, MdPause, MdPlayArrow } from "react-icons/md";
+import { buttonVariants } from "@/shared/components/ui/button";
 
 interface SlideData {
   actionText: string;
@@ -45,10 +46,39 @@ const CAROUSEL_SLIDES: SlideData[] = [
 ];
 
 export function BespokeCarousel() {
-  const [emblaRef] = useEmblaCarousel({ duration: 60, loop: true }, [
+  const [emblaRef, emblaApi] = useEmblaCarousel({ duration: 60, loop: true }, [
     Autoplay({ delay: 7000, stopOnInteraction: false }),
     Fade(),
   ]);
+
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const toggleAutoplay = useCallback(() => {
+    const autoplay = emblaApi?.plugins()?.autoplay;
+    if (!autoplay) {
+      return;
+    }
+
+    if (autoplay.isPlaying()) {
+      autoplay.stop();
+      setIsPlaying(false);
+    } else {
+      autoplay.play();
+      setIsPlaying(true);
+    }
+  }, [emblaApi]);
+
+  useEffect(() => {
+    const autoplay = emblaApi?.plugins()?.autoplay;
+    if (!autoplay) {
+      return;
+    }
+
+    emblaApi
+      .on("autoplay:play", () => setIsPlaying(true))
+      .on("autoplay:stop", () => setIsPlaying(false))
+      .on("reInit", () => setIsPlaying(autoplay.isPlaying()));
+  }, [emblaApi]);
 
   return (
     <section className="px-margin-mobile py-space-xl md:px-margin">
@@ -99,15 +129,17 @@ export function BespokeCarousel() {
                     <p className="mb-space-lg font-body-lg text-white/90">
                       {slide.description}
                     </p>
-                    <Link href="#">
-                      <Button
-                        className="gap-2 border-white/20 bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/20"
-                        size="lg"
-                        variant="secondary"
-                      >
-                        {slide.actionText}
-                        <MdArrowForward />
-                      </Button>
+                    <Link
+                      className={buttonVariants({
+                        className:
+                          "gap-2 border-white/20 bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/20",
+                        size: "lg",
+                        variant: "secondary",
+                      })}
+                      href="/inventory"
+                    >
+                      {slide.actionText}
+                      <MdArrowForward />
                     </Link>
                   </div>
                 </div>
@@ -115,6 +147,22 @@ export function BespokeCarousel() {
             );
           })}
         </div>
+
+        {/* Play/Pause Control */}
+        <button
+          aria-label={
+            isPlaying ? "Pause automatic slide" : "Start automatic slide"
+          }
+          className="absolute right-6 bottom-6 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-colors hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          onClick={toggleAutoplay}
+          type="button"
+        >
+          {isPlaying ? (
+            <MdPause className="text-2xl" />
+          ) : (
+            <MdPlayArrow className="text-2xl" />
+          )}
+        </button>
       </div>
     </section>
   );

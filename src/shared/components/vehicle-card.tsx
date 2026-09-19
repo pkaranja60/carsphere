@@ -3,26 +3,27 @@
 // ─────────────────────────────────────────────
 
 import Image from "next/image";
-import {
-  MdChevronRight,
-  MdFavoriteBorder,
-  MdOutlineVerified,
-} from "react-icons/md";
+import Link from "next/link";
+import { useCallback } from "react";
+import { MdFavoriteBorder, MdOutlineVerified } from "react-icons/md";
 import { Button } from "@/shared/components/ui/button";
 
 // ─────────────────────────────────────────────
 // SECTION: Interfaces
 // ─────────────────────────────────────────────
 
-interface VehicleCardProps {
+export interface VehicleCardProps {
   badgeText: string;
   colorString: string;
+  detailsUrl?: string;
   historyText: string;
+  id?: string;
   imageAlt: string;
   imageSrc: string;
   make: string;
   model: string;
   monthlyEstimate: string;
+  onSave?: () => void;
   price: string;
   specs: {
     stat1: string;
@@ -42,26 +43,37 @@ interface VehicleCardProps {
 // ─────────────────────────────────────────────
 
 export function VehicleCard({
-  imageSrc,
-  imageAlt,
   badgeText,
-  year,
+  colorString,
+  historyText,
+  id,
+  imageAlt,
+  imageSrc,
   make,
   model,
-  trim,
-  colorString,
-  specs,
-  price,
   monthlyEstimate,
-  historyText,
+  price,
+  specs,
+  trim,
+  year,
+  onSave,
+  detailsUrl = `/inventory/${id}`,
 }: VehicleCardProps) {
+  const handleSaveClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      onSave?.();
+    },
+    [onSave]
+  );
+
   return (
     <article className="group flex h-full flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest shadow-none transition hover:shadow-md md:shadow-sm">
       <div>
         <div className="relative aspect-16/10 overflow-hidden bg-surface-container-high">
           <Image
             alt={imageAlt}
-            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 group-active:scale-105"
             height={200}
             src={imageSrc}
             width={320}
@@ -144,16 +156,33 @@ export function VehicleCard({
             {historyText}
           </span>
         </div>
-        <Button
-          className="gap-1 sm:gap-space-xs"
-          fullWidth
-          size="md"
-          variant="secondary"
-        >
-          <span className="text-[11px] sm:hidden">View</span>
-          <span className="hidden text-sm sm:inline">View Details</span>
-          <MdChevronRight className="text-sm sm:text-base" />
-        </Button>
+        {/* Actions (Hidden on Mobile) */}
+        <div className="mt-space-xs hidden grid-cols-5 items-center gap-space-xs sm:grid">
+          <button
+            aria-label={`Save ${year} ${make} ${model} to garage`}
+            className="col-span-1 flex h-10 items-center justify-center rounded-lg border border-outline-variant bg-surface text-on-surface-variant transition-colors hover:bg-surface-container hover:text-primary active:scale-95"
+            onClick={handleSaveClick}
+            type="button"
+          >
+            <MdFavoriteBorder className="text-xl" />
+          </button>
+          <Link
+            className="col-span-4 flex h-10 items-center justify-center rounded-lg bg-primary-container font-label-md font-semibold text-label-md text-on-primary shadow-sm transition-colors hover:bg-primary active:scale-95"
+            href={detailsUrl}
+          >
+            View Details
+          </Link>
+        </div>
+
+        {/* Mobile View Button */}
+        <div className="mt-space-xs sm:hidden">
+          <Link
+            className="flex h-10 w-full items-center justify-center rounded-lg bg-primary-container font-label-md font-semibold text-label-md text-on-primary shadow-sm transition-colors hover:bg-primary active:scale-95"
+            href={detailsUrl}
+          >
+            View
+          </Link>
+        </div>
       </div>
     </article>
   );

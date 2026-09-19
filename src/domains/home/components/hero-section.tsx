@@ -49,14 +49,14 @@ export function HeroSection() {
           <div className="flex flex-wrap items-center gap-space-md">
             <Link
               className="flex h-13 items-center justify-center gap-space-xs rounded-lg bg-primary-container px-8 font-label-lg font-semibold text-label-lg text-on-primary shadow-lg transition hover:bg-primary active:translate-y-0.5"
-              href="#"
+              href="/inventory"
             >
               <span>Explore Curated Inventory</span>
               <MdArrowOutward className="text-lg" />
             </Link>
             <Link
               className="flex h-13 items-center justify-center rounded-lg border border-white/30 bg-white/15 px-8 font-label-lg font-semibold text-label-lg text-surface-bright shadow-md backdrop-blur-md transition hover:bg-white/25"
-              href="#"
+              href="/valuation"
             >
               <span>Value Your Vehicle</span>
             </Link>

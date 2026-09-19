@@ -128,8 +128,7 @@ export const EVERYDAY_VEHICLES: Vehicle[] = [
     historyText: "Clean Hist.",
     id: "e-2",
     imageAlt: "Meteorite Gray 2024 Honda Civic Touring",
-    imageSrc:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuB4y51NaFw6ubrlTwufIXvESgVK45wkjNz0F26Tt6opz0v_4o2FaM0EiCffyeyDUrLc6RlXxTRf6z0YoyeFPzmtrvm2hXyUt-jrW4M3wY7mrO4TkVbWlHnVuwKQoS-GC7SwLeAZbna1DirgfBeYCAFY2sGkUaeeft_5FwordFm3hj49h9BULU8sACuEXaW1bCP-xk9ANnG-bIZEE6BLrs29Ez1nXRXuzikGAqMsnWojbONjch6zmOxj",
+    imageSrc: "/images/category-sedan.jpg",
     make: "Honda",
     model: "Civic",
     monthlyEstimate: "$380",
@@ -151,8 +150,7 @@ export const EVERYDAY_VEHICLES: Vehicle[] = [
     historyText: "1-Owner",
     id: "e-3",
     imageAlt: "Polymetal Gray 2024 Mazda CX-50",
-    imageSrc:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDr2_bITmSTcZp03iAq9rcunw2LxlANHO1VHGLbHYBgUlY8I7C0r5ZZP5eu8hQ1W8MCBC0M8Z0kPdrNA_rXBJ2cqUk8-_S_srvnI6uaeKZYauBua2NkQNp36tgyQCna2NgETpqQ1zqSyFy2iCCeEwbXOay3nG2UmIBffEHZYIsCCr6lM1U5LHCee3sMbC4MWYGQxbgEdxQvKQINNC76B5Ctzn-K98GYL4G0Qbu8_WAOMqf6Y4znDnNV",
+    imageSrc: "/images/category-suv.jpg",
     make: "Mazda",
     model: "CX-50",
     monthlyEstimate: "$460",
@@ -174,8 +172,7 @@ export const EVERYDAY_VEHICLES: Vehicle[] = [
     historyText: "Certified",
     id: "e-4",
     imageAlt: "Crystal Black 2024 Subaru Crosstrek",
-    imageSrc:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuA3tAIGVTNf7ozkuQSrOImeqnpFc2u8Ug6c2Q6-T2c3Wy9nQkOULfTXmRQU23u8zJq5_bBLPxD6tXeGKyvlW65HwX16AJ3rDTUHUpeHwIymtkNwTxo_s5zZ90DhvYUfIk3rdBlZ4C5IjGBsKJQ1G8n2AyUykYH7ZA9mp_ql3N20pkFvM0PCkelsbgkh2yeVJyi5hX0TCSBykvwZX3mPxUoqfbl86jB1Zi0Ry-h8edLj1PXdzAtIdscm",
+    imageSrc: "/images/category-verified-wagon.jpg",
     make: "Subaru",
     model: "Crosstrek",
     monthlyEstimate: "$340",
@@ -200,8 +197,7 @@ export const RECENTLY_SOLD_VEHICLES: Vehicle[] = [
     historyText: "1-Owner",
     id: "s-1",
     imageAlt: "Guards Red 2022 Porsche 911 GT3",
-    imageSrc:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuA3tAIGVTNf7ozkuQSrOImeqnpFc2u8Ug6c2Q6-T2c3Wy9nQkOULfTXmRQU23u8zJq5_bBLPxD6tXeGKyvlW65HwX16AJ3rDTUHUpeHwIymtkNwTxo_s5zZ90DhvYUfIk3rdBlZ4C5IjGBsKJQ1G8n2AyUykYH7ZA9mp_ql3N20pkFvM0PCkelsbgkh2yeVJyi5hX0TCSBykvwZX3mPxUoqfbl86jB1Zi0Ry-h8edLj1PXdzAtIdscm",
+    imageSrc: "/images/category-gt.jpg",
     make: "Porsche",
     model: "911",
     monthlyEstimate: "$2,850",
@@ -223,8 +219,7 @@ export const RECENTLY_SOLD_VEHICLES: Vehicle[] = [
     historyText: "Clean Hist.",
     id: "s-2",
     imageAlt: "Santorini Black 2023 Range Rover Sport",
-    imageSrc:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuB4y51NaFw6ubrlTwufIXvESgVK45wkjNz0F26Tt6opz0v_4o2FaM0EiCffyeyDUrLc6RlXxTRf6z0YoyeFPzmtrvm2hXyUt-jrW4M3wY7mrO4TkVbWlHnVuwKQoS-GC7SwLeAZbna1DirgfBeYCAFY2sGkUaeeft_5FwordFm3hj49h9BULU8sACuEXaW1bCP-xk9ANnG-bIZEE6BLrs29Ez1nXRXuzikGAqMsnWojbONjch6zmOxj",
+    imageSrc: "/images/category-suv.jpg",
     make: "Land Rover",
     model: "Range Rover Sport",
     monthlyEstimate: "$1,350",
@@ -246,8 +241,7 @@ export const RECENTLY_SOLD_VEHICLES: Vehicle[] = [
     historyText: "Certified",
     id: "s-3",
     imageAlt: "Rosso Corsa 2021 Ferrari F8 Tributo",
-    imageSrc:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCZtTMmHDXTOzpUK3j3kIwlO6ZpJ_l0pTlQvK-BuAURrPo6_i7TZYKEvp5ZAxFRb0RO8KNJJv5lPm2ChyTZtB_ayE4qswKS8VbX5pWAGWixLB3qG7-MSMALOlMqmhRybev-azrNPJB_lXNGjCK2lM2inNXIFRjBgJOZwj6ir187NjczLJam04DrWZ8ttfq4vvcimAbxSmD9LC96dLGduc94EaUAdijYbaY6h1jjrk3G7wEl9yAcpl2x",
+    imageSrc: "/images/carousel_slide_1.jpg",
     make: "Ferrari",
     model: "F8 Tributo",
     monthlyEstimate: "$4,100",
@@ -270,8 +264,7 @@ export const RECENTLY_SOLD_VEHICLES: Vehicle[] = [
     historyText: "1-Owner",
     id: "s-4",
     imageAlt: "Onyx Black 2023 Aston Martin DBX",
-    imageSrc:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDr2_bITmSTcZp03iAq9rcunw2LxlANHO1VHGLbHYBgUlY8I7C0r5ZZP5eu8hQ1W8MCBC0M8Z0kPdrNA_rXBJ2cqUk8-_S_srvnI6uaeKZYauBua2NkQNp36tgyQCna2NgETpqQ1zqSyFy2iCCeEwbXOay3nG2UmIBffEHZYIsCCr6lM1U5LHCee3sMbC4MWYGQxbgEdxQvKQINNC76B5Ctzn-K98GYL4G0Qbu8_WAOMqf6Y4znDnNV",
+    imageSrc: "/images/carousel_slide_3.jpg",
     make: "Aston Martin",
     model: "DBX",
     monthlyEstimate: "$2,450",

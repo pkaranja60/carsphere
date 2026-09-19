@@ -1,9 +1,12 @@
+"use client";
+
 // ─────────────────────────────────────────────
 // SECTION: Imports
 // ─────────────────────────────────────────────
 
 import Image from "next/image";
 import Link from "next/link";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   MdKeyboardArrowDown,
   MdOutlineFavoriteBorder,
@@ -55,36 +58,110 @@ function HeaderLink({ label, href, isActive, children }: NavItem) {
 
   if (children) {
     return (
-      <div className="group relative flex h-20 items-center">
-        <button
-          className={`${baseClasses} ${activeClasses} flex items-center gap-1`}
-          type="button"
-        >
-          {label}
-          <MdKeyboardArrowDown className="text-xl transition-transform group-focus-within:rotate-180 group-hover:rotate-180" />
-        </button>
-        <div className="invisible absolute top-full left-0 opacity-0 transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-          <div className="flex min-w-50 flex-col overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest py-2 shadow-lg">
-            {children.map((child) => (
-              <Link
-                className="px-4 py-3 font-label-md text-label-md text-on-surface-variant transition-colors hover:bg-surface hover:text-primary"
-                href={child.href}
-                key={child.label}
-              >
-                {child.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </div>
+      <HeaderDropdownLink href={href} isActive={isActive} label={label}>
+        {children}
+      </HeaderDropdownLink>
     );
   }
 
   return (
-    <Link className={`${baseClasses} ${activeClasses}`} href={href || "#"}>
+    <Link
+      className={`flex h-20 items-center ${baseClasses} ${activeClasses}`}
+      href={href || "#"}
+    >
       {label}
     </Link>
   );
+}
+
+function HeaderDropdownLink({ label, isActive, children }: NavItem) {
+  const baseClasses = "font-label-lg text-label-lg transition-colors";
+  const activeClasses = isActive
+    ? "font-bold text-primary hover:text-primary"
+    : "text-on-surface-variant hover:text-on-surface";
+
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        // biome-ignore lint/suspicious/noUnnecessaryConditions: Ref is populated by React
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        setIsOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  const handleMouseEnter = useCallback(() => setIsOpen(true), []);
+  const handleMouseLeave = useCallback(() => setIsOpen(false), []);
+  const handleToggle = useCallback(() => setIsOpen((prev) => !prev), []);
+  const handleClose = useCallback(() => setIsOpen(false), []);
+
+  const dropdownContainer = (
+    // biome-ignore lint/a11y/useKeyWithMouseEvents: Dropdown hover container
+    // biome-ignore lint/a11y/noStaticElementInteractions: Dropdown hover container
+    // biome-ignore lint/a11y/noNoninteractiveElementInteractions: Dropdown hover container
+    <div
+      className="relative flex h-20 items-center"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      ref={containerRef}
+    >
+      <button
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+        className={`${baseClasses} ${activeClasses} flex items-center gap-1`}
+        onClick={handleToggle}
+        ref={buttonRef}
+        type="button"
+      >
+        {label}
+        <MdKeyboardArrowDown
+          className={`text-xl transition-transform ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      <div
+        className={`absolute top-full left-0 transition-opacity ${
+          isOpen ? "visible opacity-100" : "invisible opacity-0"
+        }`}
+      >
+        <div className="flex min-w-50 flex-col overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest py-2 shadow-lg">
+          {children?.map((child) => (
+            <Link
+              className="px-4 py-3 font-label-md text-label-md text-on-surface-variant transition-colors hover:bg-surface hover:text-primary focus:bg-surface focus:text-primary focus:outline-none"
+              href={child.href}
+              key={child.label}
+              onClick={handleClose}
+              tabIndex={isOpen ? 0 : -1}
+            >
+              {child.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  return dropdownContainer;
 }
 
 export function HeaderMainNav() {

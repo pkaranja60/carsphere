@@ -119,17 +119,18 @@ export function OmniSearch() {
                 </SelectItem>
               </Select>
             </div>
-            <div>
+            <form action="/inventory" className="flex flex-col justify-end">
               <Button
                 className="h-10 gap-space-xs md:h-12"
                 fullWidth
                 size="lg"
+                type="submit"
                 variant="primary"
               >
                 <MdManageSearch className="text-lg" />
                 <span>Search 482 Cars</span>
               </Button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

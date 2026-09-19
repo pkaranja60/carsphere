@@ -21,29 +21,32 @@ interface NavigationGroup {
 const LINK_GROUPS: NavigationGroup[] = [
   {
     links: [
-      { href: "#", label: "Certified Pre-Owned" },
-      { href: "#", label: "Executive Sedans" },
-      { href: "#", label: "Performance Coupes" },
-      { href: "#", label: "Luxury Touring SUVs" },
-      { href: "#", label: "Verified Under $35k" },
+      { href: "/inventory/cpo", label: "Certified Pre-Owned" },
+      { href: "/inventory/sedans", label: "Executive Sedans" },
+      { href: "/inventory/coupes", label: "Performance Coupes" },
+      { href: "/inventory/suvs", label: "Luxury Touring SUVs" },
+      { href: "/inventory/under-35k", label: "Verified Under $35k" },
     ],
     title: "Curated Inventory",
   },
   {
     links: [
-      { href: "#", label: "Bespoke Lease Structures" },
-      { href: "#", label: "Direct Financing" },
-      { href: "#", label: "Digital Trade-In Valuation" },
-      { href: "#", label: "7-Day Buyback Guarantee" },
+      { href: "/finance/lease", label: "Bespoke Lease Structures" },
+      { href: "/finance/direct", label: "Direct Financing" },
+      { href: "/valuation", label: "Digital Trade-In Valuation" },
+      { href: "/finance/guarantee", label: "7-Day Buyback Guarantee" },
     ],
     title: "Acquisition & Finance",
   },
   {
     links: [
-      { href: "#", label: "Private Showroom Appointments" },
-      { href: "#", label: "Nationwide Transport" },
-      { href: "#", label: "VIP Test Drive Booking" },
-      { href: "#", label: "Vehicle Sourcing" },
+      {
+        href: "/concierge/appointments",
+        label: "Private Showroom Appointments",
+      },
+      { href: "/concierge/transport", label: "Nationwide Transport" },
+      { href: "/concierge/test-drive", label: "VIP Test Drive Booking" },
+      { href: "/concierge/sourcing", label: "Vehicle Sourcing" },
     ],
     title: "Concierge & Services",
   },
