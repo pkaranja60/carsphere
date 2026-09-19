@@ -4,40 +4,78 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MdOutlineFavoriteBorder } from "react-icons/md";
-import { MobileNav } from "./mobile-nav";
+import {
+  MdKeyboardArrowDown,
+  MdOutlineFavoriteBorder,
+  MdPersonOutline,
+} from "react-icons/md";
+import { MobileNav, type NavItem } from "./mobile-nav";
 
 // ─────────────────────────────────────────────
 // SECTION: Types & Data
 // ─────────────────────────────────────────────
 
-interface NavItem {
-  href: string;
-  isActive?: boolean;
-  label: string;
-}
-
 export const NAV_ITEMS: NavItem[] = [
-  { href: "#", isActive: true, label: "Inventory" },
-  { href: "#", label: "Premium & Performance" },
-  { href: "#", label: "Everyday Excellence" },
-  { href: "#", label: "Sell & Trade" },
-  { href: "#", label: "Financing" },
-  { href: "#", label: "Concierge" },
+  {
+    children: [
+      { href: "#", label: "Premium & Performance" },
+      { href: "#", label: "Everyday Excellence" },
+    ],
+    isActive: true,
+    label: "Inventory",
+  },
+  { href: "#", label: "About" },
+  { href: "#", label: "Book Viewing & Contact" },
+  {
+    children: [
+      { href: "#", label: "Sell & Trade" },
+      { href: "#", label: "Financing" },
+      { href: "#", label: "Warranty" },
+      { href: "#", label: "Private Sourcing" },
+    ],
+    label: "Services & Advisory",
+  },
 ];
 
 // ─────────────────────────────────────────────
 // SECTION: Component
 // ─────────────────────────────────────────────
 
-function HeaderLink({ label, href, isActive }: NavItem) {
+function HeaderLink({ label, href, isActive, children }: NavItem) {
   const baseClasses = "font-label-lg text-label-lg transition-colors";
   const activeClasses = isActive
     ? "font-bold text-primary hover:text-primary"
     : "text-on-surface-variant hover:text-on-surface";
 
+  if (children) {
+    return (
+      <div className="group relative flex h-20 items-center">
+        <button
+          className={`${baseClasses} ${activeClasses} flex items-center gap-1`}
+          type="button"
+        >
+          {label}
+          <MdKeyboardArrowDown className="text-xl transition-transform group-hover:rotate-180" />
+        </button>
+        <div className="invisible absolute top-full left-0 opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+          <div className="flex min-w-50 flex-col overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest py-2 shadow-lg">
+            {children.map((child) => (
+              <Link
+                className="px-4 py-3 font-label-md text-label-md text-on-surface-variant transition-colors hover:bg-surface hover:text-primary"
+                href={child.href}
+                key={child.label}
+              >
+                {child.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <Link className={`${baseClasses} ${activeClasses}`} href={href}>
+    <Link className={`${baseClasses} ${activeClasses}`} href={href || "#"}>
       {label}
     </Link>
   );
@@ -63,6 +101,14 @@ export function HeaderMainNav() {
 
         <div className="flex shrink-0 items-center gap-space-md">
           <MobileNav items={NAV_ITEMS} />
+
+          <Link
+            className="hidden h-10 w-10 items-center justify-center rounded-full border border-border-strong bg-surface-container-low text-on-surface-variant transition-all hover:bg-surface-container-high hover:text-primary md:flex"
+            href="#"
+            title="My Account"
+          >
+            <MdPersonOutline className="text-primary text-xl" />
+          </Link>
 
           <Link
             className="hidden h-10 items-center gap-2 rounded-full border border-border-strong bg-surface-container-low px-3 text-on-surface-variant transition-all hover:bg-surface-container-high hover:text-primary md:flex"

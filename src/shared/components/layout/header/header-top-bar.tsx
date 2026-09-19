@@ -4,6 +4,7 @@
 
 import {
   MdCall,
+  MdKeyboardArrowDown,
   MdLocalShipping,
   MdLocationOn,
   MdSchedule,
@@ -51,6 +52,20 @@ export function HeaderTopBar() {
             >
               +1 (800) 555-0199
             </a>
+          </div>
+          <span className="text-border-strong">|</span>
+          <div className="relative flex items-center">
+            <select
+              className="cursor-pointer appearance-none bg-transparent py-1 pr-5 pl-1 font-semibold text-label-sm text-on-surface outline-none transition-colors hover:text-primary focus:ring-0"
+              defaultValue="USD"
+              name="currency"
+            >
+              <option value="USD">USD ($)</option>
+              <option value="KES">KES (KSh)</option>
+              <option value="GBP">GBP (£)</option>
+              <option value="EUR">EUR (€)</option>
+            </select>
+            <MdKeyboardArrowDown className="pointer-events-none absolute right-0 text-on-surface-variant" />
           </div>
           <span className="text-border-strong">|</span>
           <ThemeToggle />

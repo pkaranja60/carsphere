@@ -6,15 +6,18 @@ import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   MdClose,
+  MdKeyboardArrowDown,
   MdMenu,
   MdOutlineFavoriteBorder,
+  MdPersonOutline,
   MdRoomService,
 } from "react-icons/md";
 import { ThemeToggle } from "@/shared/components/theme-toggle";
 import { Button } from "@/shared/components/ui/button";
 
 export interface NavItem {
-  href: string;
+  children?: { label: string; href: string }[];
+  href?: string;
   isActive?: boolean;
   label: string;
 }
@@ -88,21 +91,51 @@ export function MobileNav({ items }: MobileNavProps) {
             <div className="h-full w-full p-6 shadow-xl">
               <nav className="flex flex-1 flex-col gap-6">
                 {items.map((item) => (
-                  <Link
-                    className={`text-label-lg transition-colors md:text-headline-sm ${
-                      item.isActive
-                        ? "font-bold text-primary"
-                        : "text-on-surface hover:text-primary"
-                    }`}
-                    href={item.href}
-                    key={item.label}
-                  >
-                    {item.label}
-                  </Link>
+                  <div className="flex flex-col gap-2" key={item.label}>
+                    {item.href ? (
+                      <Link
+                        className={`text-label-lg transition-colors md:text-headline-sm ${
+                          item.isActive
+                            ? "font-bold text-primary"
+                            : "text-on-surface hover:text-primary"
+                        }`}
+                        href={item.href}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <span className="font-bold text-label-lg text-on-surface md:text-headline-sm">
+                        {item.label}
+                      </span>
+                    )}
+                    {item.children ? (
+                      <div className="ml-4 flex flex-col gap-3 border-border border-l-2 pl-4">
+                        {item.children.map((child) => (
+                          <Link
+                            className="text-label-md text-on-surface-variant hover:text-primary"
+                            href={child.href}
+                            key={child.label}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
                 ))}
               </nav>
 
               <div className="mt-8 flex flex-col gap-6 border-border border-t pt-6">
+                <Link
+                  className="flex items-center gap-3 text-on-surface transition-colors hover:text-primary"
+                  href="#"
+                >
+                  <MdPersonOutline className="text-primary text-xl" />
+                  <span className="font-semibold text-label-lg">
+                    My Account
+                  </span>
+                </Link>
+
                 <Link
                   className="flex items-center gap-3 text-on-surface transition-colors hover:text-primary"
                   href="#"
@@ -126,11 +159,32 @@ export function MobileNav({ items }: MobileNavProps) {
                   </span>
                 </Link>
 
-                <div className="mt-2 flex items-center justify-between">
-                  <span className="font-semibold text-label-lg text-on-surface">
-                    Appearance
-                  </span>
-                  <ThemeToggle />
+                <div className="mt-2 flex flex-col gap-4">
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-label-lg text-on-surface">
+                      Currency
+                    </span>
+                    <div className="relative flex items-center">
+                      <select
+                        className="cursor-pointer appearance-none rounded-md border border-border bg-surface-container-low py-1.5 pr-7 pl-3 font-semibold text-label-md text-on-surface outline-none transition-colors hover:text-primary focus:ring-0"
+                        defaultValue="USD"
+                        name="currency-mobile"
+                      >
+                        <option value="USD">USD ($)</option>
+                        <option value="KES">KES (KSh)</option>
+                        <option value="GBP">GBP (£)</option>
+                        <option value="EUR">EUR (€)</option>
+                      </select>
+                      <MdKeyboardArrowDown className="pointer-events-none absolute right-2 text-on-surface-variant" />
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-label-lg text-on-surface">
+                      Appearance
+                    </span>
+                    <ThemeToggle />
+                  </div>
                 </div>
               </div>
             </div>
