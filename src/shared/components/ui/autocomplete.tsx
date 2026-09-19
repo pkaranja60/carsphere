@@ -11,7 +11,7 @@ import {
 import type { ComponentProps } from "react";
 
 const triggerClassName = [
-  "flex h-9 md:h-11 w-full cursor-pointer items-center justify-between rounded-lg border border-outline-variant bg-surface-bright px-3 font-body-sm text-xs md:text-body-sm text-on-surface transition-all",
+  "flex h-9 md:h-11 w-full cursor-pointer items-center justify-between rounded-lg border border-outline-variant bg-surface-bright px-3 font-body-sm text-xs md:text-body-sm text-on-surface transition",
   "data-[focus-visible=true]:border-primary-container data-[focus-visible=true]:bg-surface data-[focus-visible=true]:outline-none data-[focus-visible=true]:ring-2 data-[focus-visible=true]:ring-primary-container/30",
 ].join(" ");
 

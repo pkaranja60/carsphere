@@ -38,7 +38,7 @@ const BRAND_ITEMS: BrandItem[] = [
 function BrandCard({ name }: BrandItem) {
   return (
     <Link
-      className="group flex h-20 flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 px-4 transition-all hover:bg-surface-container"
+      className="group flex h-20 flex-col items-center justify-center gap-2 rounded-lg border border-surface-variant bg-surface-container-low/60 px-4 transition hover:bg-surface-container"
       href="#"
     >
       <span className="font-headline-sm font-semibold text-lg text-on-surface tracking-tighter transition-colors group-hover:text-primary">

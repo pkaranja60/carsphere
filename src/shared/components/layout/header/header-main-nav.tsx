@@ -15,7 +15,7 @@ import { MobileNav, type NavItem } from "./mobile-nav";
 // SECTION: Types & Data
 // ─────────────────────────────────────────────
 
-export const NAV_ITEMS: NavItem[] = [
+const NAV_ITEMS: NavItem[] = [
   {
     children: [
       { href: "#", label: "Premium & Performance" },
@@ -61,9 +61,9 @@ function HeaderLink({ label, href, isActive, children }: NavItem) {
           type="button"
         >
           {label}
-          <MdKeyboardArrowDown className="text-xl transition-transform group-hover:rotate-180" />
+          <MdKeyboardArrowDown className="text-xl transition-transform group-focus-within:rotate-180 group-hover:rotate-180" />
         </button>
-        <div className="invisible absolute top-full left-0 opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+        <div className="invisible absolute top-full left-0 opacity-0 transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
           <div className="flex min-w-50 flex-col overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest py-2 shadow-lg">
             {children.map((child) => (
               <Link
@@ -109,7 +109,7 @@ export function HeaderMainNav() {
           <MobileNav items={NAV_ITEMS} />
 
           <Link
-            className="hidden h-10 w-10 items-center justify-center rounded-full border border-border-strong bg-surface-container-low text-on-surface-variant transition-all hover:bg-surface-container-high hover:text-primary md:flex"
+            className="hidden h-10 w-10 items-center justify-center rounded-full border border-border-strong bg-surface-container-low text-on-surface-variant transition hover:bg-surface-container-high hover:text-primary md:flex"
             href="#"
             title="My Account"
           >
@@ -117,7 +117,7 @@ export function HeaderMainNav() {
           </Link>
 
           <Link
-            className="hidden h-10 items-center gap-2 rounded-full border border-border-strong bg-surface-container-low px-3 text-on-surface-variant transition-all hover:bg-surface-container-high hover:text-primary md:flex"
+            className="hidden h-10 items-center gap-2 rounded-full border border-border-strong bg-surface-container-low px-3 text-on-surface-variant transition hover:bg-surface-container-high hover:text-primary md:flex"
             href="#"
             title="Saved Vehicles"
           >
@@ -128,7 +128,7 @@ export function HeaderMainNav() {
           </Link>
 
           <Link
-            className="hidden items-center gap-space-sm rounded-full bg-primary-container py-1.5 pr-4 pl-1.5 text-on-primary shadow-sm transition-all hover:bg-primary hover:shadow active:translate-y-0.5 md:flex"
+            className="hidden items-center gap-space-sm rounded-full bg-primary-container py-1.5 pr-4 pl-1.5 text-on-primary shadow-sm transition hover:bg-primary hover:shadow active:translate-y-0.5 md:flex"
             href="#"
           >
             <Image

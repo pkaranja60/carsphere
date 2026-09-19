@@ -68,16 +68,16 @@ function CategoryCard({
 
   return (
     <Link
-      className="group relative flex min-h-35 flex-col items-start justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-none transition-all hover:bg-surface-container md:shadow-sm"
+      className="group relative flex min-h-35 flex-col items-start justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest p-space-md shadow-none transition hover:bg-surface-container md:shadow-sm dark:bg-zinc-100 dark:hover:bg-zinc-200"
       href="#"
     >
       <div className="pointer-events-none relative z-10">
         <h4
-          className={`font-label-lg font-semibold text-label-lg text-on-surface transition-colors ${hoverTextColorClass}`}
+          className={`font-label-lg font-semibold text-label-lg text-on-surface transition-colors dark:text-zinc-900 ${hoverTextColorClass}`}
         >
           {title}
         </h4>
-        <span className="font-body-sm text-body-sm text-on-surface-variant">
+        <span className="font-body-sm text-body-sm text-on-surface-variant dark:text-zinc-600">
           {vehicleCount} Vehicles
         </span>
       </div>

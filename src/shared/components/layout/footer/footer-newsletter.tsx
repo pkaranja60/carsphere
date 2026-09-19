@@ -25,6 +25,7 @@ export function FooterNewsletter() {
         </span>
         <div className="flex flex-col gap-2">
           <input
+            aria-label="Email address for newsletter"
             className="h-10 w-full rounded-lg border border-border-strong bg-surface px-space-md font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:border-primary-container focus:outline-none"
             placeholder="Enter your private email"
             type="email"

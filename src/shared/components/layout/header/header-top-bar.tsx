@@ -56,6 +56,7 @@ export function HeaderTopBar() {
           <span className="text-border-strong">|</span>
           <div className="relative flex items-center">
             <select
+              aria-label="Select Currency"
               className="cursor-pointer appearance-none bg-transparent py-1 pr-5 pl-1 font-semibold text-label-sm text-on-surface outline-none transition-colors hover:text-primary focus:ring-0"
               defaultValue="USD"
               name="currency"

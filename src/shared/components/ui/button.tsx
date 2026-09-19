@@ -1,11 +1,9 @@
-"use client";
-
 import type { ButtonHTMLAttributes, RefObject } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 
 export const buttonVariants = tv(
   {
-    base: "flex items-center justify-center transition-all",
+    base: "flex items-center justify-center transition",
     defaultVariants: {
       size: "md",
       variant: "primary",

@@ -10,6 +10,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 
@@ -110,24 +111,37 @@ export const Carousel = ({
     api.on("select", onSelect);
 
     return () => {
+      api?.off("reInit", onSelect);
       api?.off("select", onSelect);
     };
   }, [api, onSelect]);
 
+  const contextValue = useMemo(
+    () => ({
+      api,
+      canScrollNext,
+      canScrollPrev,
+      carouselRef,
+      opts,
+      orientation:
+        orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
+      scrollNext,
+      scrollPrev,
+    }),
+    [
+      api,
+      canScrollNext,
+      canScrollPrev,
+      carouselRef,
+      opts,
+      orientation,
+      scrollNext,
+      scrollPrev,
+    ]
+  );
+
   return (
-    <CarouselContext.Provider
-      value={{
-        api,
-        canScrollNext,
-        canScrollPrev,
-        carouselRef,
-        opts,
-        orientation:
-          orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
-        scrollNext,
-        scrollPrev,
-      }}
-    >
+    <CarouselContext.Provider value={contextValue}>
       {/* biome-ignore lint/a11y/useSemanticElements: standard carousel ARIA pattern */}
       <div
         aria-roledescription="carousel"

@@ -82,7 +82,7 @@ function PortfolioCard({
   splatterHoverClass,
 }: PortfolioItem) {
   return (
-    <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest p-space-lg shadow-sm transition-all hover:shadow-md md:p-space-xl">
+    <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest p-space-lg shadow-sm transition hover:shadow-md md:p-space-xl">
       <Splatter
         className={`absolute -right-16 -bottom-16 w-80 text-on-surface/4 transition-transform duration-700 ease-out group-hover:scale-105 ${splatterHoverClass}`}
       />
@@ -114,7 +114,7 @@ function PortfolioCard({
       </div>
       <div className="relative z-10 flex items-center justify-between border-surface-container border-t pt-space-md">
         <Link
-          className={`inline-flex items-center gap-space-xs font-label-lg font-semibold text-label-lg transition-all ${actionColorClass} ${actionHoverColorClass}`}
+          className={`inline-flex items-center gap-space-xs font-label-lg font-semibold text-label-lg transition ${actionColorClass} ${actionHoverColorClass}`}
           href="#"
         >
           <span>{actionText}</span>

@@ -166,6 +166,7 @@ export function MobileNav({ items }: MobileNavProps) {
                     </span>
                     <div className="relative flex items-center">
                       <select
+                        aria-label="Select Currency"
                         className="cursor-pointer appearance-none rounded-md border border-border bg-surface-container-low py-1.5 pr-7 pl-3 font-semibold text-label-md text-on-surface outline-none transition-colors hover:text-primary focus:ring-0"
                         defaultValue="USD"
                         name="currency-mobile"
