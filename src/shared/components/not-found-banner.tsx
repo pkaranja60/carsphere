@@ -1,9 +1,21 @@
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
+
 import Link from "next/link";
+
+// ─────────────────────────────────────────────
+// SECTION: Interfaces
+// ─────────────────────────────────────────────
 
 interface NotFoundBannerProps {
   message?: string;
   title?: string;
 }
+
+// ─────────────────────────────────────────────
+// SECTION: Components
+// ─────────────────────────────────────────────
 
 export function NotFoundBanner({
   title = "Destination Unknown",
@@ -12,7 +24,6 @@ export function NotFoundBanner({
   return (
     <div className="flex w-full flex-col items-center justify-center text-center">
       <div className="relative mb-space-xs flex w-full max-w-xl justify-center text-primary">
-        {/* Ambient glow behind the illustration */}
         <div className="absolute inset-0 z-0 m-auto h-40 w-40 rounded-full bg-primary/10 blur-3xl" />
 
         <svg
@@ -26,7 +37,6 @@ export function NotFoundBanner({
         >
           <title>404 Not Found</title>
 
-          {/* Subtle 404 text in background */}
           <text
             className="tracking-widest"
             fill="currentColor"
@@ -40,7 +50,6 @@ export function NotFoundBanner({
             404
           </text>
 
-          {/* Base Grid Plane - Sparse and broken */}
           <g strokeOpacity="0.15" strokeWidth="1">
             <path d="M 200 40 L 40 120 M 240 60 L 80 140 M 280 80 L 120 160" />
             <path d="M 200 40 L 360 120 M 160 60 L 320 140" />
@@ -50,9 +59,7 @@ export function NotFoundBanner({
             />
           </g>
 
-          {/* An isometric road/bridge that suddenly ends */}
           <g transform="translate(80, 60)">
-            {/* Bridge Surface */}
             <path
               d="M 100 40 L 220 100 L 160 130 L 40 70 Z"
               fill="var(--color-surface-container-highest)"
@@ -60,14 +67,11 @@ export function NotFoundBanner({
             />
             <path d="M 100 40 L 220 100 L 160 130 L 40 70 Z" strokeWidth="2" />
 
-            {/* Bridge depth */}
             <path d="M 40 70 L 40 90 L 160 150 L 220 120 L 220 100" />
             <path d="M 160 130 L 160 150" />
 
-            {/* Centerline */}
             <path d="M 70 55 L 190 115" strokeDasharray="8 8" />
 
-            {/* The broken edge warning marker */}
             <circle
               className="motion-safe:animate-pulse"
               cx="210"
@@ -84,36 +88,30 @@ export function NotFoundBanner({
             />
           </g>
 
-          {/* Isometric Hazard Barrier blocking the road */}
           <g transform="translate(60, 60)">
-            {/* Barrier Shadow */}
             <path
               d="M 135 122 L 205 87 L 195 82 L 125 117 Z"
               fill="currentColor"
               opacity="0.05"
             />
-            {/* Front Face */}
             <path
               d="M 140 120 L 200 90 L 200 75 L 140 105 Z"
               fill="var(--color-surface-container-highest)"
               stroke="currentColor"
               strokeLinejoin="round"
             />
-            {/* Top Face */}
             <path
               d="M 140 105 L 200 75 L 195 72 L 135 102 Z"
               fill="var(--color-surface)"
               stroke="currentColor"
               strokeLinejoin="round"
             />
-            {/* Side Face */}
             <path
               d="M 135 102 L 140 105 L 140 120 L 135 117 Z"
               fill="var(--color-surface-container)"
               stroke="currentColor"
               strokeLinejoin="round"
             />
-            {/* Hazard Stripes on Front Face */}
             <g opacity="0.6" stroke="var(--color-error)" strokeWidth="4">
               <path d="M 145 117 L 145 102" />
               <path d="M 155 112 L 155 97" />
@@ -124,10 +122,7 @@ export function NotFoundBanner({
             </g>
           </g>
 
-          {/* Floating Warning Triangle */}
           <g transform="translate(160, 35) scale(2)">
-            {/* Glowing background pulse */}
-
             <g
               fill="var(--color-surface)"
               stroke="var(--color-error)"
@@ -147,7 +142,6 @@ export function NotFoundBanner({
             </g>
           </g>
 
-          {/* Measurement line pointing to the void */}
           <g
             className="font-mono text-[10px] text-primary"
             strokeOpacity="0.4"

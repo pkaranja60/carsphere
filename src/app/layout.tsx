@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { MainLayout } from "@/shared/components";
 import { ThemeProvider } from "./providers";
 import "./globals.css";
 
@@ -32,13 +33,21 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`${plusJakartaSans.variable} ${inter.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${inter.variable} h-full overflow-x-hidden antialiased`}
       lang="en"
       suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col bg-background font-sans text-on-background">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+      <body
+        className="flex min-h-full flex-col overflow-x-hidden bg-background font-sans text-on-background"
+        suppressHydrationWarning
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          disableTransitionOnChange
+          enableSystem
+        >
+          <MainLayout>{children}</MainLayout>
         </ThemeProvider>
       </body>
     </html>

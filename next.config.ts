@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
         hostname: "cdn.simpleicons.org",
         protocol: "https",
       },
+      {
+        hostname: "lh3.googleusercontent.com",
+        protocol: "https",
+      },
     ],
   },
 };
