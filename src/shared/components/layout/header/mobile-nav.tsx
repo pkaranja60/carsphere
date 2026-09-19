@@ -88,7 +88,7 @@ export function MobileNav({ items }: MobileNavProps) {
         mounted &&
         createPortal(
           <div className="fixed inset-0 top-20 z-100 bg-surface/80 backdrop-blur-xl md:top-30">
-            <div className="h-full w-full p-6 shadow-xl">
+            <div className="h-full w-full overflow-y-auto p-6 pb-24 shadow-xl">
               <nav className="flex flex-1 flex-col gap-6">
                 {items.map((item) => (
                   <div className="flex flex-col gap-2" key={item.label}>

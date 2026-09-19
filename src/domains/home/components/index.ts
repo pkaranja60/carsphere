@@ -1,9 +1,10 @@
-export { BespokeServices } from "./bespoke-services";
+export { BespokeCarousel } from "./bespoke-carousel";
 export { CategoryGrid } from "./category-grid";
 export { CuratedPortfolios } from "./curated-portfolios";
 export { EverydayVehicles } from "./everyday-vehicles";
 export { FeaturedVehicles } from "./featured-vehicles";
 export { HeroSection } from "./hero-section";
 export { OmniSearch } from "./omni-search";
+export { RecentlySold } from "./recently-sold";
 export { TopBrands } from "./top-brands";
 export { TrustStrip } from "./trust-strip";

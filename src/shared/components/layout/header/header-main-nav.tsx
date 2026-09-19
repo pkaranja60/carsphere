@@ -24,7 +24,13 @@ export const NAV_ITEMS: NavItem[] = [
     isActive: true,
     label: "Inventory",
   },
-  { href: "#", label: "About" },
+  {
+    children: [
+      { href: "#", label: "Our Story" },
+      { href: "#", label: "Journal" },
+    ],
+    label: "About",
+  },
   { href: "#", label: "Book Viewing & Contact" },
   {
     children: [

@@ -56,7 +56,7 @@ export function VehicleCard({
   historyText,
 }: VehicleCardProps) {
   return (
-    <article className="group flex flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest shadow-none transition-all hover:shadow-md md:shadow-sm">
+    <article className="group flex h-full flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest shadow-none transition-all hover:shadow-md md:shadow-sm">
       <div>
         <div className="relative aspect-16/10 overflow-hidden bg-surface-container-high">
           <Image
@@ -81,39 +81,39 @@ export function VehicleCard({
           </Button>
         </div>
 
-        <div className="p-space-md">
-          <div className="mb-space-xs flex items-baseline justify-between gap-space-xs">
-            <h3 className="truncate font-headline-sm font-semibold text-headline-sm text-on-surface tracking-tight">
+        <div className="p-3 pb-0 sm:p-space-md">
+          <div className="mb-space-xs flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-space-xs">
+            <h3 className="truncate font-display font-semibold text-on-surface text-sm leading-tight tracking-tight sm:font-headline-sm sm:text-headline-sm">
               {year} {make} {model}
             </h3>
-            <span className="font-label-sm font-semibold text-label-sm text-primary">
+            <span className="font-semibold text-primary text-xs sm:font-label-sm sm:text-label-sm">
               {trim}
             </span>
           </div>
-          <p className="mb-space-md truncate font-body-sm text-body-sm text-on-surface-variant">
+          <p className="mb-space-md hidden truncate font-body-sm text-on-surface-variant text-xs sm:block sm:text-body-sm">
             {colorString}
           </p>
 
-          <div className="mb-space-md grid grid-cols-3 gap-1 rounded-lg bg-surface-container-low px-space-sm py-space-xs text-center font-body-sm text-body-sm text-on-surface-variant">
+          <div className="mb-space-md grid grid-cols-2 gap-1 rounded-lg bg-surface-container-low px-1 py-1.5 text-center sm:grid-cols-3 sm:px-space-sm sm:py-space-xs">
             <div>
-              <span className="block font-semibold text-label-sm text-on-surface">
+              <span className="block font-semibold text-on-surface text-xs sm:text-label-sm">
                 {specs.stat1}
               </span>
-              <span className="text-[10px] text-label-sm uppercase">
+              <span className="text-[9px] uppercase sm:text-[10px]">
                 {specs.label1}
               </span>
             </div>
             <div>
-              <span className="block font-semibold text-label-sm text-on-surface">
+              <span className="block font-semibold text-on-surface text-xs sm:text-label-sm">
                 {specs.stat2}
               </span>
-              <span className="text-[10px] text-label-sm uppercase">
+              <span className="text-[9px] uppercase sm:text-[10px]">
                 {specs.label2}
               </span>
             </div>
-            <div>
+            <div className="hidden sm:block">
               <span
-                className={`block font-semibold text-label-sm ${
+                className={`block font-semibold text-xs sm:text-label-sm ${
                   specs.stat3Color === "tertiary"
                     ? "text-tertiary"
                     : "text-on-surface"
@@ -121,7 +121,7 @@ export function VehicleCard({
               >
                 {specs.stat3}
               </span>
-              <span className="text-[10px] text-label-sm uppercase">
+              <span className="text-[9px] uppercase sm:text-[10px]">
                 {specs.label3}
               </span>
             </div>
@@ -129,29 +129,30 @@ export function VehicleCard({
         </div>
       </div>
 
-      <div className="p-space-md pt-0">
-        <div className="mb-space-sm flex items-baseline justify-between">
+      <div className="p-3 pt-0 sm:p-space-md sm:pt-0">
+        <div className="mb-space-sm flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
           <div>
-            <span className="font-bold font-price-card text-on-surface text-price-card">
+            <span className="font-bold font-price-card text-base text-on-surface sm:text-price-card">
               {price}
             </span>
-            <span className="block font-body-sm text-body-sm text-on-surface-variant">
+            <span className="block font-body-sm text-[11px] text-on-surface-variant sm:text-body-sm">
               Est. {monthlyEstimate} / mo
             </span>
           </div>
-          <span className="flex items-center gap-0.5 font-label-sm font-semibold text-label-sm text-tertiary">
-            <MdOutlineVerified className="text-base" />
+          <span className="hidden items-center gap-0.5 font-semibold text-tertiary text-xs sm:flex sm:font-label-sm sm:text-label-sm">
+            <MdOutlineVerified className="text-sm sm:text-base" />
             {historyText}
           </span>
         </div>
         <Button
-          className="gap-space-xs"
+          className="gap-1 sm:gap-space-xs"
           fullWidth
           size="md"
           variant="secondary"
         >
-          <span>View Specification</span>
-          <MdChevronRight className="text-base" />
+          <span className="text-[11px] sm:hidden">View</span>
+          <span className="hidden text-sm sm:inline">View Details</span>
+          <MdChevronRight className="text-sm sm:text-base" />
         </Button>
       </div>
     </article>

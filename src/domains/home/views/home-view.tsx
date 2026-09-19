@@ -3,13 +3,14 @@
 // ─────────────────────────────────────────────
 
 import {
-  BespokeServices,
+  BespokeCarousel,
   CategoryGrid,
   CuratedPortfolios,
   EverydayVehicles,
   FeaturedVehicles,
   HeroSection,
   OmniSearch,
+  RecentlySold,
   TopBrands,
 } from "../components";
 
@@ -33,8 +34,9 @@ export function HomeView() {
       <CuratedPortfolios />
       <FeaturedVehicles />
       <CategoryGrid />
-      <BespokeServices />
+      <BespokeCarousel />
       <EverydayVehicles />
+      <RecentlySold />
       <TopBrands />
     </div>
   );
