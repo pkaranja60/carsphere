@@ -52,7 +52,7 @@ export function MobileNav({ items }: MobileNavProps) {
     if (isOpen) {
       document.body.style.overflow = "hidden";
       if (!dialogRef.current?.open) {
-        dialogRef.current?.showModal();
+        dialogRef.current?.show();
       }
     } else {
       document.body.style.overflow = "";

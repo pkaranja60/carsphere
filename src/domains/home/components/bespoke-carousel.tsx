@@ -4,8 +4,7 @@ import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
 import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
-import { MdArrowForward, MdPause, MdPlayArrow } from "react-icons/md";
+import { MdArrowForward } from "react-icons/md";
 import { buttonVariants } from "@/shared/components/ui/button";
 
 interface SlideData {
@@ -46,39 +45,10 @@ const CAROUSEL_SLIDES: SlideData[] = [
 ];
 
 export function BespokeCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ duration: 60, loop: true }, [
+  const [emblaRef] = useEmblaCarousel({ duration: 60, loop: true }, [
     Autoplay({ delay: 7000, stopOnInteraction: false }),
     Fade(),
   ]);
-
-  const [isPlaying, setIsPlaying] = useState(true);
-
-  const toggleAutoplay = useCallback(() => {
-    const autoplay = emblaApi?.plugins()?.autoplay;
-    if (!autoplay) {
-      return;
-    }
-
-    if (autoplay.isPlaying()) {
-      autoplay.stop();
-      setIsPlaying(false);
-    } else {
-      autoplay.play();
-      setIsPlaying(true);
-    }
-  }, [emblaApi]);
-
-  useEffect(() => {
-    const autoplay = emblaApi?.plugins()?.autoplay;
-    if (!autoplay) {
-      return;
-    }
-
-    emblaApi
-      .on("autoplay:play", () => setIsPlaying(true))
-      .on("autoplay:stop", () => setIsPlaying(false))
-      .on("reInit", () => setIsPlaying(autoplay.isPlaying()));
-  }, [emblaApi]);
 
   return (
     <section className="px-margin-mobile py-space-xl md:px-margin">
@@ -147,22 +117,6 @@ export function BespokeCarousel() {
             );
           })}
         </div>
-
-        {/* Play/Pause Control */}
-        <button
-          aria-label={
-            isPlaying ? "Pause automatic slide" : "Start automatic slide"
-          }
-          className="absolute right-6 bottom-6 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white backdrop-blur-md transition-colors hover:bg-black/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-          onClick={toggleAutoplay}
-          type="button"
-        >
-          {isPlaying ? (
-            <MdPause className="text-2xl" />
-          ) : (
-            <MdPlayArrow className="text-2xl" />
-          )}
-        </button>
       </div>
     </section>
   );
