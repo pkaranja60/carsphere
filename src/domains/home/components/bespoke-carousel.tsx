@@ -1,6 +1,5 @@
 "use client";
 
-import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
 import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
@@ -45,10 +44,7 @@ const CAROUSEL_SLIDES: SlideData[] = [
 ];
 
 export function BespokeCarousel() {
-  const [emblaRef] = useEmblaCarousel({ duration: 60, loop: true }, [
-    Autoplay({ delay: 7000, stopOnInteraction: false }),
-    Fade(),
-  ]);
+  const [emblaRef] = useEmblaCarousel({ duration: 60, loop: true }, [Fade()]);
 
   return (
     <section className="px-margin-mobile py-space-xl md:px-margin">

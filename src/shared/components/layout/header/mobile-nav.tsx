@@ -49,19 +49,29 @@ export function MobileNav({ items }: MobileNavProps) {
 
   // Manage dialog state and body scroll
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        setIsOpen(false);
+      }
+    };
+
     if (isOpen) {
       document.body.style.overflow = "hidden";
       if (!dialogRef.current?.open) {
         dialogRef.current?.show();
       }
+      document.addEventListener("keydown", handleKeyDown);
     } else {
       document.body.style.overflow = "";
       if (dialogRef.current?.open) {
         dialogRef.current?.close();
       }
+      document.removeEventListener("keydown", handleKeyDown);
     }
+
     return () => {
       document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen]);
 
