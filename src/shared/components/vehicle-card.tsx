@@ -88,6 +88,7 @@ export function VehicleCard({
           <Button
             aria-label="Save to garage"
             className="absolute top-3 right-3"
+            onClick={handleSaveClick}
             size="icon-md"
             variant="icon-blur"
           >
@@ -158,31 +159,14 @@ export function VehicleCard({
             {historyText}
           </span>
         </div>
-        {/* Actions (Hidden on Mobile) */}
-        <div className="mt-space-xs hidden grid-cols-5 items-center gap-space-xs sm:grid">
-          <button
-            aria-label={`Save ${year} ${make} ${model} to garage`}
-            className="col-span-1 flex h-10 items-center justify-center rounded-lg border border-outline-variant bg-surface text-on-surface-variant transition-colors hover:bg-surface-container hover:text-primary active:scale-95"
-            onClick={handleSaveClick}
-            type="button"
-          >
-            <MdFavoriteBorder className="text-xl" />
-          </button>
-          <Link
-            className="col-span-4 flex h-10 items-center justify-center rounded-lg bg-primary-container font-label-md font-semibold text-label-md text-on-primary shadow-sm transition-colors hover:bg-primary active:scale-95"
-            href={detailsUrl}
-          >
-            View Details
-          </Link>
-        </div>
-
-        {/* Mobile View Button */}
-        <div className="mt-space-xs sm:hidden">
+        {/* Actions */}
+        <div className="mt-space-xs">
           <Link
             className="flex h-10 w-full items-center justify-center rounded-lg bg-primary-container font-label-md font-semibold text-label-md text-on-primary shadow-sm transition-colors hover:bg-primary active:scale-95"
             href={detailsUrl}
           >
-            View
+            <span className="sm:hidden">View</span>
+            <span className="hidden sm:inline">View Details</span>
           </Link>
         </div>
       </div>

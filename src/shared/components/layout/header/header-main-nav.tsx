@@ -109,19 +109,24 @@ function HeaderDropdownLink({ label, isActive, children }: NavItem) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
-  const handleMouseEnter = useCallback(() => setIsOpen(true), []);
-  const handleMouseLeave = useCallback(() => setIsOpen(false), []);
+  const handlePointerEnter = useCallback((e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") {
+      setIsOpen(true);
+    }
+  }, []);
+  const handlePointerLeave = useCallback((e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") {
+      setIsOpen(false);
+    }
+  }, []);
   const handleToggle = useCallback(() => setIsOpen((prev) => !prev), []);
   const handleClose = useCallback(() => setIsOpen(false), []);
 
   const dropdownContainer = (
-    // biome-ignore lint/a11y/useKeyWithMouseEvents: Dropdown hover container
-    // biome-ignore lint/a11y/noStaticElementInteractions: Dropdown hover container
-    // biome-ignore lint/a11y/noNoninteractiveElementInteractions: Dropdown hover container
     <div
       className="relative flex h-20 items-center"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
       ref={containerRef}
     >
       <button
