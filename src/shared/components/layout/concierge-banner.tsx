@@ -34,13 +34,13 @@ export function ConciergeBanner() {
         </div>
         <div className="flex w-full shrink-0 flex-col gap-3 sm:flex-row lg:w-auto">
           <button
-            className="rounded-lg bg-primary px-6 py-3.5 text-center font-bold font-label-lg text-on-primary shadow-level-1 transition-all hover:bg-primary-fixed-dim hover:text-on-primary-fixed"
+            className="rounded-lg bg-primary px-6 py-3.5 text-center font-label-lg font-medium text-on-primary shadow-level-1 transition-all hover:bg-primary-fixed-dim hover:text-on-primary-fixed"
             type="button"
           >
             Request Bespoke Vehicle Search
           </button>
           <button
-            className="rounded-lg bg-surface-container-high px-6 py-3.5 text-center font-bold font-label-lg text-on-surface transition-all hover:bg-surface-container-highest"
+            className="rounded-lg bg-surface-container-high px-6 py-3.5 text-center font-label-lg font-medium text-on-surface transition-all hover:bg-surface-container-highest"
             type="button"
           >
             Call Concierge Team

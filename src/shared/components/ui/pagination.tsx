@@ -92,7 +92,7 @@ export function Pagination({
           ({totalItems} total vehicles in current allocation)
         </span>
       </div>
-      <div className="flex items-center space-x-1 font-semibold">
+      <div className="flex items-center space-x-1 font-medium">
         <button
           className="rounded px-3 py-1.5 text-on-surface-variant transition hover:bg-surface-variant disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-transparent"
           data-page={currentPage - 1}

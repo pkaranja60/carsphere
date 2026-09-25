@@ -29,11 +29,7 @@ export function FilterPill({
     >
       <span>{label}</span>
       {count !== undefined && (
-        <span
-          className={
-            isActive ? "text-primary dark:text-inverse-primary" : "text-primary"
-          }
-        >
+        <span className={isActive ? "opacity-75" : "text-primary"}>
           ({count})
         </span>
       )}

@@ -1,6 +1,75 @@
-import { MdClose, MdSearch } from "react-icons/md";
+"use client";
+
+import { useCallback } from "react";
+
+import { MdSearch } from "react-icons/md";
+import { useInventory } from "../hooks/use-inventory";
+import { InventoryActiveTags } from "./inventory-active-tags";
+import { InventorySidebarMake } from "./inventory-sidebar-make";
+import { InventorySidebarPrice } from "./inventory-sidebar-price";
 
 export function InventorySidebar() {
+  const {
+    searchQuery,
+    setSearchQuery,
+    priceRange,
+    selectedMakes,
+    selectedBodyTypes,
+    toggleBodyType,
+    selectedPowertrains,
+    togglePowertrain,
+    selectedSegments,
+    toggleSegment,
+    isCPO,
+    resetFilters,
+  } = useInventory();
+
+  const activeCount =
+    (searchQuery ? 1 : 0) +
+    selectedMakes.size +
+    selectedBodyTypes.size +
+    selectedPowertrains.size +
+    (selectedSegments.has("All Dimensions") ? 0 : selectedSegments.size) +
+    (priceRange[0] > 20_000 || priceRange[1] < 250_000 ? 1 : 0) +
+    (isCPO ? 1 : 0);
+
+  const handleSearchChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchQuery(e.target.value);
+    },
+    [setSearchQuery]
+  );
+
+  const handleBodyTypeClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      const { body } = e.currentTarget.dataset;
+      if (body) {
+        toggleBodyType(body);
+      }
+    },
+    [toggleBodyType]
+  );
+
+  const handlePowertrainChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { pt } = e.currentTarget.dataset;
+      if (pt) {
+        togglePowertrain(pt);
+      }
+    },
+    [togglePowertrain]
+  );
+
+  const handleSegmentChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { seg } = e.currentTarget.dataset;
+      if (seg) {
+        toggleSegment(seg);
+      }
+    },
+    [toggleSegment]
+  );
+
   return (
     <aside
       className="w-full shrink-0 space-y-6 rounded-xl border border-border bg-surface p-5 shadow-level-1 lg:w-70"
@@ -12,12 +81,15 @@ export function InventorySidebar() {
           <h2 className="font-label-lg text-on-surface uppercase tracking-tight">
             Filter Selection
           </h2>
-          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary font-bold font-label-sm text-on-primary">
-            3
-          </span>
+          {activeCount > 0 && (
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary font-bold font-label-sm text-on-primary">
+              {activeCount}
+            </span>
+          )}
         </div>
         <button
-          className="font-label-sm font-semibold text-on-surface-variant underline hover:text-on-surface"
+          className="font-medium text-on-surface-variant text-xs underline hover:text-on-surface"
+          onClick={resetFilters}
           type="button"
         >
           Reset All
@@ -25,19 +97,7 @@ export function InventorySidebar() {
       </div>
 
       {/* Active Filter Tags */}
-      <div className="flex flex-wrap gap-1.5 pb-2">
-        {["Certified Pre-Owned", "AWD", "< $90,000"].map((tag) => (
-          <span
-            className="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface-container-low px-2.5 py-1 font-label-md font-medium text-on-surface"
-            key={tag}
-          >
-            {tag}
-            <button className="font-bold hover:text-error" type="button">
-              <MdClose className="text-sm" />
-            </button>
-          </span>
-        ))}
-      </div>
+      <InventoryActiveTags />
 
       {/* Search Input */}
       <div className="relative">
@@ -46,121 +106,40 @@ export function InventorySidebar() {
         </span>
         <input
           className="w-full rounded-lg border border-border bg-surface-container-low py-2 pr-3 pl-9 font-body-sm text-on-surface placeholder:text-on-surface-variant focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          onChange={handleSearchChange}
           placeholder="Search make, model, trim..."
           type="text"
+          value={searchQuery}
         />
       </div>
 
       {/* SEGMENT / ALLOCATION */}
-      <div className="space-y-2.5">
+      <div className="space-y-2 pt-2">
         <h3 className="font-label-sm text-on-surface-variant uppercase tracking-wider">
           Segment / Allocation
         </h3>
-        <div className="space-y-2 font-label-md font-medium text-on-surface">
+        <div className="space-y-1.5 text-on-surface text-sm">
           {[
             "All Dimensions",
             "Performance ($68k+)",
             "Everyday Excellence ($24k-$45k)",
-          ].map((label, idx) => (
-            <label
-              className="flex cursor-pointer items-center justify-between"
-              key={label}
-            >
-              <span className="flex items-center gap-2">
-                <input
-                  className="h-3.5 w-3.5 text-primary focus:ring-primary"
-                  defaultChecked={idx === 0}
-                  name="segment"
-                  type="radio"
-                />
-                <span>{label}</span>
-              </span>
+          ].map((seg) => (
+            <label className="flex cursor-pointer items-center gap-2" key={seg}>
+              <input
+                checked={selectedSegments.has(seg)}
+                className="h-4 w-4 border-border text-primary focus:ring-primary"
+                data-seg={seg}
+                onChange={handleSegmentChange}
+                type="radio"
+              />
+              <span>{seg}</span>
             </label>
           ))}
         </div>
       </div>
 
-      {/* PRICE RANGE */}
-      <div className="space-y-3 pt-2">
-        <div className="flex items-center justify-between font-label-sm">
-          <span className="text-on-surface-variant uppercase tracking-wider">
-            Price Range
-          </span>
-          <span className="font-semibold text-on-surface">$20k – $250k+</span>
-        </div>
-        <input
-          className="w-full"
-          defaultValue="90"
-          max="250"
-          min="20"
-          type="range"
-        />
-        <div className="grid grid-cols-2 gap-1.5 pt-1 font-label-md font-medium text-on-surface">
-          <button
-            className="rounded border border-border py-1 text-center transition hover:bg-surface-container-low"
-            type="button"
-          >
-            &lt; $35,000
-          </button>
-          <button
-            className="rounded border border-border py-1 text-center transition hover:bg-surface-container-low"
-            type="button"
-          >
-            $35k - $60k
-          </button>
-          <button
-            className="rounded bg-on-surface py-1 text-center font-semibold text-surface"
-            type="button"
-          >
-            $60k - $100k
-          </button>
-          <button
-            className="rounded border border-border py-1 text-center transition hover:bg-surface-container-low"
-            type="button"
-          >
-            $100k +
-          </button>
-        </div>
-      </div>
-
-      {/* MAKE & MARQUE */}
-      <div className="space-y-2.5 pt-2">
-        <div className="flex items-center justify-between font-label-sm">
-          <span className="text-on-surface-variant uppercase tracking-wider">
-            Make & Marque
-          </span>
-          <span className="text-on-surface-variant">8 Selected</span>
-        </div>
-        <div className="max-h-48 space-y-1.5 overflow-y-auto pr-1 font-label-md text-on-surface">
-          {[
-            { checked: true, count: 42, label: "Porsche" },
-            { checked: true, count: 58, label: "BMW" },
-            { checked: true, count: 51, label: "Mercedes-Benz" },
-            { checked: true, count: 39, label: "Audi" },
-            { checked: true, count: 28, label: "Genesis" },
-            { checked: true, count: 64, label: "Lexus" },
-            { checked: false, count: 14, label: "Aston Martin" },
-            { checked: false, count: 31, label: "Volvo" },
-          ].map((item) => (
-            <label
-              className="flex cursor-pointer items-center justify-between hover:text-primary"
-              key={item.label}
-            >
-              <span className="flex items-center gap-2">
-                <input
-                  className="h-3.5 w-3.5 rounded border-border text-primary focus:ring-primary"
-                  defaultChecked={item.checked}
-                  type="checkbox"
-                />
-                <span>{item.label}</span>
-              </span>
-              <span className="font-label-sm text-on-surface-variant">
-                {item.count}
-              </span>
-            </label>
-          ))}
-        </div>
-      </div>
+      <InventorySidebarPrice />
+      <InventorySidebarMake />
 
       {/* BODY ARCHITECTURE */}
       <div className="space-y-2 pt-2">
@@ -168,36 +147,26 @@ export function InventorySidebar() {
           Body Architecture
         </h3>
         <div className="flex flex-wrap gap-1.5 font-label-sm">
-          <button
-            className="rounded bg-on-surface px-2.5 py-1 font-medium text-surface"
-            type="button"
-          >
-            Sedan
-          </button>
-          <button
-            className="rounded border border-border px-2.5 py-1 font-medium hover:bg-surface-container-low"
-            type="button"
-          >
-            SUV / Crossover
-          </button>
-          <button
-            className="rounded border border-border px-2.5 py-1 font-medium hover:bg-surface-container-low"
-            type="button"
-          >
-            Coupe
-          </button>
-          <button
-            className="rounded border border-border px-2.5 py-1 font-medium hover:bg-surface-container-low"
-            type="button"
-          >
-            Grand Tourer
-          </button>
-          <button
-            className="rounded border border-border px-2.5 py-1 font-medium hover:bg-surface-container-low"
-            type="button"
-          >
-            Wagon / Touring
-          </button>
+          {[
+            "Sedan",
+            "SUV / Crossover",
+            "Coupe",
+            "Grand Tourer",
+            "Wagon / Touring",
+          ].map((body) => {
+            const isSelected = selectedBodyTypes.has(body);
+            return (
+              <button
+                className={`rounded border px-2.5 py-1 font-medium transition-colors ${isSelected ? "border-transparent bg-on-surface text-surface" : "border-border hover:bg-surface-container-low"}`}
+                data-body={body}
+                key={body}
+                onClick={handleBodyTypeClick}
+                type="button"
+              >
+                {body}
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -206,23 +175,19 @@ export function InventorySidebar() {
         <h3 className="font-label-sm text-on-surface-variant uppercase tracking-wider">
           Powertrain
         </h3>
-        <div className="space-y-1.5 font-label-md text-on-surface">
-          <label className="flex cursor-pointer items-center gap-2">
-            <input
-              className="h-3.5 w-3.5 rounded border-border text-primary focus:ring-primary"
-              defaultChecked
-              type="checkbox"
-            />
-            <span>Electric</span>
-          </label>
-          <label className="flex cursor-pointer items-center gap-2">
-            <input
-              className="h-3.5 w-3.5 rounded border-border text-primary focus:ring-primary"
-              defaultChecked
-              type="checkbox"
-            />
-            <span>Hybrid / PHEV</span>
-          </label>
+        <div className="space-y-1.5 text-on-surface text-sm">
+          {["Electric", "Hybrid / PHEV"].map((pt) => (
+            <label className="flex cursor-pointer items-center gap-2" key={pt}>
+              <input
+                checked={selectedPowertrains.has(pt)}
+                className="h-3.5 w-3.5 rounded border-border text-primary focus:ring-primary"
+                data-pt={pt}
+                onChange={handlePowertrainChange}
+                type="checkbox"
+              />
+              <span>{pt}</span>
+            </label>
+          ))}
         </div>
       </div>
     </aside>

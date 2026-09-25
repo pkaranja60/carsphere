@@ -22,6 +22,7 @@ export interface VehicleCardProps {
   id?: string;
   imageAlt: string;
   imageSrc: string;
+  layout?: "vertical" | "horizontal";
   make: string;
   model: string;
   monthlyEstimate: string;
@@ -60,6 +61,7 @@ export function VehicleCard({
   year,
   onSave,
   detailsUrl = `/inventory/${id}`,
+  layout = "vertical",
 }: VehicleCardProps) {
   const handleSaveClick = useCallback(
     (e: React.MouseEvent) => {
@@ -69,10 +71,16 @@ export function VehicleCard({
     [onSave]
   );
 
+  const isHorizontal = layout === "horizontal";
+
   return (
-    <article className="group flex h-full flex-col justify-between overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest shadow-none transition hover:shadow-md md:shadow-sm">
-      <div>
-        <div className="relative aspect-16/10 overflow-hidden bg-surface-container-high">
+    <article
+      className={`group flex h-full overflow-hidden rounded-xl border border-surface-variant bg-surface-container-lowest shadow-none transition hover:shadow-md md:shadow-sm ${isHorizontal ? "flex-col md:flex-row" : "flex-col justify-between"}`}
+    >
+      <div className={isHorizontal ? "w-full shrink-0 md:w-72 lg:w-80" : ""}>
+        <div
+          className={`relative overflow-hidden bg-surface-container-high ${isHorizontal ? "h-48 md:h-full" : "aspect-16/10"}`}
+        >
           <Image
             alt={imageAlt}
             className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 group-active:scale-105"
@@ -95,8 +103,12 @@ export function VehicleCard({
             <MdFavoriteBorder className="text-lg" />
           </Button>
         </div>
+      </div>
 
-        <div className="p-3 pb-0 sm:p-space-md">
+      <div
+        className={`flex flex-1 flex-col justify-between ${isHorizontal ? "p-3 sm:p-space-md" : ""}`}
+      >
+        <div className={isHorizontal ? "" : "p-3 pb-0 sm:p-space-md"}>
           <div className="mb-space-xs flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-space-xs">
             <h3 className="truncate font-display font-semibold text-on-surface text-sm leading-tight tracking-tight sm:font-headline-sm sm:text-headline-sm">
               {year} {make} {model}
@@ -142,32 +154,36 @@ export function VehicleCard({
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="p-3 pt-0 sm:p-space-md sm:pt-0">
-        <div className="mb-space-sm flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
-          <div>
-            <span className="font-bold font-price-card text-base text-on-surface sm:text-price-card">
-              {price}
-            </span>
-            <span className="block font-body-sm text-[11px] text-on-surface-variant sm:text-body-sm">
-              Est. {monthlyEstimate} / mo
+        <div
+          className={
+            isHorizontal ? "mt-auto pt-0" : "p-3 pt-0 sm:p-space-md sm:pt-0"
+          }
+        >
+          <div className="mb-space-sm flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
+            <div>
+              <span className="font-bold font-price-card text-base text-on-surface sm:text-price-card">
+                {price}
+              </span>
+              <span className="block font-body-sm text-[11px] text-on-surface-variant sm:text-body-sm">
+                Est. {monthlyEstimate} / mo
+              </span>
+            </div>
+            <span className="hidden items-center gap-0.5 font-semibold text-tertiary text-xs sm:flex sm:font-label-sm sm:text-label-sm">
+              <MdOutlineVerified className="text-sm sm:text-base" />
+              {historyText}
             </span>
           </div>
-          <span className="hidden items-center gap-0.5 font-semibold text-tertiary text-xs sm:flex sm:font-label-sm sm:text-label-sm">
-            <MdOutlineVerified className="text-sm sm:text-base" />
-            {historyText}
-          </span>
-        </div>
-        {/* Actions */}
-        <div className="mt-space-xs">
-          <Link
-            className="flex h-10 w-full items-center justify-center rounded-lg bg-primary-container font-label-md font-semibold text-label-md text-on-primary shadow-sm transition-colors hover:bg-primary active:scale-95"
-            href={detailsUrl}
-          >
-            <span className="sm:hidden">View</span>
-            <span className="hidden sm:inline">View Details</span>
-          </Link>
+          {/* Actions */}
+          <div className="mt-space-xs">
+            <Link
+              className="flex h-10 w-full items-center justify-center rounded-lg bg-primary-container font-label-md font-semibold text-label-md text-on-primary shadow-sm transition-colors hover:bg-primary active:scale-95"
+              href={detailsUrl}
+            >
+              <span className="sm:hidden">View</span>
+              <span className="hidden sm:inline">View Details</span>
+            </Link>
+          </div>
         </div>
       </div>
     </article>

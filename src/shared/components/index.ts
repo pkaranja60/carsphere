@@ -9,4 +9,5 @@ export { NotFoundBanner } from "./not-found-banner";
 export { ThemeToggle } from "./theme-toggle";
 export { FilterPill } from "./ui/filter-pill";
 export { Pagination } from "./ui/pagination";
+export { Select, SelectItem } from "./ui/select";
 export { VehicleCard } from "./vehicle-card";
