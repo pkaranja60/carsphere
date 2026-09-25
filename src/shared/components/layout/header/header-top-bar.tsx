@@ -61,10 +61,18 @@ export function HeaderTopBar() {
               defaultValue="USD"
               name="currency"
             >
-              <option value="USD">USD ($)</option>
-              <option value="KES">KES (KSh)</option>
-              <option value="GBP">GBP (£)</option>
-              <option value="EUR">EUR (€)</option>
+              <option className="bg-surface text-on-surface" value="USD">
+                USD ($)
+              </option>
+              <option className="bg-surface text-on-surface" value="KES">
+                KES (KSh)
+              </option>
+              <option className="bg-surface text-on-surface" value="GBP">
+                GBP (£)
+              </option>
+              <option className="bg-surface text-on-surface" value="EUR">
+                EUR (€)
+              </option>
             </select>
             <MdKeyboardArrowDown className="pointer-events-none absolute right-0 text-on-surface-variant" />
           </div>
