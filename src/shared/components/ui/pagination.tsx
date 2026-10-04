@@ -68,6 +68,9 @@ export function Pagination({
       const page = Number(e.currentTarget.dataset.page);
       if (!Number.isNaN(page) && page >= 1 && page <= totalPages) {
         onPageChange(page);
+        if (typeof window !== "undefined") {
+          window.scrollTo({ behavior: "smooth", top: 0 });
+        }
       }
     },
     [isInteractiveDisabled, onPageChange, totalPages]
@@ -76,12 +79,18 @@ export function Pagination({
   const handlePrevious = useCallback(() => {
     if (!isInteractiveDisabled && currentPage > 1 && onPageChange) {
       onPageChange(currentPage - 1);
+      if (typeof window !== "undefined") {
+        window.scrollTo({ behavior: "smooth", top: 0 });
+      }
     }
   }, [currentPage, isInteractiveDisabled, onPageChange]);
 
   const handleNext = useCallback(() => {
     if (!isInteractiveDisabled && currentPage < totalPages && onPageChange) {
       onPageChange(currentPage + 1);
+      if (typeof window !== "undefined") {
+        window.scrollTo({ behavior: "smooth", top: 0 });
+      }
     }
   }, [currentPage, isInteractiveDisabled, onPageChange, totalPages]);
 

@@ -47,9 +47,14 @@ export function VehicleCuratedAlternatives({
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex snap-x gap-4 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden">
           {alternatives.map((vehicle) => (
-            <VehicleCard key={vehicle.id} {...vehicle} />
+            <div
+              className="w-[280px] shrink-0 snap-start md:w-auto"
+              key={vehicle.id}
+            >
+              <VehicleCard {...vehicle} />
+            </div>
           ))}
         </div>
       </div>

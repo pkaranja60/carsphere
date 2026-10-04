@@ -161,7 +161,7 @@ export function VehicleBookingSection({
 
           <div className="lg:col-span-7">
             {isSuccess ? (
-              <div className="space-y-5 rounded-xl border border-border bg-surface-container-lowest p-8 text-center shadow-lg md:p-10">
+              <div className="space-y-5 rounded-xl border border-border bg-surface-container-lowest p-5 text-center shadow-none md:p-10 md:shadow-md">
                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
                   <MdCheckCircle className="text-4xl" />
                 </div>
@@ -186,7 +186,7 @@ export function VehicleBookingSection({
               </div>
             ) : (
               <form
-                className="space-y-4 rounded-xl border border-border bg-surface-container-lowest p-8 shadow-lg md:p-10"
+                className="space-y-4 rounded-xl border border-border bg-surface-container-lowest p-5 shadow-none md:p-10 md:shadow-md"
                 onSubmit={handleSubmit}
               >
                 <div className="border-border border-b pb-3">
@@ -351,7 +351,7 @@ export function VehicleBookingSection({
 
                 <div className="pt-2">
                   <button
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary-container px-6 py-3.5 font-label-lg font-semibold text-label-lg text-on-primary shadow-md transition-all hover:bg-primary active:translate-y-0.5 disabled:opacity-50"
+                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary-container px-6 py-3.5 font-label-lg font-semibold text-label-lg text-on-primary shadow-none transition-all hover:bg-primary active:translate-y-0.5 disabled:opacity-50 sm:shadow-sm"
                     disabled={isSubmitting}
                     type="submit"
                   >

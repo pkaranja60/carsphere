@@ -38,7 +38,7 @@ export function VehicleInspectionReport({
   return (
     <section className="w-full bg-surface py-16" id="inspection">
       <div className="mx-auto max-w-400 px-margin-mobile md:px-margin">
-        <div className="rounded-xl border border-border bg-surface-container-lowest p-8 shadow-sm md:p-12">
+        <div className="rounded-xl border border-border bg-surface-container-lowest p-5 shadow-none md:p-12 md:shadow-sm">
           <div className="flex flex-col justify-between gap-6 border-border border-b pb-8 lg:flex-row lg:items-center">
             <div>
               <div className="mb-2 flex items-center gap-2">
@@ -57,7 +57,7 @@ export function VehicleInspectionReport({
             </div>
 
             <button
-              className="flex items-center gap-2 self-start rounded-lg border border-border bg-surface-container-low px-5 py-3 font-label-md font-semibold text-label-md text-on-surface shadow-sm transition-colors hover:bg-surface-container"
+              className="flex items-center gap-2 self-start rounded-lg border border-border bg-surface-container-low px-5 py-3 font-label-md font-semibold text-label-md text-on-surface shadow-none transition-colors hover:bg-surface-container sm:shadow-sm"
               onClick={handleDownload}
               type="button"
             >
@@ -69,7 +69,7 @@ export function VehicleInspectionReport({
           <div className="grid grid-cols-1 gap-6 pt-8 md:grid-cols-2 lg:grid-cols-3">
             {items.map((item) => (
               <div
-                className="space-y-3 rounded-xl border border-border bg-surface-container-low p-5 shadow-sm"
+                className="space-y-3 rounded-xl border border-border bg-surface-container-low p-5 shadow-none md:shadow-sm"
                 key={item.id}
               >
                 <div className="flex items-center justify-between gap-2">

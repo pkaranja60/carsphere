@@ -1,9 +1,11 @@
+"use client";
+
 // ─────────────────────────────────────────────
 // SECTION: Imports
 // ─────────────────────────────────────────────
 
+import { useCallback, useEffect, useState } from "react";
 import {
-  VehicleAnchorNav,
   VehicleBookingSection,
   VehicleBreadcrumbsHeader,
   VehicleCuratedAlternatives,
@@ -12,6 +14,8 @@ import {
   VehicleNarrativeOptions,
   VehicleSpecsMatrix,
   VehicleStickyReservation,
+  type VehicleTabId,
+  VehicleTabsNav,
   VehicleWarrantyFinancial,
 } from "../components";
 import type { VehicleDetail } from "../types/vehicles.types";
@@ -24,12 +28,51 @@ interface VehicleDetailViewProps {
   vehicle: VehicleDetail;
 }
 
+const VALID_TABS: VehicleTabId[] = [
+  "overview",
+  "specs",
+  "inspection",
+  "warranty",
+];
+
 // ─────────────────────────────────────────────
 // SECTION: Component
 // ─────────────────────────────────────────────
 
 export function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
+  const [activeTab, setActiveTab] = useState<VehicleTabId>("overview");
   const vehicleTitle = `${vehicle.year} ${vehicle.make} ${vehicle.model} ${vehicle.trim}`;
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Scroll to top when vehicle changes
+  useEffect(() => {
+    // Ensures navigating to a vehicle page starts at the top
+    if (typeof window !== "undefined" && !window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [vehicle.id]);
+
+  useEffect(() => {
+    // Reads initial URL anchor so deep links to specific tabs work seamlessly
+    if (typeof window !== "undefined" && window.location.hash) {
+      const hash = window.location.hash.slice(1) as VehicleTabId;
+      if (VALID_TABS.includes(hash)) {
+        setActiveTab(hash);
+      }
+    }
+  }, []);
+
+  const handleSelectTab = useCallback((tab: VehicleTabId) => {
+    setActiveTab(tab);
+  }, []);
+
+  const handleInquire = useCallback(() => {
+    setActiveTab("overview");
+    setTimeout(() => {
+      document
+        .getElementById("inquiry")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }, 60);
+  }, []);
 
   return (
     <div className="relative flex w-full flex-col">
@@ -57,28 +100,42 @@ export function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
         </div>
       </section>
 
-      <VehicleAnchorNav price={vehicle.price} />
+      <VehicleTabsNav
+        activeTab={activeTab}
+        onInquire={handleInquire}
+        onSelectTab={handleSelectTab}
+        price={vehicle.price}
+      />
 
       <div className="relative z-10">
-        <VehicleNarrativeOptions vehicle={vehicle} />
+        {activeTab === "overview" ? (
+          <>
+            <VehicleNarrativeOptions vehicle={vehicle} />
+            <VehicleBookingSection
+              allocationRef={vehicle.allocationNumber}
+              vehicleTitle={vehicleTitle}
+            />
+          </>
+        ) : null}
 
-        <VehicleSpecsMatrix specs={vehicle.specsMatrix} />
+        {activeTab === "specs" ? (
+          <VehicleSpecsMatrix specs={vehicle.specsMatrix} />
+        ) : null}
 
-        <VehicleInspectionReport
-          inspectionDate={vehicle.inspectionDate}
-          items={vehicle.inspectionItems}
-          technician={vehicle.certifiedTechnician}
-        />
+        {activeTab === "inspection" ? (
+          <VehicleInspectionReport
+            inspectionDate={vehicle.inspectionDate}
+            items={vehicle.inspectionItems}
+            technician={vehicle.certifiedTechnician}
+          />
+        ) : null}
 
-        <VehicleWarrantyFinancial
-          financialSchedule={vehicle.financialSchedule}
-          warrantyItems={vehicle.warrantyItems}
-        />
-
-        <VehicleBookingSection
-          allocationRef={vehicle.allocationNumber}
-          vehicleTitle={vehicleTitle}
-        />
+        {activeTab === "warranty" ? (
+          <VehicleWarrantyFinancial
+            financialSchedule={vehicle.financialSchedule}
+            warrantyItems={vehicle.warrantyItems}
+          />
+        ) : null}
 
         <VehicleCuratedAlternatives
           alternatives={vehicle.curatedAlternatives}

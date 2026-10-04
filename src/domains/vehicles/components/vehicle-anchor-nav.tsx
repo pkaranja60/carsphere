@@ -4,27 +4,30 @@
 // SECTION: Imports
 // ─────────────────────────────────────────────
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback } from "react";
 
 // ─────────────────────────────────────────────
 // SECTION: Data & Types
 // ─────────────────────────────────────────────
 
-interface AnchorItem {
-  href: string;
+export type VehicleTabId = "overview" | "specs" | "inspection" | "warranty";
+
+interface TabItem {
+  id: VehicleTabId;
   label: string;
 }
 
-const ANCHOR_LINKS: AnchorItem[] = [
-  { href: "#overview", label: "1. Executive Overview" },
-  { href: "#specs", label: "2. Technical Specifications" },
-  { href: "#inspection", label: "3. 150-Point Heritage Check" },
-  { href: "#warranty", label: "4. Warranty & Provenance" },
-  { href: "#inquiry", label: "5. Book Viewing Suite" },
+const VEHICLE_TABS: TabItem[] = [
+  { id: "overview", label: "1. Executive Overview" },
+  { id: "specs", label: "2. Technical Specifications" },
+  { id: "inspection", label: "3. 150-Point Heritage Check" },
+  { id: "warranty", label: "4. Warranty & Provenance" },
 ];
 
-interface VehicleAnchorNavProps {
+interface VehicleTabsNavProps {
+  activeTab: VehicleTabId;
+  onInquire: () => void;
+  onSelectTab: (tab: VehicleTabId) => void;
   price: string;
 }
 
@@ -32,69 +35,64 @@ interface VehicleAnchorNavProps {
 // SECTION: Component
 // ─────────────────────────────────────────────
 
-export function VehicleAnchorNav({ price }: VehicleAnchorNavProps) {
-  const [activeHash, setActiveHash] = useState("#overview");
-
-  useEffect(() => {
-    // Tracks active section via IntersectionObserver for smooth anchor highlighting
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveHash(`#${entry.target.id}`);
-          }
-        }
-      },
-      { rootMargin: "-30% 0px -60% 0px" }
-    );
-
-    for (const link of ANCHOR_LINKS) {
-      const el = document.getElementById(link.href.slice(1));
-      if (el) {
-        observer.observe(el);
+export function VehicleTabsNav({
+  activeTab,
+  onInquire,
+  onSelectTab,
+  price,
+}: VehicleTabsNavProps) {
+  const createTabClickHandler = useCallback(
+    (tabId: VehicleTabId) => () => {
+      onSelectTab(tabId);
+      if (typeof window !== "undefined") {
+        window.history.replaceState(null, "", `#${tabId}`);
       }
-    }
-
-    return () => observer.disconnect();
-  }, []);
+    },
+    [onSelectTab]
+  );
 
   return (
-    <div className="sticky top-20 z-30 hidden w-full border-border border-y bg-surface-container-lowest shadow-sm md:block">
+    <div className="sticky top-20 z-30 block w-full border-border border-y bg-surface-container-lowest/95 shadow-sm backdrop-blur-md">
       <div className="mx-auto flex max-w-400 items-center justify-between px-margin-mobile md:px-margin">
         <nav
-          aria-label="In-page section navigation"
-          className="flex items-center gap-7 overflow-x-auto py-4 font-label-md text-label-md text-on-surface-variant"
+          aria-label="Vehicle details tabs"
+          className="flex min-w-0 flex-1 items-center gap-4 overflow-x-auto py-3 font-label-sm text-on-surface-variant text-xs [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-7 sm:py-4 sm:text-label-md [&::-webkit-scrollbar]:hidden"
         >
-          {ANCHOR_LINKS.map((item) => {
-            const isActive = activeHash === item.href;
+          {VEHICLE_TABS.map((item) => {
+            const isActive = activeTab === item.id;
             return (
-              <a
-                className={`whitespace-nowrap transition-colors ${
+              <button
+                className={`shrink-0 whitespace-nowrap transition-colors focus:outline-none ${
                   isActive
                     ? "font-bold text-primary"
                     : "font-medium text-on-surface-variant hover:text-primary"
                 }`}
-                href={item.href}
-                key={item.href}
+                key={item.id}
+                onClick={createTabClickHandler(item.id)}
+                type="button"
               >
                 {item.label}
-              </a>
+              </button>
             );
           })}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-3">
-          <span className="font-bold font-display text-headline-sm text-on-surface">
+        <div className="flex shrink-0 items-center gap-2 pl-2 sm:gap-3 sm:border-0 sm:pl-0">
+          <span className="hidden font-bold font-display text-headline-sm text-on-surface md:inline">
             {price}
           </span>
-          <Link
-            className="rounded-lg bg-primary-container px-4 py-1.5 font-label-md font-semibold text-label-md text-on-primary shadow-sm transition-colors hover:bg-primary"
-            href="#inquiry"
+          <button
+            className="rounded-lg bg-primary-container px-3 py-1 font-semibold text-on-primary text-xs shadow-sm transition-colors hover:bg-primary active:translate-y-0.5 sm:px-4 sm:py-1.5 sm:text-label-md"
+            onClick={onInquire}
+            type="button"
           >
             Inquire
-          </Link>
+          </button>
         </div>
       </div>
     </div>
   );
 }
+
+// Backwards-compatible export
+export const VehicleAnchorNav = VehicleTabsNav;

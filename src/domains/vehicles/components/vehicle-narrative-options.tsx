@@ -69,7 +69,7 @@ export function VehicleNarrativeOptions({
           </div>
 
           <div className="space-y-6 lg:col-span-8">
-            <div className="space-y-4 rounded-xl border border-border bg-surface-container-lowest p-8 shadow-sm">
+            <div className="space-y-4 rounded-xl border border-border bg-surface-container-lowest p-5 shadow-none md:p-8 md:shadow-sm">
               <h3 className="font-bold font-display text-headline-sm text-on-surface">
                 Vehicle Narrative &amp; Configuration
               </h3>

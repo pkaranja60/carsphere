@@ -1,18 +1,13 @@
 "use client";
 
-// ─────────────────────────────────────────────
-// SECTION: Imports
-// ─────────────────────────────────────────────
-
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback } from "react";
+import { type MouseEvent, useCallback } from "react";
 import { MdFavoriteBorder, MdOutlineVerified } from "react-icons/md";
 import { Button } from "@/shared/components/ui/button";
 
-// ─────────────────────────────────────────────
-// SECTION: Interfaces
-// ─────────────────────────────────────────────
+const NON_ALPHANUM_REGEX = /[^a-z0-9]+/g;
+const TRIM_HYPHEN_REGEX = /^-+|-+$/g;
 
 export interface VehicleCardProps {
   badgeText: string;
@@ -42,10 +37,6 @@ export interface VehicleCardProps {
   year: string;
 }
 
-// ─────────────────────────────────────────────
-// SECTION: Components
-// ─────────────────────────────────────────────
-
 export function VehicleCard({
   badgeText,
   colorString,
@@ -69,11 +60,11 @@ export function VehicleCard({
     slug ||
     `${year}-${make}-${model}-${trim}`
       .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
+      .replace(NON_ALPHANUM_REGEX, "-")
+      .replace(TRIM_HYPHEN_REGEX, "");
   const targetUrl = detailsUrl ?? `/inventory/${computedSlug || id}`;
   const handleSaveClick = useCallback(
-    (e: React.MouseEvent) => {
+    (e: MouseEvent) => {
       e.preventDefault();
       onSave?.();
     },
@@ -90,26 +81,28 @@ export function VehicleCard({
         <div
           className={`relative overflow-hidden bg-surface-container-high ${isHorizontal ? "h-48 md:h-full" : "aspect-16/10"}`}
         >
-          <Image
-            alt={imageAlt}
-            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 group-active:scale-105"
-            height={200}
-            src={imageSrc}
-            width={320}
-          />
-          <div className="absolute top-3 left-3">
-            <span className="rounded-md bg-surface/90 px-2.5 py-1 font-label-sm font-semibold text-label-sm text-on-surface tracking-tight shadow-sm backdrop-blur-sm">
+          <Link className="block h-full w-full" href={targetUrl}>
+            <Image
+              alt={imageAlt}
+              className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 group-active:scale-105"
+              height={200}
+              src={imageSrc}
+              width={320}
+            />
+          </Link>
+          <div className="pointer-events-none absolute top-2.5 left-2.5 sm:top-3 sm:left-3">
+            <span className="rounded-md bg-surface/90 px-2 py-0.5 font-semibold text-[10px] text-on-surface tracking-tight shadow-sm backdrop-blur-sm sm:px-2.5 sm:py-1 sm:text-label-sm">
               {badgeText}
             </span>
           </div>
           <Button
             aria-label="Save to garage"
-            className="absolute top-3 right-3"
+            className="absolute top-2.5 right-2.5 z-10 sm:top-3 sm:right-3"
             onClick={handleSaveClick}
             size="icon-md"
             variant="icon-blur"
           >
-            <MdFavoriteBorder className="text-lg" />
+            <MdFavoriteBorder className="text-base sm:text-lg" />
           </Button>
         </div>
       </div>
@@ -117,12 +110,17 @@ export function VehicleCard({
       <div
         className={`flex flex-1 flex-col justify-between ${isHorizontal ? "p-3 sm:p-space-md" : ""}`}
       >
-        <div className={isHorizontal ? "" : "p-3 pb-0 sm:p-space-md"}>
+        <div className={isHorizontal ? "" : "p-2.5 pb-0 sm:p-space-md"}>
           <div className="mb-space-xs flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-space-xs">
-            <h3 className="truncate font-display font-semibold text-on-surface text-sm leading-tight tracking-tight sm:font-headline-sm sm:text-headline-sm">
-              {year} {make} {model}
+            <h3 className="truncate font-display font-semibold text-on-surface text-xs leading-tight tracking-tight sm:font-headline-sm sm:text-headline-sm">
+              <Link
+                className="transition-colors hover:text-primary"
+                href={targetUrl}
+              >
+                {year} {make} {model}
+              </Link>
             </h3>
-            <span className="font-semibold text-primary text-xs sm:font-label-sm sm:text-label-sm">
+            <span className="font-semibold text-[11px] text-primary sm:font-label-sm sm:text-label-sm">
               {trim}
             </span>
           </div>

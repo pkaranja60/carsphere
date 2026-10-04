@@ -21,7 +21,7 @@ import type {
 export * from "../types/inventory.types";
 
 const InventoryContext = createContext<InventoryState | undefined>(undefined);
-const ITEMS_PER_PAGE = 9;
+const ITEMS_PER_PAGE = 6;
 
 interface ParsedInventoryParams {
   body: string;
@@ -109,6 +109,11 @@ export function InventoryProvider({
     init.powertrain
   );
   const [isCPO, setIsCPO] = useState(init.isCPO);
+  const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
+
+  const toggleFilterDrawer = useCallback(() => {
+    setIsFilterDrawerOpen((prev) => !prev);
+  }, []);
 
   const setSearchQuery = useCallback((query: string) => {
     setSearchQueryState(query);
@@ -280,6 +285,7 @@ export function InventoryProvider({
       currentPage,
       filteredVehicles: paginatedVehicles,
       isCPO,
+      isFilterDrawerOpen,
       priceRange,
       provenance,
       resetFilters,
@@ -292,6 +298,7 @@ export function InventoryProvider({
       selectedPowertrains,
       selectedSegments,
       setCurrentPage,
+      setIsFilterDrawerOpen,
       setPriceRange,
       setProvenance,
       setSearchQuery,
@@ -305,6 +312,7 @@ export function InventoryProvider({
       targetBudget,
       toggleBodyType,
       toggleCPO,
+      toggleFilterDrawer,
       toggleMake,
       togglePowertrain,
       toggleSegment,
@@ -315,6 +323,7 @@ export function InventoryProvider({
     [
       currentPage,
       paginatedVehicles,
+      isFilterDrawerOpen,
       isCPO,
       priceRange,
       provenance,
@@ -338,6 +347,7 @@ export function InventoryProvider({
       targetBudget,
       toggleBodyType,
       toggleCPO,
+      toggleFilterDrawer,
       toggleMake,
       togglePowertrain,
       toggleSegment,

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
+import { MdClose } from "react-icons/md";
 import {
   FilterPill,
   PageHeader,
@@ -26,6 +27,8 @@ export function InventoryContent() {
     isCPO,
     toggleCPO,
     viewMode,
+    isFilterDrawerOpen,
+    toggleFilterDrawer,
   } = useInventory();
 
   const handlePillClick = useCallback(
@@ -76,6 +79,16 @@ export function InventoryContent() {
     [handlePillClick]
   );
 
+  const handlePageChange = useCallback(
+    (page: number) => {
+      setCurrentPage(page);
+      if (typeof window !== "undefined") {
+        window.scrollTo({ behavior: "smooth", top: 0 });
+      }
+    },
+    [setCurrentPage]
+  );
+
   return (
     <>
       <PageHeader
@@ -122,7 +135,30 @@ export function InventoryContent() {
 
       <main className="grow py-8">
         <div className="mx-auto flex max-w-400 flex-col items-start gap-8 px-margin-mobile md:px-margin lg:flex-row">
-          <InventorySidebar />
+          <div className="hidden w-72 shrink-0 lg:block">
+            <InventorySidebar />
+          </div>
+
+          {/* Mobile Filter Sheet Modal */}
+          {isFilterDrawerOpen ? (
+            <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-sm lg:hidden">
+              <div className="relative max-h-[85vh] w-full overflow-y-auto rounded-t-2xl bg-surface p-5 shadow-2xl">
+                <div className="mb-4 flex items-center justify-between border-border border-b pb-3">
+                  <span className="font-semibold text-base text-on-surface">
+                    Filter Selection
+                  </span>
+                  <button
+                    className="rounded-lg p-1.5 text-on-surface-variant hover:bg-surface-container"
+                    onClick={toggleFilterDrawer}
+                    type="button"
+                  >
+                    <MdClose className="text-xl" />
+                  </button>
+                </div>
+                <InventorySidebar />
+              </div>
+            </div>
+          ) : null}
 
           <section className="w-full flex-1" data-purpose="inventory-results">
             <InventoryToolbar />
@@ -131,8 +167,8 @@ export function InventoryContent() {
               <div
                 className={
                   viewMode === "grid"
-                    ? "grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
-                    : "flex flex-col gap-6"
+                    ? "grid grid-cols-2 gap-3 sm:gap-6 md:grid-cols-2 xl:grid-cols-3"
+                    : "flex flex-col gap-4 sm:gap-6"
                 }
               >
                 {filteredVehicles.map((vehicle) => (
@@ -158,7 +194,7 @@ export function InventoryContent() {
               <div className="mt-8">
                 <Pagination
                   currentPage={currentPage}
-                  onPageChange={setCurrentPage}
+                  onPageChange={handlePageChange}
                   totalItems={totalItems}
                   totalPages={totalPages}
                 />

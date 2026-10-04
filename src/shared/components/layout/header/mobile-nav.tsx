@@ -79,6 +79,10 @@ export function MobileNav({ items }: MobileNavProps) {
     setIsOpen((prev) => !prev);
   }, []);
 
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
   return (
     <div className="flex xl:hidden">
       <Button
@@ -97,7 +101,7 @@ export function MobileNav({ items }: MobileNavProps) {
 
       <dialog
         className="fixed inset-0 top-20 z-100 m-0 h-[calc(100vh-80px)] w-full max-w-full overflow-y-auto bg-surface/90 p-0 backdrop-blur-xl backdrop:bg-transparent open:block md:top-30 md:h-[calc(100vh-120px)]"
-        onClose={handleToggle}
+        onClose={handleClose}
         ref={dialogRef}
       >
         <div className="flex h-full w-full flex-col p-6 pb-24 shadow-xl">

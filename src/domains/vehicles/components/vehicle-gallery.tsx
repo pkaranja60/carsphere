@@ -88,7 +88,7 @@ export function VehicleGallery({ vehicle }: VehicleGalleryProps) {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="group relative aspect-16/10 w-full overflow-hidden rounded-xl border border-border bg-surface-container-high shadow-sm">
+      <div className="group relative aspect-16/10 w-full overflow-hidden rounded-xl border border-border bg-surface-container-high shadow-none md:shadow-sm">
         <Image
           alt={activeImage.alt}
           className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-101"
@@ -141,7 +141,7 @@ export function VehicleGallery({ vehicle }: VehicleGalleryProps) {
         ))}
       </div>
 
-      <div className="mt-1 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-border bg-surface-container-lowest p-4 shadow-sm">
+      <div className="mt-1 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-border bg-surface-container-lowest p-4 shadow-none md:shadow-sm">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-container-low">
             <MdOutlineVerifiedUser className="text-2xl text-primary" />

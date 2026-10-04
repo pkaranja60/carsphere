@@ -125,40 +125,40 @@ export function VehicleBreadcrumbsHeader({
         <div className="mx-auto max-w-400 px-margin-mobile md:px-margin">
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <div className="space-y-2.5">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-md border border-border-strong bg-surface-bright px-2.5 py-1 font-bold font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                <span className="rounded-md border border-border-strong bg-surface-bright px-2 py-0.5 font-bold font-label-sm text-[11px] text-on-surface-variant uppercase tracking-wider sm:px-2.5 sm:py-1 sm:text-label-sm">
                   ALLOCATION #{vehicle.allocationNumber}
                 </span>
-                <span className="flex items-center gap-1.5 rounded-md border border-border bg-surface-container-lowest px-2.5 py-1 font-label-sm font-semibold text-label-sm text-tertiary shadow-sm">
-                  <span className="h-2 w-2 rounded-full bg-tertiary" />
+                <span className="flex items-center gap-1.5 rounded-md border border-border bg-surface-container-lowest px-2 py-0.5 font-label-sm font-semibold text-[11px] text-tertiary shadow-sm sm:px-2.5 sm:py-1 sm:text-label-sm">
+                  <span className="h-1.5 w-1.5 rounded-full bg-tertiary" />
                   {vehicle.badgeText}
                 </span>
-                <span className="rounded-md border border-border bg-surface-container-lowest px-2.5 py-1 font-label-sm font-semibold text-label-sm text-on-surface-variant shadow-sm">
+                <span className="rounded-md border border-border bg-surface-container-lowest px-2 py-0.5 font-label-sm font-semibold text-[11px] text-on-surface-variant shadow-sm sm:px-2.5 sm:py-1 sm:text-label-sm">
                   {vehicle.historyText} / 1-Owner
                 </span>
-                <span className="rounded-md border border-primary-fixed bg-primary-fixed/30 px-2.5 py-1 font-label-sm font-semibold text-label-sm text-primary">
+                <span className="rounded-md border border-primary-fixed bg-primary-fixed/30 px-2 py-0.5 font-label-sm font-semibold text-[11px] text-primary sm:px-2.5 sm:py-1 sm:text-label-sm">
                   150-Pt Heritage Inspected
                 </span>
               </div>
 
-              <h1 className="font-bold font-display text-headline-lg text-on-surface tracking-tight">
+              <h1 className="font-bold font-display text-2xl text-on-surface tracking-tight sm:text-headline-lg">
                 {titleString}
               </h1>
-              <p className="font-body-lg text-body-lg text-on-surface-variant">
+              <p className="font-body-md text-on-surface-variant text-xs sm:text-body-lg sm:text-sm">
                 {vehicle.colorString} · {vehicle.interiorColor} ·{" "}
                 {vehicle.mileageFormatted}
               </p>
             </div>
 
             <div className="flex shrink-0 flex-col items-start lg:items-end">
-              <span className="font-label-sm font-semibold text-label-sm text-on-surface-variant uppercase tracking-wider">
+              <span className="font-label-sm font-semibold text-[11px] text-on-surface-variant uppercase tracking-wider sm:text-label-sm">
                 Zero-Markup Drivez Price
               </span>
-              <div className="flex items-baseline gap-3">
-                <span className="font-bold font-display text-display text-on-surface leading-none">
+              <div className="flex items-baseline gap-2.5 sm:gap-3">
+                <span className="font-bold font-display text-3xl text-on-surface leading-none sm:text-display">
                   {vehicle.price}
                 </span>
-                <span className="font-label-lg text-label-lg text-on-surface-variant line-through">
+                <span className="font-label-md text-on-surface-variant text-xs line-through sm:font-label-lg sm:text-label-lg">
                   MSRP {vehicle.msrpOriginal}
                 </span>
               </div>

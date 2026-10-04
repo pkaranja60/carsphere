@@ -43,7 +43,7 @@ export function VehicleStickyReservation({
 
   return (
     <div className="flex flex-col gap-6 lg:sticky lg:top-28">
-      <div className="space-y-6 rounded-xl border border-border bg-surface-container-lowest p-6 shadow-lg md:p-8">
+      <div className="space-y-6 rounded-xl border border-border bg-surface-container-lowest p-6 shadow-none md:p-8 md:shadow-md">
         <div className="flex flex-col gap-1 border-border border-b pb-4">
           <div className="flex items-center justify-between">
             <span className="font-label-sm font-semibold text-label-sm text-on-surface-variant uppercase tracking-wider">
@@ -98,7 +98,7 @@ export function VehicleStickyReservation({
 
         <div className="flex flex-col gap-3">
           <Link
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary-container px-6 py-3.5 text-center font-label-lg font-semibold text-label-lg text-on-primary shadow-md transition-all hover:bg-primary active:translate-y-0.5"
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary-container px-6 py-3.5 text-center font-label-lg font-semibold text-label-lg text-on-primary shadow-none transition-all hover:bg-primary active:translate-y-0.5 sm:shadow-sm"
             href="#inquiry"
           >
             <MdCalendarMonth className="text-xl" />
