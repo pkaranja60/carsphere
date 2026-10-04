@@ -28,6 +28,7 @@ export interface VehicleCardProps {
   monthlyEstimate: string;
   onSave?: () => void;
   price: string;
+  slug?: string;
   specs: {
     stat1: string;
     label1: string;
@@ -56,13 +57,21 @@ export function VehicleCard({
   model,
   monthlyEstimate,
   price,
+  slug,
   specs,
   trim,
   year,
   onSave,
-  detailsUrl = `/inventory/${id}`,
+  detailsUrl,
   layout = "vertical",
 }: VehicleCardProps) {
+  const computedSlug =
+    slug ||
+    `${year}-${make}-${model}-${trim}`
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  const targetUrl = detailsUrl ?? `/inventory/${computedSlug || id}`;
   const handleSaveClick = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault();
@@ -178,7 +187,7 @@ export function VehicleCard({
           <div className="mt-space-xs">
             <Link
               className="flex h-10 w-full items-center justify-center rounded-lg bg-primary-container font-label-md font-semibold text-label-md text-on-primary shadow-sm transition-colors hover:bg-primary active:scale-95"
-              href={detailsUrl}
+              href={targetUrl}
             >
               <span className="sm:hidden">View</span>
               <span className="hidden sm:inline">View Details</span>
