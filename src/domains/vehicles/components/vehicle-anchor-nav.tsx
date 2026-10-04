@@ -62,7 +62,7 @@ export function VehicleTabsNav({
             const isActive = activeTab === item.id;
             return (
               <button
-                className={`shrink-0 whitespace-nowrap transition-colors focus:outline-none ${
+                className={`shrink-0 cursor-pointer whitespace-nowrap transition-colors focus:outline-none ${
                   isActive
                     ? "font-bold text-primary"
                     : "font-medium text-on-surface-variant hover:text-primary"
@@ -82,7 +82,7 @@ export function VehicleTabsNav({
             {price}
           </span>
           <button
-            className="rounded-lg bg-primary-container px-3 py-1 font-semibold text-on-primary text-xs shadow-sm transition-colors hover:bg-primary active:translate-y-0.5 sm:px-4 sm:py-1.5 sm:text-label-md"
+            className="cursor-pointer rounded-lg bg-primary-container px-3 py-1 font-semibold text-on-primary text-xs shadow-sm transition-colors hover:bg-primary active:translate-y-0.5 sm:px-4 sm:py-1.5 sm:text-label-md"
             onClick={onInquire}
             type="button"
           >
