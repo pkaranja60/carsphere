@@ -7,6 +7,8 @@ export * from "./vehicle-booking-section";
 export * from "./vehicle-breadcrumbs-header";
 export * from "./vehicle-curated-alternatives";
 export * from "./vehicle-gallery";
+export * from "./vehicle-gallery-360-modal";
+export * from "./vehicle-gallery-lightbox";
 export * from "./vehicle-inspection-report";
 export * from "./vehicle-narrative-options";
 export * from "./vehicle-specs-matrix";

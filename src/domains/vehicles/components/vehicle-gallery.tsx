@@ -14,6 +14,8 @@ import {
   MdOutlineVerifiedUser,
 } from "react-icons/md";
 import type { VehicleDetail } from "../types/vehicles.types";
+import { VehicleGallery360Modal } from "./vehicle-gallery-360-modal";
+import { VehicleGalleryLightbox } from "./vehicle-gallery-lightbox";
 
 // ─────────────────────────────────────────────
 // SECTION: Interfaces & Helpers
@@ -45,7 +47,7 @@ function GalleryThumbnail({
   return (
     <button
       aria-label={`View photo ${index + 1}`}
-      className={`group relative aspect-16/10 overflow-hidden rounded-lg border bg-surface-container-high shadow-sm transition-all focus:outline-none ${
+      className={`group relative aspect-16/10 cursor-pointer overflow-hidden rounded-lg border bg-surface-container-high shadow-sm transition-all focus:outline-none ${
         isSelected
           ? "border-primary ring-2 ring-primary ring-offset-1 dark:ring-offset-surface"
           : "border-transparent hover:border-primary/60 hover:ring-1 hover:ring-primary/40"
@@ -76,10 +78,25 @@ export function VehicleGallery({ vehicle }: VehicleGalleryProps) {
       : [{ alt: vehicle.imageAlt, url: vehicle.imageSrc }];
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [is360Open, setIs360Open] = useState(false);
+
   const activeImage = images[activeIndex] ?? images[0];
 
-  const handleResetIndex = useCallback(() => {
-    setActiveIndex(0);
+  const handleOpenLightbox = useCallback(() => {
+    setIsLightboxOpen(true);
+  }, []);
+
+  const handleCloseLightbox = useCallback(() => {
+    setIsLightboxOpen(false);
+  }, []);
+
+  const handleOpen360 = useCallback(() => {
+    setIs360Open(true);
+  }, []);
+
+  const handleClose360 = useCallback(() => {
+    setIs360Open(false);
   }, []);
 
   const handleSelectThumbnail = useCallback((index: number) => {
@@ -89,16 +106,23 @@ export function VehicleGallery({ vehicle }: VehicleGalleryProps) {
   return (
     <div className="flex flex-col gap-4">
       <div className="group relative aspect-16/10 w-full overflow-hidden rounded-xl border border-border bg-surface-container-high shadow-none md:shadow-sm">
-        <Image
-          alt={activeImage.alt}
-          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-101"
-          fill
-          priority
-          sizes="(max-width: 1024px) 100vw, 58vw"
-          src={activeImage.url}
-        />
+        <button
+          aria-label="Click to enlarge image"
+          className="h-full w-full cursor-pointer text-left"
+          onClick={handleOpenLightbox}
+          type="button"
+        >
+          <Image
+            alt={activeImage.alt}
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-101"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 58vw"
+            src={activeImage.url}
+          />
+        </button>
 
-        <div className="absolute top-4 left-4 flex flex-wrap items-center gap-2">
+        <div className="pointer-events-none absolute top-4 left-4 flex flex-wrap items-center gap-2">
           <span className="rounded-md border border-border bg-surface-container-lowest/95 px-3 py-1 font-label-md font-semibold text-label-md text-on-surface shadow-sm backdrop-blur-md">
             Beverly Hills Showroom
           </span>
@@ -111,8 +135,8 @@ export function VehicleGallery({ vehicle }: VehicleGalleryProps) {
         <div className="absolute right-4 bottom-4 flex items-center gap-2">
           <button
             aria-label="View interactive 360 preview"
-            className="flex items-center gap-1.5 rounded-lg border border-border bg-surface-container-lowest/95 px-3.5 py-2 font-label-md font-semibold text-label-md text-on-surface shadow-md backdrop-blur-md transition-all hover:bg-surface-container-lowest"
-            onClick={handleResetIndex}
+            className="flex cursor-pointer items-center gap-1.5 rounded-lg border border-border bg-surface-container-lowest/95 px-3.5 py-2 font-label-md font-semibold text-label-md text-on-surface shadow-md backdrop-blur-md transition-all hover:bg-surface-container-lowest active:scale-98"
+            onClick={handleOpen360}
             type="button"
           >
             <Md360 className="text-lg text-primary" />
@@ -120,7 +144,8 @@ export function VehicleGallery({ vehicle }: VehicleGalleryProps) {
           </button>
           <button
             aria-label="View image fullscreen"
-            className="rounded-lg border border-border bg-surface-container-lowest/95 p-2 text-on-surface shadow-md backdrop-blur-md transition-all hover:bg-surface-container-lowest"
+            className="flex cursor-pointer items-center justify-center rounded-lg border border-border bg-surface-container-lowest/95 p-2 text-on-surface shadow-md backdrop-blur-md transition-all hover:bg-surface-container-lowest active:scale-98"
+            onClick={handleOpenLightbox}
             type="button"
           >
             <MdFullscreen className="text-xl" />
@@ -164,6 +189,22 @@ export function VehicleGallery({ vehicle }: VehicleGalleryProps) {
           <MdNorthEast className="text-base" />
         </Link>
       </div>
+
+      <VehicleGalleryLightbox
+        activeIndex={activeIndex}
+        images={images}
+        isOpen={isLightboxOpen}
+        onClose={handleCloseLightbox}
+        onSelectIndex={handleSelectThumbnail}
+        title={vehicle.imageAlt}
+      />
+
+      <VehicleGallery360Modal
+        images={images}
+        isOpen={is360Open}
+        onClose={handleClose360}
+        title={vehicle.imageAlt}
+      />
     </div>
   );
 }
