@@ -4,7 +4,7 @@ import { Select as HeroSelect, Label, ListBox } from "@heroui/react";
 import type { ComponentProps } from "react";
 
 const triggerClassName = [
-  "flex h-9 md:h-11 w-full cursor-pointer items-center justify-between rounded-lg border border-outline-variant bg-surface-bright px-3 font-body-sm text-xs md:text-body-sm text-on-surface transition",
+  "flex h-9 md:h-11 w-full gap-2 cursor-pointer items-center justify-between rounded-lg border border-outline-variant bg-surface-bright px-3 font-body-sm text-xs md:text-body-sm text-on-surface transition",
   "data-[focus-visible=true]:border-primary-container data-[focus-visible=true]:bg-surface data-[focus-visible=true]:outline-none data-[focus-visible=true]:ring-2 data-[focus-visible=true]:ring-primary-container/30",
 ].join(" ");
 
@@ -33,8 +33,8 @@ export function Select({
         </Label>
       ) : null}
       <HeroSelect.Trigger className={triggerClassName}>
-        <HeroSelect.Value className="truncate text-xs md:text-body-sm" />
-        <HeroSelect.Indicator />
+        <HeroSelect.Value className="min-w-0 flex-1 truncate text-left text-xs md:text-body-sm" />
+        <HeroSelect.Indicator className="shrink-0" />
       </HeroSelect.Trigger>
       <HeroSelect.Popover className={popoverClassName}>
         <ListBox>{children}</ListBox>

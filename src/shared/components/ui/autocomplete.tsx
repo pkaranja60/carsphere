@@ -8,7 +8,7 @@ import {
   SearchField,
   useFilter,
 } from "@heroui/react";
-import type { ComponentProps } from "react";
+import { type ComponentProps, useCallback } from "react";
 
 const triggerClassName = [
   "flex h-9 md:h-11 w-full cursor-pointer items-center justify-between rounded-lg border border-outline-variant bg-surface-bright px-3 font-body-sm text-xs md:text-body-sm text-on-surface transition",
@@ -30,9 +30,20 @@ export function Autocomplete({
   placeholder,
   children,
   className,
+  onSearchChange,
   ...props
-}: ComponentProps<typeof HeroAutocomplete> & { label?: string }) {
+}: ComponentProps<typeof HeroAutocomplete> & {
+  label?: string;
+  onSearchChange?: (value: string) => void;
+}) {
   const { contains } = useFilter({ sensitivity: "base" });
+
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      onSearchChange?.(e.target.value);
+    },
+    [onSearchChange]
+  );
 
   return (
     <HeroAutocomplete
@@ -62,7 +73,8 @@ export function Autocomplete({
               <SearchField.SearchIcon className="text-outline" />
               <SearchField.Input
                 className="w-full bg-transparent font-body-sm text-on-surface text-xs outline-none placeholder:text-outline md:text-body-sm"
-                placeholder="Search..."
+                onChange={handleInputChange}
+                placeholder="Search make, model, trim..."
               />
               <SearchField.ClearButton className="text-outline hover:text-on-surface" />
             </SearchField.Group>

@@ -6,6 +6,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   MdKeyboardArrowDown,
@@ -20,11 +21,7 @@ import { MobileNav, type NavItem } from "./mobile-nav";
 
 const NAV_ITEMS: NavItem[] = [
   {
-    children: [
-      { href: "#", label: "Premium & Performance" },
-      { href: "#", label: "Everyday Excellence" },
-    ],
-    isActive: true,
+    href: "/inventory",
     label: "Inventory",
   },
   {
@@ -170,6 +167,15 @@ function HeaderDropdownLink({ label, isActive, children }: NavItem) {
 }
 
 export function HeaderMainNav() {
+  const pathname = usePathname();
+
+  const navItems = NAV_ITEMS.map((item) => ({
+    ...item,
+    isActive: Boolean(
+      item.href && item.href !== "#" && pathname.startsWith(item.href)
+    ),
+  }));
+
   return (
     <div className="w-full border-border border-b bg-surface-container-lowest/95 shadow-[0_1px_8px_rgba(0,0,0,0.04)] backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-400 items-center justify-between gap-space-md px-margin-mobile md:px-margin">
@@ -182,13 +188,13 @@ export function HeaderMainNav() {
         </Link>
 
         <nav className="hidden items-center gap-space-lg xl:flex">
-          {NAV_ITEMS.map((item) => (
+          {navItems.map((item) => (
             <HeaderLink key={item.label} {...item} />
           ))}
         </nav>
 
         <div className="flex shrink-0 items-center gap-space-md">
-          <MobileNav items={NAV_ITEMS} />
+          <MobileNav items={navItems} />
 
           <Link
             className="hidden h-10 w-10 items-center justify-center rounded-full border border-border-strong bg-surface-container-low text-on-surface-variant transition hover:bg-surface-container-high hover:text-primary md:flex"

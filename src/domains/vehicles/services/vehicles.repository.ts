@@ -220,8 +220,8 @@ export const RECENTLY_SOLD_VEHICLES: Vehicle[] = [
     id: "s-2",
     imageAlt: "Santorini Black 2023 Range Rover Sport",
     imageSrc: "/images/category-suv.jpg",
-    make: "Land Rover",
-    model: "Range Rover Sport",
+    make: "Range Rover",
+    model: "Sport",
     monthlyEstimate: "$1,350",
     price: "$95,500",
     specs: {
