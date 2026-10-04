@@ -1,78 +1,109 @@
 "use client";
 
 import { useCallback } from "react";
-
-import { MdSearch } from "react-icons/md";
+import {
+  Autocomplete,
+  AutocompleteItem,
+} from "@/shared/components/ui/autocomplete";
+import { Select, SelectItem } from "@/shared/components/ui/select";
 import { useInventory } from "../hooks/use-inventory";
 import { InventoryActiveTags } from "./inventory-active-tags";
-import { InventorySidebarMake } from "./inventory-sidebar-make";
-import { InventorySidebarPrice } from "./inventory-sidebar-price";
+import {
+  BODY_OPTIONS,
+  BUDGET_OPTIONS,
+  MAKE_OPTIONS,
+  POWERTRAIN_OPTIONS,
+  PROVENANCE_OPTIONS,
+} from "./inventory-sidebar-options";
+
+function extractKey(key: React.Key | null | Set<React.Key>): string {
+  if (typeof key === "string" || typeof key === "number") {
+    return String(key);
+  }
+  if (key && typeof key === "object" && "size" in key) {
+    const [first] = Array.from(key as Set<React.Key>);
+    return first ? String(first) : "all";
+  }
+  return "all";
+}
 
 export function InventorySidebar() {
   const {
     searchQuery,
     setSearchQuery,
-    priceRange,
+    selectedMake,
+    setSelectedMake,
     selectedMakes,
-    selectedBodyTypes,
-    toggleBodyType,
+    selectedBodyStyle,
+    setSelectedBodyStyle,
+    targetBudget,
+    setTargetBudget,
+    provenance,
+    setProvenance,
+    selectedPowertrain,
+    setSelectedPowertrain,
     selectedPowertrains,
-    togglePowertrain,
     selectedSegments,
-    toggleSegment,
-    isCPO,
     resetFilters,
   } = useInventory();
 
-  const activeCount =
-    (searchQuery ? 1 : 0) +
-    selectedMakes.size +
-    selectedBodyTypes.size +
-    selectedPowertrains.size +
-    (selectedSegments.has("All Dimensions") ? 0 : selectedSegments.size) +
-    (priceRange[0] > 20_000 || priceRange[1] < 250_000 ? 1 : 0) +
-    (isCPO ? 1 : 0);
-
-  const handleSearchChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchQuery(e.target.value);
-    },
-    [setSearchQuery]
+  const isMakeFiltered = Boolean(selectedMake && selectedMake !== "all");
+  const isBodyFiltered = Boolean(
+    selectedBodyStyle && selectedBodyStyle !== "all"
+  );
+  const isBudgetFiltered = Boolean(targetBudget && targetBudget !== "all");
+  const isProvenanceFiltered = Boolean(provenance && provenance !== "all");
+  const isPowertrainFiltered = Boolean(
+    selectedPowertrain && selectedPowertrain !== "all"
   );
 
-  const handleBodyTypeClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      const { body } = e.currentTarget.dataset;
-      if (body) {
-        toggleBodyType(body);
-      }
+  const activeCount =
+    (searchQuery ? 1 : 0) +
+    (isMakeFiltered ? 1 : selectedMakes.size) +
+    (isBodyFiltered ? 1 : 0) +
+    (isBudgetFiltered ? 1 : 0) +
+    (isProvenanceFiltered ? 1 : 0) +
+    (isPowertrainFiltered ? 1 : selectedPowertrains.size) +
+    (selectedSegments.has("All Dimensions") ? 0 : selectedSegments.size);
+
+  const handleMakeChange = useCallback(
+    (key: React.Key | null | Set<React.Key>) => {
+      setSelectedMake(extractKey(key));
     },
-    [toggleBodyType]
+    [setSelectedMake]
+  );
+
+  const handleBodyChange = useCallback(
+    (key: React.Key | null | Set<React.Key>) => {
+      setSelectedBodyStyle(extractKey(key));
+    },
+    [setSelectedBodyStyle]
+  );
+
+  const handleBudgetChange = useCallback(
+    (key: React.Key | null | Set<React.Key>) => {
+      setTargetBudget(extractKey(key));
+    },
+    [setTargetBudget]
+  );
+
+  const handleProvenanceChange = useCallback(
+    (key: React.Key | null | Set<React.Key>) => {
+      setProvenance(extractKey(key));
+    },
+    [setProvenance]
   );
 
   const handlePowertrainChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { pt } = e.currentTarget.dataset;
-      if (pt) {
-        togglePowertrain(pt);
-      }
+    (key: React.Key | null | Set<React.Key>) => {
+      setSelectedPowertrain(extractKey(key));
     },
-    [togglePowertrain]
-  );
-
-  const handleSegmentChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { seg } = e.currentTarget.dataset;
-      if (seg) {
-        toggleSegment(seg);
-      }
-    },
-    [toggleSegment]
+    [setSelectedPowertrain]
   );
 
   return (
     <aside
-      className="w-full shrink-0 space-y-6 rounded-xl border border-border bg-surface p-5 shadow-level-1 lg:w-70"
+      className="w-full shrink-0 space-y-5 rounded-xl border border-border bg-surface p-5 shadow-level-1 lg:w-72"
       data-purpose="inventory-sidebar"
     >
       {/* Header & Reset */}
@@ -99,96 +130,78 @@ export function InventorySidebar() {
       {/* Active Filter Tags */}
       <InventoryActiveTags />
 
-      {/* Search Input */}
-      <div className="relative">
-        <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-on-surface-variant">
-          <MdSearch className="text-lg" />
-        </span>
-        <input
-          className="w-full rounded-lg border border-border bg-surface-container-low py-2 pr-3 pl-9 font-body-sm text-on-surface placeholder:text-on-surface-variant focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-          onChange={handleSearchChange}
-          placeholder="Search make, model, trim..."
-          type="text"
-          value={searchQuery}
-        />
-      </div>
-
-      {/* SEGMENT / ALLOCATION */}
-      <div className="space-y-2 pt-2">
-        <h3 className="font-label-sm text-on-surface-variant uppercase tracking-wider">
-          Segment / Allocation
-        </h3>
-        <div className="space-y-1.5 text-on-surface text-sm">
-          {[
-            "All Dimensions",
-            "Performance ($68k+)",
-            "Everyday Excellence ($24k-$45k)",
-          ].map((seg) => (
-            <label className="flex cursor-pointer items-center gap-2" key={seg}>
-              <input
-                checked={selectedSegments.has(seg)}
-                className="h-4 w-4 border-border text-primary focus:ring-primary"
-                data-seg={seg}
-                onChange={handleSegmentChange}
-                type="radio"
-              />
-              <span>{seg}</span>
-            </label>
+      {/* REFINED FILTER DROPDOWNS */}
+      <div className="flex flex-col gap-4">
+        {/* MAKE & MODEL WITH INTEGRATED SEARCH */}
+        <Autocomplete
+          label="MAKE & MODEL"
+          onSearchChange={setSearchQuery}
+          onSelectionChange={handleMakeChange}
+          placeholder="e.g. Porsche, BMW, Genesis..."
+          selectedKey={selectedMake === "all" ? null : selectedMake}
+        >
+          {MAKE_OPTIONS.map((item) => (
+            <AutocompleteItem id={item.id} key={item.id} textValue={item.label}>
+              {item.label}
+            </AutocompleteItem>
           ))}
-        </div>
-      </div>
+        </Autocomplete>
 
-      <InventorySidebarPrice />
-      <InventorySidebarMake />
-
-      {/* BODY ARCHITECTURE */}
-      <div className="space-y-2 pt-2">
-        <h3 className="font-label-sm text-on-surface-variant uppercase tracking-wider">
-          Body Architecture
-        </h3>
-        <div className="flex flex-wrap gap-1.5 font-label-sm">
-          {[
-            "Sedan",
-            "SUV / Crossover",
-            "Coupe",
-            "Grand Tourer",
-            "Wagon / Touring",
-          ].map((body) => {
-            const isSelected = selectedBodyTypes.has(body);
-            return (
-              <button
-                className={`rounded border px-2.5 py-1 font-medium transition-colors ${isSelected ? "border-transparent bg-on-surface text-surface" : "border-border hover:bg-surface-container-low"}`}
-                data-body={body}
-                key={body}
-                onClick={handleBodyTypeClick}
-                type="button"
-              >
-                {body}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* POWERTRAIN */}
-      <div className="space-y-2 pt-2">
-        <h3 className="font-label-sm text-on-surface-variant uppercase tracking-wider">
-          Powertrain
-        </h3>
-        <div className="space-y-1.5 text-on-surface text-sm">
-          {["Electric", "Hybrid / PHEV"].map((pt) => (
-            <label className="flex cursor-pointer items-center gap-2" key={pt}>
-              <input
-                checked={selectedPowertrains.has(pt)}
-                className="h-3.5 w-3.5 rounded border-border text-primary focus:ring-primary"
-                data-pt={pt}
-                onChange={handlePowertrainChange}
-                type="checkbox"
-              />
-              <span>{pt}</span>
-            </label>
+        {/* BODY ARCHITECTURE */}
+        <Select
+          label="BODY ARCHITECTURE"
+          onSelectionChange={handleBodyChange}
+          placeholder="All Body Styles"
+          selectedKey={selectedBodyStyle}
+        >
+          {BODY_OPTIONS.map((item) => (
+            <SelectItem id={item.id} key={item.id} textValue={item.label}>
+              {item.label}
+            </SelectItem>
           ))}
-        </div>
+        </Select>
+
+        {/* TARGET BUDGET */}
+        <Select
+          label="TARGET BUDGET"
+          onSelectionChange={handleBudgetChange}
+          placeholder="All Prices"
+          selectedKey={targetBudget}
+        >
+          {BUDGET_OPTIONS.map((item) => (
+            <SelectItem id={item.id} key={item.id} textValue={item.label}>
+              {item.label}
+            </SelectItem>
+          ))}
+        </Select>
+
+        {/* PROVENANCE */}
+        <Select
+          label="PROVENANCE"
+          onSelectionChange={handleProvenanceChange}
+          placeholder="Any Condition"
+          selectedKey={provenance}
+        >
+          {PROVENANCE_OPTIONS.map((item) => (
+            <SelectItem id={item.id} key={item.id} textValue={item.label}>
+              {item.label}
+            </SelectItem>
+          ))}
+        </Select>
+
+        {/* POWERTRAIN */}
+        <Select
+          label="POWERTRAIN"
+          onSelectionChange={handlePowertrainChange}
+          placeholder="All Powertrains"
+          selectedKey={selectedPowertrain}
+        >
+          {POWERTRAIN_OPTIONS.map((item) => (
+            <SelectItem id={item.id} key={item.id} textValue={item.label}>
+              {item.label}
+            </SelectItem>
+          ))}
+        </Select>
       </div>
     </aside>
   );

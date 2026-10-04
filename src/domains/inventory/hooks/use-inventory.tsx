@@ -1,90 +1,63 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import {
   createContext,
   type ReactNode,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from "react";
 import type { Vehicle } from "@/domains/vehicles/types/vehicles.types";
+import { inventoryFilterService } from "../services/inventory-filter.service";
+import type {
+  InventoryState,
+  SortOption,
+  ViewMode,
+} from "../types/inventory.types";
 
-function matchesBodyType(v: Vehicle, selectedBodyTypes: Set<string>): boolean {
-  if (selectedBodyTypes.size === 0) {
-    return true;
-  }
-  const text =
-    `${v.make} ${v.model} ${v.trim} ${v.specs.stat2 || ""}`.toLowerCase();
-  for (const bt of selectedBodyTypes) {
-    const btLower = bt.toLowerCase();
-    if (
-      btLower === "suv / crossover" &&
-      (text.includes("suv") ||
-        text.includes("x5") ||
-        text.includes("gv70") ||
-        text.includes("q7"))
-    ) {
-      return true;
-    }
-    if (
-      btLower === "wagon / touring" &&
-      (text.includes("touring") || text.includes("avant"))
-    ) {
-      return true;
-    }
-    if (text.includes(btLower)) {
-      return true;
-    }
-  }
-  return false;
-}
-
-export type ViewMode = "grid" | "list";
-export type SortOption =
-  | "featured"
-  | "price-asc"
-  | "price-desc"
-  | "mileage-asc";
-
-interface InventoryState {
-  currentPage: number;
-
-  filteredVehicles: Vehicle[];
-
-  isCPO: boolean;
-
-  priceRange: [number, number];
-
-  resetFilters: () => void;
-  searchQuery: string;
-
-  selectedBodyTypes: Set<string>;
-
-  selectedMakes: Set<string>;
-
-  selectedPowertrains: Set<string>;
-
-  selectedSegments: Set<string>;
-  setCurrentPage: (page: number) => void;
-  setPriceRange: (range: [number, number]) => void;
-  setSearchQuery: (query: string) => void;
-  setSortOption: (option: SortOption) => void;
-  setViewMode: (mode: ViewMode) => void;
-
-  sortOption: SortOption;
-  toggleBodyType: (bodyType: string) => void;
-  toggleCPO: () => void;
-  toggleMake: (make: string) => void;
-  togglePowertrain: (powertrain: string) => void;
-  toggleSegment: (segment: string) => void;
-  totalItems: number;
-  totalPages: number;
-
-  viewMode: ViewMode;
-}
+export * from "../types/inventory.types";
 
 const InventoryContext = createContext<InventoryState | undefined>(undefined);
+const ITEMS_PER_PAGE = 9;
+
+interface ParsedInventoryParams {
+  body: string;
+  budget: string;
+  isCPO: boolean;
+  make: string;
+  powertrain: string;
+  provenance: string;
+  query: string;
+}
+
+function parseInventoryParams(searchParams: {
+  get: (key: string) => string | null;
+}): ParsedInventoryParams {
+  const tab = searchParams.get("tab") ?? "all";
+  const make = searchParams.get("make") ?? "all";
+  const body = searchParams.get("body") ?? "all";
+  const rawBudget = searchParams.get("budget") ?? "all";
+  const budget = tab === "fleet" ? "under-45k" : rawBudget;
+  const rawProv = searchParams.get("provenance");
+  const provenance = rawProv ?? (tab === "cpo" ? "cpo" : "all");
+  const rawPt = searchParams.get("powertrain");
+  const powertrain = rawPt ?? (tab === "ev" ? "electric" : "all");
+  const query = searchParams.get("q") ?? searchParams.get("search") ?? "";
+  const isCPO = tab === "cpo" || provenance === "cpo";
+
+  return {
+    body,
+    budget,
+    isCPO,
+    make,
+    powertrain,
+    provenance,
+    query,
+  };
+}
 
 export function InventoryProvider({
   children,
@@ -93,11 +66,23 @@ export function InventoryProvider({
   children: ReactNode;
   initialVehicles: Vehicle[];
 }) {
-  const [searchQuery, setSearchQuery] = useState("");
+  const searchParams = useSearchParams();
+  const init = useMemo(
+    () => parseInventoryParams(searchParams),
+    [searchParams]
+  );
+
+  const [searchQuery, setSearchQuery] = useState(init.query);
   const [priceRange, setPriceRange] = useState<[number, number]>([
     20_000, 250_000,
   ]);
-  const [selectedMakes, setSelectedMakes] = useState<Set<string>>(new Set());
+  const [selectedMakes, setSelectedMakes] = useState<Set<string>>(() =>
+    init.make === "all" ? new Set() : new Set([init.make])
+  );
+  const [selectedMake, setSelectedMakeState] = useState(init.make);
+  const [selectedBodyStyle, setSelectedBodyStyleState] = useState(init.body);
+  const [targetBudget, setTargetBudgetState] = useState(init.budget);
+  const [provenance, setProvenanceState] = useState(init.provenance);
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [sortOption, setSortOption] = useState<SortOption>("featured");
   const [currentPage, setCurrentPage] = useState(1);
@@ -105,17 +90,48 @@ export function InventoryProvider({
   const [selectedSegments, setSelectedSegments] = useState<Set<string>>(
     new Set(["All Dimensions"])
   );
-  const [selectedBodyTypes, setSelectedBodyTypes] = useState<Set<string>>(
-    new Set()
+  const [selectedBodyTypes, setSelectedBodyTypes] = useState<Set<string>>(() =>
+    init.body === "all" ? new Set() : new Set([init.body])
   );
   const [selectedPowertrains, setSelectedPowertrains] = useState<Set<string>>(
-    new Set()
+    () => (init.powertrain === "all" ? new Set() : new Set([init.powertrain]))
   );
-  const [isCPO, setIsCPO] = useState(false);
+  const [selectedPowertrain, setSelectedPowertrainState] = useState(
+    init.powertrain
+  );
+  const [isCPO, setIsCPO] = useState(init.isCPO);
 
-  const resetFilters = () => {
+  useEffect(() => {
+    const params = parseInventoryParams(searchParams);
+    if (params.query) {
+      setSearchQuery(params.query);
+    }
+    setSelectedMakeState(params.make);
+    setSelectedMakes(
+      params.make === "all" ? new Set() : new Set([params.make])
+    );
+    setSelectedBodyStyleState(params.body);
+    setSelectedBodyTypes(
+      params.body === "all" ? new Set() : new Set([params.body])
+    );
+    setTargetBudgetState(params.budget);
+    setProvenanceState(params.provenance);
+    setIsCPO(params.isCPO);
+    setSelectedPowertrainState(params.powertrain);
+    setSelectedPowertrains(
+      params.powertrain === "all" ? new Set() : new Set([params.powertrain])
+    );
+    setCurrentPage(1);
+  }, [searchParams]);
+
+  const resetFilters = useCallback(() => {
     setSearchQuery("");
     setPriceRange([20_000, 250_000]);
+    setTargetBudgetState("all");
+    setProvenanceState("all");
+    setSelectedMakeState("all");
+    setSelectedBodyStyleState("all");
+    setSelectedPowertrainState("all");
     setSelectedMakes(new Set());
     setSelectedSegments(new Set(["All Dimensions"]));
     setSelectedBodyTypes(new Set());
@@ -123,9 +139,40 @@ export function InventoryProvider({
     setIsCPO(false);
     setSortOption("featured");
     setCurrentPage(1);
-  };
+  }, []);
 
-  const toggleMake = (make: string) => {
+  const setSelectedPowertrain = useCallback((pt: string) => {
+    setSelectedPowertrainState(pt);
+    setSelectedPowertrains(!pt || pt === "all" ? new Set() : new Set([pt]));
+    setCurrentPage(1);
+  }, []);
+
+  const setSelectedMake = useCallback((make: string) => {
+    setSelectedMakeState(make);
+    setSelectedMakes(!make || make === "all" ? new Set() : new Set([make]));
+    setCurrentPage(1);
+  }, []);
+
+  const setSelectedBodyStyle = useCallback((style: string) => {
+    setSelectedBodyStyleState(style);
+    setSelectedBodyTypes(
+      !style || style === "all" ? new Set() : new Set([style])
+    );
+    setCurrentPage(1);
+  }, []);
+
+  const setTargetBudget = useCallback((budget: string) => {
+    setTargetBudgetState(budget);
+    setCurrentPage(1);
+  }, []);
+
+  const setProvenance = useCallback((prov: string) => {
+    setProvenanceState(prov);
+    setIsCPO(prov === "cpo");
+    setCurrentPage(1);
+  }, []);
+
+  const toggleMake = useCallback((make: string) => {
     setSelectedMakes((prev) => {
       const next = new Set(prev);
       if (next.has(make)) {
@@ -136,19 +183,23 @@ export function InventoryProvider({
       return next;
     });
     setCurrentPage(1);
-  };
+  }, []);
 
-  const toggleCPO = () => {
-    setIsCPO((prev) => !prev);
+  const toggleCPO = useCallback(() => {
+    setIsCPO((prev) => {
+      const next = !prev;
+      setProvenanceState(next ? "cpo" : "all");
+      return next;
+    });
     setCurrentPage(1);
-  };
+  }, []);
 
-  const toggleSegment = (segment: string) => {
-    setSelectedSegments(new Set([segment])); // Segment acts like radio
+  const toggleSegment = useCallback((segment: string) => {
+    setSelectedSegments(new Set([segment]));
     setCurrentPage(1);
-  };
+  }, []);
 
-  const toggleBodyType = (bodyType: string) => {
+  const toggleBodyType = useCallback((bodyType: string) => {
     setSelectedBodyTypes((prev) => {
       const next = new Set(prev);
       if (next.has(bodyType)) {
@@ -159,9 +210,9 @@ export function InventoryProvider({
       return next;
     });
     setCurrentPage(1);
-  };
+  }, []);
 
-  const togglePowertrain = (powertrain: string) => {
+  const togglePowertrain = useCallback((powertrain: string) => {
     setSelectedPowertrains((prev) => {
       const next = new Set(prev);
       if (next.has(powertrain)) {
@@ -172,119 +223,38 @@ export function InventoryProvider({
       return next;
     });
     setCurrentPage(1);
-  };
-
-  const parsePrice = useCallback(
-    (priceStr: string) =>
-      Number.parseInt(priceStr.replace(/[^0-9]/g, ""), 10) || 0,
-    []
-  );
-
-  const parseMileage = useCallback(
-    (stat: string) => Number.parseInt(stat.replace(/[^0-9]/g, ""), 10) || 0,
-    []
-  );
+  }, []);
 
   const filtered = useMemo(() => {
-    let result = initialVehicles;
-
-    if (searchQuery) {
-      const lower = searchQuery.toLowerCase();
-      result = result.filter(
-        (v) =>
-          v.make.toLowerCase().includes(lower) ||
-          v.model.toLowerCase().includes(lower) ||
-          v.trim.toLowerCase().includes(lower)
-      );
-    }
-
-    if (selectedMakes.size > 0) {
-      result = result.filter((v) => selectedMakes.has(v.make));
-    }
-
-    if (isCPO) {
-      result = result.filter(
-        (v) =>
-          v.historyText.includes("Certified") ||
-          v.badgeText.includes("Certified")
-      );
-    }
-
-    result = result.filter((v) => {
-      const p = parsePrice(v.price);
-      return (
-        p >= priceRange[0] &&
-        (priceRange[1] >= 250_000 ? true : p <= priceRange[1])
-      );
+    const raw = inventoryFilterService.filterVehicles(initialVehicles, {
+      isCPO,
+      priceRange,
+      provenance,
+      searchQuery,
+      selectedBodyTypes,
+      selectedMakes,
+      selectedPowertrain,
+      selectedPowertrains,
+      selectedSegments,
+      sortOption,
+      targetBudget,
     });
-
-    if (selectedBodyTypes.size > 0) {
-      result = result.filter((v) => matchesBodyType(v, selectedBodyTypes));
-    }
-
-    if (selectedPowertrains.size > 0) {
-      result = result.filter((v) => {
-        const isEV =
-          v.specs.label3?.includes("Electric") ||
-          v.trim.includes("EV") ||
-          v.make.includes("Taycan");
-        const isHybrid =
-          v.specs.label3?.includes("Hybrid") ||
-          v.specs.label3?.includes("PHEV");
-        return (
-          (selectedPowertrains.has("Electric") && isEV) ||
-          (selectedPowertrains.has("Hybrid / PHEV") && isHybrid)
-        );
-      });
-    }
-
-    if (selectedSegments.size > 0 && !selectedSegments.has("All Dimensions")) {
-      result = result.filter((v) => {
-        const p = parsePrice(v.price);
-        if (selectedSegments.has("Performance ($68k+)") && p >= 68_000) {
-          return true;
-        }
-        if (
-          selectedSegments.has("Everyday Excellence ($24k-$45k)") &&
-          p >= 24_000 &&
-          p <= 45_000
-        ) {
-          return true;
-        }
-        return false;
-      });
-    }
-
-    // sort
-    result = [...result].sort((a, b) => {
-      if (sortOption === "price-asc") {
-        return parsePrice(a.price) - parsePrice(b.price);
-      }
-      if (sortOption === "price-desc") {
-        return parsePrice(b.price) - parsePrice(a.price);
-      }
-      if (sortOption === "mileage-asc") {
-        return parseMileage(a.specs.stat1) - parseMileage(b.specs.stat1);
-      }
-      return 0; // featured (original order)
-    });
-
-    return result;
+    return inventoryFilterService.sortVehicles(raw, sortOption);
   }, [
     initialVehicles,
     searchQuery,
     selectedMakes,
     priceRange,
+    targetBudget,
+    provenance,
+    selectedPowertrain,
     sortOption,
     isCPO,
     selectedBodyTypes,
     selectedPowertrains,
     selectedSegments,
-    parsePrice,
-    parseMileage,
   ]);
 
-  const ITEMS_PER_PAGE = 9;
   const totalItems = filtered.length;
   const totalPages = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
 
@@ -300,18 +270,28 @@ export function InventoryProvider({
         filteredVehicles: paginatedVehicles,
         isCPO,
         priceRange,
+        provenance,
         resetFilters,
         searchQuery,
+        selectedBodyStyle,
         selectedBodyTypes,
+        selectedMake,
         selectedMakes,
+        selectedPowertrain,
         selectedPowertrains,
         selectedSegments,
         setCurrentPage,
         setPriceRange,
+        setProvenance,
         setSearchQuery,
+        setSelectedBodyStyle,
+        setSelectedMake,
+        setSelectedPowertrain,
         setSortOption,
+        setTargetBudget,
         setViewMode,
         sortOption,
+        targetBudget,
         toggleBodyType,
         toggleCPO,
         toggleMake,

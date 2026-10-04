@@ -1,7 +1,13 @@
+"use client";
+
 // ─────────────────────────────────────────────
 // SECTION: Components
 // ─────────────────────────────────────────────
+import { useRouter } from "next/navigation";
+import { useCallback, useMemo, useState } from "react";
 import { MdManageSearch } from "react-icons/md";
+import { inventoryFilterService } from "@/domains/inventory/services/inventory-filter.service";
+import { vehiclesService } from "@/domains/vehicles/services/vehicles.service";
 import {
   Autocomplete,
   AutocompleteItem,
@@ -15,13 +21,135 @@ import {
   Tabs,
 } from "@/shared/components/ui/tabs";
 
+function extractKey(key: React.Key | null | Set<React.Key>): string {
+  if (typeof key === "string" || typeof key === "number") {
+    return String(key);
+  }
+  if (key && typeof key === "object" && "size" in key) {
+    const [first] = Array.from(key as Set<React.Key>);
+    return first ? String(first) : "all";
+  }
+  return "all";
+}
+
 export function OmniSearch() {
+  const router = useRouter();
+  const [activeTab, setActiveTab] = useState<string>("all");
+  const [selectedMake, setSelectedMake] = useState<string>("all");
+  const [selectedBody, setSelectedBody] = useState<string>("all");
+  const [selectedBudget, setSelectedBudget] = useState<string>("all");
+  const [selectedProvenance, setSelectedProvenance] = useState<string>("all");
+
+  const allVehicles = useMemo(() => vehiclesService.getAllVehicles(), []);
+
+  const matchingCount = useMemo(
+    () =>
+      inventoryFilterService.filterVehicles(allVehicles, {
+        isCPO: activeTab === "cpo" || selectedProvenance === "cpo",
+        priceRange: [20_000, 250_000],
+        provenance: selectedProvenance,
+        searchQuery: "",
+        selectedBodyTypes:
+          selectedBody && selectedBody !== "all"
+            ? new Set([selectedBody])
+            : new Set(),
+        selectedMakes:
+          selectedMake && selectedMake !== "all"
+            ? new Set([selectedMake])
+            : new Set(),
+        selectedPowertrain: activeTab === "ev" ? "electric" : "all",
+        selectedPowertrains:
+          activeTab === "ev" ? new Set(["electric"]) : new Set(),
+        selectedSegments: new Set(),
+        sortOption: "featured",
+        targetBudget: activeTab === "fleet" ? "under-45k" : selectedBudget,
+      }).length,
+    [
+      allVehicles,
+      activeTab,
+      selectedMake,
+      selectedBody,
+      selectedBudget,
+      selectedProvenance,
+    ]
+  );
+
+  const handleTabChange = useCallback((key: React.Key) => {
+    setActiveTab(String(key));
+  }, []);
+
+  const handleMakeChange = useCallback(
+    (key: React.Key | null | Set<React.Key>) => {
+      setSelectedMake(extractKey(key));
+    },
+    []
+  );
+
+  const handleBodyChange = useCallback(
+    (key: React.Key | null | Set<React.Key>) => {
+      setSelectedBody(extractKey(key));
+    },
+    []
+  );
+
+  const handleBudgetChange = useCallback(
+    (key: React.Key | null | Set<React.Key>) => {
+      setSelectedBudget(extractKey(key));
+    },
+    []
+  );
+
+  const handleProvenanceChange = useCallback(
+    (key: React.Key | null | Set<React.Key>) => {
+      setSelectedProvenance(extractKey(key));
+    },
+    []
+  );
+
+  const handleSearch = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      const params = new URLSearchParams();
+      if (activeTab && activeTab !== "all") {
+        params.set("tab", activeTab);
+      }
+      if (selectedMake && selectedMake !== "all") {
+        params.set("make", selectedMake);
+      }
+      if (selectedBody && selectedBody !== "all") {
+        params.set("body", selectedBody);
+      }
+      if (selectedBudget && selectedBudget !== "all") {
+        params.set("budget", selectedBudget);
+      }
+      if (selectedProvenance && selectedProvenance !== "all") {
+        params.set("provenance", selectedProvenance);
+      }
+
+      const queryString = params.toString();
+      router.push(`/inventory${queryString ? `?${queryString}` : ""}`);
+    },
+    [
+      activeTab,
+      selectedMake,
+      selectedBody,
+      selectedBudget,
+      selectedProvenance,
+      router,
+    ]
+  );
+
   return (
     <section className="relative z-20 mx-auto -mt-10 w-full max-w-400 px-margin-mobile md:-mt-14 md:px-margin">
       <div className="rounded-xl border border-outline-variant bg-surface-container-lowest p-4 shadow-xl md:p-6">
         <div className="flex flex-col gap-space-sm md:gap-space-md">
           <div className="flex flex-wrap items-center justify-between gap-space-xs border-surface-container border-b pb-space-xs">
-            <Tabs className="min-w-0 max-w-full" defaultSelectedKey="all">
+            <Tabs
+              className="min-w-0 max-w-full"
+              defaultSelectedKey="all"
+              onSelectionChange={handleTabChange}
+              selectedKey={activeTab}
+            >
               <TabListContainer>
                 <TabList aria-label="Inventory Types">
                   <Tab id="all">All Inventory (482)</Tab>
@@ -36,34 +164,53 @@ export function OmniSearch() {
               <span className="font-medium">Live Stock Updated 8 mins ago</span>
             </div>
           </div>
-          <div className="grid grid-cols-1 items-end gap-space-sm sm:grid-cols-2 md:gap-space-md lg:grid-cols-5">
+          <form
+            className="grid grid-cols-1 items-end gap-space-sm sm:grid-cols-2 md:gap-space-md lg:grid-cols-5"
+            onSubmit={handleSearch}
+          >
             <div className="flex flex-col justify-end">
               <Autocomplete
                 label="Make & Model"
+                onSelectionChange={handleMakeChange}
                 placeholder="e.g. Porsche, BMW, Genesis..."
+                selectedKey={selectedMake === "all" ? null : selectedMake}
               >
-                <AutocompleteItem id="porsche" textValue="Porsche">
+                <AutocompleteItem id="all" textValue="All Makes & Models">
+                  All Makes & Models
+                </AutocompleteItem>
+                <AutocompleteItem id="Porsche" textValue="Porsche">
                   Porsche
                 </AutocompleteItem>
-                <AutocompleteItem id="bmw" textValue="BMW">
+                <AutocompleteItem id="BMW" textValue="BMW">
                   BMW
                 </AutocompleteItem>
-                <AutocompleteItem id="genesis" textValue="Genesis">
+                <AutocompleteItem id="Genesis" textValue="Genesis">
                   Genesis
                 </AutocompleteItem>
-                <AutocompleteItem id="mercedes" textValue="Mercedes-Benz">
+                <AutocompleteItem id="Mercedes-Benz" textValue="Mercedes-Benz">
                   Mercedes-Benz
                 </AutocompleteItem>
-                <AutocompleteItem id="audi" textValue="Audi">
+                <AutocompleteItem id="Audi" textValue="Audi">
                   Audi
                 </AutocompleteItem>
-                <AutocompleteItem id="lexus" textValue="Lexus">
+                <AutocompleteItem id="Lexus" textValue="Lexus">
                   Lexus
+                </AutocompleteItem>
+                <AutocompleteItem id="Aston Martin" textValue="Aston Martin">
+                  Aston Martin
+                </AutocompleteItem>
+                <AutocompleteItem id="Volvo" textValue="Volvo">
+                  Volvo
                 </AutocompleteItem>
               </Autocomplete>
             </div>
             <div className="flex flex-col justify-end">
-              <Select label="Body Architecture" placeholder="All Body Styles">
+              <Select
+                label="Body Architecture"
+                onSelectionChange={handleBodyChange}
+                placeholder="All Body Styles"
+                selectedKey={selectedBody}
+              >
                 <SelectItem id="all" textValue="All Body Styles">
                   All Body Styles
                 </SelectItem>
@@ -82,7 +229,12 @@ export function OmniSearch() {
               </Select>
             </div>
             <div className="flex flex-col justify-end">
-              <Select label="Target Budget" placeholder="All Prices">
+              <Select
+                label="Target Budget"
+                onSelectionChange={handleBudgetChange}
+                placeholder="All Prices"
+                selectedKey={selectedBudget}
+              >
                 <SelectItem id="all" textValue="All Prices">
                   All Prices
                 </SelectItem>
@@ -101,7 +253,12 @@ export function OmniSearch() {
               </Select>
             </div>
             <div className="flex flex-col justify-end">
-              <Select label="Provenance" placeholder="Any Condition">
+              <Select
+                label="Provenance"
+                onSelectionChange={handleProvenanceChange}
+                placeholder="Any Condition"
+                selectedKey={selectedProvenance}
+              >
                 <SelectItem id="all" textValue="Any Condition">
                   Any Condition
                 </SelectItem>
@@ -119,7 +276,7 @@ export function OmniSearch() {
                 </SelectItem>
               </Select>
             </div>
-            <form action="/inventory" className="flex flex-col justify-end">
+            <div className="flex flex-col justify-end">
               <Button
                 className="h-10 gap-space-xs md:h-12"
                 fullWidth
@@ -128,10 +285,12 @@ export function OmniSearch() {
                 variant="primary"
               >
                 <MdManageSearch className="text-lg" />
-                <span>Search 482 Cars</span>
+                <span>
+                  Search {matchingCount > 0 ? matchingCount : 482} Cars
+                </span>
               </Button>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </section>
