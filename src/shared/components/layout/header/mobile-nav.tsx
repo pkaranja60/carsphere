@@ -6,14 +6,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { MdClose, MdMenu } from "react-icons/md";
 import { Button } from "@/shared/components/ui/button";
 import { MobileNavPreferences } from "./mobile-nav-preferences";
 
 // ─────────────────────────────────────────────
-// SECTION: Interfaces
+// SECTION: Interfaces & Helpers
 // ─────────────────────────────────────────────
 
 export interface NavItem {
@@ -27,18 +27,26 @@ interface MobileNavProps {
   items: NavItem[];
 }
 
+function subscribe() {
+  return () => undefined;
+}
+
+function useIsClient(): boolean {
+  return useSyncExternalStore(
+    subscribe,
+    () => true as boolean,
+    () => false
+  );
+}
+
 // ─────────────────────────────────────────────
 // SECTION: Component
 // ─────────────────────────────────────────────
 
 export function MobileNav({ items }: MobileNavProps) {
+  const isClient = useIsClient();
   const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Close menu on route change
   // biome-ignore lint/correctness/useExhaustiveDependencies: Close menu on route change
@@ -88,12 +96,12 @@ export function MobileNav({ items }: MobileNavProps) {
   }, []);
 
   const drawerContent =
-    mounted && isOpen ? (
-      <div
+    isClient && isOpen ? (
+      <dialog
         aria-label="Mobile Navigation Menu"
         aria-modal="true"
-        className="fixed inset-x-0 top-20 z-100 h-[calc(100dvh-80px)] w-full overflow-y-auto border-border/80 border-t bg-surface p-0 shadow-2xl md:top-30 md:h-[calc(100dvh-120px)] xl:hidden"
-        role="dialog"
+        className="fixed inset-x-0 top-20 z-100 m-0 h-[calc(100dvh-80px)] w-full max-w-full overflow-y-auto border-border/80 border-t bg-surface p-0 shadow-2xl backdrop:bg-transparent md:top-30 md:h-[calc(100dvh-120px)] xl:hidden"
+        open
       >
         <div className="flex min-h-full w-full flex-col p-6 pb-24">
           <nav className="flex flex-1 flex-col gap-5">
@@ -136,7 +144,7 @@ export function MobileNav({ items }: MobileNavProps) {
 
           <MobileNavPreferences onClose={handleClose} />
         </div>
-      </div>
+      </dialog>
     ) : null;
 
   return (
@@ -155,9 +163,7 @@ export function MobileNav({ items }: MobileNavProps) {
         )}
       </Button>
 
-      {mounted && drawerContent
-        ? createPortal(drawerContent, document.body)
-        : null}
+      {drawerContent ? createPortal(drawerContent, document.body) : null}
     </div>
   );
 }

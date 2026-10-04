@@ -5,12 +5,12 @@
 // ─────────────────────────────────────────────
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { MdChevronLeft, MdChevronRight, MdClose } from "react-icons/md";
 
 // ─────────────────────────────────────────────
-// SECTION: Interfaces
+// SECTION: Interfaces & Helpers
 // ─────────────────────────────────────────────
 
 interface GalleryImageItem {
@@ -27,6 +27,18 @@ interface VehicleGalleryLightboxProps {
   title: string;
 }
 
+function subscribe() {
+  return () => undefined;
+}
+
+function useIsClient(): boolean {
+  return useSyncExternalStore(
+    subscribe,
+    () => true as boolean,
+    () => false
+  );
+}
+
 // ─────────────────────────────────────────────
 // SECTION: Component
 // ─────────────────────────────────────────────
@@ -39,11 +51,7 @@ export function VehicleGalleryLightbox({
   onSelectIndex,
   title,
 }: VehicleGalleryLightboxProps) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const isClient = useIsClient();
 
   const currentImage = images[activeIndex] ?? images[0];
 
@@ -54,6 +62,13 @@ export function VehicleGalleryLightbox({
   const handleNext = useCallback(() => {
     onSelectIndex((activeIndex + 1) % images.length);
   }, [activeIndex, images.length, onSelectIndex]);
+
+  const onPrevRef = useRef(handlePrev);
+  onPrevRef.current = handlePrev;
+  const onNextRef = useRef(handleNext);
+  onNextRef.current = handleNext;
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
   const createThumbnailClickHandler = useCallback(
     (index: number) => () => {
@@ -69,13 +84,13 @@ export function VehicleGalleryLightbox({
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        onClose();
+        onCloseRef.current();
       }
       if (e.key === "ArrowLeft") {
-        handlePrev();
+        onPrevRef.current();
       }
       if (e.key === "ArrowRight") {
-        handleNext();
+        onNextRef.current();
       }
     };
 
@@ -86,18 +101,18 @@ export function VehicleGalleryLightbox({
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, onClose, handlePrev, handleNext]);
+  }, [isOpen]);
 
-  if (!(isOpen && mounted && currentImage)) {
+  if (!(isOpen && isClient && currentImage)) {
     return null;
   }
 
   const content = (
-    <div
+    <dialog
       aria-label="Image gallery fullscreen preview"
       aria-modal="true"
-      className="fixed inset-0 z-999 flex flex-col text-white"
-      role="dialog"
+      className="fixed inset-0 z-999 flex h-full w-full max-w-full flex-col border-0 bg-transparent p-0 text-white backdrop:bg-transparent"
+      open
     >
       <button
         aria-label="Close fullscreen overlay"
@@ -117,7 +132,7 @@ export function VehicleGalleryLightbox({
         </div>
         <button
           aria-label="Close fullscreen gallery (Esc)"
-          className="flex cursor-pointer items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-white transition hover:bg-white/20 active:scale-95"
+          className="flex cursor-pointer items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-white transition-colors hover:bg-white/20 active:scale-95"
           onClick={onClose}
           type="button"
         >
@@ -131,7 +146,7 @@ export function VehicleGalleryLightbox({
       <div className="relative z-10 flex flex-1 items-center justify-center p-2 sm:p-6">
         <button
           aria-label="Previous image"
-          className="absolute left-3 z-10 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-black/70 text-white shadow-xl backdrop-blur-md transition hover:bg-black sm:left-6"
+          className="absolute left-3 z-10 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-black/70 text-white shadow-xl backdrop-blur-md transition-colors hover:bg-black sm:left-6"
           onClick={handlePrev}
           type="button"
         >
@@ -151,7 +166,7 @@ export function VehicleGalleryLightbox({
 
         <button
           aria-label="Next image"
-          className="absolute right-3 z-10 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-black/70 text-white shadow-xl backdrop-blur-md transition hover:bg-black sm:right-6"
+          className="absolute right-3 z-10 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-black/70 text-white shadow-xl backdrop-blur-md transition-colors hover:bg-black sm:right-6"
           onClick={handleNext}
           type="button"
         >
@@ -163,7 +178,7 @@ export function VehicleGalleryLightbox({
         {images.map((img, idx) => (
           <button
             aria-label={`Jump to photo ${idx + 1}`}
-            className={`relative aspect-16/10 h-14 shrink-0 cursor-pointer overflow-hidden rounded-md border transition-all ${
+            className={`relative aspect-16/10 h-14 shrink-0 cursor-pointer overflow-hidden rounded-md border transition-colors ${
               idx === activeIndex
                 ? "border-primary ring-2 ring-primary"
                 : "border-transparent opacity-50 hover:opacity-100"
@@ -182,7 +197,7 @@ export function VehicleGalleryLightbox({
           </button>
         ))}
       </div>
-    </div>
+    </dialog>
   );
 
   return createPortal(content, document.body);

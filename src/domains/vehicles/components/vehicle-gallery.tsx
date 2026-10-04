@@ -135,7 +135,7 @@ export function VehicleGallery({ vehicle }: VehicleGalleryProps) {
         <div className="absolute right-4 bottom-4 flex items-center gap-2">
           <button
             aria-label="View interactive 360 preview"
-            className="flex cursor-pointer items-center gap-1.5 rounded-lg border border-border bg-surface-container-lowest/95 px-3.5 py-2 font-label-md font-semibold text-label-md text-on-surface shadow-md backdrop-blur-md transition-all hover:bg-surface-container-lowest active:scale-98"
+            className="flex cursor-pointer items-center gap-1.5 rounded-lg border border-border bg-surface-container-lowest/95 px-3.5 py-2 font-label-md font-semibold text-label-md text-on-surface shadow-md backdrop-blur-md transition-colors hover:bg-surface-container-lowest active:scale-98"
             onClick={handleOpen360}
             type="button"
           >
@@ -144,7 +144,7 @@ export function VehicleGallery({ vehicle }: VehicleGalleryProps) {
           </button>
           <button
             aria-label="View image fullscreen"
-            className="flex cursor-pointer items-center justify-center rounded-lg border border-border bg-surface-container-lowest/95 p-2 text-on-surface shadow-md backdrop-blur-md transition-all hover:bg-surface-container-lowest active:scale-98"
+            className="flex cursor-pointer items-center justify-center rounded-lg border border-border bg-surface-container-lowest/95 p-2 text-on-surface shadow-md backdrop-blur-md transition-colors hover:bg-surface-container-lowest active:scale-98"
             onClick={handleOpenLightbox}
             type="button"
           >

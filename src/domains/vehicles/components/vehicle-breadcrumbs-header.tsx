@@ -139,6 +139,10 @@ export function VehicleBreadcrumbsHeader({
                 <span className="rounded-md border border-primary-fixed bg-primary-fixed/30 px-2 py-0.5 font-label-sm font-semibold text-[11px] text-primary sm:px-2.5 sm:py-1 sm:text-label-sm">
                   150-Pt Heritage Inspected
                 </span>
+                <span className="flex items-center gap-1 rounded-md border border-border bg-surface-container-lowest px-2 py-0.5 font-label-sm font-semibold text-[11px] text-tertiary shadow-sm sm:px-2.5 sm:py-1 sm:text-label-sm">
+                  <MdOutlineVerified className="text-xs sm:text-sm" />
+                  {vehicle.warrantyActiveUntil}
+                </span>
               </div>
 
               <h1 className="font-bold font-display text-2xl text-on-surface tracking-tight sm:text-headline-lg">
@@ -148,24 +152,6 @@ export function VehicleBreadcrumbsHeader({
                 {vehicle.colorString} · {vehicle.interiorColor} ·{" "}
                 {vehicle.mileageFormatted}
               </p>
-            </div>
-
-            <div className="flex shrink-0 flex-col items-start lg:items-end">
-              <span className="font-label-sm font-semibold text-[11px] text-on-surface-variant uppercase tracking-wider sm:text-label-sm">
-                Zero-Markup Drivez Price
-              </span>
-              <div className="flex items-baseline gap-2.5 sm:gap-3">
-                <span className="font-bold font-display text-3xl text-on-surface leading-none sm:text-display">
-                  {vehicle.price}
-                </span>
-                <span className="font-label-md text-on-surface-variant text-xs line-through sm:font-label-lg sm:text-label-lg">
-                  MSRP {vehicle.msrpOriginal}
-                </span>
-              </div>
-              <span className="mt-1 flex items-center gap-1 font-body-sm font-semibold text-body-sm text-tertiary">
-                <MdOutlineVerified className="text-base" />
-                {vehicle.warrantyActiveUntil}
-              </span>
             </div>
           </div>
         </div>

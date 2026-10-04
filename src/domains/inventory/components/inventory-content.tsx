@@ -148,6 +148,7 @@ export function InventoryContent() {
                     Filter Selection
                   </span>
                   <button
+                    aria-label="Close filter drawer"
                     className="rounded-lg p-1.5 text-on-surface-variant hover:bg-surface-container"
                     onClick={toggleFilterDrawer}
                     type="button"

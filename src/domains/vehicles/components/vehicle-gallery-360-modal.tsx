@@ -5,7 +5,13 @@
 // ─────────────────────────────────────────────
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import { createPortal } from "react-dom";
 import {
   Md360,
@@ -31,6 +37,18 @@ interface VehicleGallery360ModalProps {
   title: string;
 }
 
+function subscribe() {
+  return () => undefined;
+}
+
+function useIsClient(): boolean {
+  return useSyncExternalStore(
+    subscribe,
+    () => true as boolean,
+    () => false
+  );
+}
+
 const HOTSPOTS = [
   { angle: 0, label: "Aerodynamic Front Fascia" },
   { angle: 72, label: '21" Mission E Wheels & Surface Coated Brakes' },
@@ -49,16 +67,15 @@ export function VehicleGallery360Modal({
   onClose,
   title,
 }: VehicleGallery360ModalProps) {
-  const [mounted, setMounted] = useState(false);
+  const isClient = useIsClient();
+
   const [angle, setAngle] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const startXRef = useRef(0);
   const startAngleRef = useRef(0);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
   // Map 0-360 angle to the closest available perspective image
   const imageIndex = Math.min(
@@ -85,18 +102,21 @@ export function VehicleGallery360Modal({
     if (!isOpen) {
       return;
     }
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        onClose();
+        onCloseRef.current();
       }
     };
+
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
+
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   const handlePointerDown = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
@@ -146,16 +166,16 @@ export function VehicleGallery360Modal({
     []
   );
 
-  if (!(isOpen && mounted && currentImage)) {
+  if (!(isOpen && isClient && currentImage)) {
     return null;
   }
 
   const content = (
-    <div
+    <dialog
       aria-label="Interactive 360 vehicle inspection"
       aria-modal="true"
-      className="fixed inset-0 z-999 flex flex-col text-on-surface"
-      role="dialog"
+      className="fixed inset-0 z-999 flex h-full w-full max-w-full flex-col border-0 bg-transparent p-0 text-on-surface backdrop:bg-transparent"
+      open
     >
       <button
         aria-label="Close 360 viewer overlay"
@@ -179,7 +199,7 @@ export function VehicleGallery360Modal({
         </div>
         <button
           aria-label="Close 360 viewer (Esc)"
-          className="flex cursor-pointer items-center gap-2 rounded-full border border-border bg-surface-container-low px-4 py-2 text-on-surface transition hover:bg-surface-container active:scale-95"
+          className="flex cursor-pointer items-center gap-2 rounded-full border border-border bg-surface-container-low px-4 py-2 text-on-surface transition-colors hover:bg-surface-container active:scale-95"
           onClick={onClose}
           type="button"
         >
@@ -219,7 +239,7 @@ export function VehicleGallery360Modal({
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <button
-              className="flex cursor-pointer items-center gap-1.5 rounded-lg bg-primary px-4 py-2 font-label-md font-semibold text-label-md text-white shadow-sm transition hover:bg-primary/90"
+              className="flex cursor-pointer items-center gap-1.5 rounded-lg bg-primary px-4 py-2 font-label-md font-semibold text-label-md text-white shadow-sm transition-colors hover:bg-primary/90"
               onClick={handleToggleSpin}
               type="button"
             >
@@ -238,7 +258,7 @@ export function VehicleGallery360Modal({
           <div className="flex flex-wrap items-center gap-1.5">
             {HOTSPOTS.map((spot) => (
               <button
-                className="cursor-pointer rounded-full border border-border bg-surface-container px-2.5 py-1 font-label-sm font-medium text-[11px] text-on-surface-variant transition hover:border-primary hover:text-primary"
+                className="cursor-pointer rounded-full border border-border bg-surface-container px-2.5 py-1 font-label-sm font-medium text-[11px] text-on-surface-variant transition-colors hover:border-primary hover:text-primary"
                 key={spot.label}
                 onClick={createHotspotClickHandler(spot.angle)}
                 type="button"
@@ -259,7 +279,7 @@ export function VehicleGallery360Modal({
           value={angle}
         />
       </div>
-    </div>
+    </dialog>
   );
 
   return createPortal(content, document.body);

@@ -98,7 +98,7 @@ export function VehicleStickyReservation({
 
         <div className="flex flex-col gap-3">
           <Link
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary-container px-6 py-3.5 text-center font-label-lg font-semibold text-label-lg text-on-primary shadow-none transition-all hover:bg-primary active:translate-y-0.5 sm:shadow-sm"
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary-container px-6 py-3.5 text-center font-label-lg font-semibold text-label-lg text-on-primary shadow-none transition-colors hover:bg-primary active:translate-y-0.5 sm:shadow-sm"
             href="#inquiry"
           >
             <MdCalendarMonth className="text-xl" />
@@ -112,7 +112,7 @@ export function VehicleStickyReservation({
             </div>
           ) : (
             <button
-              className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-primary-container bg-surface-container-lowest px-6 py-3.5 text-center font-label-lg font-semibold text-label-lg text-primary transition-all hover:bg-surface-container-low active:translate-y-0.5"
+              className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-primary-container bg-surface-container-lowest px-6 py-3.5 text-center font-label-lg font-semibold text-label-lg text-primary transition-colors hover:bg-surface-container-low active:translate-y-0.5"
               onClick={handleReserveClick}
               type="button"
             >

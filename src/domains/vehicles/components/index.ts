@@ -3,6 +3,7 @@
 // ─────────────────────────────────────────────
 
 export * from "./vehicle-anchor-nav";
+export * from "./vehicle-booking-form";
 export * from "./vehicle-booking-section";
 export * from "./vehicle-breadcrumbs-header";
 export * from "./vehicle-curated-alternatives";
