@@ -1,118 +1,165 @@
 "use client";
 
-import { type MouseEvent, type ReactNode, useCallback } from "react";
+// ─────────────────────────────────────────────
+// SECTION: Imports
+// ─────────────────────────────────────────────
 
-interface PaginationProps {
+import { type MouseEvent, useCallback, useMemo } from "react";
+import {
+  calculateItemRange,
+  calculatePaginationRange,
+} from "./pagination.utils";
+
+export type { PaginationItem } from "./pagination.utils";
+
+// ─────────────────────────────────────────────
+// SECTION: Interfaces
+// ─────────────────────────────────────────────
+
+export interface PaginationProps {
+  className?: string;
   currentPage: number;
+  disabled?: boolean;
+  isLoading?: boolean;
   onPageChange?: (page: number) => void;
+  pageSize?: number;
+  siblingCount?: number;
   totalItems: number;
   totalPages: number;
 }
 
+// ─────────────────────────────────────────────
+// SECTION: Component
+// ─────────────────────────────────────────────
+
 export function Pagination({
+  className = "",
   currentPage,
+  disabled = false,
+  isLoading = false,
   onPageChange,
+  pageSize = 9,
+  siblingCount = 1,
   totalItems,
   totalPages,
 }: PaginationProps) {
-  const handlePageChange = useCallback(
+  const isInteractiveDisabled = disabled || isLoading;
+
+  const pageItems = useMemo(
+    () =>
+      calculatePaginationRange({
+        currentPage,
+        siblingCount,
+        totalPages,
+      }),
+    [currentPage, totalPages, siblingCount]
+  );
+
+  const rangeDisplay = useMemo(
+    () => calculateItemRange(currentPage, pageSize, totalItems),
+    [currentPage, pageSize, totalItems]
+  );
+
+  const handlePageClick = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
-      if (!onPageChange) {
+      if (isInteractiveDisabled || !onPageChange) {
         return;
       }
       const page = Number(e.currentTarget.dataset.page);
-      if (!Number.isNaN(page)) {
+      if (!Number.isNaN(page) && page >= 1 && page <= totalPages) {
         onPageChange(page);
       }
     },
-    [onPageChange]
+    [isInteractiveDisabled, onPageChange, totalPages]
   );
 
-  // Simple pagination logic for display purposes
-  const renderPageNumbers = () => {
-    const pages: ReactNode[] = [];
-    for (let i = 1; i <= Math.min(3, totalPages); i += 1) {
-      pages.push(
-        <button
-          className={`flex h-8 w-8 items-center justify-center rounded transition ${
-            currentPage === i
-              ? "bg-on-surface text-surface"
-              : "text-on-surface-variant hover:bg-surface-variant"
-          }`}
-          data-page={i}
-          key={i}
-          onClick={handlePageChange}
-          type="button"
-        >
-          {i}
-        </button>
-      );
+  const handlePrevious = useCallback(() => {
+    if (!isInteractiveDisabled && currentPage > 1 && onPageChange) {
+      onPageChange(currentPage - 1);
     }
+  }, [currentPage, isInteractiveDisabled, onPageChange]);
 
-    if (totalPages > 4) {
-      pages.push(
-        <span
-          className="px-1 text-on-surface-variant opacity-70"
-          key="ellipsis"
-        >
-          ...
-        </span>
-      );
-      pages.push(
-        <button
-          className={`flex h-8 w-8 items-center justify-center rounded transition ${
-            currentPage === totalPages
-              ? "bg-on-surface text-surface"
-              : "text-on-surface-variant hover:bg-surface-variant"
-          }`}
-          data-page={totalPages}
-          key={totalPages}
-          onClick={handlePageChange}
-          type="button"
-        >
-          {totalPages}
-        </button>
-      );
+  const handleNext = useCallback(() => {
+    if (!isInteractiveDisabled && currentPage < totalPages && onPageChange) {
+      onPageChange(currentPage + 1);
     }
-
-    return pages;
-  };
+  }, [currentPage, isInteractiveDisabled, onPageChange, totalPages]);
 
   return (
-    <div
-      className="mt-10 flex flex-col items-center justify-between gap-4 border-border border-t pt-6 font-label-md text-on-surface-variant sm:flex-row"
+    <nav
+      aria-busy={isLoading}
+      aria-label="Pagination Navigation"
+      className={`mt-10 flex flex-col items-center justify-between gap-4 border-border border-t pt-6 font-label-md text-on-surface-variant sm:flex-row ${className}`}
       data-purpose="pagination"
     >
-      <div>
-        Viewing page{" "}
-        <span className="font-bold text-on-surface">
-          {currentPage} of {totalPages}
-        </span>{" "}
-        <span className="font-normal normal-case opacity-80">
-          ({totalItems} total vehicles in current allocation)
+      <div className="flex items-center gap-2">
+        <span>
+          Showing{" "}
+          <span className="font-bold text-on-surface">
+            {rangeDisplay.start} - {rangeDisplay.end}
+          </span>{" "}
+          of <span className="font-bold text-on-surface">{totalItems}</span>{" "}
+          vehicles
         </span>
+        {isLoading ? (
+          <span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+        ) : null}
       </div>
+
       <div className="flex items-center space-x-1 font-medium">
         <button
-          className="rounded px-3 py-1.5 text-on-surface-variant transition hover:bg-surface-variant disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-transparent"
-          data-page={currentPage - 1}
-          disabled={currentPage === 1}
-          onClick={handlePageChange}
+          aria-label="Previous page"
+          className="rounded px-3 py-1.5 text-on-surface-variant transition-colors hover:bg-surface-variant disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-transparent"
+          disabled={isInteractiveDisabled || currentPage <= 1}
+          onClick={handlePrevious}
           type="button"
         >
           Previous
         </button>
-        {renderPageNumbers()}
+
+        {pageItems.map((item) => {
+          if (item === "ellipsis-start" || item === "ellipsis-end") {
+            return (
+              <span
+                className="px-2 text-on-surface-variant opacity-60"
+                key={item}
+              >
+                ...
+              </span>
+            );
+          }
+
+          const isCurrent = currentPage === item;
+          return (
+            <button
+              aria-current={isCurrent ? "page" : undefined}
+              aria-label={`Page ${item}`}
+              className={`flex h-8 w-8 items-center justify-center rounded transition-colors ${
+                isCurrent
+                  ? "bg-on-surface font-semibold text-surface"
+                  : "text-on-surface-variant hover:bg-surface-variant"
+              }`}
+              data-page={item}
+              disabled={isInteractiveDisabled}
+              key={item}
+              onClick={handlePageClick}
+              type="button"
+            >
+              {item}
+            </button>
+          );
+        })}
+
         <button
-          className="rounded px-3 py-1.5 text-on-surface-variant transition hover:bg-surface-variant disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-transparent"
-          data-page={currentPage + 1}
-          disabled={currentPage === totalPages}
-          onClick={handlePageChange}
+          aria-label="Next page"
+          className="rounded px-3 py-1.5 text-on-surface-variant transition-colors hover:bg-surface-variant disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-transparent"
+          disabled={isInteractiveDisabled || currentPage >= totalPages}
+          onClick={handleNext}
           type="button"
         >
           Next
         </button>
       </div>
-    </div>
+    </nav>
   );
 }

@@ -255,7 +255,15 @@ function filterVehicles(
   }
 
   if (criteria.selectedMakes.size > 0) {
-    result = result.filter((v) => criteria.selectedMakes.has(v.make));
+    result = result.filter((v) =>
+      Array.from(criteria.selectedMakes).some((m) => {
+        const lower = m.toLowerCase();
+        return (
+          v.make.toLowerCase() === lower ||
+          v.model.toLowerCase().includes(lower)
+        );
+      })
+    );
   }
 
   result = result.filter((v) =>
@@ -272,7 +280,16 @@ function filterVehicles(
     );
   }
 
-  if (criteria.selectedPowertrain && criteria.selectedPowertrain !== "all") {
+  if (criteria.selectedPowertrains.size > 0) {
+    result = result.filter((v) =>
+      Array.from(criteria.selectedPowertrains).some((pt) =>
+        matchesPowertrain(v, pt)
+      )
+    );
+  } else if (
+    criteria.selectedPowertrain &&
+    criteria.selectedPowertrain !== "all"
+  ) {
     result = result.filter((v) =>
       matchesPowertrain(v, criteria.selectedPowertrain)
     );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { MdGridView, MdViewList } from "react-icons/md";
 import { Select, SelectItem } from "@/shared/components";
 import { type SortOption, useInventory } from "../hooks/use-inventory";
@@ -16,18 +16,24 @@ export function InventoryToolbar() {
     setSortOption,
   } = useInventory();
 
-  const start = (currentPage - 1) * 9 + 1;
-  const end = start + filteredVehicles.length - 1;
+  const rangeDisplay = useMemo(() => {
+    if (totalItems === 0) {
+      return "0";
+    }
+    const start = (currentPage - 1) * 9 + 1;
+    const end = start + filteredVehicles.length - 1;
+    return `${start} - ${end}`;
+  }, [currentPage, filteredVehicles.length, totalItems]);
 
   const handleSelectionChange = useCallback(
-    (key: React.Key | null | Set<React.Key>) => {
-      // In HeroUI v3 single selection mode, it may return a Set or a single key.
+    (key: React.Key | React.Key[] | null | Set<React.Key>) => {
       let selected: SortOption | undefined;
 
       if (typeof key === "string" || typeof key === "number") {
         selected = key as SortOption;
+      } else if (Array.isArray(key)) {
+        selected = key[0] as SortOption;
       } else if (key && typeof key === "object" && "size" in key) {
-        // It's a Set-like object
         selected = Array.from(key as Set<string>)[0] as SortOption;
       }
 
@@ -50,8 +56,7 @@ export function InventoryToolbar() {
     <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-border border-b pb-4">
       <div className="flex items-center gap-3">
         <span className="font-label-lg font-medium text-on-surface">
-          Showing {totalItems > 0 ? `${start} - ${end}` : 0} of {totalItems}{" "}
-          Vehicles
+          Showing {rangeDisplay} of {totalItems} Vehicles
         </span>
         <span className="flex items-center gap-1.5 font-label-md font-medium text-on-surface-variant">
           <span className="h-1.5 w-1.5 rounded-full bg-green-500" /> Instant
@@ -67,8 +72,8 @@ export function InventoryToolbar() {
             <Select
               aria-label="Sort inventory"
               className="w-full"
-              onSelectionChange={handleSelectionChange}
-              selectedKey={sortOption}
+              onChange={handleSelectionChange}
+              value={sortOption}
             >
               <SelectItem id="featured">
                 Featured & Curated Allocation

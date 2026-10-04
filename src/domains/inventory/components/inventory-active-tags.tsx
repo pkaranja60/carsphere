@@ -138,6 +138,7 @@ function FilterTagItem({ item }: { item: ActiveTagItem }) {
     <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface-container-low px-2.5 py-1 font-medium text-on-surface text-xs">
       {item.label}
       <button
+        aria-label={`Remove ${item.label} filter`}
         className="font-bold hover:text-error"
         onClick={item.onRemove}
         type="button"

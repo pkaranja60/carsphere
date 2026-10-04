@@ -29,6 +29,7 @@ interface ParsedInventoryParams {
   isCPO: boolean;
   make: string;
   powertrain: string;
+  powertrains: Set<string>;
   provenance: string;
   query: string;
 }
@@ -48,12 +49,20 @@ function parseInventoryParams(searchParams: {
   const query = searchParams.get("q") ?? searchParams.get("search") ?? "";
   const isCPO = tab === "cpo" || provenance === "cpo";
 
+  let powertrains = new Set<string>();
+  if (tab === "ev") {
+    powertrains = new Set(["electric", "hybrid"]);
+  } else if (powertrain !== "all") {
+    powertrains = new Set([powertrain]);
+  }
+
   return {
     body,
     budget,
     isCPO,
     make,
     powertrain,
+    powertrains,
     provenance,
     query,
   };
@@ -72,8 +81,8 @@ export function InventoryProvider({
     [searchParams]
   );
 
-  const [searchQuery, setSearchQuery] = useState(init.query);
-  const [priceRange, setPriceRange] = useState<[number, number]>([
+  const [searchQuery, setSearchQueryState] = useState(init.query);
+  const [priceRange, setPriceRangeState] = useState<[number, number]>([
     20_000, 250_000,
   ]);
   const [selectedMakes, setSelectedMakes] = useState<Set<string>>(() =>
@@ -94,18 +103,26 @@ export function InventoryProvider({
     init.body === "all" ? new Set() : new Set([init.body])
   );
   const [selectedPowertrains, setSelectedPowertrains] = useState<Set<string>>(
-    () => (init.powertrain === "all" ? new Set() : new Set([init.powertrain]))
+    () => init.powertrains
   );
   const [selectedPowertrain, setSelectedPowertrainState] = useState(
     init.powertrain
   );
   const [isCPO, setIsCPO] = useState(init.isCPO);
 
+  const setSearchQuery = useCallback((query: string) => {
+    setSearchQueryState(query);
+    setCurrentPage(1);
+  }, []);
+
+  const setPriceRange = useCallback((range: [number, number]) => {
+    setPriceRangeState(range);
+    setCurrentPage(1);
+  }, []);
+
   useEffect(() => {
     const params = parseInventoryParams(searchParams);
-    if (params.query) {
-      setSearchQuery(params.query);
-    }
+    setSearchQueryState(params.query);
     setSelectedMakeState(params.make);
     setSelectedMakes(
       params.make === "all" ? new Set() : new Set([params.make])
@@ -118,9 +135,7 @@ export function InventoryProvider({
     setProvenanceState(params.provenance);
     setIsCPO(params.isCPO);
     setSelectedPowertrainState(params.powertrain);
-    setSelectedPowertrains(
-      params.powertrain === "all" ? new Set() : new Set([params.powertrain])
-    );
+    setSelectedPowertrains(params.powertrains);
     setCurrentPage(1);
   }, [searchParams]);
 
@@ -139,7 +154,7 @@ export function InventoryProvider({
     setIsCPO(false);
     setSortOption("featured");
     setCurrentPage(1);
-  }, []);
+  }, [setPriceRange, setSearchQuery]);
 
   const setSelectedPowertrain = useCallback((pt: string) => {
     setSelectedPowertrainState(pt);
@@ -186,11 +201,8 @@ export function InventoryProvider({
   }, []);
 
   const toggleCPO = useCallback(() => {
-    setIsCPO((prev) => {
-      const next = !prev;
-      setProvenanceState(next ? "cpo" : "all");
-      return next;
-    });
+    setIsCPO((prev) => !prev);
+    setProvenanceState((prev) => (prev === "cpo" ? "all" : "cpo"));
     setCurrentPage(1);
   }, []);
 
@@ -263,45 +275,80 @@ export function InventoryProvider({
     return filtered.slice(start, start + ITEMS_PER_PAGE);
   }, [filtered, currentPage]);
 
+  const contextValue = useMemo<InventoryState>(
+    () => ({
+      currentPage,
+      filteredVehicles: paginatedVehicles,
+      isCPO,
+      priceRange,
+      provenance,
+      resetFilters,
+      searchQuery,
+      selectedBodyStyle,
+      selectedBodyTypes,
+      selectedMake,
+      selectedMakes,
+      selectedPowertrain,
+      selectedPowertrains,
+      selectedSegments,
+      setCurrentPage,
+      setPriceRange,
+      setProvenance,
+      setSearchQuery,
+      setSelectedBodyStyle,
+      setSelectedMake,
+      setSelectedPowertrain,
+      setSortOption,
+      setTargetBudget,
+      setViewMode,
+      sortOption,
+      targetBudget,
+      toggleBodyType,
+      toggleCPO,
+      toggleMake,
+      togglePowertrain,
+      toggleSegment,
+      totalItems,
+      totalPages,
+      viewMode,
+    }),
+    [
+      currentPage,
+      paginatedVehicles,
+      isCPO,
+      priceRange,
+      provenance,
+      resetFilters,
+      searchQuery,
+      selectedBodyStyle,
+      selectedBodyTypes,
+      selectedMake,
+      selectedMakes,
+      selectedPowertrain,
+      selectedPowertrains,
+      selectedSegments,
+      setPriceRange,
+      setProvenance,
+      setSearchQuery,
+      setSelectedBodyStyle,
+      setSelectedMake,
+      setSelectedPowertrain,
+      setTargetBudget,
+      sortOption,
+      targetBudget,
+      toggleBodyType,
+      toggleCPO,
+      toggleMake,
+      togglePowertrain,
+      toggleSegment,
+      totalItems,
+      totalPages,
+      viewMode,
+    ]
+  );
+
   return (
-    <InventoryContext.Provider
-      value={{
-        currentPage,
-        filteredVehicles: paginatedVehicles,
-        isCPO,
-        priceRange,
-        provenance,
-        resetFilters,
-        searchQuery,
-        selectedBodyStyle,
-        selectedBodyTypes,
-        selectedMake,
-        selectedMakes,
-        selectedPowertrain,
-        selectedPowertrains,
-        selectedSegments,
-        setCurrentPage,
-        setPriceRange,
-        setProvenance,
-        setSearchQuery,
-        setSelectedBodyStyle,
-        setSelectedMake,
-        setSelectedPowertrain,
-        setSortOption,
-        setTargetBudget,
-        setViewMode,
-        sortOption,
-        targetBudget,
-        toggleBodyType,
-        toggleCPO,
-        toggleMake,
-        togglePowertrain,
-        toggleSegment,
-        totalItems,
-        totalPages,
-        viewMode,
-      }}
-    >
+    <InventoryContext.Provider value={contextValue}>
       {children}
     </InventoryContext.Provider>
   );

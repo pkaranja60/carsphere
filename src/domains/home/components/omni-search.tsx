@@ -1,29 +1,34 @@
 "use client";
 
 // ─────────────────────────────────────────────
-// SECTION: Components
+// SECTION: Imports
 // ─────────────────────────────────────────────
+
 import { useRouter } from "next/navigation";
+import type React from "react";
 import { useCallback, useMemo, useState } from "react";
-import { MdManageSearch } from "react-icons/md";
 import { inventoryFilterService } from "@/domains/inventory/services/inventory-filter.service";
 import { vehiclesService } from "@/domains/vehicles/services/vehicles.service";
-import {
-  Autocomplete,
-  AutocompleteItem,
-} from "@/shared/components/ui/autocomplete";
-import { Button } from "@/shared/components/ui/button";
-import { Select, SelectItem } from "@/shared/components/ui/select";
 import {
   Tab,
   TabList,
   TabListContainer,
   Tabs,
 } from "@/shared/components/ui/tabs";
+import { OmniSearchForm } from "./omni-search-form";
 
-function extractKey(key: React.Key | null | Set<React.Key>): string {
+// ─────────────────────────────────────────────
+// SECTION: Helpers
+// ─────────────────────────────────────────────
+
+function extractKey(
+  key: React.Key | React.Key[] | null | Set<React.Key>
+): string {
   if (typeof key === "string" || typeof key === "number") {
     return String(key);
+  }
+  if (Array.isArray(key)) {
+    return key[0] ? String(key[0]) : "all";
   }
   if (key && typeof key === "object" && "size" in key) {
     const [first] = Array.from(key as Set<React.Key>);
@@ -31,6 +36,10 @@ function extractKey(key: React.Key | null | Set<React.Key>): string {
   }
   return "all";
 }
+
+// ─────────────────────────────────────────────
+// SECTION: Component
+// ─────────────────────────────────────────────
 
 export function OmniSearch() {
   const router = useRouter();
@@ -59,7 +68,7 @@ export function OmniSearch() {
             : new Set(),
         selectedPowertrain: activeTab === "ev" ? "electric" : "all",
         selectedPowertrains:
-          activeTab === "ev" ? new Set(["electric"]) : new Set(),
+          activeTab === "ev" ? new Set(["electric", "hybrid"]) : new Set(),
         selectedSegments: new Set(),
         sortOption: "featured",
         targetBudget: activeTab === "fleet" ? "under-45k" : selectedBudget,
@@ -79,28 +88,28 @@ export function OmniSearch() {
   }, []);
 
   const handleMakeChange = useCallback(
-    (key: React.Key | null | Set<React.Key>) => {
+    (key: React.Key | React.Key[] | null | Set<React.Key>) => {
       setSelectedMake(extractKey(key));
     },
     []
   );
 
   const handleBodyChange = useCallback(
-    (key: React.Key | null | Set<React.Key>) => {
+    (key: React.Key | React.Key[] | null | Set<React.Key>) => {
       setSelectedBody(extractKey(key));
     },
     []
   );
 
   const handleBudgetChange = useCallback(
-    (key: React.Key | null | Set<React.Key>) => {
+    (key: React.Key | React.Key[] | null | Set<React.Key>) => {
       setSelectedBudget(extractKey(key));
     },
     []
   );
 
   const handleProvenanceChange = useCallback(
-    (key: React.Key | null | Set<React.Key>) => {
+    (key: React.Key | React.Key[] | null | Set<React.Key>) => {
       setSelectedProvenance(extractKey(key));
     },
     []
@@ -140,11 +149,12 @@ export function OmniSearch() {
   );
 
   return (
-    <section className="relative z-20 mx-auto -mt-10 w-full max-w-400 px-margin-mobile md:-mt-14 md:px-margin">
-      <div className="rounded-xl border border-outline-variant bg-surface-container-lowest p-4 shadow-xl md:p-6">
-        <div className="flex flex-col gap-space-sm md:gap-space-md">
-          <div className="flex flex-wrap items-center justify-between gap-space-xs border-surface-container border-b pb-space-xs">
+    <section className="relative z-10 w-full" data-purpose="omni-search">
+      <div className="mx-auto max-w-7xl px-space-md md:px-space-xl">
+        <div className="rounded-2xl border border-outline-variant bg-surface p-space-sm shadow-level-2 md:p-space-lg">
+          <div className="mb-space-md flex flex-col justify-between gap-space-sm border-outline-variant border-b pb-space-sm lg:flex-row lg:items-center">
             <Tabs
+              aria-label="Inventory Search Tabs"
               className="min-w-0 max-w-full"
               defaultSelectedKey="all"
               onSelectionChange={handleTabChange}
@@ -152,10 +162,10 @@ export function OmniSearch() {
             >
               <TabListContainer>
                 <TabList aria-label="Inventory Types">
-                  <Tab id="all">All Inventory (482)</Tab>
-                  <Tab id="cpo">Certified Pre-Owned (318)</Tab>
-                  <Tab id="fleet">Executive Fleet (64)</Tab>
-                  <Tab id="ev">Electric & Hybrid (82)</Tab>
+                  <Tab id="all">All Inventory</Tab>
+                  <Tab id="cpo">Certified Pre-Owned</Tab>
+                  <Tab id="fleet">Executive Fleet</Tab>
+                  <Tab id="ev">Electric & Hybrid</Tab>
                 </TabList>
               </TabListContainer>
             </Tabs>
@@ -164,133 +174,19 @@ export function OmniSearch() {
               <span className="font-medium">Live Stock Updated 8 mins ago</span>
             </div>
           </div>
-          <form
-            className="grid grid-cols-1 items-end gap-space-sm sm:grid-cols-2 md:gap-space-md lg:grid-cols-5"
+
+          <OmniSearchForm
+            matchingCount={matchingCount}
+            onBodyChange={handleBodyChange}
+            onBudgetChange={handleBudgetChange}
+            onMakeChange={handleMakeChange}
+            onProvenanceChange={handleProvenanceChange}
             onSubmit={handleSearch}
-          >
-            <div className="flex flex-col justify-end">
-              <Autocomplete
-                label="Make & Model"
-                onSelectionChange={handleMakeChange}
-                placeholder="e.g. Porsche, BMW, Genesis..."
-                selectedKey={selectedMake === "all" ? null : selectedMake}
-              >
-                <AutocompleteItem id="all" textValue="All Makes & Models">
-                  All Makes & Models
-                </AutocompleteItem>
-                <AutocompleteItem id="Porsche" textValue="Porsche">
-                  Porsche
-                </AutocompleteItem>
-                <AutocompleteItem id="BMW" textValue="BMW">
-                  BMW
-                </AutocompleteItem>
-                <AutocompleteItem id="Genesis" textValue="Genesis">
-                  Genesis
-                </AutocompleteItem>
-                <AutocompleteItem id="Mercedes-Benz" textValue="Mercedes-Benz">
-                  Mercedes-Benz
-                </AutocompleteItem>
-                <AutocompleteItem id="Audi" textValue="Audi">
-                  Audi
-                </AutocompleteItem>
-                <AutocompleteItem id="Lexus" textValue="Lexus">
-                  Lexus
-                </AutocompleteItem>
-                <AutocompleteItem id="Aston Martin" textValue="Aston Martin">
-                  Aston Martin
-                </AutocompleteItem>
-                <AutocompleteItem id="Volvo" textValue="Volvo">
-                  Volvo
-                </AutocompleteItem>
-              </Autocomplete>
-            </div>
-            <div className="flex flex-col justify-end">
-              <Select
-                label="Body Architecture"
-                onSelectionChange={handleBodyChange}
-                placeholder="All Body Styles"
-                selectedKey={selectedBody}
-              >
-                <SelectItem id="all" textValue="All Body Styles">
-                  All Body Styles
-                </SelectItem>
-                <SelectItem id="suv" textValue="Touring & Luxury SUV">
-                  Touring & Luxury SUV
-                </SelectItem>
-                <SelectItem id="sedan" textValue="Executive Sedan">
-                  Executive Sedan
-                </SelectItem>
-                <SelectItem id="coupe" textValue="Grand Tourer & Coupe">
-                  Grand Tourer & Coupe
-                </SelectItem>
-                <SelectItem id="wagon" textValue="Estate & Sport Wagon">
-                  Estate & Sport Wagon
-                </SelectItem>
-              </Select>
-            </div>
-            <div className="flex flex-col justify-end">
-              <Select
-                label="Target Budget"
-                onSelectionChange={handleBudgetChange}
-                placeholder="All Prices"
-                selectedKey={selectedBudget}
-              >
-                <SelectItem id="all" textValue="All Prices">
-                  All Prices
-                </SelectItem>
-                <SelectItem id="under-45k" textValue="Under $45,000">
-                  Under $45,000
-                </SelectItem>
-                <SelectItem id="45-75k" textValue="$45,000 - $75,000">
-                  $45,000 - $75,000
-                </SelectItem>
-                <SelectItem id="75-150k" textValue="$75,000 - $150,000">
-                  $75,000 - $150,000
-                </SelectItem>
-                <SelectItem id="150k" textValue="$150,000+">
-                  $150,000+
-                </SelectItem>
-              </Select>
-            </div>
-            <div className="flex flex-col justify-end">
-              <Select
-                label="Provenance"
-                onSelectionChange={handleProvenanceChange}
-                placeholder="Any Condition"
-                selectedKey={selectedProvenance}
-              >
-                <SelectItem id="all" textValue="Any Condition">
-                  Any Condition
-                </SelectItem>
-                <SelectItem id="cpo" textValue="Certified Pre-Owned">
-                  Certified Pre-Owned
-                </SelectItem>
-                <SelectItem id="1owner" textValue="1-Owner Verified">
-                  1-Owner Verified
-                </SelectItem>
-                <SelectItem id="new" textValue="Arrived This Week">
-                  Arrived This Week
-                </SelectItem>
-                <SelectItem id="low" textValue="Under 15,000 Miles">
-                  Under 15,000 Miles
-                </SelectItem>
-              </Select>
-            </div>
-            <div className="flex flex-col justify-end">
-              <Button
-                className="h-10 gap-space-xs md:h-12"
-                fullWidth
-                size="lg"
-                type="submit"
-                variant="primary"
-              >
-                <MdManageSearch className="text-lg" />
-                <span>
-                  Search {matchingCount > 0 ? matchingCount : 482} Cars
-                </span>
-              </Button>
-            </div>
-          </form>
+            selectedBody={selectedBody}
+            selectedBudget={selectedBudget}
+            selectedMake={selectedMake}
+            selectedProvenance={selectedProvenance}
+          />
         </div>
       </div>
     </section>
