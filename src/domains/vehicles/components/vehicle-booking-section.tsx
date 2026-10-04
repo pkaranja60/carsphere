@@ -91,7 +91,10 @@ export function VehicleBookingSection({
   );
 
   return (
-    <section className="w-full bg-surface py-20" id="inquiry">
+    <section
+      className="w-full border-border/60 border-t bg-surface pt-4 pb-16 sm:pt-6 sm:pb-20"
+      id="inquiry"
+    >
       <div className="mx-auto max-w-400 px-margin-mobile md:px-margin">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
           <div className="space-y-6 lg:col-span-5">
@@ -161,7 +164,7 @@ export function VehicleBookingSection({
 
           <div className="lg:col-span-7">
             {isSuccess ? (
-              <div className="space-y-5 rounded-xl border border-border bg-surface-container-lowest p-5 text-center shadow-none md:p-10 md:shadow-md">
+              <div className="space-y-5 border-0 bg-transparent p-0 text-center shadow-none md:rounded-xl md:border md:border-border md:bg-surface-container-lowest md:p-10 md:shadow-md">
                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
                   <MdCheckCircle className="text-4xl" />
                 </div>
@@ -186,7 +189,7 @@ export function VehicleBookingSection({
               </div>
             ) : (
               <form
-                className="space-y-4 rounded-xl border border-border bg-surface-container-lowest p-5 shadow-none md:p-10 md:shadow-md"
+                className="space-y-4 border-0 bg-transparent p-0 shadow-none md:rounded-xl md:border md:border-border md:bg-surface-container-lowest md:p-10 md:shadow-md"
                 onSubmit={handleSubmit}
               >
                 <div className="border-border border-b pb-3">

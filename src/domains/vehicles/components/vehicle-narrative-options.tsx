@@ -21,7 +21,10 @@ export function VehicleNarrativeOptions({
   vehicle,
 }: VehicleNarrativeOptionsProps) {
   return (
-    <section className="w-full bg-surface py-16" id="overview">
+    <section
+      className="w-full bg-surface pt-12 pb-6 sm:pt-16 sm:pb-8"
+      id="overview"
+    >
       <div className="mx-auto max-w-400 px-margin-mobile md:px-margin">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
           <div className="space-y-4 lg:col-span-4">
@@ -69,7 +72,7 @@ export function VehicleNarrativeOptions({
           </div>
 
           <div className="space-y-6 lg:col-span-8">
-            <div className="space-y-4 rounded-xl border border-border bg-surface-container-lowest p-5 shadow-none md:p-8 md:shadow-sm">
+            <div className="space-y-4 border-0 bg-transparent p-0 shadow-none md:rounded-xl md:border md:border-border md:bg-surface-container-lowest md:p-8 md:shadow-sm">
               <h3 className="font-bold font-display text-headline-sm text-on-surface">
                 Vehicle Narrative &amp; Configuration
               </h3>

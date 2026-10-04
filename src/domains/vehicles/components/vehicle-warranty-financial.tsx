@@ -36,7 +36,7 @@ export function VehicleWarrantyFinancial({
     >
       <div className="mx-auto max-w-400 px-margin-mobile md:px-margin">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
-          <div className="flex flex-col justify-between space-y-6 rounded-xl border border-border bg-surface-container-lowest p-5 shadow-none md:p-8 md:shadow-sm lg:col-span-6">
+          <div className="flex flex-col justify-between space-y-6 border-0 bg-transparent p-0 shadow-none md:rounded-xl md:border md:border-border md:bg-surface-container-lowest md:p-8 md:shadow-sm lg:col-span-6">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <MdOutlineShield className="text-2xl text-primary" />
@@ -90,7 +90,7 @@ export function VehicleWarrantyFinancial({
             </div>
           </div>
 
-          <div className="flex flex-col justify-between space-y-6 rounded-xl border border-border bg-surface-container-lowest p-5 shadow-none md:p-8 md:shadow-sm lg:col-span-6">
+          <div className="flex flex-col justify-between space-y-6 border-0 bg-transparent p-0 shadow-none md:rounded-xl md:border md:border-border md:bg-surface-container-lowest md:p-8 md:shadow-sm lg:col-span-6">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <MdOutlineReceiptLong className="text-2xl text-primary" />

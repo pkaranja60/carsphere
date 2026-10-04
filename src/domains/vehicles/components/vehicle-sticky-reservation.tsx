@@ -43,7 +43,7 @@ export function VehicleStickyReservation({
 
   return (
     <div className="flex flex-col gap-6 lg:sticky lg:top-28">
-      <div className="space-y-6 rounded-xl border border-border bg-surface-container-lowest p-6 shadow-none md:p-8 md:shadow-md">
+      <div className="space-y-6 border-0 bg-transparent p-0 shadow-none md:rounded-xl md:border md:border-border md:bg-surface-container-lowest md:p-8 md:shadow-md">
         <div className="flex flex-col gap-1 border-border border-b pb-4">
           <div className="flex items-center justify-between">
             <span className="font-label-sm font-semibold text-label-sm text-on-surface-variant uppercase tracking-wider">

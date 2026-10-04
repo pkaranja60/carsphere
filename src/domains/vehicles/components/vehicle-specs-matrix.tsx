@@ -66,10 +66,10 @@ export function VehicleSpecsMatrix({ specs }: VehicleSpecsMatrixProps) {
         <div className="space-y-6">
           {groups.map((group) => (
             <div
-              className="overflow-hidden rounded-xl border border-border bg-surface-container-lowest shadow-none md:shadow-sm"
+              className="overflow-hidden border-0 bg-transparent shadow-none md:rounded-xl md:border md:border-border md:bg-surface-container-lowest md:shadow-sm"
               key={group.category}
             >
-              <div className="border-border border-b bg-surface-container-low px-6 py-3.5">
+              <div className="border-border border-b bg-transparent px-0 py-2.5 md:bg-surface-container-low md:px-6 md:py-3.5">
                 <h3 className="font-bold font-label-lg text-label-lg text-on-surface uppercase tracking-wider">
                   {group.category}
                 </h3>
@@ -78,7 +78,7 @@ export function VehicleSpecsMatrix({ specs }: VehicleSpecsMatrixProps) {
               <div className="divide-y divide-border">
                 {group.items.map((item) => (
                   <div
-                    className="grid grid-cols-1 items-baseline gap-2 px-6 py-4 transition-colors hover:bg-surface-container-low/50 sm:grid-cols-12 sm:gap-4"
+                    className="grid grid-cols-1 items-baseline gap-2 px-0 py-3.5 transition-colors hover:bg-surface-container-low/50 sm:grid-cols-12 sm:gap-4 md:px-6 md:py-4"
                     key={item.title}
                   >
                     <div className="sm:col-span-4 lg:col-span-3">
