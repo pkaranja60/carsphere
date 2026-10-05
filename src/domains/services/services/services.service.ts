@@ -3,7 +3,6 @@
 // ─────────────────────────────────────────────
 
 import type {
-  GuaranteeItem,
   HandoverFeature,
   MetricItem,
   ServicePillar,
@@ -207,36 +206,6 @@ const HANDOVER_FEATURES: HandoverFeature[] = [
   },
 ];
 
-const GUARANTEES: GuaranteeItem[] = [
-  {
-    badge: "Certified Standard",
-    description:
-      "Rigorous mechanical and cosmetic testing for enduring quality assurance.",
-    iconName: "verified",
-    id: "g-inspection",
-    signoff: "Audit signed off by master technician",
-    title: "150-Point Inspection",
-  },
-  {
-    badge: "Client Assurance",
-    description:
-      "Experience your vehicle with 500 worry-free miles and complete peace of mind.",
-    iconName: "published_with_changes",
-    id: "g-buyback",
-    signoff: "100% principal refunded unconditionally",
-    title: "7-Day Buyback Guarantee",
-  },
-  {
-    badge: "Fair Acquisition",
-    description:
-      "Direct market valuation, zero dealer markups, and clear upfront terms.",
-    iconName: "shield",
-    id: "g-pricing",
-    signoff: "Zero hidden handling or processing fees",
-    title: "Transparent Pricing",
-  },
-];
-
 // ─────────────────────────────────────────────
 // SECTION: Explicit Service Container
 // ─────────────────────────────────────────────
@@ -252,7 +221,6 @@ export const servicesService = {
       success: true,
     };
   },
-  listGuarantees: (): GuaranteeItem[] => GUARANTEES,
   listHandoverFeatures: (): HandoverFeature[] => HANDOVER_FEATURES,
   listMetrics: (): MetricItem[] => METRIC_ITEMS,
   listPillars: (): ServicePillar[] => SERVICE_PILLARS,

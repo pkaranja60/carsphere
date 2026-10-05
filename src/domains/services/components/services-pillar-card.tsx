@@ -145,7 +145,7 @@ export function ServicesPillarCard({
   }, [onSelectTab, pillar.tabKey]);
 
   return (
-    <div className="flex flex-col justify-between rounded-2xl border border-border bg-surface-container-lowest p-6 shadow-xs transition hover:border-border-strong hover:shadow-md sm:p-space-xl">
+    <div className="flex flex-col justify-between border-0 bg-transparent p-0 shadow-none transition sm:rounded-2xl sm:border sm:border-border sm:bg-surface-container-lowest sm:p-space-lg sm:shadow-xs sm:hover:border-border-strong sm:hover:shadow-md md:p-space-xl">
       <div>
         <div className="mb-space-md flex items-center justify-between">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-border/80 bg-surface-container-low">

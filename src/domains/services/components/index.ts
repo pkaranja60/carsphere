@@ -1,4 +1,3 @@
-export * from "./services-guarantees-section";
 export * from "./services-handover-section";
 export * from "./services-hero-section";
 export * from "./services-hotline-banner";

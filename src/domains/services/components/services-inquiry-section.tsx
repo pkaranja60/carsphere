@@ -99,7 +99,7 @@ export function ServicesInquirySection({
           </p>
         </div>
 
-        <div className="mx-auto max-w-4xl rounded-2xl border border-border bg-surface-container-lowest p-6 shadow-sm sm:p-8 lg:p-10">
+        <div className="mx-auto max-w-4xl border-0 bg-transparent p-0 shadow-none sm:rounded-2xl sm:border sm:border-border sm:bg-surface-container-lowest sm:p-8 sm:shadow-sm lg:p-10">
           <div className="mb-6 flex flex-wrap items-center justify-center gap-2 rounded-xl border border-border/80 bg-surface-container-low p-1.5 sm:mb-8">
             {TABS.map((tab) => (
               <InquiryTabButton

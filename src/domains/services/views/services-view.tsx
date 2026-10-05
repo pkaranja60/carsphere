@@ -6,7 +6,6 @@
 
 import { Suspense, useMemo } from "react";
 import {
-  ServicesGuaranteesSection,
   ServicesHandoverSection,
   ServicesHeroSection,
   ServicesHotlineBanner,
@@ -28,7 +27,6 @@ function ServicesContent() {
     () => servicesService.listHandoverFeatures(),
     []
   );
-  const guarantees = useMemo(() => servicesService.listGuarantees(), []);
 
   return (
     <div className="relative flex w-full flex-col">
@@ -49,7 +47,6 @@ function ServicesContent() {
       />
       <ServicesHandoverSection features={handoverFeatures} />
       <ServicesInquirySection inquiryState={inquiryState} />
-      <ServicesGuaranteesSection guarantees={guarantees} />
       <ServicesHotlineBanner />
     </div>
   );
