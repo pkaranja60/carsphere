@@ -20,7 +20,7 @@ interface ContactSpecialistCardProps {
 
 export function ContactSpecialistCard({ host }: ContactSpecialistCardProps) {
   return (
-    <div className="flex flex-col gap-4 rounded-xl border border-border bg-surface-container-lowest p-5 shadow-xs sm:p-space-lg">
+    <div className="flex flex-col gap-4 border-0 bg-transparent p-0 shadow-none sm:rounded-xl sm:border sm:border-border sm:bg-surface-container-lowest sm:p-space-lg sm:shadow-xs">
       <div className="flex items-center gap-3.5 sm:gap-space-md">
         <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-primary/40 shadow-xs">
           <Image

@@ -61,7 +61,7 @@ export function AboutInspectionProtocol() {
           const Icon = STEP_ICONS[idx] ?? MdLayers;
           return (
             <div
-              className="group flex flex-col justify-between rounded-xl border border-border bg-surface-container-lowest p-6 shadow-xs transition-all hover:-translate-y-1 hover:shadow-md md:p-8"
+              className="group flex flex-col justify-between border-0 bg-transparent p-0 shadow-none transition-all sm:rounded-xl sm:border sm:border-border sm:bg-surface-container-lowest sm:p-6 sm:shadow-xs sm:hover:-translate-y-1 sm:hover:shadow-md md:p-8"
               key={step.id}
             >
               <div>
