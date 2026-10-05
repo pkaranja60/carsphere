@@ -5,8 +5,22 @@
 // ─────────────────────────────────────────────
 
 import { useTheme } from "next-themes";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+
+// ─────────────────────────────────────────────
+// SECTION: Helpers
+// ─────────────────────────────────────────────
+
+const noopSubscribe = () => () => undefined;
+
+function useIsMounted(): boolean {
+  return useSyncExternalStore(
+    noopSubscribe,
+    () => true as boolean,
+    () => false
+  );
+}
 
 // ─────────────────────────────────────────────
 // SECTION: Component
@@ -14,11 +28,7 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 export function ThemeToggle() {
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useIsMounted();
 
   const toggleTheme = useCallback(() => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");

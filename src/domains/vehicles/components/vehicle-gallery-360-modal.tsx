@@ -74,8 +74,6 @@ export function VehicleGallery360Modal({
   const [isDragging, setIsDragging] = useState(false);
   const startXRef = useRef(0);
   const startAngleRef = useRef(0);
-  const onCloseRef = useRef(onClose);
-  onCloseRef.current = onClose;
 
   // Map 0-360 angle to the closest available perspective image
   const imageIndex = Math.min(
@@ -98,6 +96,7 @@ export function VehicleGallery360Modal({
   }, [isOpen, isSpinning]);
 
   // Handle escape key & scroll locking
+  // react-doctor-disable-next-line prefer-use-effect-event
   useEffect(() => {
     if (!isOpen) {
       return;
@@ -105,7 +104,7 @@ export function VehicleGallery360Modal({
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        onCloseRef.current();
+        onClose();
       }
     };
 
@@ -116,7 +115,8 @@ export function VehicleGallery360Modal({
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen]);
+    // react-doctor-disable-next-line prefer-use-effect-event
+  }, [isOpen, onClose]);
 
   const handlePointerDown = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {

@@ -80,7 +80,7 @@ export function DrawerPanel({
                 </p>
               ) : null}
             </div>
-            <HeroDrawer.CloseTrigger className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-border/80 bg-surface-container-low text-on-surface-variant transition-all hover:bg-surface-container-high hover:text-on-surface active:scale-95">
+            <HeroDrawer.CloseTrigger className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-border/80 bg-surface-container-low text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-on-surface active:scale-95">
               <MdClose className="text-xl" />
             </HeroDrawer.CloseTrigger>
           </HeroDrawer.Header>

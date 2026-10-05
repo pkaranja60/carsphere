@@ -31,11 +31,11 @@ function subscribe() {
   return () => undefined;
 }
 
-function useIsClient(): boolean {
+function useBodyElement() {
   return useSyncExternalStore(
     subscribe,
-    () => true as boolean,
-    () => false
+    () => (typeof document === "undefined" ? null : document.body),
+    () => null
   );
 }
 
@@ -44,8 +44,8 @@ function useIsClient(): boolean {
 // ─────────────────────────────────────────────
 
 export function MobileNav({ items }: MobileNavProps) {
-  const isClient = useIsClient();
   const [isOpen, setIsOpen] = useState(false);
+  const portalTarget = useBodyElement();
   const pathname = usePathname();
 
   // Close menu on route change
@@ -96,7 +96,7 @@ export function MobileNav({ items }: MobileNavProps) {
   }, []);
 
   const drawerContent =
-    isClient && isOpen ? (
+    portalTarget && isOpen ? (
       <dialog
         aria-label="Mobile Navigation Menu"
         aria-modal="true"
@@ -163,7 +163,9 @@ export function MobileNav({ items }: MobileNavProps) {
         )}
       </Button>
 
-      {drawerContent ? createPortal(drawerContent, document.body) : null}
+      {drawerContent && portalTarget
+        ? createPortal(drawerContent, portalTarget)
+        : null}
     </div>
   );
 }

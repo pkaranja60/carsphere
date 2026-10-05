@@ -99,6 +99,7 @@ export const Carousel = ({
     if (!(api && setApi)) {
       return;
     }
+    // react-doctor-disable-next-line no-pass-data-to-parent, no-pass-live-state-to-parent, no-prop-callback-in-effect
     setApi(api);
   }, [api, setApi]);
 

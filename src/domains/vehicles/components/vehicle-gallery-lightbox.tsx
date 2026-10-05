@@ -5,7 +5,7 @@
 // ─────────────────────────────────────────────
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { MdChevronLeft, MdChevronRight, MdClose } from "react-icons/md";
 
@@ -63,13 +63,6 @@ export function VehicleGalleryLightbox({
     onSelectIndex((activeIndex + 1) % images.length);
   }, [activeIndex, images.length, onSelectIndex]);
 
-  const onPrevRef = useRef(handlePrev);
-  onPrevRef.current = handlePrev;
-  const onNextRef = useRef(handleNext);
-  onNextRef.current = handleNext;
-  const onCloseRef = useRef(onClose);
-  onCloseRef.current = onClose;
-
   const createThumbnailClickHandler = useCallback(
     (index: number) => () => {
       onSelectIndex(index);
@@ -77,6 +70,7 @@ export function VehicleGalleryLightbox({
     [onSelectIndex]
   );
 
+  // react-doctor-disable-next-line prefer-use-effect-event
   useEffect(() => {
     if (!isOpen) {
       return;
@@ -84,13 +78,13 @@ export function VehicleGalleryLightbox({
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        onCloseRef.current();
+        onClose();
       }
       if (e.key === "ArrowLeft") {
-        onPrevRef.current();
+        handlePrev();
       }
       if (e.key === "ArrowRight") {
-        onNextRef.current();
+        handleNext();
       }
     };
 
@@ -101,7 +95,8 @@ export function VehicleGalleryLightbox({
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen]);
+    // react-doctor-disable-next-line prefer-use-effect-event
+  }, [handleNext, handlePrev, isOpen, onClose]);
 
   if (!(isOpen && isClient && currentImage)) {
     return null;

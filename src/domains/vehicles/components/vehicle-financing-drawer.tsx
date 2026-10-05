@@ -118,7 +118,7 @@ export function VehicleFinancingDrawer({
       description={`Bespoke financial architecture · ${vehicle.year} ${vehicle.make} ${vehicle.model}`}
       footer={
         <button
-          className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary-container px-6 py-4 text-center font-label-lg font-semibold text-label-lg text-on-primary shadow-lg transition-all hover:bg-primary hover:shadow-xl active:scale-[0.99]"
+          className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary-container px-6 py-4 text-center font-label-lg font-semibold text-label-lg text-on-primary shadow-lg transition-colors hover:bg-primary hover:shadow-xl active:scale-[0.99]"
           onClick={handleApply}
           type="button"
         >
