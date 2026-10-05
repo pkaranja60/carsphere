@@ -1,1 +1,1 @@
-export * from "./contact.validation.test";
+export {};

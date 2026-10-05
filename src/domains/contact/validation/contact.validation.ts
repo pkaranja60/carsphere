@@ -11,7 +11,7 @@ import type { ConsultationFormData } from "../types/contact.types";
 
 export const consultationFormSchema = z.object({
   consultationFormat: z.enum(["flagship", "athome", "remote"], {
-    errorMap: () => ({ message: "Please select a viewing format" }),
+    message: "Please select a viewing format",
   }),
   email: z
     .string()
