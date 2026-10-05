@@ -55,18 +55,14 @@ function FormatCard({ format, isSelected, onSelect }: FormatCardProps) {
   return (
     <button
       aria-pressed={isSelected}
-      className={`group relative flex w-[85vw] max-w-85 shrink-0 cursor-pointer snap-center flex-col justify-between overflow-hidden rounded-xl border bg-surface-container-lowest text-left shadow-xs transition-all duration-200 sm:w-[380px] min-[1010px]:w-auto min-[1010px]:max-w-none ${
-        isSelected
-          ? "border-primary shadow-sm"
-          : "border-border hover:border-border-strong hover:shadow-sm"
-      }`}
+      className="group relative flex w-[85vw] max-w-sm shrink-0 cursor-pointer snap-center flex-col justify-between overflow-hidden rounded-xl border border-border bg-surface-container-lowest text-left shadow-xs transition-all duration-200 hover:border-border-strong hover:shadow-sm sm:w-90 lg:w-full lg:max-w-none lg:shrink"
       data-format-id={format.id}
       onClick={handleClick}
       type="button"
     >
-      {/* Top Accent Indicator */}
+      {/* Bottom Accent Indicator */}
       <div
-        className={`absolute top-0 right-0 left-0 z-10 h-1 bg-primary transition-opacity duration-200 ${
+        className={`absolute right-0 bottom-0 left-0 z-10 h-1 bg-primary transition-opacity duration-200 ${
           isSelected ? "opacity-100" : "opacity-0"
         }`}
       />
@@ -101,13 +97,7 @@ function FormatCard({ format, isSelected, onSelect }: FormatCardProps) {
             {getFormatIcon(format.footerIcon)}
             <span>{format.footerText}</span>
           </span>
-          <span
-            className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
-              isSelected
-                ? "bg-primary text-on-primary"
-                : "bg-surface-container text-on-surface group-hover:bg-primary group-hover:text-on-primary"
-            }`}
-          >
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-surface-container text-on-surface transition-colors group-hover:bg-primary group-hover:text-on-primary">
             <MdArrowForward className="text-base" />
           </span>
         </div>
@@ -130,7 +120,7 @@ export function ContactFormatSelector({
   useEffect(() => {
     const container = containerRef.current;
     // biome-ignore lint/suspicious/noUnnecessaryConditions: Ref is populated after mount
-    if (!container || window.innerWidth > 1009) {
+    if (!container || window.innerWidth >= 1024) {
       return;
     }
     const activeCard = container.querySelector<HTMLButtonElement>(
@@ -150,7 +140,7 @@ export function ContactFormatSelector({
   return (
     <section className="mx-auto w-full max-w-400 px-margin-mobile pb-12 sm:pb-14 md:px-margin">
       <div
-        className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-6 min-[1010px]:grid min-[1010px]:grid-cols-3 min-[1010px]:gap-gutter min-[1010px]:overflow-visible min-[1010px]:pb-0 [&::-webkit-scrollbar]:hidden"
+        className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-6 lg:grid lg:grid-cols-3 lg:gap-gutter lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden"
         ref={containerRef}
       >
         {formats.map((format) => (

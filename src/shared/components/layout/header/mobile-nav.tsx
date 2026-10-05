@@ -17,7 +17,6 @@ import { MobileNavPreferences } from "./mobile-nav-preferences";
 // ─────────────────────────────────────────────
 
 export interface NavItem {
-  children?: { label: string; href: string }[];
   href?: string;
   isActive?: boolean;
   label: string;
@@ -124,20 +123,6 @@ export function MobileNav({ items }: MobileNavProps) {
                     {item.label}
                   </span>
                 )}
-                {item.children ? (
-                  <div className="ml-4 flex flex-col gap-3 border-border border-l-2 pl-4">
-                    {item.children.map((child) => (
-                      <Link
-                        className="text-label-md text-on-surface-variant outline-none transition-colors hover:text-primary focus:outline-none"
-                        href={child.href}
-                        key={child.label}
-                        onClick={handleClose}
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                ) : null}
               </div>
             ))}
           </nav>

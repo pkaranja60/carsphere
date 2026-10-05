@@ -61,8 +61,10 @@ describe("servicesService", () => {
     expect(pillars.map((p) => p.id)).toContain("pillar-sourcing");
   });
 
-  it("returns three standard guarantees", () => {
-    const guarantees = servicesService.listGuarantees();
-    expect(guarantees.length).toBe(3);
+  it("returns handover features and metrics correctly", () => {
+    const features = servicesService.listHandoverFeatures();
+    const metrics = servicesService.listMetrics();
+    expect(features.length).toBe(2);
+    expect(metrics.length).toBe(4);
   });
 });
