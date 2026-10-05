@@ -18,6 +18,10 @@ import {
   MdVideocam,
 } from "react-icons/md";
 import type { VehicleDetail } from "../types/vehicles.types";
+import {
+  type CustomizedFinancingTerms,
+  VehicleFinancingDrawer,
+} from "./vehicle-financing-drawer";
 
 // ─────────────────────────────────────────────
 // SECTION: Interfaces
@@ -37,6 +41,9 @@ export function VehicleStickyReservation({
   vehicle,
 }: VehicleStickyReservationProps) {
   const [hasHeld, setHasHeld] = useState(false);
+  const [isFinancingOpen, setIsFinancingOpen] = useState(false);
+  const [customTerms, setCustomTerms] =
+    useState<CustomizedFinancingTerms | null>(null);
 
   const handleReserveClick = useCallback(() => {
     setHasHeld(true);
@@ -45,6 +52,26 @@ export function VehicleStickyReservation({
   const handleInquireClick = useCallback(() => {
     onInquire?.();
   }, [onInquire]);
+
+  const handleOpenFinancing = useCallback(() => {
+    setIsFinancingOpen(true);
+  }, []);
+
+  const handleCloseFinancing = useCallback(() => {
+    setIsFinancingOpen(false);
+  }, []);
+
+  const handleApplyTerms = useCallback((terms: CustomizedFinancingTerms) => {
+    setCustomTerms(terms);
+  }, []);
+
+  const displayMonthly = customTerms
+    ? `$${customTerms.monthlyPayment.toLocaleString()}`
+    : vehicle.estimatedMonthly;
+
+  const displayTermsString = customTerms
+    ? `${customTerms.termMonths} mo · ${customTerms.downPaymentPercent}% down · ${customTerms.apr}% APR`
+    : "36 mo · 10% down · 4.9% APR";
 
   return (
     <div className="flex flex-col gap-6 lg:sticky lg:top-28">
@@ -81,17 +108,17 @@ export function VehicleStickyReservation({
               Estimated Financing
             </span>
             <span className="font-bold font-display text-headline-sm text-on-surface">
-              {vehicle.estimatedMonthly}{" "}
+              {displayMonthly}{" "}
               <span className="font-body-sm font-normal text-body-sm text-on-surface-variant">
                 / mo
               </span>
             </span>
           </div>
           <div className="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
-            <span>36 mo · 10% down · 4.9% APR</span>
+            <span>{displayTermsString}</span>
             <button
               className="cursor-pointer font-label-sm font-semibold text-label-sm text-primary hover:underline"
-              onClick={handleInquireClick}
+              onClick={handleOpenFinancing}
               type="button"
             >
               Customize
@@ -208,6 +235,13 @@ export function VehicleStickyReservation({
           </div>
         </div>
       </div>
+
+      <VehicleFinancingDrawer
+        isOpen={isFinancingOpen}
+        onApplyTerms={handleApplyTerms}
+        onClose={handleCloseFinancing}
+        vehicle={vehicle}
+      />
     </div>
   );
 }

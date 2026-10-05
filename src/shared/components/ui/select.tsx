@@ -19,27 +19,39 @@ const itemClassName = [
 ].join(" ");
 
 export function Select({
+  error,
   label,
   placeholder,
   children,
   className,
   ...props
-}: ComponentProps<typeof HeroSelect> & { label?: string }) {
+}: ComponentProps<typeof HeroSelect> & { error?: string; label?: string }) {
   return (
-    <HeroSelect className={className} placeholder={placeholder} {...props}>
-      {label ? (
-        <Label className="font-label-sm font-semibold text-[10px] text-on-surface uppercase tracking-wider md:text-label-sm">
-          {label}
-        </Label>
+    <div className="flex w-full flex-col gap-1.5">
+      <HeroSelect className={className} placeholder={placeholder} {...props}>
+        {label ? (
+          <Label className="font-label-sm font-semibold text-[10px] text-on-surface uppercase tracking-wider md:text-label-sm">
+            {label}
+          </Label>
+        ) : null}
+        <HeroSelect.Trigger
+          className={`${triggerClassName} ${
+            error
+              ? "border-error data-[focus-visible=true]:border-error data-[focus-visible=true]:ring-error/20"
+              : ""
+          }`}
+        >
+          <HeroSelect.Value className="min-w-0 flex-1 truncate text-left text-xs md:text-body-sm" />
+          <HeroSelect.Indicator className="shrink-0" />
+        </HeroSelect.Trigger>
+        <HeroSelect.Popover className={popoverClassName}>
+          <ListBox>{children}</ListBox>
+        </HeroSelect.Popover>
+      </HeroSelect>
+      {error ? (
+        <p className="font-body-sm text-body-sm text-error">{error}</p>
       ) : null}
-      <HeroSelect.Trigger className={triggerClassName}>
-        <HeroSelect.Value className="min-w-0 flex-1 truncate text-left text-xs md:text-body-sm" />
-        <HeroSelect.Indicator className="shrink-0" />
-      </HeroSelect.Trigger>
-      <HeroSelect.Popover className={popoverClassName}>
-        <ListBox>{children}</ListBox>
-      </HeroSelect.Popover>
-    </HeroSelect>
+    </div>
   );
 }
 

@@ -4,15 +4,19 @@
 // SECTION: Imports
 // ─────────────────────────────────────────────
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import type { BookingFormData } from "../types/vehicles.types";
-import { bookingValidation } from "../validation/booking.validation";
+import { useForm } from "react-hook-form";
+import {
+  type BookingFormValues,
+  bookingFormSchema,
+} from "../validation/booking.validation";
 
 // ─────────────────────────────────────────────
 // SECTION: Defaults
 // ─────────────────────────────────────────────
 
-const INITIAL_FORM_DATA: BookingFormData = {
+const DEFAULT_VALUES: BookingFormValues = {
   consultationFormat: "In-Person: Beverly Hills Showroom Suite",
   email: "",
   fullName: "",
@@ -27,50 +31,41 @@ const INITIAL_FORM_DATA: BookingFormData = {
 // ─────────────────────────────────────────────
 
 export function useBookingForm(vehicleTitle: string) {
-  const [formData, setFormData] = useState<BookingFormData>(INITIAL_FORM_DATA);
-  const [errors, setErrors] = useState<
-    Partial<Record<keyof BookingFormData, string>>
-  >({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedData, setSubmittedData] = useState<BookingFormValues | null>(
+    null
+  );
 
-  const updateField = (field: keyof BookingFormData, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors((prev) => ({ ...prev, [field]: undefined }));
-    }
-  };
+  const form = useForm<BookingFormValues>({
+    defaultValues: DEFAULT_VALUES,
+    mode: "onBlur",
+    resolver: zodResolver(bookingFormSchema),
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const result = bookingValidation.validate(formData);
-
-    if (!result.isValid) {
-      setErrors(result.errors);
-      return;
-    }
-
+  const onSubmit = form.handleSubmit((data: BookingFormValues) => {
     setIsSubmitting(true);
     // Simulating instant consultation allocation per private desk protocol
     setTimeout(() => {
       setIsSubmitting(false);
+      setSubmittedData(data);
       setIsSuccess(true);
     }, 400);
-  };
+  });
 
   const resetForm = () => {
-    setFormData(INITIAL_FORM_DATA);
+    form.reset(DEFAULT_VALUES);
     setIsSuccess(false);
+    setSubmittedData(null);
   };
 
   return {
-    errors,
-    formData,
-    handleSubmit,
+    form,
     isSubmitting,
     isSuccess,
+    onSubmit,
     resetForm,
-    updateField,
+    submittedData,
     vehicleTitle,
   };
 }

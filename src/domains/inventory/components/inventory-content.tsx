@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback } from "react";
-import { MdClose } from "react-icons/md";
 import {
+  DrawerPanel,
   FilterPill,
   PageHeader,
   Pagination,
@@ -139,27 +139,16 @@ export function InventoryContent() {
             <InventorySidebar />
           </div>
 
-          {/* Mobile Filter Sheet Modal */}
-          {isFilterDrawerOpen ? (
-            <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-sm lg:hidden">
-              <div className="relative max-h-[85vh] w-full overflow-y-auto rounded-t-2xl bg-surface p-5 shadow-2xl">
-                <div className="mb-4 flex items-center justify-between border-border border-b pb-3">
-                  <span className="font-semibold text-base text-on-surface">
-                    Filter Selection
-                  </span>
-                  <button
-                    aria-label="Close filter drawer"
-                    className="rounded-lg p-1.5 text-on-surface-variant hover:bg-surface-container"
-                    onClick={toggleFilterDrawer}
-                    type="button"
-                  >
-                    <MdClose className="text-xl" />
-                  </button>
-                </div>
-                <InventorySidebar />
-              </div>
-            </div>
-          ) : null}
+          {/* Mobile Filter Sheet Drawer */}
+          <DrawerPanel
+            className="max-h-[85vh] rounded-t-2xl lg:hidden"
+            isOpen={isFilterDrawerOpen}
+            onOpenChange={toggleFilterDrawer}
+            placement="bottom"
+            title="Filter Selection"
+          >
+            <InventorySidebar />
+          </DrawerPanel>
 
           <section className="w-full flex-1" data-purpose="inventory-results">
             <InventoryToolbar />
