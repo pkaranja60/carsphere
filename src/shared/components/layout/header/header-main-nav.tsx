@@ -31,7 +31,7 @@ const NAV_ITEMS: NavItem[] = [
     ],
     label: "About",
   },
-  { href: "#", label: "Book Viewing & Contact" },
+  { href: "/contact", label: "Book Viewing & Contact" },
   {
     children: [
       { href: "#", label: "Sell & Trade" },
@@ -217,7 +217,7 @@ export function HeaderMainNav() {
 
           <Link
             className="hidden items-center gap-space-sm rounded-full bg-primary-container py-1.5 pr-4 pl-1.5 text-on-primary shadow-sm transition hover:bg-primary hover:shadow active:translate-y-0.5 md:flex"
-            href="#"
+            href="/contact"
           >
             <Image
               alt="Concierge"
