@@ -4,7 +4,7 @@ import Fade from "embla-carousel-fade";
 import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
 import { MdArrowForward } from "react-icons/md";
-import { buttonVariants } from "@/shared/components/ui/button";
+import { buttonVariants } from "@/shared/components/ui/button.variants";
 
 interface SlideData {
   actionText: string;

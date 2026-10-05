@@ -30,6 +30,7 @@ export interface InventoryState {
   currentPage: number;
   filteredVehicles: Vehicle[];
   isCPO: boolean;
+  isFilterDrawerOpen: boolean;
   priceRange: [number, number];
   provenance: string;
   resetFilters: () => void;
@@ -42,6 +43,7 @@ export interface InventoryState {
   selectedPowertrains: Set<string>;
   selectedSegments: Set<string>;
   setCurrentPage: (page: number) => void;
+  setIsFilterDrawerOpen: (open: boolean) => void;
   setPriceRange: (range: [number, number]) => void;
   setProvenance: (provenance: string) => void;
   setSearchQuery: (query: string) => void;
@@ -55,6 +57,7 @@ export interface InventoryState {
   targetBudget: string;
   toggleBodyType: (bodyType: string) => void;
   toggleCPO: () => void;
+  toggleFilterDrawer: () => void;
   toggleMake: (make: string) => void;
   togglePowertrain: (powertrain: string) => void;
   toggleSegment: (segment: string) => void;

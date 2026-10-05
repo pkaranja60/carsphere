@@ -15,7 +15,7 @@ export function FilterPill({
   ...props
 }: FilterPillProps) {
   const baseClasses =
-    "inline-flex items-center gap-1 rounded-[99px] px-4 py-2.5 text-sm font-medium transition-colors";
+    "inline-flex shrink-0 whitespace-nowrap items-center gap-1 rounded-[99px] px-3.5 py-2 text-xs sm:px-4 sm:py-2.5 sm:text-sm font-medium transition-colors";
 
   const activeClasses = isActive
     ? "bg-on-surface text-surface shadow-sm"

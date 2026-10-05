@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { MdChevronRight } from "react-icons/md";
 
 export interface BreadcrumbItem {
   href?: string;
@@ -26,17 +27,23 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <section
-      className="border-border border-b bg-surface pt-8 pb-5"
+      className="border-border border-b bg-surface pt-6 pb-5 sm:pt-8"
       data-purpose="header-context"
     >
       <div className="mx-auto max-w-400 px-margin-mobile md:px-margin">
         {/* Breadcrumb & Live Status */}
-        <div className="mb-3 flex flex-wrap items-center justify-between gap-2 text-on-surface-variant text-xs uppercase tracking-wider">
-          <div className="flex items-center space-x-1 font-medium">
+        <div className="mb-3 flex items-center justify-between gap-2">
+          <nav
+            aria-label="Breadcrumb navigation"
+            className="flex min-w-0 items-center gap-1 overflow-x-auto whitespace-nowrap font-label-sm text-on-surface-variant text-xs [-ms-overflow-style:none] [scrollbar-width:none] sm:text-label-sm [&::-webkit-scrollbar]:hidden"
+          >
             {breadcrumbs.map((item, index) => {
               const isLast = index === breadcrumbs.length - 1;
               return (
-                <div className="flex items-center space-x-1" key={item.label}>
+                <div
+                  className="flex shrink-0 items-center gap-1"
+                  key={item.label}
+                >
                   {item.href ? (
                     <Link
                       className="transition-colors hover:text-primary hover:underline"
@@ -45,23 +52,29 @@ export function PageHeader({
                       {item.label}
                     </Link>
                   ) : (
-                    <span className={item.isCurrent ? "text-on-surface" : ""}>
+                    <span
+                      className={
+                        item.isCurrent ? "font-medium text-on-surface" : ""
+                      }
+                    >
                       {item.label}
                     </span>
                   )}
-                  {!isLast && <span>/</span>}
+                  {!isLast && (
+                    <MdChevronRight className="text-on-surface-variant/40 text-sm" />
+                  )}
                 </div>
               );
             })}
             {itemCount !== undefined && (
-              <span className="ml-1 font-normal text-on-surface-variant normal-case opacity-70">
+              <span className="ml-1 text-on-surface-variant/70">
                 ({itemCount})
               </span>
             )}
-          </div>
+          </nav>
 
           {liveStatus ? (
-            <div className="flex items-center gap-1.5 font-medium text-on-surface-variant">
+            <div className="hidden shrink-0 items-center gap-1.5 font-medium text-on-surface-variant text-xs sm:flex">
               <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-green-500" />
               <span>{liveStatus}</span>
             </div>
@@ -69,16 +82,16 @@ export function PageHeader({
         </div>
 
         {/* Main Headline */}
-        <h1 className="mb-2 font-display font-medium text-3xl text-on-surface tracking-tight">
+        <h1 className="mb-2 font-display font-medium text-2xl text-on-surface tracking-tight sm:text-3xl">
           {title}
         </h1>
-        <p className="max-w-4xl font-light text-on-surface-variant text-sm leading-relaxed">
+        <p className="max-w-4xl font-light text-on-surface-variant text-xs leading-relaxed sm:text-sm">
           {description}
         </p>
 
         {/* Horizontal Curated Pills */}
         {children ? (
-          <div className="mt-6 flex flex-wrap items-center gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="mt-5 hidden flex-nowrap items-center gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] sm:mt-6 sm:flex [&::-webkit-scrollbar]:hidden">
             {children}
           </div>
         ) : null}

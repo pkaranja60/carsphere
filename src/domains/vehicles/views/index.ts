@@ -1,10 +1,5 @@
 // ─────────────────────────────────────────────
-// SECTION: Domain Public Gateway
+// SECTION: Exports
 // ─────────────────────────────────────────────
 
-export * from "./components";
-export * from "./hooks/use-booking-form";
-export * from "./services/vehicles.service";
-export * from "./types/vehicles.types";
-export * from "./validation/booking.validation";
-export * from "./views";
+export * from "./vehicle-detail-view";
