@@ -5,7 +5,8 @@
 // ─────────────────────────────────────────────
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import type { Key } from "react";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   type BookingFormValues,
@@ -39,9 +40,47 @@ export function useBookingForm(vehicleTitle: string) {
 
   const form = useForm<BookingFormValues>({
     defaultValues: DEFAULT_VALUES,
-    mode: "onBlur",
+    mode: "onChange",
     resolver: zodResolver(bookingFormSchema),
   });
+
+  const {
+    formState: { dirtyFields, errors, isSubmitted },
+    setValue,
+  } = form;
+
+  const getFieldError = useCallback(
+    (name: keyof BookingFormValues) => {
+      if (isSubmitted || dirtyFields[name]) {
+        return errors[name]?.message;
+      }
+    },
+    [dirtyFields, errors, isSubmitted]
+  );
+
+  const handleFormatChange = useCallback(
+    (key: Key | null) => {
+      if (key) {
+        setValue("consultationFormat", String(key), {
+          shouldDirty: true,
+          shouldValidate: true,
+        });
+      }
+    },
+    [setValue]
+  );
+
+  const handleWindowChange = useCallback(
+    (key: Key | null) => {
+      if (key) {
+        setValue("preferredWindow", String(key), {
+          shouldDirty: true,
+          shouldValidate: true,
+        });
+      }
+    },
+    [setValue]
+  );
 
   const onSubmit = form.handleSubmit((data: BookingFormValues) => {
     setIsSubmitting(true);
@@ -61,6 +100,9 @@ export function useBookingForm(vehicleTitle: string) {
 
   return {
     form,
+    getFieldError,
+    handleFormatChange,
+    handleWindowChange,
     isSubmitting,
     isSuccess,
     onSubmit,

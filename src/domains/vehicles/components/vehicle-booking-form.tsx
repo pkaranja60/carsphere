@@ -4,8 +4,6 @@
 // SECTION: Imports
 // ─────────────────────────────────────────────
 
-import type { Key } from "react";
-import { useCallback } from "react";
 import { MdCalendarMonth } from "react-icons/md";
 import { Input, Select, SelectItem, Textarea } from "@/shared/components";
 import { useBookingForm } from "../hooks/use-booking-form";
@@ -28,40 +26,22 @@ export function VehicleBookingForm({
   allocationRef,
   vehicleTitle,
 }: VehicleBookingFormProps) {
-  const { form, isSubmitting, isSuccess, onSubmit, resetForm, submittedData } =
-    useBookingForm(vehicleTitle);
-
   const {
-    formState: { errors },
-    register,
-    setValue,
-    watch,
-  } = form;
+    form,
+    getFieldError,
+    handleFormatChange,
+    handleWindowChange,
+    isSubmitting,
+    isSuccess,
+    onSubmit,
+    resetForm,
+    submittedData,
+  } = useBookingForm(vehicleTitle);
+
+  const { register, watch } = form;
 
   const consultationFormat = watch("consultationFormat");
   const preferredWindow = watch("preferredWindow");
-
-  const handleFormatChange = useCallback(
-    (key: Key | null) => {
-      if (key) {
-        setValue("consultationFormat", String(key), {
-          shouldValidate: true,
-        });
-      }
-    },
-    [setValue]
-  );
-
-  const handleWindowChange = useCallback(
-    (key: Key | null) => {
-      if (key) {
-        setValue("preferredWindow", String(key), {
-          shouldValidate: true,
-        });
-      }
-    },
-    [setValue]
-  );
 
   if (isSuccess && submittedData) {
     return (
@@ -76,6 +56,7 @@ export function VehicleBookingForm({
   return (
     <form
       className="space-y-4 border-0 bg-transparent p-0 shadow-none md:rounded-xl md:border md:border-border md:bg-surface-container-lowest md:p-10 md:shadow-md"
+      noValidate
       onSubmit={onSubmit}
     >
       <div className="border-border border-b pb-3">
@@ -89,7 +70,7 @@ export function VehicleBookingForm({
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Input
-          error={errors.fullName?.message}
+          error={getFieldError("fullName")}
           label="Full Legal Name"
           placeholder="e.g. Harrison Vance"
           required
@@ -97,7 +78,7 @@ export function VehicleBookingForm({
         />
 
         <Input
-          error={errors.phone?.message}
+          error={getFieldError("phone")}
           label="Contact Phone"
           placeholder="+1 (310) 000-0000"
           required
@@ -108,7 +89,7 @@ export function VehicleBookingForm({
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Input
-          error={errors.email?.message}
+          error={getFieldError("email")}
           label="Email Address"
           placeholder="client@domain.com"
           required
@@ -117,7 +98,7 @@ export function VehicleBookingForm({
         />
 
         <Select
-          error={errors.consultationFormat?.message}
+          error={getFieldError("consultationFormat")}
           label="Consultation Format"
           onSelectionChange={handleFormatChange}
           selectedKey={consultationFormat}
@@ -136,7 +117,7 @@ export function VehicleBookingForm({
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Input
-          error={errors.preferredDate?.message}
+          error={getFieldError("preferredDate")}
           label="Preferred Viewing Date"
           required
           type="date"
@@ -144,7 +125,7 @@ export function VehicleBookingForm({
         />
 
         <Select
-          error={errors.preferredWindow?.message}
+          error={getFieldError("preferredWindow")}
           label="Preferred Window"
           onSelectionChange={handleWindowChange}
           selectedKey={preferredWindow}
@@ -162,7 +143,7 @@ export function VehicleBookingForm({
       </div>
 
       <Textarea
-        error={errors.tradeInNotes?.message}
+        error={getFieldError("tradeInNotes")}
         label="Trade-In Vehicle / Special Client Instructions (Optional)"
         placeholder="e.g. 2021 Porsche Macan GTS trade-in, gated property access..."
         rows={3}
