@@ -34,11 +34,13 @@ const NAV_ITEMS: NavItem[] = [
   { href: "/contact", label: "Book Viewing & Contact" },
   {
     children: [
-      { href: "#", label: "Sell & Trade" },
-      { href: "#", label: "Financing" },
-      { href: "#", label: "Warranty" },
-      { href: "#", label: "Private Sourcing" },
+      { href: "/services", label: "Overview & Advisory" },
+      { href: "/services#trade", label: "Sell & Trade" },
+      { href: "/services#finance", label: "Financing" },
+      { href: "/services#warranty", label: "Warranty" },
+      { href: "/services#sourcing", label: "Private Sourcing" },
     ],
+    href: "/services",
     label: "Services & Advisory",
   },
 ];
