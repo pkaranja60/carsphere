@@ -66,12 +66,14 @@ export function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
   }, []);
 
   const handleInquire = useCallback(() => {
-    setActiveTab("overview");
-    setTimeout(() => {
-      document
-        .getElementById("inquiry")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }, 60);
+    const inquiryEl = document.getElementById("inquiry");
+    if (inquiryEl) {
+      inquiryEl.scrollIntoView({ behavior: "smooth" });
+      const firstInput = inquiryEl.querySelector(
+        "input, select"
+      ) as HTMLElement | null;
+      firstInput?.focus({ preventScroll: true });
+    }
   }, []);
 
   return (
@@ -94,7 +96,10 @@ export function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
               <VehicleGallery vehicle={vehicle} />
             </div>
             <div className="lg:col-span-5">
-              <VehicleStickyReservation vehicle={vehicle} />
+              <VehicleStickyReservation
+                onInquire={handleInquire}
+                vehicle={vehicle}
+              />
             </div>
           </div>
         </div>
@@ -109,13 +114,7 @@ export function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
 
       <div className="relative z-10">
         {activeTab === "overview" ? (
-          <>
-            <VehicleNarrativeOptions vehicle={vehicle} />
-            <VehicleBookingSection
-              allocationRef={vehicle.allocationNumber}
-              vehicleTitle={vehicleTitle}
-            />
-          </>
+          <VehicleNarrativeOptions vehicle={vehicle} />
         ) : null}
 
         {activeTab === "specs" ? (
@@ -136,6 +135,11 @@ export function VehicleDetailView({ vehicle }: VehicleDetailViewProps) {
             warrantyItems={vehicle.warrantyItems}
           />
         ) : null}
+
+        <VehicleBookingSection
+          allocationRef={vehicle.allocationNumber}
+          vehicleTitle={vehicleTitle}
+        />
 
         <VehicleCuratedAlternatives
           alternatives={vehicle.curatedAlternatives}

@@ -5,7 +5,6 @@
 // ─────────────────────────────────────────────
 
 import Image from "next/image";
-import Link from "next/link";
 import { useCallback, useState } from "react";
 import {
   MdBatteryChargingFull,
@@ -25,6 +24,7 @@ import type { VehicleDetail } from "../types/vehicles.types";
 // ─────────────────────────────────────────────
 
 interface VehicleStickyReservationProps {
+  onInquire?: () => void;
   vehicle: VehicleDetail;
 }
 
@@ -33,6 +33,7 @@ interface VehicleStickyReservationProps {
 // ─────────────────────────────────────────────
 
 export function VehicleStickyReservation({
+  onInquire,
   vehicle,
 }: VehicleStickyReservationProps) {
   const [hasHeld, setHasHeld] = useState(false);
@@ -40,6 +41,10 @@ export function VehicleStickyReservation({
   const handleReserveClick = useCallback(() => {
     setHasHeld(true);
   }, []);
+
+  const handleInquireClick = useCallback(() => {
+    onInquire?.();
+  }, [onInquire]);
 
   return (
     <div className="flex flex-col gap-6 lg:sticky lg:top-28">
@@ -84,12 +89,13 @@ export function VehicleStickyReservation({
           </div>
           <div className="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
             <span>36 mo · 10% down · 4.9% APR</span>
-            <Link
-              className="font-label-sm font-semibold text-label-sm text-primary hover:underline"
-              href="#inquiry"
+            <button
+              className="cursor-pointer font-label-sm font-semibold text-label-sm text-primary hover:underline"
+              onClick={handleInquireClick}
+              type="button"
             >
               Customize
-            </Link>
+            </button>
           </div>
           <div className="h-1.5 w-full overflow-hidden rounded-full bg-border">
             <div className="h-full w-[72%] rounded-full bg-primary" />
@@ -97,13 +103,14 @@ export function VehicleStickyReservation({
         </div>
 
         <div className="flex flex-col gap-3">
-          <Link
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary-container px-6 py-3.5 text-center font-label-lg font-semibold text-label-lg text-on-primary shadow-none transition-colors hover:bg-primary active:translate-y-0.5 sm:shadow-sm"
-            href="#inquiry"
+          <button
+            className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary-container px-6 py-3.5 text-center font-label-lg font-semibold text-label-lg text-on-primary shadow-none transition-colors hover:bg-primary active:translate-y-0.5 sm:shadow-sm"
+            onClick={handleInquireClick}
+            type="button"
           >
             <MdCalendarMonth className="text-xl" />
             <span>Schedule Private Viewing</span>
-          </Link>
+          </button>
 
           {hasHeld ? (
             <div className="flex items-center justify-center gap-2 rounded-lg border border-emerald-300 bg-emerald-50 p-3 text-center font-label-md font-semibold text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300">
@@ -122,13 +129,14 @@ export function VehicleStickyReservation({
           )}
 
           <div className="grid grid-cols-2 gap-3 pt-1">
-            <Link
-              className="flex items-center justify-center gap-1.5 rounded-lg border border-border bg-surface-container-low px-3 py-2.5 text-center font-label-md font-semibold text-label-md text-on-surface transition-colors hover:bg-surface-container"
-              href="#inquiry"
+            <button
+              className="flex cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-border bg-surface-container-low px-3 py-2.5 text-center font-label-md font-semibold text-label-md text-on-surface transition-colors hover:bg-surface-container"
+              onClick={handleInquireClick}
+              type="button"
             >
               <MdVideocam className="text-lg text-primary" />
               <span>Video Tour</span>
-            </Link>
+            </button>
             <a
               className="flex items-center justify-center gap-1.5 rounded-lg border border-border bg-surface-container-low px-3 py-2.5 text-center font-label-md font-semibold text-label-md text-on-surface transition-colors hover:bg-surface-container"
               href={`tel:${vehicle.specialist.directLine.replace(/\D/g, "")}`}
