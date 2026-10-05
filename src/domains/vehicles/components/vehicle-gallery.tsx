@@ -159,7 +159,7 @@ export function VehicleGallery({ vehicle }: VehicleGalleryProps) {
             alt={item.alt}
             index={idx}
             isSelected={idx === activeIndex}
-            key={item.url}
+            key={`${item.url}::${item.alt}`}
             onSelect={handleSelectThumbnail}
             url={item.url}
           />

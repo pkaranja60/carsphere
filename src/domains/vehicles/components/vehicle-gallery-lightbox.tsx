@@ -183,7 +183,7 @@ export function VehicleGalleryLightbox({
                 ? "border-primary ring-2 ring-primary"
                 : "border-transparent opacity-50 hover:opacity-100"
             }`}
-            key={img.url}
+            key={`${img.url}::${img.alt}`}
             onClick={createThumbnailClickHandler(idx)}
             type="button"
           >

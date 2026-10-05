@@ -50,11 +50,11 @@ function useIsClient(): boolean {
 }
 
 const HOTSPOTS = [
-  { angle: 0, label: "Aerodynamic Front Fascia" },
-  { angle: 72, label: '21" Mission E Wheels & Surface Coated Brakes' },
-  { angle: 144, label: "Curved Cockpit Display Architecture" },
-  { angle: 216, label: "Continuous LED Light Strip & Rear Diffuser" },
-  { angle: 288, label: "Underbody 93.4 kWh Performance Battery Plus" },
+  { angle: 0, label: "Aerodynamic Front Fascia & Bi-LED Headlamps" },
+  { angle: 72, label: "Precision Alloy Wheels & Performance Braking" },
+  { angle: 144, label: "Driver-Centric Cockpit & Digital Instrumentation" },
+  { angle: 216, label: "Signature Rear Profile & Integrated Diffuser" },
+  { angle: 288, label: "Rigid Chassis & Structural Platform Engineering" },
 ];
 
 // ─────────────────────────────────────────────
