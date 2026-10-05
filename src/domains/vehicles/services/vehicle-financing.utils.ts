@@ -11,7 +11,7 @@ export interface CustomizedFinancingTerms {
 }
 
 export const TERM_OPTIONS = [24, 36, 48, 60, 72];
-export const DOWN_PAYMENT_PRESETS = [10, 15, 20, 30];
+export const DOWN_PAYMENT_PRESETS = [0, 5, 10, 15, 20, 25, 30, 50];
 
 export const CREDIT_TIERS = [
   {

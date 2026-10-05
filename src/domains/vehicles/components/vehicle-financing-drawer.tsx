@@ -21,7 +21,10 @@ import {
   DownPaymentSelector,
   TermSelector,
 } from "./vehicle-financing-controls";
-import { VehicleFinancingSummary } from "./vehicle-financing-summary";
+import {
+  VehicleFinancingHeroCard,
+  VehicleFinancingSummaryBreakdown,
+} from "./vehicle-financing-summary";
 
 // ─────────────────────────────────────────────
 // SECTION: Main Component
@@ -111,11 +114,11 @@ export function VehicleFinancingDrawer({
 
   return (
     <DrawerPanel
-      className="w-full max-w-lg"
-      description={`Bespoke financing structure for ${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+      className="w-full max-w-md sm:max-w-lg"
+      description={`Bespoke financial architecture · ${vehicle.year} ${vehicle.make} ${vehicle.model}`}
       footer={
         <button
-          className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary-container px-6 py-3.5 text-center font-label-lg font-semibold text-label-lg text-on-primary shadow-md transition-colors hover:bg-primary active:translate-y-0.5"
+          className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary-container px-6 py-4 text-center font-label-lg font-semibold text-label-lg text-on-primary shadow-lg transition-all hover:bg-primary hover:shadow-xl active:scale-[0.99]"
           onClick={handleApply}
           type="button"
         >
@@ -130,6 +133,14 @@ export function VehicleFinancingDrawer({
       title="Interactive Financing Studio"
     >
       <div className="space-y-6">
+        <VehicleFinancingHeroCard
+          apr={currentTier.apr}
+          downPercent={downPercent}
+          monthlyPayment={monthlyPayment}
+          termMonths={termMonths}
+          vehiclePrice={vehicle.price}
+        />
+
         <TermSelector onSelectTerm={setTermMonths} selectedTerm={termMonths} />
 
         <DownPaymentSelector
@@ -138,19 +149,21 @@ export function VehicleFinancingDrawer({
           onSelectPercent={setDownPercent}
         />
 
-        <Select
-          label="Credit Tier & Estimated APR"
-          onSelectionChange={handleTierChange}
-          selectedKey={selectedTierId}
-        >
-          {CREDIT_TIERS.map((tier) => (
-            <SelectItem id={tier.id} key={tier.id}>
-              {tier.label}
-            </SelectItem>
-          ))}
-        </Select>
+        <div className="space-y-2">
+          <Select
+            label="Credit Tier & APR Tier"
+            onSelectionChange={handleTierChange}
+            selectedKey={selectedTierId}
+          >
+            {CREDIT_TIERS.map((tier) => (
+              <SelectItem id={tier.id} key={tier.id}>
+                {tier.label}
+              </SelectItem>
+            ))}
+          </Select>
+        </div>
 
-        <VehicleFinancingSummary
+        <VehicleFinancingSummaryBreakdown
           apr={currentTier.apr}
           downPaymentAmount={downPaymentAmount}
           downPercent={downPercent}

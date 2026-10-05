@@ -24,10 +24,10 @@ function TermButton({ isSelected, onSelect, term }: TermButtonProps) {
   const handleClick = useCallback(() => onSelect(term), [onSelect, term]);
   return (
     <button
-      className={`cursor-pointer rounded-lg border py-2.5 text-center font-label-md font-semibold text-label-md transition-colors ${
+      className={`cursor-pointer rounded-xl border py-2.5 text-center font-label-md font-semibold text-label-md transition-all duration-200 ${
         isSelected
           ? "border-primary bg-primary text-on-primary shadow-sm"
-          : "border-border bg-surface-container-lowest text-on-surface hover:bg-surface-container-low"
+          : "border-border/80 bg-surface-container-low text-on-surface hover:border-border hover:bg-surface-container hover:text-on-surface"
       }`}
       onClick={handleClick}
       type="button"
@@ -51,10 +51,10 @@ function DownPercentButton({
   const handleClick = useCallback(() => onSelect(percent), [onSelect, percent]);
   return (
     <button
-      className={`cursor-pointer rounded-lg border py-2 text-center font-label-md font-semibold text-label-md transition-colors ${
+      className={`cursor-pointer rounded-xl border py-2.5 text-center font-label-md font-semibold text-label-md transition-all duration-200 ${
         isSelected
           ? "border-primary bg-primary text-on-primary shadow-sm"
-          : "border-border bg-surface-container-lowest text-on-surface hover:bg-surface-container-low"
+          : "border-border/80 bg-surface-container-low text-on-surface hover:border-border hover:bg-surface-container hover:text-on-surface"
       }`}
       onClick={handleClick}
       type="button"
@@ -78,10 +78,15 @@ export function TermSelector({
   selectedTerm,
 }: TermSelectorProps) {
   return (
-    <div className="space-y-2.5">
-      <span className="font-label-sm font-semibold text-label-sm text-on-surface">
-        Loan Duration (Months)
-      </span>
+    <div className="space-y-2">
+      <div className="flex items-center justify-between">
+        <span className="font-label-sm font-semibold text-label-sm text-on-surface">
+          Loan Duration
+        </span>
+        <span className="font-body-sm text-body-sm text-on-surface-variant">
+          {selectedTerm} Months ({(selectedTerm / 12).toFixed(1)} Years)
+        </span>
+      </div>
       <div className="grid grid-cols-5 gap-2">
         {TERM_OPTIONS.map((term) => (
           <TermButton
@@ -108,13 +113,13 @@ export function DownPaymentSelector({
   onSelectPercent,
 }: DownPaymentSelectorProps) {
   return (
-    <div className="space-y-2.5">
+    <div className="space-y-2">
       <div className="flex items-center justify-between">
         <span className="font-label-sm font-semibold text-label-sm text-on-surface">
-          Down Payment ({downPercent}%)
+          Down Payment Allocation
         </span>
-        <span className="font-label-md font-semibold text-label-md text-primary">
-          ${downPaymentAmount.toLocaleString()}
+        <span className="font-bold font-label-md text-label-md text-primary">
+          ${downPaymentAmount.toLocaleString()} ({downPercent}%)
         </span>
       </div>
       <div className="grid grid-cols-4 gap-2">

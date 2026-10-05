@@ -31,6 +31,7 @@ export interface DrawerPanelProps {
   className?: string;
   description?: string;
   footer?: ReactNode;
+  isDismissable?: boolean;
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
   placement?: "left" | "right" | "top" | "bottom";
@@ -42,25 +43,35 @@ export function DrawerPanel({
   className = "",
   description,
   footer,
+  isDismissable = true,
   isOpen,
   onOpenChange,
   placement = "right",
   title,
 }: DrawerPanelProps) {
+  const borderPlacementMap: Record<string, string> = {
+    bottom: "border-t border-border rounded-t-2xl",
+    left: "border-r border-border",
+    right: "border-l border-border",
+    top: "border-b border-border rounded-b-2xl",
+  };
+  const borderPlacementClass =
+    borderPlacementMap[placement] ?? "border-l border-border";
+
   return (
     <HeroDrawer.Backdrop
-      className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+      isDismissable={isDismissable}
       isOpen={isOpen}
       onOpenChange={onOpenChange}
+      variant="transparent"
     >
-      <HeroDrawer.Content
-        className={`flex h-full max-h-screen flex-col border-border bg-surface-container-lowest text-on-surface shadow-2xl ${className}`}
-        placement={placement}
-      >
-        <HeroDrawer.Dialog className="flex h-full flex-col outline-none">
-          <HeroDrawer.Header className="flex shrink-0 items-start justify-between border-border border-b px-6 py-5">
-            <div className="space-y-1">
-              <HeroDrawer.Heading className="font-bold font-display text-headline-sm text-on-surface">
+      <HeroDrawer.Content placement={placement}>
+        <HeroDrawer.Dialog
+          className={`pointer-events-auto relative flex h-full max-h-screen flex-col overflow-hidden bg-surface-container-lowest p-0 text-on-surface shadow-2xl outline-none ${borderPlacementClass} ${className}`}
+        >
+          <HeroDrawer.Header className="flex shrink-0 items-start justify-between border-border border-b bg-surface-container-lowest/90 px-6 py-5 backdrop-blur-md">
+            <div className="space-y-1 pr-4">
+              <HeroDrawer.Heading className="font-bold font-display text-headline-sm text-on-surface tracking-tight">
                 {title}
               </HeroDrawer.Heading>
               {description ? (
@@ -69,17 +80,17 @@ export function DrawerPanel({
                 </p>
               ) : null}
             </div>
-            <HeroDrawer.CloseTrigger className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border border-border text-on-surface-variant transition-colors hover:bg-surface-container hover:text-on-surface">
+            <HeroDrawer.CloseTrigger className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-border/80 bg-surface-container-low text-on-surface-variant transition-all hover:bg-surface-container-high hover:text-on-surface active:scale-95">
               <MdClose className="text-xl" />
             </HeroDrawer.CloseTrigger>
           </HeroDrawer.Header>
 
-          <HeroDrawer.Body className="flex-1 overflow-y-auto px-6 py-5">
+          <HeroDrawer.Body className="scrollbar-thin flex-1 overflow-y-auto px-6 py-6">
             {children}
           </HeroDrawer.Body>
 
           {footer ? (
-            <HeroDrawer.Footer className="shrink-0 border-border border-t bg-surface px-6 py-4">
+            <HeroDrawer.Footer className="shrink-0 border-border border-t bg-surface-container-lowest px-6 py-4">
               {footer}
             </HeroDrawer.Footer>
           ) : null}
