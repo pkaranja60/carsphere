@@ -114,7 +114,7 @@ export function AboutShowroomSection() {
           <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center">
             <Link
               className="flex h-12 items-center justify-center rounded-lg bg-primary-container px-6 font-label-lg font-semibold text-label-lg text-on-primary shadow-xs transition hover:bg-primary active:translate-y-0.5 sm:w-auto"
-              href="/inventory"
+              href="/contact?format=flagship"
             >
               Schedule Private Lounge Visit
             </Link>

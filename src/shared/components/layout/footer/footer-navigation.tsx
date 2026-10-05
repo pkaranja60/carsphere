@@ -41,12 +41,12 @@ const LINK_GROUPS: NavigationGroup[] = [
   {
     links: [
       {
-        href: "/concierge/appointments",
+        href: "/contact?format=flagship",
         label: "Private Showroom Appointments",
       },
-      { href: "/concierge/transport", label: "Nationwide Transport" },
-      { href: "/concierge/test-drive", label: "VIP Test Drive Booking" },
-      { href: "/concierge/sourcing", label: "Vehicle Sourcing" },
+      { href: "/contact?format=athome", label: "Nationwide Transport" },
+      { href: "/contact?format=athome", label: "VIP Test Drive Booking" },
+      { href: "/contact?vehicle=custom-sourcing", label: "Vehicle Sourcing" },
     ],
     title: "Concierge & Services",
   },
