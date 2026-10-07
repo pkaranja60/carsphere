@@ -108,9 +108,9 @@ export function MobileNav({ items }: MobileNavProps) {
               <div className="flex flex-col gap-2" key={item.label}>
                 {item.href ? (
                   <Link
-                    className={`text-label-lg outline-none transition-colors focus:outline-none md:text-headline-sm ${
+                    className={`font-semibold text-label-lg outline-none transition-colors focus:outline-none ${
                       item.isActive
-                        ? "font-bold text-primary"
+                        ? "text-primary"
                         : "text-on-surface hover:text-primary"
                     }`}
                     href={item.href}
@@ -119,7 +119,7 @@ export function MobileNav({ items }: MobileNavProps) {
                     {item.label}
                   </Link>
                 ) : (
-                  <span className="font-bold text-label-lg text-on-surface md:text-headline-sm">
+                  <span className="font-semibold text-label-lg text-on-surface">
                     {item.label}
                   </span>
                 )}
