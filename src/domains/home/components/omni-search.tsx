@@ -149,7 +149,7 @@ export function OmniSearch() {
   );
 
   return (
-    <section className="relative z-10 w-full" data-purpose="omni-search">
+    <section className="relative z-20 -mt-19 w-full" data-purpose="omni-search">
       <div className="mx-auto max-w-7xl px-space-md md:px-space-xl">
         <div className="rounded-2xl border border-outline-variant bg-surface p-space-sm shadow-level-2 md:p-space-lg">
           <div className="mb-space-md flex flex-col justify-between gap-space-sm border-outline-variant border-b pb-space-sm lg:flex-row lg:items-center">
